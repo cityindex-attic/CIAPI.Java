@@ -1,0 +1,29 @@
+*.swp
+Thumbs.db
+.DS_Store
+.classpath
+.swp
+.project
+.settings
+bin
+bin-debug
+bin-release
+target
+
+#Android related
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated GUI files
+*R.java
+
+#Java related
+.class
+
