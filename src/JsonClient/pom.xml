@@ -8,5 +8,36 @@
   <artifactId>JsonClient</artifactId>
   <packaging>jar</packaging>  
   <name>JsonClient</name>
-
+  <repositories>
+    <repository>
+      <id>gson</id>
+      <url>http://google-gson.googlecode.com/svn/mavenrepo</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+  </repositories>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpcore</artifactId>
+      <version>4.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.0.3</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>1.6</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
 </project>
