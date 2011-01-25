@@ -1,14 +1,15 @@
 package CIAPI.Java.examples.urlshortener;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Future;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 
 import CIAPI.Java.ApiException;
@@ -16,12 +17,25 @@ import CIAPI.Java.AsyncJsonApi;
 import CIAPI.Java.DefaultJsonClient;
 import CIAPI.Java.async.CallBack;
 
+/**
+ * Tiny program designed to showcase the Async Api
+ * @author justin nelson
+ *
+ */
 public class UrlShortenerFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField longUrlField;
 	private JTextField shortenedUrl;
 	private JButton submitButton;
+	private JPanel south;
 
+	/**
+	 * Creates and builds a new UrlShortenerFrame
+	 */
 	public UrlShortenerFrame() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		createComponents();
@@ -34,13 +48,21 @@ public class UrlShortenerFrame extends JFrame {
 		longUrlField = new JTextField(20);
 		shortenedUrl = new JTextField(20);
 		submitButton = new JButton("Shorten!");
+		south = new JPanel();
+		south.setVisible(false);
 	}
 
 	private void layoutComponents() {
-		JPanel mainPane = new JPanel();
-		mainPane.add(longUrlField);
-		mainPane.add(submitButton);
-		mainPane.add(shortenedUrl);
+		JPanel mainPane = new JPanel(new BorderLayout());
+		JPanel north = new JPanel();
+		north.add(longUrlField);
+		north.add(submitButton);
+		north.add(shortenedUrl);
+		JProgressBar progress = new JProgressBar();
+		progress.setIndeterminate(true);
+		south.add(progress);
+		mainPane.add(north, BorderLayout.NORTH);
+		mainPane.add(south, BorderLayout.SOUTH);
 		add(mainPane);
 	}
 
@@ -53,22 +75,31 @@ public class UrlShortenerFrame extends JFrame {
 				try {
 					Map<String, String> key = new HashMap<String, String>();
 					key.put("key", "AIzaSyCYMdrcIDWDf6YFFzyFjA2HCEbfazSkf_M");
-					Future<Object> future = api.beginCallPostMethod("", key,
+					south.setVisible(true);
+					UrlShortenerFrame.this.pack();
+					api.beginCallPostMethod("", key,
 							new GooglePostRequest(longUrlField.getText()), GoogleResponse.class, new CallBack() {
 								@Override
 								public void doCallBack(Object result) {
 									GoogleResponse resp = (GoogleResponse) result;
 									shortenedUrl.setText(resp.getId());
+									south.setVisible(false);
+									UrlShortenerFrame.this.pack();
 								}
 							});
-					future.isCancelled();
 				} catch (ApiException e1) {
-					shortenedUrl.setText("Error");
+					// TODO Doesn't work because Async doesn't throw exceptions
+					shortenedUrl.setText("Api Error");
 				}
 			}
 		});
 	}
 
+	/**
+	 * Main entry point for hte app.  Simply creates and shows a new window
+	 * @param args
+	 * @throws ApiException
+	 */
 	public static void main(String[] args) throws ApiException {
 		new UrlShortenerFrame().setVisible(true);
 	}

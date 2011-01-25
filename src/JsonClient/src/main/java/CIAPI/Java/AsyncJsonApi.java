@@ -22,6 +22,7 @@ public class AsyncJsonApi {
 
 	private JsonClient client;
 	private String baseUrl;
+	private ExecutorService exec;
 
 	/**
 	 * Creates a new AsyncJsonApi with a given JsonClient and base Url
@@ -34,6 +35,7 @@ public class AsyncJsonApi {
 	public AsyncJsonApi(String baseUrl, JsonClient client) {
 		this.baseUrl = baseUrl;
 		this.client = client;
+		exec = new ThreadPoolExecutor(2, 20, 1, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(50));
 	}
 
 	private UrlHelper hlpr = new UrlHelper();
@@ -42,10 +44,15 @@ public class AsyncJsonApi {
 	 * Method for starting a call to a JsonApi
 	 * 
 	 * @param methodName
+	 *            The name of the method you are calling. If calling hte base
+	 *            ulr, leave the name blank
 	 * @param parameters
+	 *            The parameters being passed into the method
 	 * @param returnType
+	 *            The type this method will return
 	 * @param callback
-	 * @return
+	 *            the code to be ran after this method executes
+	 * @return A future that will hold the result of the computation
 	 * @throws ApiException
 	 */
 	public Future<Object> beginCallGetMethod(final String methodName, final Map<String, String> parameters,
@@ -59,17 +66,26 @@ public class AsyncJsonApi {
 				return result;
 			}
 		});
+		// TODO Need a way to handle exceptions
+		exec.execute(future);
 		return future;
 	}
 
 	/**
+	 * Method for starting a call to a JsonApi
 	 * 
 	 * @param methodName
+	 *            The name of the method you are calling. If calling hte base
+	 *            ulr, leave the name blank
 	 * @param parameters
+	 *            The parameters being passed into the method
 	 * @param inputData
+	 *            the data to pass into the POST method
 	 * @param returnType
+	 *            The type this method will return
 	 * @param callback
-	 * @return
+	 *            the code to be ran after this method executes
+	 * @return A future that will hold the result of the computation
 	 * @throws ApiException
 	 */
 	public Future<Object> beginCallPostMethod(final String methodName, final Map<String, String> parameters,
@@ -83,7 +99,6 @@ public class AsyncJsonApi {
 				return result;
 			}
 		});
-		ExecutorService exec = new ThreadPoolExecutor(2, 20, 1, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(50));
 		exec.execute(future);
 		return future;
 	}
