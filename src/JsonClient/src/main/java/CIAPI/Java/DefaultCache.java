@@ -1,17 +1,32 @@
 package CIAPI.Java;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 
+/**
+ * Default implementation of a Cache.  Backed by a hashmap
+ * @author justin nelson
+ *
+ * @param <TKey>
+ * @param <TValue>
+ */
 public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 
 	private Period maxAge;
 
 	private Map<TKey, CacheItem> storage;
 
+	/**
+	 * Creates an empty cache
+	 */
+	public DefaultCache(){
+		storage = new HashMap<TKey, CacheItem>();
+	}
+	
 	@Override
 	public TValue get(TKey key) {
 		CacheItem obj = storage.get(key);

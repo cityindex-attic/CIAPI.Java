@@ -1,9 +1,21 @@
 package CIAPI.Java;
 
+/**
+ * An implementation of JsonClient that caches results of GET requests.
+ * 
+ * @author justin nelson
+ * 
+ */
 public class CachedJsonClient extends DefaultJsonClient {
 
 	private Cache<Pair<String, Class<?>>, Object> cache;
 
+	/**
+	 * Creates a new JsonClient with the given cache
+	 * 
+	 * @param cache
+	 *            the cache to use
+	 */
 	public CachedJsonClient(Cache<Pair<String, Class<?>>, Object> cache) {
 		this.cache = cache;
 	}
@@ -20,10 +32,32 @@ public class CachedJsonClient extends DefaultJsonClient {
 		}
 	}
 
+	/**
+	 * Simple pair class
+	 * 
+	 * @author justin nelson
+	 * 
+	 * @param <T>
+	 * @param <S>
+	 */
 	public static class Pair<T, S> {
+		/**
+		 * Item 1
+		 */
 		public final T one;
+		/**
+		 * Item 2
+		 */
 		public final S two;
 
+		/**
+		 * Creates a new pair with the given data
+		 * 
+		 * @param t
+		 *            item 1
+		 * @param s
+		 *            item 2
+		 */
 		public Pair(T t, S s) {
 			one = t;
 			two = s;
