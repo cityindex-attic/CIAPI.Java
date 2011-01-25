@@ -14,8 +14,9 @@ import CIAPI.Java.urlstuff.UrlHelper;
 
 /**
  * Json Api for making asynchronous calls to an API
+ * 
  * @author justin nelson
- *
+ * 
  */
 public class AsyncJsonApi {
 
@@ -24,8 +25,11 @@ public class AsyncJsonApi {
 
 	/**
 	 * Creates a new AsyncJsonApi with a given JsonClient and base Url
-	 * @param baseUrl the base url of hte API
-	 * @param client the JsonClient to pass calls to.
+	 * 
+	 * @param baseUrl
+	 *            the base url of hte API
+	 * @param client
+	 *            the JsonClient to pass calls to.
 	 */
 	public AsyncJsonApi(String baseUrl, JsonClient client) {
 		this.baseUrl = baseUrl;
@@ -36,6 +40,7 @@ public class AsyncJsonApi {
 
 	/**
 	 * Method for starting a call to a JsonApi
+	 * 
 	 * @param methodName
 	 * @param parameters
 	 * @param returnType
@@ -57,6 +62,16 @@ public class AsyncJsonApi {
 		return future;
 	}
 
+	/**
+	 * 
+	 * @param methodName
+	 * @param parameters
+	 * @param inputData
+	 * @param returnType
+	 * @param callback
+	 * @return
+	 * @throws ApiException
+	 */
 	public Future<Object> beginCallPostMethod(final String methodName, final Map<String, String> parameters,
 			final Object inputData, final Class<?> returnType, final CallBack callback) throws ApiException {
 		FutureTask<Object> future = new FutureTask<Object>(new Callable<Object>() {

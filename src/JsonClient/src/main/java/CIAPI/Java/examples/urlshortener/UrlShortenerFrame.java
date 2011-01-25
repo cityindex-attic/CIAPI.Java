@@ -68,4 +68,8 @@ public class UrlShortenerFrame extends JFrame {
 			}
 		});
 	}
+
+	public static void main(String[] args) throws ApiException {
+		new UrlShortenerFrame().setVisible(true);
+	}
 }

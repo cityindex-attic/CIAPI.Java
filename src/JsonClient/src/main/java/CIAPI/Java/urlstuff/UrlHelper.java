@@ -62,12 +62,13 @@ public class UrlHelper {
 	 */
 	public String createRoute(String baseUrl, String extendedUrl, Map<String, String> params) {
 		// combine all parts of the URL
-		String result = combineMany(baseUrl, extendedUrl, mapToParamList(params));
+		String result = combineMany(baseUrl, extendedUrl);
+		String paramString = mapToParamList(params);
 		// strip trailing '/' from the URL
 		if (result.endsWith("/"))
-			return result.substring(0, result.length() - 1);
+			return result.substring(0, result.length() - 1) + paramString;
 		else
-			return result;
+			return result + paramString;
 	}
 
 	/**
