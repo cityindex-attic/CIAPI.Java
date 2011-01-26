@@ -1,4 +1,4 @@
-package CIAPI.Java;
+package CIAPI.Java.httpstuff;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpRequestBase;
 

@@ -1,4 +1,9 @@
-package CIAPI.Java;
+package CIAPI.Java.cachestuff;
+
+import CIAPI.Java.ApiException;
+import CIAPI.Java.DefaultJsonClient;
+import CIAPI.Java.httpstuff.DefaultSimpleHttpClient;
+import CIAPI.Java.httpstuff.SimpleHttpClient;
 
 /**
  * An implementation of JsonClient that caches results of GET requests.
@@ -17,6 +22,11 @@ public class CachedJsonClient extends DefaultJsonClient {
 	 *            the cache to use
 	 */
 	public CachedJsonClient(Cache<Pair<String, Class<?>>, Object> cache) {
+		this(cache, new DefaultSimpleHttpClient());
+	}
+
+	public CachedJsonClient(Cache<Pair<String, Class<?>>, Object> cache, SimpleHttpClient client) {
+		super(client);
 		this.cache = cache;
 	}
 

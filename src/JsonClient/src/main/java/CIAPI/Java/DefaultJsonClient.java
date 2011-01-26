@@ -4,6 +4,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
+import CIAPI.Java.httpstuff.DefaultSimpleHttpClient;
+import CIAPI.Java.httpstuff.SimpleHttpClient;
+
 import com.google.gson.Gson;
 
 /**
@@ -16,13 +19,18 @@ import com.google.gson.Gson;
  */
 public class DefaultJsonClient implements JsonClient {
 
-	private DefaultSimpleHttpClient client;
+	private SimpleHttpClient client;
 
 	/**
-	 * Constructs a DefaultJsonClient
+	 * Constructs a DefaultJsonClient. Uses a DefaultSimpleHttpClient for making
+	 * requests.
 	 */
 	public DefaultJsonClient() {
-		client = new DefaultSimpleHttpClient();
+		this(new DefaultSimpleHttpClient());
+	}
+
+	public DefaultJsonClient(SimpleHttpClient httpClient) {
+		client = httpClient;
 	}
 
 	@Override

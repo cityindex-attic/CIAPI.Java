@@ -1,4 +1,4 @@
-package CIAPI.Java;
+package CIAPI.Java.httpstuff;
 
 import java.io.UnsupportedEncodingException;
 

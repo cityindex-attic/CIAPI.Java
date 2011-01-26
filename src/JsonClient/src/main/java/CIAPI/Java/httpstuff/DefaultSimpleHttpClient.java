@@ -1,4 +1,4 @@
-package CIAPI.Java;
+package CIAPI.Java.httpstuff;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,12 +16,14 @@ public class DefaultSimpleHttpClient implements SimpleHttpClient {
 	@Override
 	public InputStream makeGetRequest(String url) throws ClientProtocolException, IOException {
 		HttpGetRequestItem request = new HttpGetRequestItem(url);
-		return request.makeRequest();
+		request.makeRequest();
+		return request.getResult();
 	}
 
 	@Override
 	public InputStream makePostRequest(String url, String content) throws ClientProtocolException, IOException {
 		HttpPostRequestItem request = new HttpPostRequestItem(url, content);
-		return request.makeRequest();
+		request.makeRequest();
+		return request.getResult();
 	}
 }

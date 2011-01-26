@@ -1,4 +1,4 @@
-package CIAPI.Java;
+package CIAPI.Java.httpstuff;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,10 +32,20 @@ public abstract class HttpRequestItem {
 
 	protected abstract HttpRequestBase getRequestItem(String url);
 	
-	public InputStream makeRequest() throws ClientProtocolException, IOException{
+	private InputStream result;
+	private boolean complete = false;
+	public void makeRequest() throws ClientProtocolException, IOException{
 		HttpResponse response = client.execute(method);
 		HttpEntity entity = response.getEntity();
-		InputStream result = entity.getContent();
+		result = entity.getContent();
+		complete = true;
+	}
+	
+	public boolean isComplete(){
+		return complete;
+	}
+	
+	public InputStream getResult(){
 		return result;
 	}
 	
