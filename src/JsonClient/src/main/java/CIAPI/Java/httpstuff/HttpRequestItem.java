@@ -19,10 +19,10 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HttpContext;
 
 public abstract class HttpRequestItem {
-	
+
 	protected DefaultHttpClient client;
 	protected HttpRequestBase method;
-	
+
 	public HttpRequestItem(String url) {
 		client = new DefaultHttpClient();
 		prepareClient(client);
@@ -31,24 +31,25 @@ public abstract class HttpRequestItem {
 	}
 
 	protected abstract HttpRequestBase getRequestItem(String url);
-	
+
 	private InputStream result;
 	private boolean complete = false;
-	public void makeRequest() throws ClientProtocolException, IOException{
+
+	public void makeRequest() throws ClientProtocolException, IOException {
 		HttpResponse response = client.execute(method);
 		HttpEntity entity = response.getEntity();
 		result = entity.getContent();
 		complete = true;
 	}
-	
-	public boolean isComplete(){
+
+	public boolean isComplete() {
 		return complete;
 	}
-	
-	public InputStream getResult(){
+
+	public InputStream getResult() {
 		return result;
 	}
-	
+
 	private static void prepareClient(DefaultHttpClient client) {
 		client.addRequestInterceptor(new HttpRequestInterceptor() {
 			public void process(final HttpRequest request, final HttpContext context) throws HttpException, IOException {

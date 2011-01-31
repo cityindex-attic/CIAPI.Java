@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Future;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,14 +14,17 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 
 import CIAPI.Java.ApiException;
-import CIAPI.Java.AsyncJsonApi;
 import CIAPI.Java.DefaultJsonClient;
+import CIAPI.Java.async.AsyncApiCall;
+import CIAPI.Java.async.AsyncJsonApi;
 import CIAPI.Java.async.CallBack;
+import CIAPI.Java.throttle.ThrottledHttpClient;
 
 /**
  * Tiny program designed to showcase the Async Api
+ * 
  * @author justin nelson
- *
+ * 
  */
 public class UrlShortenerFrame extends JFrame {
 
@@ -71,22 +75,24 @@ public class UrlShortenerFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				AsyncJsonApi api = new AsyncJsonApi("https://www.googleapis.com/urlshortener/v1/url",
-						new DefaultJsonClient());
+						new DefaultJsonClient(new ThrottledHttpClient()));
+				AsyncApiCall call = api.createNewCall();
+				call.addCallCompleteListener(new CallBack() {
+					@Override
+					public void doCallBack(Object result) {
+						GoogleResponse resp = (GoogleResponse) result;
+						shortenedUrl.setText(resp.getId());
+						south.setVisible(false);
+						UrlShortenerFrame.this.pack();
+					}
+				});
 				try {
 					Map<String, String> key = new HashMap<String, String>();
 					key.put("key", "AIzaSyCYMdrcIDWDf6YFFzyFjA2HCEbfazSkf_M");
 					south.setVisible(true);
 					UrlShortenerFrame.this.pack();
-					api.beginCallPostMethod("", key,
-							new GooglePostRequest(longUrlField.getText()), GoogleResponse.class, new CallBack() {
-								@Override
-								public void doCallBack(Object result) {
-									GoogleResponse resp = (GoogleResponse) result;
-									shortenedUrl.setText(resp.getId());
-									south.setVisible(false);
-									UrlShortenerFrame.this.pack();
-								}
-							});
+					call.beginCallPostMethod("", key, new GooglePostRequest(longUrlField.getText()),
+							GoogleResponse.class);
 				} catch (ApiException e1) {
 					// TODO Doesn't work because Async doesn't throw exceptions
 					shortenedUrl.setText("Api Error");
@@ -96,7 +102,8 @@ public class UrlShortenerFrame extends JFrame {
 	}
 
 	/**
-	 * Main entry point for hte app.  Simply creates and shows a new window
+	 * Main entry point for the app. Simply creates and shows a new window
+	 * 
 	 * @param args
 	 * @throws ApiException
 	 */

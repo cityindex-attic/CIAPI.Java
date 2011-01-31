@@ -1,5 +1,7 @@
 package CIAPI.Java.async;
 
+import CIAPI.Java.ApiException;
+
 /**
  * Interface for specifying code that will be run after an Api call returns.
  * 
@@ -14,5 +16,5 @@ public interface CallBack {
 	 *            The result computed from the method. Is guaranteed to be the
 	 *            type of the specified return type when the API was called
 	 */
-	public void doCallBack(Object result);
+	public void doCallBack(Object result) throws ApiException;
 }

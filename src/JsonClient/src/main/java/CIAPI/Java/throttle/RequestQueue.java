@@ -1,8 +1,8 @@
 package CIAPI.Java.throttle;
 
 import java.io.IOException;
-import java.util.ArrayDeque;
-import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 import org.apache.http.client.ClientProtocolException;
 
@@ -18,46 +18,57 @@ import CIAPI.Java.httpstuff.HttpRequestItem;
 public class RequestQueue {
 
 	protected static final long SLEEP_TIME = 100;
-	private boolean keepGoing = false;
-	private Queue<HttpRequestItem> requests;
+	private BlockingQueue<HttpRequestItem> requests;
 
+	private Thread theWork;
+	private boolean stop = false;
+
+	/**
+	 * Creates a new request queue. Will not process requests until start is
+	 * called.
+	 */
 	public RequestQueue() {
-		requests = new ArrayDeque<HttpRequestItem>();
+		requests = new ArrayBlockingQueue<HttpRequestItem>(1);
 		Runnable processThread = new Runnable() {
 			@Override
 			public void run() {
-				while (true) {
-					if (!keepGoing || requests.isEmpty()) {
-						try {
-							Thread.sleep(SLEEP_TIME);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					} else {
-						HttpRequestItem request = requests.remove();
-						try {
+				while (!stop) {
+					try {
+						HttpRequestItem request = requests.take();
+						if (request == null)
+							continue;
+						synchronized (request) {
 							request.makeRequest();
-						} catch (ClientProtocolException e) {
-							e.printStackTrace();
-						} catch (IOException e) {
-							e.printStackTrace();
+							request.notifyAll();
 						}
+					} catch (ClientProtocolException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
 					}
 				}
 			}
 		};
-		new Thread(processThread).start();
+		theWork = new Thread(processThread);
+		theWork.setDaemon(true);
+		theWork.start();
 	}
 
-	public void add(HttpRequestItem request) {
-		requests.add(request);
-	}
-
-	public void start() {
-		keepGoing = true;
-	}
-
-	public void stop() {
-		keepGoing = false;
+	/**
+	 * Adds a new item to the queue to be processed
+	 * 
+	 * @param request
+	 *            the request to process
+	 * @throws InterruptedException
+	 */
+	public void add(HttpRequestItem request) throws InterruptedException {
+		synchronized (request) {
+			requests.put(request);
+			while (!request.isComplete()) {
+				request.wait();
+			}
+		}
 	}
 }

@@ -25,6 +25,15 @@ public class CachedJsonClient extends DefaultJsonClient {
 		this(cache, new DefaultSimpleHttpClient());
 	}
 
+	/**
+	 * Creates a Cached Json Client with the given cache and the given Simple
+	 * Http client for making requests
+	 * 
+	 * @param cache
+	 *            the cache to use
+	 * @param client
+	 *            the http client to use
+	 */
 	public CachedJsonClient(Cache<Pair<String, Class<?>>, Object> cache, SimpleHttpClient client) {
 		super(client);
 		this.cache = cache;

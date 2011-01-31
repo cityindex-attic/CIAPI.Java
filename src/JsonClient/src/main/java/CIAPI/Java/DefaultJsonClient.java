@@ -29,6 +29,13 @@ public class DefaultJsonClient implements JsonClient {
 		this(new DefaultSimpleHttpClient());
 	}
 
+	/**
+	 * Creates a DefaultJsonClient with the given SimpleHttpClient for making
+	 * requests.
+	 * 
+	 * @param httpClient
+	 *            the client to pass requests to.
+	 */
 	public DefaultJsonClient(SimpleHttpClient httpClient) {
 		client = httpClient;
 	}
