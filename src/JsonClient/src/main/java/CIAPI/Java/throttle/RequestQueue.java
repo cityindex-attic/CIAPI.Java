@@ -23,22 +23,29 @@ public class RequestQueue {
 	private Thread theWork;
 	private boolean stop = false;
 
+	private ThrottleTimer timer;
+
 	/**
 	 * Creates a new request queue. Will not process requests until start is
 	 * called.
+	 * 
+	 * @param timer
 	 */
-	public RequestQueue() {
-		requests = new ArrayBlockingQueue<HttpRequestItem>(1);
+	public RequestQueue(ThrottleTimer timer) {
+		requests = new ArrayBlockingQueue<HttpRequestItem>(100);
+		this.timer = timer;
 		Runnable processThread = new Runnable() {
 			@Override
 			public void run() {
 				while (!stop) {
 					try {
+						Thread.sleep(RequestQueue.this.timer.timeLeft());
 						HttpRequestItem request = requests.take();
 						if (request == null)
 							continue;
 						synchronized (request) {
 							request.makeRequest();
+							RequestQueue.this.timer.madeRequest();
 							request.notifyAll();
 						}
 					} catch (ClientProtocolException e) {

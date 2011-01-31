@@ -18,12 +18,28 @@ import org.apache.http.entity.HttpEntityWrapper;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HttpContext;
 
+import CIAPI.Java.logging.Log;
+
+/**
+ * Class representing a request to a given url
+ * 
+ * @author justin nelson
+ * 
+ */
 public abstract class HttpRequestItem {
 
 	protected DefaultHttpClient client;
 	protected HttpRequestBase method;
+	private String url;
 
+	/**
+	 * Creates a new Request item.
+	 * 
+	 * @param url
+	 *            the url to request
+	 */
 	public HttpRequestItem(String url) {
+		this.url = url;
 		client = new DefaultHttpClient();
 		prepareClient(client);
 		method = getRequestItem(url);
@@ -35,17 +51,30 @@ public abstract class HttpRequestItem {
 	private InputStream result;
 	private boolean complete = false;
 
+	/**
+	 * Synchronously makes a request to a url
+	 * 
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
 	public void makeRequest() throws ClientProtocolException, IOException {
+		Log.trace("Executing request:" + url);
 		HttpResponse response = client.execute(method);
 		HttpEntity entity = response.getEntity();
 		result = entity.getContent();
 		complete = true;
 	}
 
+	/**
+	 * @return Whether or not this request has been completed
+	 */
 	public boolean isComplete() {
 		return complete;
 	}
 
+	/**
+	 * @return the resulting entity content
+	 */
 	public InputStream getResult() {
 		return result;
 	}

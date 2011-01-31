@@ -5,7 +5,6 @@ import java.io.InputStream;
 
 import org.apache.http.client.ClientProtocolException;
 
-import CIAPI.Java.ApiException;
 import CIAPI.Java.httpstuff.HttpGetRequestItem;
 import CIAPI.Java.httpstuff.HttpPostRequestItem;
 import CIAPI.Java.httpstuff.SimpleHttpClient;
@@ -24,7 +23,7 @@ public class ThrottledHttpClient implements SimpleHttpClient {
 	 * Creates a basic throttled client.
 	 */
 	public ThrottledHttpClient() {
-		queue = new RequestQueue();
+		queue = new RequestQueue(new FixedWidthThrottleTimer(100));
 	}
 
 	@Override

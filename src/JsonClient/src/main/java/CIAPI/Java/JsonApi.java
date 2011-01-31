@@ -48,7 +48,8 @@ public class JsonApi {
 	public Object callGetMethod(String methodName, Map<String, String> parameters, Class<?> returnType)
 			throws ApiException {
 		String url = hlpr.createRoute(baseUrl, methodName, parameters);
-		return client.makeGetRequest(url, returnType);
+		Object result = client.makeGetRequest(url, returnType);
+		return result;
 	}
 
 	/**

@@ -3,6 +3,7 @@ package CIAPI.Java.examples.stackexchange;
 import CIAPI.Java.ApiException;
 import CIAPI.Java.DefaultJsonClient;
 import CIAPI.Java.JsonApi;
+import CIAPI.Java.logging.Log;
 import CIAPI.Java.throttle.ThrottledHttpClient;
 
 public class Main {
@@ -11,5 +12,8 @@ public class Main {
 				new DefaultJsonClient(new ThrottledHttpClient()));
 		StatsWrapper stats = (StatsWrapper) api.callGetMethod("stats", null, StatsWrapper.class);
 		System.out.println(stats.statistics[0].getSite().getApi_endpoint());
+		StatsWrapper stats2 = (StatsWrapper) api.callGetMethod("stats", null, StatsWrapper.class);
+		System.out.println(stats2.statistics[0].getSite().getDescription());
+		Log.info("Hi");
 	}
 }
