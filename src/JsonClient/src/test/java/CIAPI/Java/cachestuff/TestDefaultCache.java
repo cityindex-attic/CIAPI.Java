@@ -55,5 +55,6 @@ public class TestDefaultCache {
 			fail();
 		}
 		assertNull(cache.get("A"));
+		assertEquals(0, cache.entryCount());
 	}
 }
