@@ -1,6 +1,9 @@
 package CIAPI.Java.cachestuff;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +12,7 @@ public class TestDefaultCache {
 
 	private DefaultCache<String, String> cache;
 	private final long expireTime = 100;
+
 	@Before
 	public void setUp() throws Exception {
 		cache = new DefaultCache<String, String>(expireTime);
@@ -18,9 +22,9 @@ public class TestDefaultCache {
 	public void tearDown() throws Exception {
 		cache = null;
 	}
-	
+
 	@Test
-	public void testPutSimple(){
+	public void testPutSimple() {
 		assertEquals(0, cache.entryCount());
 		assertNull(cache.put("A", "a"));
 		assertEquals(1, cache.entryCount());
@@ -33,20 +37,20 @@ public class TestDefaultCache {
 		assertEquals("notA", cache.put("A", "a"));
 		assertEquals(3, cache.entryCount());
 	}
-	
+
 	@Test
-	public void testGetSimple(){
+	public void testGetSimple() {
 		cache.put("1", "1");
 		assertEquals("1", cache.get("1"));
 		assertNull(cache.get("nonexistantkey"));
 	}
-	
+
 	@Test
-	public void testExpireItem(){
+	public void testExpireItem() {
 		cache.put("A", "A");
 		try {
 			// expire the cache
-			Thread.sleep(expireTime+1);
+			Thread.sleep(expireTime + 1);
 		} catch (InterruptedException e) {
 			fail();
 		}

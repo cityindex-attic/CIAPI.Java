@@ -15,6 +15,7 @@ public interface CallBack {
 	 * @param result
 	 *            The result computed from the method. Is guaranteed to be the
 	 *            type of the specified return type when the API was called
+	 * @throws ApiException 
 	 */
 	public void doCallBack(Object result) throws ApiException;
 }
