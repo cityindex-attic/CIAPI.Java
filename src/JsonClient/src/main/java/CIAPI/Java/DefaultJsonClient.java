@@ -37,11 +37,17 @@ public class DefaultJsonClient implements JsonClient {
 	 *            the client to pass requests to.
 	 */
 	public DefaultJsonClient(SimpleHttpClient httpClient) {
+		if (httpClient == null)
+			throw new NullPointerException("THe simple http client must not be null");
 		client = httpClient;
 	}
 
 	@Override
 	public Object makeGetRequest(String url, Class<?> clazz) throws ApiException {
+		if (url == null || url.trim().length() == 0)
+			throw new IllegalArgumentException("The url must not be null or empty");
+		if (clazz == null)
+			throw new NullPointerException("The clazz must not be null");
 		try {
 			Gson g = new Gson();
 			InputStream data = client.makeGetRequest(url);
@@ -54,6 +60,10 @@ public class DefaultJsonClient implements JsonClient {
 
 	@Override
 	public Object makePostRequest(String url, Object content, Class<?> clazz) throws ApiException {
+		if (url == null || url.trim().length() == 0)
+			throw new IllegalArgumentException("The url must not be null or empty");
+		if (clazz == null)
+			throw new NullPointerException("The clazz must not be null");
 		Gson g = new Gson();
 		String strContent = (content instanceof String) ? (String) content : g.toJson(content);
 		try {

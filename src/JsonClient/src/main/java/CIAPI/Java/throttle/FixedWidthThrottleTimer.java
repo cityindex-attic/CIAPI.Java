@@ -19,6 +19,8 @@ public class FixedWidthThrottleTimer implements ThrottleTimer {
 	 *            the number of milliseconds to wait between calls.
 	 */
 	public FixedWidthThrottleTimer(long milliseconds) {
+		if (milliseconds < 0)
+			throw new IllegalArgumentException("Throttle time cannot be negative");
 		this.milliseconds = milliseconds;
 		lastRequest = System.currentTimeMillis() - milliseconds;
 	}

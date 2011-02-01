@@ -37,6 +37,7 @@ public class CachedJsonClient extends DefaultJsonClient {
 	 */
 	public CachedJsonClient(Cache<Pair<String, Class<?>>, Object> cache, SimpleHttpClient client) {
 		super(client);
+		if (cache == null)throw new NullPointerException("The cache must not be null");
 		this.cache = cache;
 	}
 
@@ -101,7 +102,7 @@ public class CachedJsonClient extends DefaultJsonClient {
 				return false;
 			if (getClass() != obj.getClass())
 				return false;
-			Pair other = (Pair) obj;
+			Pair<?,?> other = (Pair<?,?>) obj;
 			if (one == null) {
 				if (other.one != null)
 					return false;

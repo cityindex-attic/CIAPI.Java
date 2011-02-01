@@ -25,6 +25,10 @@ public class JsonApi {
 	 *            the JsonCLient to pass requests to.
 	 */
 	public JsonApi(String baseUrl, JsonClient client) {
+		if (client == null)
+			throw new NullPointerException("JspnClient must not be null");
+		if (baseUrl == null || baseUrl.trim().length() == 0)
+			throw new IllegalArgumentException("The base url must not be null or empty.");
 		this.baseUrl = baseUrl;
 		this.client = client;
 	}
@@ -47,6 +51,8 @@ public class JsonApi {
 	 */
 	public Object callGetMethod(String methodName, Map<String, String> parameters, Class<?> returnType)
 			throws ApiException {
+		if (returnType == null)
+			throw new NullPointerException("Return type must not be null");
 		String url = hlpr.createRoute(baseUrl, methodName, parameters);
 		Object result = client.makeGetRequest(url, returnType);
 		return result;
@@ -70,6 +76,8 @@ public class JsonApi {
 	 */
 	public Object callPostMethod(String methodName, Map<String, String> parameters, Object inputData,
 			Class<?> returnType) throws ApiException {
+		if (returnType == null)
+			throw new NullPointerException("Return type must not be null");
 		String url = hlpr.createRoute(baseUrl, methodName, parameters);
 		return client.makePostRequest(url, inputData, returnType);
 	}

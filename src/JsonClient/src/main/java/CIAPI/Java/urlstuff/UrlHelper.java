@@ -61,6 +61,10 @@ public class UrlHelper {
 	 *         all parameters.
 	 */
 	public String createRoute(String baseUrl, String extendedUrl, Map<String, String> params) {
+		if (baseUrl == null || baseUrl.trim().length() == 0)
+			throw new IllegalArgumentException("BaseUrl cannot be null or empty");
+		if (extendedUrl == null)
+			extendedUrl = "";
 		// combine all parts of the URL
 		String result = combineMany(baseUrl, extendedUrl);
 		String paramString = mapToParamList(params);

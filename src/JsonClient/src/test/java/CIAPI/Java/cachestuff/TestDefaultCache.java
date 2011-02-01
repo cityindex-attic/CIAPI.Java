@@ -59,7 +59,7 @@ public class TestDefaultCache {
 	}
 
 	@Test
-	public void testClean() {
+	public void testManualClean() {
 		cache.put("A", "A");
 		cache.put("B", "B");
 		cache.put("C", "C");
@@ -73,5 +73,21 @@ public class TestDefaultCache {
 		assertEquals(4, cache.entryCount());
 		cache.clean();
 		assertEquals(0, cache.entryCount());
+	}
+
+	@Test
+	public void testAutoClean() {
+		cache.setMaxSize(3, false);
+		cache.put("A", "A");
+		cache.put("B", "B");
+		cache.put("C", "C");
+		try {
+			Thread.sleep(expireTime + 1);
+		} catch (InterruptedException e) {
+			fail();
+		}
+		assertEquals(3, cache.entryCount());
+		cache.put("D", "D");
+		assertEquals(1, cache.entryCount());
 	}
 }

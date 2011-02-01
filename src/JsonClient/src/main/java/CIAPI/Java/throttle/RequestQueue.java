@@ -32,6 +32,8 @@ public class RequestQueue {
 	 * @param timer
 	 */
 	public RequestQueue(ThrottleTimer timer) {
+		if (timer == null)
+			throw new NullPointerException("The timer cannot be null");
 		requests = new ArrayBlockingQueue<HttpRequestItem>(100);
 		this.timer = timer;
 		Runnable processThread = new Runnable() {
@@ -41,8 +43,6 @@ public class RequestQueue {
 					try {
 						Thread.sleep(RequestQueue.this.timer.timeLeft());
 						HttpRequestItem request = requests.take();
-						if (request == null)
-							continue;
 						synchronized (request) {
 							request.makeRequest();
 							RequestQueue.this.timer.madeRequest();
@@ -71,6 +71,8 @@ public class RequestQueue {
 	 * @throws InterruptedException
 	 */
 	public void add(HttpRequestItem request) throws InterruptedException {
+		if (request == null)
+			throw new NullPointerException("The request cannot be null");
 		synchronized (request) {
 			requests.put(request);
 			while (!request.isComplete()) {

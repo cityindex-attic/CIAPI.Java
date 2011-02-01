@@ -2,6 +2,7 @@ package CIAPI.Java.async;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import CIAPI.Java.JsonClient;
@@ -29,7 +30,7 @@ public class AsyncJsonApi {
 	public AsyncJsonApi(String baseUrl, JsonClient client) {
 		this.baseUrl = baseUrl;
 		this.client = client;
-		exec = new CustomThreadPoolExecutor(2, 20, 1, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(50));
+		exec = new ThreadPoolExecutor(2, 20, 1, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(50));
 	}
 
 	/**

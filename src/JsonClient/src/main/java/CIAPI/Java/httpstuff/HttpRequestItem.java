@@ -39,6 +39,8 @@ public abstract class HttpRequestItem {
 	 *            the url to request
 	 */
 	public HttpRequestItem(String url) {
+		if (url == null)
+			throw new NullPointerException("The url cannot be null");
 		this.url = url;
 		client = new DefaultHttpClient();
 		prepareClient(client);

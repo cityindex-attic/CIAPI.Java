@@ -7,8 +7,19 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
 
+/**
+ * 
+ * @author justin
+ *
+ */
 public class HttpPostRequestItem extends HttpRequestItem {
 
+	/**
+	 * Creates a new post request item
+	 * @param url
+	 * @param content
+	 * @throws UnsupportedEncodingException
+	 */
 	public HttpPostRequestItem(String url, String content) throws UnsupportedEncodingException {
 		super(url);
 		HttpEntity postEntity;

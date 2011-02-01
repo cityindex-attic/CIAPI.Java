@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
@@ -12,6 +11,12 @@ import CIAPI.Java.ApiException;
 import CIAPI.Java.JsonClient;
 import CIAPI.Java.urlstuff.UrlHelper;
 
+/**
+ * Class representing a single async call to the api
+ * 
+ * @author justin nelson
+ * 
+ */
 public class AsyncApiCall {
 
 	private String baseUrl;

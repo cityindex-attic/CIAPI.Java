@@ -15,6 +15,8 @@ public class DefaultSimpleHttpClient implements SimpleHttpClient {
 
 	@Override
 	public InputStream makeGetRequest(String url) throws ClientProtocolException, IOException {
+		if (url == null)
+			throw new NullPointerException("The url cannot be null");
 		HttpGetRequestItem request = new HttpGetRequestItem(url);
 		request.makeRequest();
 		return request.getResult();
@@ -22,6 +24,8 @@ public class DefaultSimpleHttpClient implements SimpleHttpClient {
 
 	@Override
 	public InputStream makePostRequest(String url, String content) throws ClientProtocolException, IOException {
+		if (url == null)
+			throw new NullPointerException("The url cannot be null");
 		HttpPostRequestItem request = new HttpPostRequestItem(url, content);
 		request.makeRequest();
 		return request.getResult();
