@@ -57,4 +57,21 @@ public class TestDefaultCache {
 		assertNull(cache.get("A"));
 		assertEquals(0, cache.entryCount());
 	}
+
+	@Test
+	public void testClean() {
+		cache.put("A", "A");
+		cache.put("B", "B");
+		cache.put("C", "C");
+		cache.put("D", "D");
+		assertEquals(4, cache.entryCount());
+		try {
+			Thread.sleep(expireTime + 1);
+		} catch (InterruptedException e) {
+			fail();
+		}
+		assertEquals(4, cache.entryCount());
+		cache.clean();
+		assertEquals(0, cache.entryCount());
+	}
 }

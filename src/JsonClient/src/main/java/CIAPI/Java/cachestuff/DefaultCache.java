@@ -1,6 +1,7 @@
 package CIAPI.Java.cachestuff;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -48,9 +49,11 @@ public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 
 	@Override
 	public void clean() {
-		for (Entry<TKey, CacheItem> entry : storage.entrySet()) {
+		Iterator<Entry<TKey, CacheItem>> iter = storage.entrySet().iterator();
+		while(iter.hasNext()){
+			Entry<TKey, CacheItem> entry = iter.next();
 			if (entry.getValue().isExpired())
-				delete(entry.getKey());
+				iter.remove();
 		}
 	}
 
