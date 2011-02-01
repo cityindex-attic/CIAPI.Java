@@ -23,8 +23,9 @@ public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 	/**
 	 * Creates an empty cache
 	 */
-	public DefaultCache(){
+	public DefaultCache(long maxAgeL){
 		storage = new HashMap<TKey, CacheItem>();
+		maxAge = new Period(maxAgeL);
 	}
 	
 	@Override

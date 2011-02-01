@@ -31,6 +31,11 @@ public class AsyncApiCall {
 		done = false;
 	}
 
+	/**
+	 * Adds a new callback to the call
+	 * 
+	 * @param cb
+	 */
 	public void addCallCompleteListener(CallBack cb) {
 		if (done)
 			throw new IllegalStateException("Cannot add a call back to a call that has completed.");

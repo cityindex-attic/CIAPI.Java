@@ -54,15 +54,18 @@ public abstract class HttpRequestItem {
 	/**
 	 * Synchronously makes a request to a url
 	 * 
+	 * @return returns the resulting response entity
+	 * 
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
-	public void makeRequest() throws ClientProtocolException, IOException {
+	public InputStream makeRequest() throws ClientProtocolException, IOException {
 		Log.trace("Executing request:" + url);
 		HttpResponse response = client.execute(method);
 		HttpEntity entity = response.getEntity();
 		result = entity.getContent();
 		complete = true;
+		return result;
 	}
 
 	/**

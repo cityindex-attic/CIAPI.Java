@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 import CIAPI.Java.JsonClient;
 
 /**
- * Json Api for making asynchronous calls to an API
+ * Json Api for making asynchronous calls to an API.
  * 
  * @author justin nelson
  * 
@@ -32,6 +32,10 @@ public class AsyncJsonApi {
 		exec = new CustomThreadPoolExecutor(2, 20, 1, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(50));
 	}
 
+	/**
+	 * Gets an instance of an Api call.  
+	 * @return a new ApiCall object that will allow you to add events to it.
+	 */
 	public AsyncApiCall createNewCall(){
 		return new AsyncApiCall(baseUrl, client, exec);
 	}
