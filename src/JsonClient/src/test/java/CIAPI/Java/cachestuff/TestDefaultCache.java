@@ -56,6 +56,23 @@ public class TestDefaultCache {
 		}
 		assertNull(cache.get("A"));
 		assertEquals(0, cache.entryCount());
+		assertNull(cache.put("1", "1"));
+		try {
+			Thread.sleep(expireTime / 2);
+		} catch (InterruptedException e) {
+			fail();
+		}
+		assertEquals(1, cache.entryCount());
+		assertNull(cache.put("2", "2"));
+		assertEquals("1", cache.get("1"));
+		try {
+			Thread.sleep(expireTime / 2 + 1);
+		} catch (InterruptedException e) {
+			fail();
+		}
+		assertNull(cache.get("1"));
+		assertEquals(1, cache.entryCount());
+		assertEquals("2", cache.get("2"));
 	}
 
 	@Test

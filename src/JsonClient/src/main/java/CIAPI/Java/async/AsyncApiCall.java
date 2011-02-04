@@ -42,6 +42,7 @@ public class AsyncApiCall {
 	 * @param cb
 	 */
 	public void addCallCompleteListener(CallBack cb) {
+		if (cb == null) throw new NullPointerException("The call back cannot be null");
 		if (done)
 			throw new IllegalStateException("Cannot add a call back to a call that has completed.");
 		callBaks.add(cb);

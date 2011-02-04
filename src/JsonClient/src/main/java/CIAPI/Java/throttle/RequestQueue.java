@@ -6,6 +6,7 @@ import java.util.concurrent.BlockingQueue;
 
 import org.apache.http.client.ClientProtocolException;
 
+import CIAPI.Java.httpstuff.AbstractHttpRequestItem;
 import CIAPI.Java.httpstuff.HttpRequestItem;
 
 /**
@@ -18,7 +19,7 @@ import CIAPI.Java.httpstuff.HttpRequestItem;
 public class RequestQueue {
 
 	protected static final long SLEEP_TIME = 100;
-	private BlockingQueue<HttpRequestItem> requests;
+	private BlockingQueue<AbstractHttpRequestItem> requests;
 
 	private Thread theWork;
 	private boolean stop = false;
@@ -34,7 +35,7 @@ public class RequestQueue {
 	public RequestQueue(ThrottleTimer timer) {
 		if (timer == null)
 			throw new NullPointerException("The timer cannot be null");
-		requests = new ArrayBlockingQueue<HttpRequestItem>(100);
+		requests = new ArrayBlockingQueue<AbstractHttpRequestItem>(100);
 		this.timer = timer;
 		Runnable processThread = new Runnable() {
 			@Override
@@ -70,7 +71,7 @@ public class RequestQueue {
 	 *            the request to process
 	 * @throws InterruptedException
 	 */
-	public void add(HttpRequestItem request) throws InterruptedException {
+	public void add(AbstractHttpRequestItem request) throws InterruptedException {
 		if (request == null)
 			throw new NullPointerException("The request cannot be null");
 		synchronized (request) {

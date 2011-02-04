@@ -9,7 +9,7 @@ import org.apache.http.client.methods.HttpRequestBase;
  * @author justin nelson
  * 
  */
-public class HttpGetRequestItem extends HttpRequestItem {
+public class HttpGetRequestItem extends AbstractHttpRequestItem {
 
 	/**
 	 * @param url

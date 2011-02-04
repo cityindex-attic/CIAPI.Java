@@ -12,7 +12,7 @@ import org.apache.http.entity.StringEntity;
  * @author justin
  *
  */
-public class HttpPostRequestItem extends HttpRequestItem {
+public class HttpPostRequestItem extends AbstractHttpRequestItem {
 
 	/**
 	 * Creates a new post request item
