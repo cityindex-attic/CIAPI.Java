@@ -76,7 +76,7 @@ public class UrlShortenerFrame extends JFrame {
 				call.addCallCompleteListener(new CallBack() {
 					@Override
 					public void doCallBack(Object result) {
-						GoogleResponse resp = (GoogleResponse) result;
+						GooglePostResponse resp = (GooglePostResponse) result;
 						shortenedUrl.setText(resp.getId());
 						south.setVisible(false);
 						UrlShortenerFrame.this.pack();
@@ -88,7 +88,7 @@ public class UrlShortenerFrame extends JFrame {
 					south.setVisible(true);
 					UrlShortenerFrame.this.pack();
 					call.beginCallPostMethod("", key, new GooglePostRequest(longUrlField.getText()),
-							GoogleResponse.class);
+							GooglePostResponse.class);
 				} catch (ApiException e1) {
 					// TODO Doesn't work because Async doesn't throw exceptions
 					shortenedUrl.setText("Api Error");

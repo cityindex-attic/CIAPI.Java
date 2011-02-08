@@ -33,8 +33,6 @@ public class JsonApi {
 		this.client = client;
 	}
 
-	private UrlHelper hlpr = new UrlHelper();
-
 	/**
 	 * Call an API's GET method
 	 * 
@@ -53,7 +51,7 @@ public class JsonApi {
 			throws ApiException {
 		if (returnType == null)
 			throw new NullPointerException("Return type must not be null");
-		String url = hlpr.createRoute(baseUrl, methodName, parameters);
+		String url = new UrlHelper(baseUrl, methodName, parameters).toUrl();
 		Object result = client.makeGetRequest(url, returnType);
 		return result;
 	}
@@ -78,7 +76,7 @@ public class JsonApi {
 			Class<?> returnType) throws ApiException {
 		if (returnType == null)
 			throw new NullPointerException("Return type must not be null");
-		String url = hlpr.createRoute(baseUrl, methodName, parameters);
+		String url = new UrlHelper(baseUrl, methodName, parameters).toUrl();
 		return client.makePostRequest(url, inputData, returnType);
 	}
 }

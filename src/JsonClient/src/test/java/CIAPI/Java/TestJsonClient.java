@@ -12,7 +12,6 @@ import CIAPI.Java.examples.stackexchange.StackExchangeStats;
 import CIAPI.Java.examples.stackexchange.StatsWrapper;
 import CIAPI.Java.httpstuff.FakeSimpleHttpClient;
 
-
 public class TestJsonClient {
 
 	private JsonClient client;
@@ -29,7 +28,7 @@ public class TestJsonClient {
 
 	@Test
 	public void testSimpleRequest() throws ApiException {
-		StatsWrapper result = (StatsWrapper) client.makeGetRequest("files/testStatsResponse.json", StatsWrapper.class);
+		StatsWrapper result = (StatsWrapper) client.makeGetRequest("files/test/testStatsResponse.json", StatsWrapper.class);
 		assertNotNull(result);
 		StackExchangeStats stats = result.getStatistics()[0];
 		Site site = stats.getSite();

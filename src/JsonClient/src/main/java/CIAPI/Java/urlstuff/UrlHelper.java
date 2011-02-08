@@ -1,7 +1,11 @@
 package CIAPI.Java.urlstuff;
 
+import java.net.MalformedURLException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Simple helper class for manipulating URLs.
@@ -10,6 +14,68 @@ import java.util.Map.Entry;
  * 
  */
 public class UrlHelper {
+	private String baseUrl;
+	private String extendedUrl;
+	private Map<String, String> params;
+
+	/**
+	 * Creates a new UrlHelper with the given parts
+	 * 
+	 * @param baseUrl
+	 * @param extendedUrl
+	 * @param params
+	 */
+	public UrlHelper(String baseUrl, String extendedUrl, Map<String, String> params) {
+		this.baseUrl = baseUrl;
+		this.extendedUrl = extendedUrl;
+		this.params = params;
+	}
+
+	/**
+	 * Combines all of the parts of the url into a full url string
+	 * 
+	 * @return a legal url
+	 */
+	public String toUrl() {
+		return createRoute(baseUrl, extendedUrl, params);
+	}
+
+	public String getBaseUrl() {
+		return baseUrl;
+	}
+
+	public String getExtendedUrl() {
+		return extendedUrl;
+	}
+
+	public Map<String, String> getParams() {
+		return params;
+	}
+
+	/**
+	 * Takes a full url and parses it into its various parts
+	 * 
+	 * @param fullUrl
+	 * @return a new Url helper backed by the various parts
+	 * @throws MalformedURLException
+	 */
+	public static UrlHelper parseUrl(String fullUrl) throws MalformedURLException {
+		String regex = "(http(?:s)?://[^/]+/)([^?]+)\\?(.*)";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(fullUrl);
+		if (!m.matches())
+			throw new MalformedURLException("The url is not valid.");
+		String baseUrl = m.group(1);
+		String extendedUrl = m.group(2);
+		String paramsPart = m.group(3);
+		String[] pairs = paramsPart.split("&");
+		Map<String, String> map = new HashMap<String, String>();
+		for (String pair : pairs) {
+			String[] parts = pair.split("=");
+			map.put(parts[0], parts[1]);
+		}
+		return new UrlHelper(baseUrl, extendedUrl, map);
+	}
 
 	/**
 	 * Takes a Map and transforms it into a URL params string.
@@ -18,7 +84,7 @@ public class UrlHelper {
 	 *            The parameters to transform into the string
 	 * @return a URL params string
 	 */
-	public String mapToParamList(Map<String, String> map) {
+	static String mapToParamList(Map<String, String> map) {
 		if (map == null)
 			return "";
 		StringBuilder ret = new StringBuilder("?");
@@ -36,7 +102,7 @@ public class UrlHelper {
 	 *            The strings to combine into a path
 	 * @return all of the strings in args combined using `/`
 	 */
-	public String combineMany(String... args) {
+	static String combineMany(String... args) {
 		if (args.length == 0)
 			return "";
 		if (args.length == 1)
@@ -60,7 +126,7 @@ public class UrlHelper {
 	 * @return A full URL complete with the base URL, the extended portion, and
 	 *         all parameters.
 	 */
-	public String createRoute(String baseUrl, String extendedUrl, Map<String, String> params) {
+	static String createRoute(String baseUrl, String extendedUrl, Map<String, String> params) {
 		if (baseUrl == null || baseUrl.trim().length() == 0)
 			throw new IllegalArgumentException("BaseUrl cannot be null or empty");
 		if (extendedUrl == null)
@@ -84,7 +150,7 @@ public class UrlHelper {
 	 *            The second string
 	 * @return The combined strings
 	 */
-	public String urlDirCombine(String first, String second) {
+	static String urlDirCombine(String first, String second) {
 		if (first == null && second == null)
 			return "";
 		if (first == null)
@@ -104,5 +170,9 @@ public class UrlHelper {
 				return first + "/" + second;
 			}
 		}
+	}
+
+	public static void main(String[] args) throws MalformedURLException {
+		UrlHelper c = parseUrl("https://mail.google.com/mail/?shva=1#inbox");
 	}
 }

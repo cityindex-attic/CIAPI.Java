@@ -2,14 +2,21 @@ package CIAPI.Java.examples.urlshortener;
 
 /**
  * Class to encapsulate the response of a Url POST
+ * 
  * @author justin nelson
- *
+ * 
  */
-public class GoogleResponse {
+public class GooglePostResponse {
 
 	private String kind;
 	private String id;
 	private String longUrl;
+
+	public GooglePostResponse(String kind, String id, String longUrl) {
+		this.kind = kind;
+		this.id = id;
+		this.longUrl = longUrl;
+	}
 
 	/**
 	 * @return the kind of url this is (long or short)

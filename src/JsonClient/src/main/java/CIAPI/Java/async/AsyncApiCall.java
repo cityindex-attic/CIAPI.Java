@@ -48,8 +48,6 @@ public class AsyncApiCall {
 		callBaks.add(cb);
 	}
 
-	private UrlHelper hlpr = new UrlHelper();
-
 	/**
 	 * Method for starting a call to a JsonApi
 	 * 
@@ -69,7 +67,7 @@ public class AsyncApiCall {
 		future = exec.submit(new Callable<Object>() {
 			@Override
 			public Object call() throws Exception {
-				String url = hlpr.createRoute(baseUrl, methodName, parameters);
+				String url = new UrlHelper(baseUrl, methodName, parameters).toUrl();
 				Object result = client.makeGetRequest(url, returnType);
 				for (CallBack callBack : callBaks) {
 					callBack.doCallBack(result);
@@ -101,7 +99,7 @@ public class AsyncApiCall {
 		future = exec.submit(new Callable<Object>() {
 			@Override
 			public Object call() throws Exception {
-				String url = hlpr.createRoute(baseUrl, methodName, parameters);
+				String url = new UrlHelper(baseUrl, methodName, parameters).toUrl();
 				Object result = client.makePostRequest(url, inputData, returnType);
 				for (CallBack callBack : callBaks) {
 					callBack.doCallBack(result);
