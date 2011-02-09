@@ -20,7 +20,7 @@
 			<artifactId>maven-crap4j-plugin</artifactId>
 			<configuration>
 			    <projectDir>${basedir}</projectDir>
-			    <crap4jHome>${project.parent.basedir}/../tools/crap4j</crap4jHome>
+			    <crap4jHome>${project.parent.basedir}${file.separator}..${file.separator}tools${file.separator}crap4j</crap4jHome>
 			    <reportsCrap4j>target/crap4j-reports</reportsCrap4j>
 			    <libClasspath>lib</libClasspath>
 			</configuration>
