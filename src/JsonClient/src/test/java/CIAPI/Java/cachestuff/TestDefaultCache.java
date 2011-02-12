@@ -107,4 +107,16 @@ public class TestDefaultCache {
 		cache.put("D", "D");
 		assertEquals(1, cache.entryCount());
 	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testAddNullKey(){
+		cache.put("A", "A");
+		cache.put(null, "string");
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testDeleteNullKey(){
+		cache.put("A", "A");
+		cache.delete(null);
+	}
 }

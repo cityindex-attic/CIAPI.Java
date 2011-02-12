@@ -60,7 +60,7 @@ public class UrlHelper {
 	 * @throws MalformedURLException
 	 */
 	public static UrlHelper parseUrl(String fullUrl) throws MalformedURLException {
-		String regex = "(http(?:s)?://[^/]+/)([^?]+)\\?(.*)";
+		String regex = "(https?://[^ /?]+)(/[^?]+)?(\\?.*)?";
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(fullUrl);
 		if (!m.matches())
@@ -68,13 +68,17 @@ public class UrlHelper {
 		String baseUrl = m.group(1);
 		String extendedUrl = m.group(2);
 		String paramsPart = m.group(3);
-		String[] pairs = paramsPart.split("&");
 		Map<String, String> map = new HashMap<String, String>();
-		for (String pair : pairs) {
-			String[] parts = pair.split("=");
-			map.put(parts[0], parts[1]);
+		if (paramsPart != null) {
+			paramsPart = paramsPart.substring(1); // chop of the beginning `?`
+			String[] pairs = paramsPart.split("&");
+
+			for (String pair : pairs) {
+				String[] parts = pair.split("=");
+				map.put(parts[0], parts[1]);
+			}
 		}
-		return new UrlHelper(baseUrl, extendedUrl, map);
+		return new UrlHelper(baseUrl, extendedUrl == null ? "" : extendedUrl, map);
 	}
 
 	/**
@@ -170,9 +174,5 @@ public class UrlHelper {
 				return first + "/" + second;
 			}
 		}
-	}
-
-	public static void main(String[] args) throws MalformedURLException {
-		UrlHelper c = parseUrl("https://mail.google.com/mail/?shva=1#inbox");
 	}
 }

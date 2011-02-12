@@ -68,6 +68,7 @@ public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 			if (entry.getValue().isExpired())
 				iter.remove();
 		}
+		// TODO, Should I make sure that size is below max size?
 	}
 
 	@Override
@@ -96,7 +97,8 @@ public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 	 *            whether or not to clean the cache now
 	 */
 	public void setMaxSize(int size, boolean cleanNow) {
-		if (size < 1)throw new IllegalArgumentException("Size most be greater than 0");
+		if (size < 1)
+			throw new IllegalArgumentException("Size most be greater than 0");
 		maxSize = size;
 		if (cleanNow)
 			clean();
