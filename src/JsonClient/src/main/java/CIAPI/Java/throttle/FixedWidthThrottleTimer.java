@@ -32,7 +32,7 @@ public class FixedWidthThrottleTimer implements ThrottleTimer {
 
 	@Override
 	public void madeRequest() {
-		if (!canMakeRequest()){
+		if (!canMakeRequest()) {
 			throw new IllegalStateException("You cannot make a request yet.");
 		}
 		lastRequest = System.currentTimeMillis();
