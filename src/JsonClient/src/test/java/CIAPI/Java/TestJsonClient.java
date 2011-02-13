@@ -28,7 +28,8 @@ public class TestJsonClient {
 
 	@Test
 	public void testSimpleRequest() throws ApiException {
-		StatsWrapper result = (StatsWrapper) client.makeGetRequest("files/test/testStatsResponse.json", StatsWrapper.class);
+		StatsWrapper result = (StatsWrapper) client.makeGetRequest("files/test/testStatsResponse.json",
+				StatsWrapper.class);
 		assertNotNull(result);
 		StackExchangeStats stats = result.getStatistics()[0];
 		Site site = stats.getSite();

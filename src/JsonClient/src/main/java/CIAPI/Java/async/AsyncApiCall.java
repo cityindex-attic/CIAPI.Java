@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
@@ -27,6 +28,7 @@ public class AsyncApiCall {
 	private Future<Object> future;
 
 	private boolean done;
+	private boolean started;
 
 	protected AsyncApiCall(String baseUrl, JsonClient client, ExecutorService exec) {
 		this.baseUrl = baseUrl;
@@ -34,6 +36,7 @@ public class AsyncApiCall {
 		this.exec = exec;
 		callBaks = new ArrayList<CallBack>();
 		done = false;
+		started = false;
 	}
 
 	/**
@@ -42,7 +45,8 @@ public class AsyncApiCall {
 	 * @param cb
 	 */
 	public void addCallCompleteListener(CallBack cb) {
-		if (cb == null) throw new NullPointerException("The call back cannot be null");
+		if (cb == null)
+			throw new NullPointerException("The call back cannot be null");
 		if (done)
 			throw new IllegalStateException("Cannot add a call back to a call that has completed.");
 		callBaks.add(cb);
@@ -59,23 +63,22 @@ public class AsyncApiCall {
 	 * @param returnType
 	 *            The type this method will return
 	 * @return A future that will hold the result of the computation
-	 * @throws ApiException
 	 */
-	public Future<Object> beginCallGetMethod(final String methodName, final Map<String, String> parameters,
-			final Class<?> returnType) throws ApiException {
-		// TODO: Still can't handle exceptions
+	public synchronized Future<Object> beginCallGetMethod(final String methodName, final Map<String, String> parameters,
+			final Class<?> returnType) {
+		if (started)
+			throw new IllegalStateException("Cannot call more than once.");
+		started = true;
 		future = exec.submit(new Callable<Object>() {
 			@Override
 			public Object call() throws Exception {
 				String url = new UrlHelper(baseUrl, methodName, parameters).toUrl();
 				Object result = client.makeGetRequest(url, returnType);
-				for (CallBack callBack : callBaks) {
-					callBack.doCallBack(result);
-				}
 				done = true;
 				return result;
 			}
 		});
+		listenForDone();
 		return future;
 	}
 
@@ -92,22 +95,48 @@ public class AsyncApiCall {
 	 * @param returnType
 	 *            The type this method will return
 	 * @return A future that will hold the result of the computation
-	 * @throws ApiException
 	 */
-	public Future<Object> beginCallPostMethod(final String methodName, final Map<String, String> parameters,
-			final Object inputData, final Class<?> returnType) throws ApiException {
+	public synchronized Future<Object> beginCallPostMethod(final String methodName, final Map<String, String> parameters,
+			final Object inputData, final Class<?> returnType) {
+		if (started)
+			throw new IllegalStateException("Cannot call more than once.");
+		started = true;
+		started = true;
 		future = exec.submit(new Callable<Object>() {
 			@Override
 			public Object call() throws Exception {
 				String url = new UrlHelper(baseUrl, methodName, parameters).toUrl();
 				Object result = client.makePostRequest(url, inputData, returnType);
-				for (CallBack callBack : callBaks) {
-					callBack.doCallBack(result);
-				}
 				done = true;
 				return result;
 			}
 		});
+		listenForDone();
 		return future;
+	}
+
+	private void listenForDone() {
+		Thread doneListener = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while (!future.isDone()) {
+					// TODO, this busy waiting mehod is bad
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				for (CallBack cb : callBaks) {
+					try {
+						cb.doCallBack(future.get());
+					} catch (Exception e) {
+						cb.handleException(e);
+					}
+				}
+			}
+		});
+		doneListener.setDaemon(true);
+		doneListener.start();
 	}
 }

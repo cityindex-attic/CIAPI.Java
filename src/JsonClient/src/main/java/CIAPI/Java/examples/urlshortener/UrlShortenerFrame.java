@@ -81,18 +81,19 @@ public class UrlShortenerFrame extends JFrame {
 						south.setVisible(false);
 						UrlShortenerFrame.this.pack();
 					}
+
+					@Override
+					public void handleException(Exception e) {
+						shortenedUrl.setText("Error shortening url.");
+						south.setVisible(false);
+					}
 				});
-				try {
-					Map<String, String> key = new HashMap<String, String>();
-					key.put("key", "AIzaSyCYMdrcIDWDf6YFFzyFjA2HCEbfazSkf_M");
-					south.setVisible(true);
-					UrlShortenerFrame.this.pack();
-					call.beginCallPostMethod("", key, new GooglePostRequest(longUrlField.getText()),
-							GooglePostResponse.class);
-				} catch (ApiException e1) {
-					// TODO Doesn't work because Async doesn't throw exceptions
-					shortenedUrl.setText("Api Error");
-				}
+				Map<String, String> key = new HashMap<String, String>();
+				key.put("key", "AIzaSyCYMdrcIDWDf6YFFzyFjA2HCEbfazSkf_M");
+				south.setVisible(true);
+				UrlShortenerFrame.this.pack();
+				call.beginCallPostMethod("", key, new GooglePostRequest(longUrlField.getText()),
+						GooglePostResponse.class);
 			}
 		});
 	}
