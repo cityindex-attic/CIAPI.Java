@@ -8,28 +8,30 @@
   <artifactId>JsonClient</artifactId>
   <packaging>jar</packaging>  
   <name>JsonClient</name>
-  <repositories>
-    <repository>
-      <id>central</id>
-      <name>Maven Repository Switchboard</name>
-      <layout>default</layout>
-      <url>http://repo1.maven.org/maven2</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>gson</id>
-      <url>http://google-gson.googlecode.com/svn/mavenrepo</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-    </repository>
-  </repositories>
-  <dependencies>
+  <properties>
+	<crap4jHome>${project.parent.basedir}${file.separator}..${file.separator}tools${file.separator}crap4j</crap4jHome>
+  </properties>
+  <build>
+	<!-- define build plugins - note that some of these inherit their settings from the parent -->
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+		</plugin>
+		<!-- Need to get newer version of crap4J plugin before this will work on Windows --> 
+		<plugin>
+			<groupId>net.sf.jmd</groupId>
+			<artifactId>maven-crap4j-plugin</artifactId>
+			<configuration>
+			    <projectDir>${basedir}</projectDir>
+			    <crap4jHome>${crap4jHome}</crap4jHome>
+			    <reportsCrap4j>target/crap4j-reports</reportsCrap4j>
+			    <libClasspath>${crap4jHome}${file.separator}lib${file.separator}</libClasspath>
+			</configuration>
+		</plugin>
+	</plugins>
+  </build>
+   <dependencies>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpcore</artifactId>
