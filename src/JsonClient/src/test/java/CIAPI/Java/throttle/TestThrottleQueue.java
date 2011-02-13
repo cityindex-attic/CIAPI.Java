@@ -6,8 +6,11 @@ import org.junit.Before;
 
 public class TestThrottleQueue {
 
+	private ThrottledHttpClient client;
+	
 	@Before
 	public void setUp() throws Exception {
+		client = new ThrottledHttpClient();
 	}
 
 	@After

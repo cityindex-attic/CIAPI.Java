@@ -23,9 +23,13 @@ public class ThrottledHttpClient implements SimpleHttpClient {
 	 * Creates a basic throttled client.
 	 */
 	public ThrottledHttpClient() {
-		queue = new RequestQueue(new FixedWidthThrottleTimer(100));
+		this(new FixedWidthThrottleTimer(100));
 	}
 
+	public ThrottledHttpClient(ThrottleTimer timer){
+		queue = new RequestQueue(timer);
+	}
+	
 	@Override
 	public InputStream makeGetRequest(String url) throws ClientProtocolException, IOException {
 		if (url == null)
