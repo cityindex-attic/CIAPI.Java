@@ -15,7 +15,7 @@ import CIAPI.Java.urlstuff.UrlHelper;
 /**
  * Class representing a single async call to the api
  * 
- * @author justin nelson
+ * @author Justin Nelson
  * 
  */
 public class AsyncApiCall {
@@ -64,8 +64,8 @@ public class AsyncApiCall {
 	 *            The type this method will return
 	 * @return A future that will hold the result of the computation
 	 */
-	public synchronized Future<Object> beginCallGetMethod(final String methodName, final Map<String, String> parameters,
-			final Class<?> returnType) {
+	public synchronized Future<Object> beginCallGetMethod(final String methodName,
+			final Map<String, String> parameters, final Class<?> returnType) {
 		if (started)
 			throw new IllegalStateException("Cannot call more than once.");
 		started = true;
@@ -96,11 +96,10 @@ public class AsyncApiCall {
 	 *            The type this method will return
 	 * @return A future that will hold the result of the computation
 	 */
-	public synchronized Future<Object> beginCallPostMethod(final String methodName, final Map<String, String> parameters,
-			final Object inputData, final Class<?> returnType) {
+	public synchronized Future<Object> beginCallPostMethod(final String methodName,
+			final Map<String, String> parameters, final Object inputData, final Class<?> returnType) {
 		if (started)
 			throw new IllegalStateException("Cannot call more than once.");
-		started = true;
 		started = true;
 		future = exec.submit(new Callable<Object>() {
 			@Override
@@ -119,14 +118,6 @@ public class AsyncApiCall {
 		Thread doneListener = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				while (!future.isDone()) {
-					// TODO, this busy waiting mehod is bad
-					try {
-						Thread.sleep(10);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
 				for (CallBack cb : callBaks) {
 					try {
 						cb.doCallBack(future.get());

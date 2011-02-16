@@ -3,6 +3,7 @@ package CIAPI.Java;
 import CIAPI.Java.cachestuff.Cache;
 import CIAPI.Java.cachestuff.CachedJsonClient;
 import CIAPI.Java.cachestuff.DefaultCache;
+import CIAPI.Java.httpstuff.DefaultHttpRequestItemFactory;
 import CIAPI.Java.throttle.RequestsPerTimespanTimer;
 import CIAPI.Java.throttle.ThrottleTimer;
 import CIAPI.Java.throttle.ThrottledHttpClient;
@@ -24,7 +25,7 @@ public class ThrottledCachedJsonClient extends CachedJsonClient {
 	 *            the timer to use
 	 */
 	public ThrottledCachedJsonClient(Cache<Pair<String, Class<?>>, Object> cache, ThrottleTimer timer) {
-		super(cache, new ThrottledHttpClient(timer));
+		super(cache, new ThrottledHttpClient(timer, new DefaultHttpRequestItemFactory()));
 	}
 
 	/**

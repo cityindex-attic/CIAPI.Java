@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.impl.DefaultHttpRequestFactory;
 
+import CIAPI.Java.httpstuff.DefaultHttpRequestItemFactory;
 import CIAPI.Java.httpstuff.HttpGetRequestItem;
 import CIAPI.Java.httpstuff.HttpPostRequestItem;
+import CIAPI.Java.httpstuff.HttpRequestItemFactory;
 import CIAPI.Java.httpstuff.SimpleHttpClient;
 
 /**
@@ -16,25 +19,26 @@ import CIAPI.Java.httpstuff.SimpleHttpClient;
  * 
  */
 public class ThrottledHttpClient implements SimpleHttpClient {
-
+	private HttpRequestItemFactory factory;
 	private RequestQueue queue;
 
 	/**
 	 * Creates a basic throttled client.
 	 */
 	public ThrottledHttpClient() {
-		this(new FixedWidthThrottleTimer(100));
+		this(new FixedWidthThrottleTimer(100), new DefaultHttpRequestItemFactory());
 	}
 
-	public ThrottledHttpClient(ThrottleTimer timer){
+	public ThrottledHttpClient(ThrottleTimer timer, HttpRequestItemFactory fact) {
 		queue = new RequestQueue(timer);
+		factory = fact;
 	}
-	
+
 	@Override
 	public InputStream makeGetRequest(String url) throws ClientProtocolException, IOException {
 		if (url == null)
 			throw new NullPointerException("The url cannot be null");
-		HttpGetRequestItem request = new HttpGetRequestItem(url);
+		HttpGetRequestItem request = factory.getHttpGetRequestItem(url);
 		try {
 			queue.add(request);
 		} catch (InterruptedException e) {
@@ -53,7 +57,7 @@ public class ThrottledHttpClient implements SimpleHttpClient {
 	public InputStream makePostRequest(String url, String content) throws ClientProtocolException, IOException {
 		if (url == null)
 			throw new NullPointerException("The url cannot be null");
-		HttpPostRequestItem request = new HttpPostRequestItem(url, content);
+		HttpPostRequestItem request = factory.getHttpPostRequestItem(url, content);
 		try {
 			queue.add(request);
 		} catch (InterruptedException e) {
@@ -66,5 +70,9 @@ public class ThrottledHttpClient implements SimpleHttpClient {
 			}
 		}
 		return request.getResult();
+	}
+
+	public void setHttpRequestFactory(HttpRequestItemFactory fact) {
+		factory = fact;
 	}
 }

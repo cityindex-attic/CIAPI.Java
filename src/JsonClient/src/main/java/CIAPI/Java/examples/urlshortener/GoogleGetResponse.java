@@ -3,7 +3,7 @@ package CIAPI.Java.examples.urlshortener;
 /**
  * 
  * @author Justin Nelson
- *
+ * 
  */
 public class GoogleGetResponse {
 
@@ -11,6 +11,9 @@ public class GoogleGetResponse {
 	private String id;
 	private String longUrl;
 	private String status;
+
+	public GoogleGetResponse() {
+	}
 
 	public GoogleGetResponse(String kind, String id, String longUrl, String status) {
 		this.kind = kind;

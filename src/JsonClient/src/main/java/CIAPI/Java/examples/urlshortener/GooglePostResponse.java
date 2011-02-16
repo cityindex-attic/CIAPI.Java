@@ -17,6 +17,9 @@ public class GooglePostResponse {
 		this.id = id;
 		this.longUrl = longUrl;
 	}
+	
+	public GooglePostResponse() {
+	}
 
 	/**
 	 * @return the kind of url this is (long or short)

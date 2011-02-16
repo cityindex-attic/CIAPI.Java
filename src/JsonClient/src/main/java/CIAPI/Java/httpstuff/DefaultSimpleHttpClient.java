@@ -13,11 +13,13 @@ import org.apache.http.client.ClientProtocolException;
  */
 public class DefaultSimpleHttpClient implements SimpleHttpClient {
 
+	HttpRequestItemFactory factory = new DefaultHttpRequestItemFactory();
+	
 	@Override
 	public InputStream makeGetRequest(String url) throws ClientProtocolException, IOException {
 		if (url == null)
 			throw new NullPointerException("The url cannot be null");
-		HttpGetRequestItem request = new HttpGetRequestItem(url);
+		HttpGetRequestItem request = factory.getHttpGetRequestItem(url);
 		request.makeRequest();
 		return request.getResult();
 	}
@@ -26,7 +28,7 @@ public class DefaultSimpleHttpClient implements SimpleHttpClient {
 	public InputStream makePostRequest(String url, String content) throws ClientProtocolException, IOException {
 		if (url == null)
 			throw new NullPointerException("The url cannot be null");
-		HttpPostRequestItem request = new HttpPostRequestItem(url, content);
+		HttpPostRequestItem request = factory.getHttpPostRequestItem(url, content);
 		request.makeRequest();
 		return request.getResult();
 	}

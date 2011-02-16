@@ -22,7 +22,7 @@ import CIAPI.Java.throttle.ThrottledHttpClient;
 /**
  * Tiny program designed to showcase the Async Api
  * 
- * @author justin nelson
+ * @author Justin Nelson
  * 
  */
 public class UrlShortenerFrame extends JFrame {

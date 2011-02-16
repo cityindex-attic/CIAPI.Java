@@ -59,6 +59,7 @@ public abstract class AbstractHttpRequestItem implements HttpRequestItem {
 	@Override
 	public InputStream makeRequest() throws ClientProtocolException, IOException {
 		Log.trace("Executing request:" + url);
+		beforeRequest(method, client);
 		HttpResponse response = client.execute(method);
 		HttpEntity entity = response.getEntity();
 		result = entity.getContent();
@@ -66,6 +67,13 @@ public abstract class AbstractHttpRequestItem implements HttpRequestItem {
 		return result;
 	}
 
+	/**
+	 * This runs right before the request is made.  The default implementation does nothing.
+	 */
+	protected void beforeRequest(HttpRequestBase requestMethod, DefaultHttpClient httpClient){
+		
+	}
+	
 	/* (non-Javadoc)
 	 * @see CIAPI.Java.httpstuff.HttpRequestItem#isComplete()
 	 */
