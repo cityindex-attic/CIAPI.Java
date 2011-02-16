@@ -14,7 +14,7 @@ import com.google.gson.Gson;
  * Basically takes the result of a call to an Api and constructs objects to
  * return using Gson.
  * 
- * @author justin nelson
+ * @author Justin Nelson
  * 
  */
 public class DefaultJsonClient implements JsonClient {
@@ -38,7 +38,7 @@ public class DefaultJsonClient implements JsonClient {
 	 */
 	public DefaultJsonClient(SimpleHttpClient httpClient) {
 		if (httpClient == null)
-			throw new NullPointerException("THe simple http client must not be null");
+			throw new NullPointerException("The simple http client must not be null");
 		client = httpClient;
 	}
 

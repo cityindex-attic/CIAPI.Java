@@ -1,5 +1,6 @@
 package CIAPI.Java;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -35,5 +36,17 @@ public class TestJsonClient {
 		Site site = stats.getSite();
 		assertEquals("Stack Overflow", site.getName());
 		assertEquals(1288773, stats.getTotal_questions());
+	}
+	
+	@Test
+	public void testApiExceptionMessage(){
+		try{
+			int i = (new int[10])[10];
+			fail("Exception should have been thrown.");
+		}catch (Exception e) {
+			ApiException ex = new ApiException(e);
+			assertNotNull(ex.getMessage());
+			assertTrue(!ex.getMessage().equals(""));
+		}
 	}
 }

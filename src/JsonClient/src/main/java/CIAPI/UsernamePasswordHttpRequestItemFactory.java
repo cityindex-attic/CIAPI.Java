@@ -9,11 +9,21 @@ import CIAPI.Java.httpstuff.HttpGetRequestItem;
 import CIAPI.Java.httpstuff.HttpPostRequestItem;
 import CIAPI.Java.httpstuff.HttpRequestItemFactory;
 
+/**
+ * Factory that creates RequestItems that set username and password in the headders.
+ * @author Justin Nelson
+ *
+ */
 public class UsernamePasswordHttpRequestItemFactory implements HttpRequestItemFactory {
 
 	private String username;
 	private String password;
 
+	/**
+	 * Creates a new factory to set the username and password headers
+	 * @param username the username to authenticate with
+	 * @param password the password to authenticate with
+	 */
 	public UsernamePasswordHttpRequestItemFactory(String username, String password) {
 		this.username = username;
 		this.password = password;

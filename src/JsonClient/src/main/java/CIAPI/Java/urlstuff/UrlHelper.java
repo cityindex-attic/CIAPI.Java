@@ -40,14 +40,26 @@ public class UrlHelper {
 		return createRoute(baseUrl, extendedUrl, params);
 	}
 
+	/**
+	 * Returns the base component of the url
+	 * @return the base component of the url
+	 */
 	public String getBaseUrl() {
 		return baseUrl;
 	}
 
+	/**
+	 * Returns the extended directory
+	 * @return the extended directory
+	 */
 	public String getExtendedUrl() {
 		return extendedUrl;
 	}
 
+	/**
+	 * The url parameters of the url
+	 * @return url parameters of the url
+	 */
 	public Map<String, String> getParams() {
 		return params;
 	}

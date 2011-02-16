@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.impl.DefaultHttpRequestFactory;
 
 import CIAPI.Java.httpstuff.DefaultHttpRequestItemFactory;
 import CIAPI.Java.httpstuff.HttpGetRequestItem;
@@ -23,12 +22,21 @@ public class ThrottledHttpClient implements SimpleHttpClient {
 	private RequestQueue queue;
 
 	/**
-	 * Creates a basic throttled client.
+	 * Creates a basic throttled client. Uses a FixedWidthThrottleTimer and
+	 * DefaultHttpRequestItemFactory
 	 */
 	public ThrottledHttpClient() {
 		this(new FixedWidthThrottleTimer(100), new DefaultHttpRequestItemFactory());
 	}
 
+	/**
+	 * Creates a basic throttled client.
+	 * 
+	 * @param timer
+	 *            the given timer
+	 * @param fact
+	 *            the given fact
+	 */
 	public ThrottledHttpClient(ThrottleTimer timer, HttpRequestItemFactory fact) {
 		queue = new RequestQueue(timer);
 		factory = fact;
@@ -70,9 +78,5 @@ public class ThrottledHttpClient implements SimpleHttpClient {
 			}
 		}
 		return request.getResult();
-	}
-
-	public void setHttpRequestFactory(HttpRequestItemFactory fact) {
-		factory = fact;
 	}
 }
