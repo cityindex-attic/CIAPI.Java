@@ -10,23 +10,23 @@ import CIAPI.Java.httpstuff.HttpPostRequestItem;
 import CIAPI.Java.httpstuff.HttpRequestItemFactory;
 
 /**
- * Factory that creates RequestItems that set username and password in the headders.
+ * Factory that creates RequestItems that set username and session in the headers.
  * @author Justin Nelson
  *
  */
-public class UsernamePasswordHttpRequestItemFactory implements HttpRequestItemFactory {
+public class UsernameSessionHttpRequestItemFactory implements HttpRequestItemFactory {
 
 	private String username;
-	private String password;
+	private String session;
 
 	/**
 	 * Creates a new factory to set the username and password headers
 	 * @param username the username to authenticate with
-	 * @param password the password to authenticate with
+	 * @param session the session to authenticate with
 	 */
-	public UsernamePasswordHttpRequestItemFactory(String username, String password) {
+	public UsernameSessionHttpRequestItemFactory(String username, String session) {
 		this.username = username;
-		this.password = password;
+		this.session = session;
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class UsernamePasswordHttpRequestItemFactory implements HttpRequestItemFa
 			protected void beforeRequest(HttpRequestBase requestMethod, DefaultHttpClient httpClient) {
 				super.beforeRequest(requestMethod, httpClient);
 				requestMethod.addHeader("username", username);
-				requestMethod.addHeader("password", password);
+				requestMethod.addHeader("session", session);
 			}
 		};
 	}
@@ -48,7 +48,7 @@ public class UsernamePasswordHttpRequestItemFactory implements HttpRequestItemFa
 			protected void beforeRequest(HttpRequestBase requestMethod, DefaultHttpClient httpClient) {
 				super.beforeRequest(requestMethod, httpClient);
 				requestMethod.addHeader("username", username);
-				requestMethod.addHeader("password", password);
+				requestMethod.addHeader("session", session);
 			}
 		};
 	}

@@ -13,12 +13,12 @@ import CIAPI.Java.throttle.RequestsPerTimespanTimer;
 import CIAPI.Java.throttle.ThrottledHttpClient;
 
 /**
- * API for connecting to the City Index Trading RESTful API.
+ * API for connecting to the City Index Trading RESTful API.  All requests are made synchronously.
  * 
  * @author Justin Nelson
  * 
  */
-public class Api {
+public class SyncApi {
 	private final String Api_Base_Url = "http://174.129.8.69/TradingApisession";
 
 	private JsonApi api;
@@ -29,7 +29,7 @@ public class Api {
 
 	/**
 	 * Creates a new API to access the trading API. It will use the username and
-	 * password you supply it.
+	 * password you supply it.  This does not automatically log a user in.
 	 * 
 	 * @param username
 	 *            the username to authenticate with
@@ -37,10 +37,15 @@ public class Api {
 	 *            the password to authenticate with
 	 * @throws ApiException
 	 */
-	public Api(String username, String password) throws ApiException {
+	public SyncApi(String username, String password) throws ApiException {
+		// null check to make sure we blow up when the error actually happens
+		// instead of later in the code
+		if (username == null)
+			throw new NullPointerException("The username must not be null");
+		if (password == null)
+			throw new NullPointerException("The password must not be null");
 		this.username = username;
 		this.password = password;
-		logon();
 	}
 
 	/**
@@ -55,7 +60,7 @@ public class Api {
 				username, password), CreateSessionResponse.class);
 		sessionId = session.getSession();
 		ThrottledHttpClient client = new ThrottledHttpClient(new RequestsPerTimespanTimer(10, 1000),
-				new UsernamePasswordHttpRequestItemFactory(username, sessionId));
+				new UsernameSessionHttpRequestItemFactory(username, sessionId));
 		api = new JsonApi(Api_Base_Url, new CachedJsonClient(
 				new DefaultCache<CachedJsonClient.Pair<String, Class<?>>, Object>(1000 * 60), client));
 	}
@@ -63,7 +68,7 @@ public class Api {
 	/**
 	 * Deletes the session token to essentially log a user off.
 	 * 
-	 * @throws ApiException 
+	 * @throws ApiException
 	 */
 	public void logoff() throws ApiException {
 		DeleteSessionResponse resp = (DeleteSessionResponse) api.callPostMethod("deleteSession", null,

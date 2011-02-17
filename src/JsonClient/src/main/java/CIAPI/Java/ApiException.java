@@ -8,9 +8,6 @@ package CIAPI.Java;
  */
 public class ApiException extends Exception {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -8553592640796987424L;
 
 	/**

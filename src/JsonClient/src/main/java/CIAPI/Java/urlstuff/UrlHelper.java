@@ -42,6 +42,7 @@ public class UrlHelper {
 
 	/**
 	 * Returns the base component of the url
+	 * 
 	 * @return the base component of the url
 	 */
 	public String getBaseUrl() {
@@ -50,6 +51,7 @@ public class UrlHelper {
 
 	/**
 	 * Returns the extended directory
+	 * 
 	 * @return the extended directory
 	 */
 	public String getExtendedUrl() {
@@ -58,6 +60,7 @@ public class UrlHelper {
 
 	/**
 	 * The url parameters of the url
+	 * 
 	 * @return url parameters of the url
 	 */
 	public Map<String, String> getParams() {
@@ -158,7 +161,9 @@ public class UrlHelper {
 	}
 
 	/**
-	 * Combines two strings to create a valid url directory path.
+	 * Combines two strings to create a valid url directory path. We don't care
+	 * how the path's start or end after this method runs. This just ensures
+	 * that the correct number of `/` are between 2 paths.
 	 * 
 	 * @param first
 	 *            The first string
@@ -166,23 +171,30 @@ public class UrlHelper {
 	 *            The second string
 	 * @return The combined strings
 	 */
-	static String urlDirCombine(String first, String second) {
+	private static String urlDirCombine(String first, String second) {
+		// Null checks
 		if (first == null && second == null)
 			return "";
 		if (first == null)
 			return second;
 		if (second == null)
 			return first;
+		// the case where we know we have at least one `/`
 		if (first.endsWith("/")) {
 			if (second.startsWith("/")) {
+				// Example: first/ /second (need to remove one slash
 				return first + second.substring(1);
 			} else {
+				// Example: first/ second (Perfect, just mush them together)
 				return first + second;
 			}
 		} else {
+			// the case where we may not have one `/`
 			if (second.startsWith("/")) {
+				// Example: first /second (Perfect, just mush them together)
 				return first + second;
 			} else {
+				// Example: first second (Need to add a slash in between them)
 				return first + "/" + second;
 			}
 		}
