@@ -8,6 +8,8 @@ import org.junit.Test;
 
 import CIAPI.Java.ApiException;
 import CIAPI.Java.cachestuff.CachedJsonClient.Pair;
+import CIAPI.Java.examples.stackexchange.SitesWrapper;
+import CIAPI.Java.httpstuff.FakeSimpleHttpClient;
 
 public class TestCachedJsonCLient {
 
@@ -21,7 +23,7 @@ public class TestCachedJsonCLient {
 		cache.put(new Pair<String, Class<?>>("http://fakeUrl1", String.class), "result1");
 		cache.put(new Pair<String, Class<?>>("http://fakeUrl2", String.class), "result2");
 		cache.put(new Pair<String, Class<?>>("http://fakeUrl3", String.class), "result3");
-		client = new CachedJsonClient(cache);
+		client = new CachedJsonClient(cache, new FakeSimpleHttpClient());
 	}
 
 	@After
@@ -57,5 +59,12 @@ public class TestCachedJsonCLient {
 		}
 		String result2 = (String) client.makeGetRequest("http://fakeUrl1", String.class, true);
 		assertNull("The cached should have expired and be null.", result2);
+	}
+
+	@Test
+	public void testDoesntUseCacheIfEmpty() throws ApiException {
+		SitesWrapper result = (SitesWrapper) client.makeGetRequest("files/test/testStatsResponse.json",
+				SitesWrapper.class);
+		
 	}
 }

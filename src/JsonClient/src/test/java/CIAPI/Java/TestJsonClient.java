@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import CIAPI.Java.examples.stackexchange.Site;
+import CIAPI.Java.examples.stackexchange.SitesWrapper;
 import CIAPI.Java.examples.stackexchange.StackExchangeStats;
 import CIAPI.Java.examples.stackexchange.StatsWrapper;
 import CIAPI.Java.httpstuff.FakeSimpleHttpClient;
@@ -37,13 +38,20 @@ public class TestJsonClient {
 		assertEquals("Stack Overflow", site.getName());
 		assertEquals(1288773, stats.getTotal_questions());
 	}
-	
+
 	@Test
-	public void testApiExceptionMessage(){
-		try{
+	public void testJsonApi() throws ApiException {
+		JsonApi api = new JsonApi("files/test", client);
+		api.callGetMethod("testStatsResponse.json", null, SitesWrapper.class);
+		api.callPostMethod("testStatsResponse.json", null, null, SitesWrapper.class);
+	}
+
+	@Test
+	public void testApiExceptionMessage() {
+		try {
 			int i = (new int[10])[10];
 			fail("Exception should have been thrown.");
-		}catch (Exception e) {
+		} catch (Exception e) {
 			ApiException ex = new ApiException(e);
 			assertNotNull(ex.getMessage());
 			assertTrue(!ex.getMessage().equals(""));
