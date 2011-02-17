@@ -1,12 +1,14 @@
-package CIAPI;
+package CIAPI.Java.examples.ciapi;
 
 import CIAPI.Java.ApiException;
 import CIAPI.Java.DefaultJsonClient;
 import CIAPI.Java.JsonApi;
 import CIAPI.Java.cachestuff.CachedJsonClient;
 import CIAPI.Java.cachestuff.DefaultCache;
-import CIAPI.Java.httpstuff.DefaultSimpleHttpClient;
-import CIAPI.Java.httpstuff.SimpleHttpClient;
+import CIAPI.Java.examples.ciapi.dto.CILogOnRequest;
+import CIAPI.Java.examples.ciapi.dto.CreateSessionResponse;
+import CIAPI.Java.examples.ciapi.dto.DeleteSessionRequest;
+import CIAPI.Java.examples.ciapi.dto.DeleteSessionResponse;
 import CIAPI.Java.throttle.RequestsPerTimespanTimer;
 import CIAPI.Java.throttle.ThrottledHttpClient;
 
@@ -47,7 +49,7 @@ public class Api {
 	 * 
 	 * @throws ApiException
 	 */
-	private void logon() throws ApiException {
+	public void logon() throws ApiException {
 		JsonApi unAuth = new JsonApi(Api_Base_Url, new DefaultJsonClient());
 		CreateSessionResponse session = (CreateSessionResponse) unAuth.callPostMethod("", null, new CILogOnRequest(
 				username, password), CreateSessionResponse.class);
@@ -56,5 +58,18 @@ public class Api {
 				new UsernamePasswordHttpRequestItemFactory(username, sessionId));
 		api = new JsonApi(Api_Base_Url, new CachedJsonClient(
 				new DefaultCache<CachedJsonClient.Pair<String, Class<?>>, Object>(1000 * 60), client));
+	}
+
+	/**
+	 * Deletes the session token to essentially log a user off.
+	 * 
+	 * @throws ApiException 
+	 */
+	public void logoff() throws ApiException {
+		DeleteSessionResponse resp = (DeleteSessionResponse) api.callPostMethod("deleteSession", null,
+				new DeleteSessionRequest(), DeleteSessionResponse.class);
+		if (!resp.getLoggedOut()) {
+			throw new ApiException("Failed to delete session token.");
+		}
 	}
 }

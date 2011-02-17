@@ -1,4 +1,4 @@
-package CIAPI;
+package CIAPI.Java.examples.ciapi.dto;
 
 public class CILogOnRequest {
 	private String UserName;

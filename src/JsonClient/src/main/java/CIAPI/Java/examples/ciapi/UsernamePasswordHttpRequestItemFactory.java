@@ -1,4 +1,4 @@
-package CIAPI;
+package CIAPI.Java.examples.ciapi;
 
 import java.io.UnsupportedEncodingException;
 

@@ -22,6 +22,14 @@ public class ApiException extends Exception {
 		super(cause);
 	}
 
+	/**
+	 * Creates a new ApiException that uses a general RuntimeException as the cause
+	 * @param message
+	 */
+	public ApiException(String message) {
+		super(new RuntimeException(message));
+	}
+
 	@Override
 	public String getMessage() {
 		return "ApiException caused by:" + getCause().getMessage();
