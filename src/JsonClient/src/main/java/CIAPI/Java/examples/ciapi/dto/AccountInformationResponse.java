@@ -21,25 +21,4 @@ public class AccountInformationResponse {
 	private String ClientAccountId;
 	private String LogonUserName;
 	private TradingAccount[] TradingAccounts;
-	/*
-	 * {
-	 * 		"ClientAccountCurrency":"GBP",
-	 * 		"ClientAccountId":400125401,
-	 * 		"LogonUserName":"Mr David Laing - Test",
-	 * 		"TradingAccounts":[
-	 * 			{
-	 * 				"TradingAccountCode":"DM904310",
-	 * 				"TradingAccountId":400184832,
-	 * 				"TradingAccountStatus":"Open",
-	 * 				"TradingAccountType":"CFD"
-	 * 			},
-	 * 			{
-	 * 				"TradingAccountCode":"DM653075",
-	 * 				"TradingAccountId":400184833,
-	 * 				"TradingAccountStatus":"Open",
-	 * 				"TradingAccountType":"Spread Betting"
-	 * 			}
-	 * 		]
-	 * }
-	 */
 }

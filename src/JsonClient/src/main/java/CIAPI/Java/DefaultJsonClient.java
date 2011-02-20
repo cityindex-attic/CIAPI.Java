@@ -2,8 +2,6 @@ package CIAPI.Java;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import org.apache.http.client.ClientProtocolException;
@@ -13,7 +11,6 @@ import CIAPI.Java.httpstuff.SimpleHttpClient;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.stream.MalformedJsonException;
 
 /**
  * A default implementation of JsonClient. <br />
@@ -83,10 +80,6 @@ public class DefaultJsonClient implements JsonClient {
 	/**
 	 * Helper method for finishing a get or post request
 	 * 
-	 * @param data
-	 * @param clazz
-	 * @return
-	 * @throws ApiException
 	 */
 	private Object finishMakeRequest(InputStream data, Class<?> clazz) throws ApiException {
 		Gson g = new Gson();

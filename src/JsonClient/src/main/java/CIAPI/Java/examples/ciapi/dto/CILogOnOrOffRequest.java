@@ -27,4 +27,12 @@ public class CILogOnOrOffRequest {
 		this.UserName = username;
 		this.Password = password;
 	}
+
+	public String getUserName() {
+		return UserName;
+	}
+
+	public String getPassword() {
+		return Password;
+	}
 }

@@ -65,6 +65,6 @@ public class TestCachedJsonCLient {
 	public void testDoesntUseCacheIfEmpty() throws ApiException {
 		SitesWrapper result = (SitesWrapper) client.makeGetRequest("files/test/testStatsResponse.json",
 				SitesWrapper.class);
-		
+		assertNotNull(result);
 	}
 }

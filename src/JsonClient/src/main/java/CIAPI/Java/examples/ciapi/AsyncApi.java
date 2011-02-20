@@ -106,6 +106,7 @@ public class AsyncApi {
 			@Override
 			public void doCallBack(Object result) {
 				DeleteSessionResponse resp = (DeleteSessionResponse) result;
+				if (resp == null) throw new NullPointerException();
 				// Nothing to do here.
 			}
 		});

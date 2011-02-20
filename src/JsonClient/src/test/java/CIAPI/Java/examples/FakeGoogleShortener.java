@@ -1,20 +1,15 @@
 package CIAPI.Java.examples;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
-
-import org.apache.http.client.ClientProtocolException;
-
-import com.google.gson.Gson;
 
 import CIAPI.Java.RequestTranslator;
 import CIAPI.Java.examples.urlshortener.GoogleGetResponse;
 import CIAPI.Java.examples.urlshortener.GooglePostRequest;
 import CIAPI.Java.examples.urlshortener.GooglePostResponse;
-import CIAPI.Java.httpstuff.SimpleHttpClient;
 import CIAPI.Java.urlstuff.UrlHelper;
+
+import com.google.gson.Gson;
 
 /**
  * Client that uses generated files to make requests.
@@ -52,7 +47,7 @@ public class FakeGoogleShortener implements RequestTranslator {
 		 * "http://www.google.com/", "status": "OK" }
 		 */
 		GoogleGetResponse resp = new GoogleGetResponse("url#urlshortener", shortUrl, shortUrl, "OK");
-		return null;
+		return resp;
 	}
 
 	@Override
