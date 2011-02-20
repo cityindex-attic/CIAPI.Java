@@ -29,6 +29,7 @@ public class HttpPostRequestItem extends AbstractHttpRequestItem {
 
 	@Override
 	protected HttpRequestBase getRequestItem(String url) {
-		return new HttpPost(url);
+		HttpPost post = new HttpPost(url);
+		return post;
 	}
 }

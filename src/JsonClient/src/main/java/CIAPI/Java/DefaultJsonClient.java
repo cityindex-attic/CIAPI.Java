@@ -1,13 +1,19 @@
 package CIAPI.Java;
 
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import org.apache.http.client.ClientProtocolException;
 
 import CIAPI.Java.httpstuff.DefaultSimpleHttpClient;
 import CIAPI.Java.httpstuff.SimpleHttpClient;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.stream.MalformedJsonException;
 
 /**
  * A default implementation of JsonClient. <br />
@@ -49,11 +55,10 @@ public class DefaultJsonClient implements JsonClient {
 		if (clazz == null)
 			throw new NullPointerException("The clazz must not be null");
 		try {
-			Gson g = new Gson();
-			InputStream data = client.makeGetRequest(url);
-			Object result = g.fromJson(new InputStreamReader(data), clazz);
-			return result;
-		} catch (Exception e) {
+			return finishMakeRequest(client.makeGetRequest(url), clazz);
+		} catch (ClientProtocolException e) {
+			throw new ApiException(e);
+		} catch (IOException e) {
 			throw new ApiException(e);
 		}
 	}
@@ -67,14 +72,33 @@ public class DefaultJsonClient implements JsonClient {
 		Gson g = new Gson();
 		String strContent = (content instanceof String) ? (String) content : g.toJson(content);
 		try {
-			Scanner responseEntityData = new Scanner(client.makePostRequest(url, strContent));
-			String data = "";
-			while (responseEntityData.hasNextLine())
-				data += responseEntityData.nextLine();
-			Object result = g.fromJson(data, clazz);
-			return result;
-		} catch (Exception e) {
+			return finishMakeRequest(client.makePostRequest(url, strContent), clazz);
+		} catch (ClientProtocolException e) {
 			throw new ApiException(e);
+		} catch (IOException e) {
+			throw new ApiException(e);
+		}
+	}
+
+	/**
+	 * Helper method for finishing a get or post request
+	 * 
+	 * @param data
+	 * @param clazz
+	 * @return
+	 * @throws ApiException
+	 */
+	private Object finishMakeRequest(InputStream data, Class<?> clazz) throws ApiException {
+		Gson g = new Gson();
+		Scanner responseEntityData = new Scanner(data);
+		String strData = "";
+		while (responseEntityData.hasNextLine())
+			strData += responseEntityData.nextLine();
+		try {
+			Object result = g.fromJson(strData, clazz);
+			return result;
+		} catch (JsonSyntaxException e) {
+			throw new GsonParseException(e, strData);
 		}
 	}
 }

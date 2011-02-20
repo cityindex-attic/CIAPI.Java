@@ -6,7 +6,7 @@ package CIAPI.Java.examples.ciapi.dto;
  * @author Justin Nelson
  * 
  */
-public class CILogOnRequest {
+public class CILogOnOrOffRequest {
 	private String UserName;
 	private String Password;
 
@@ -18,7 +18,7 @@ public class CILogOnRequest {
 	 * @param password
 	 *            the password to use
 	 */
-	public CILogOnRequest(String username, String password) {
+	public CILogOnOrOffRequest(String username, String password) {
 		// null checks so GSON doesn't explode
 		if (username == null)
 			throw new NullPointerException("The username must not be null");

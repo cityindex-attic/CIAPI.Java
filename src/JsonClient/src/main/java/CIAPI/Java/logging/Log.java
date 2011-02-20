@@ -21,12 +21,17 @@ public class Log {
 	 * @return a logger
 	 */
 	private static Logger getLogger() {
+		// Grabs the stacktrace element a few up the stack.
+		// 0 is the call to getStackTrace
+		// 1 is this method
+		// 2 is the wrapper method around this log method
+		// 3 is the method we want
 		StackTraceElement trace = Thread.currentThread().getStackTrace()[3];
 		return Logger.getLogger(trace.getClassName());
 	}
 
 	/**
-	 * Loggs a message
+	 * Logs a message
 	 * 
 	 * @param message
 	 */
@@ -35,7 +40,7 @@ public class Log {
 	}
 
 	/**
-	 * Loggs a message
+	 * Logs a message
 	 * 
 	 * @param message
 	 */
@@ -44,7 +49,7 @@ public class Log {
 	}
 
 	/**
-	 * Loggs a message
+	 * Logs a message
 	 * 
 	 * @param message
 	 */
@@ -53,7 +58,7 @@ public class Log {
 	}
 
 	/**
-	 * Loggs a message
+	 * Logs a message
 	 * 
 	 * @param message
 	 */
@@ -62,7 +67,7 @@ public class Log {
 	}
 
 	/**
-	 * Loggs a message
+	 * Logs a message
 	 * 
 	 * @param message
 	 * @param error
@@ -72,7 +77,7 @@ public class Log {
 	}
 
 	/**
-	 * Loggs a message
+	 * Logs a message
 	 * 
 	 * @param message
 	 */
@@ -81,7 +86,7 @@ public class Log {
 	}
 
 	/**
-	 * Loggs a message
+	 * Logs a message
 	 * 
 	 * @param message
 	 * @param error

@@ -6,15 +6,13 @@ import java.util.concurrent.Future;
 
 import CIAPI.Java.ApiException;
 import CIAPI.Java.DefaultJsonClient;
-import CIAPI.Java.JsonApi;
 import CIAPI.Java.async.AsyncApiCall;
 import CIAPI.Java.async.AsyncJsonApi;
 import CIAPI.Java.async.CallBack;
 import CIAPI.Java.cachestuff.CachedJsonClient;
 import CIAPI.Java.cachestuff.DefaultCache;
-import CIAPI.Java.examples.ciapi.dto.CILogOnRequest;
+import CIAPI.Java.examples.ciapi.dto.CILogOnOrOffRequest;
 import CIAPI.Java.examples.ciapi.dto.CreateSessionResponse;
-import CIAPI.Java.examples.ciapi.dto.DeleteSessionRequest;
 import CIAPI.Java.examples.ciapi.dto.DeleteSessionResponse;
 import CIAPI.Java.logging.Log;
 import CIAPI.Java.throttle.RequestsPerTimespanTimer;
@@ -91,13 +89,14 @@ public class AsyncApi {
 					api.addUniversalCallBack(cb);
 			}
 		});
-		return call.beginCallPostMethod(null, new CILogOnRequest(username, password), CreateSessionResponse.class);
+		return call.beginCallPostMethod(null, new CILogOnOrOffRequest(username, password), CreateSessionResponse.class);
 	}
 
 	/**
 	 * Deletes the session token to essentially log a user off. If you want the
 	 * response immediately, call Future.get().
-	 * @return 
+	 * 
+	 * @return
 	 * 
 	 * @throws ApiException
 	 */
@@ -110,6 +109,6 @@ public class AsyncApi {
 				// Nothing to do here.
 			}
 		});
-		return call.beginCallPostMethod(null, new DeleteSessionRequest(), DeleteSessionResponse.class);
+		return call.beginCallPostMethod(null, new CILogOnOrOffRequest(username, password), DeleteSessionResponse.class);
 	}
 }

@@ -27,7 +27,7 @@
 			    <crap4jHome>${crap4jHome}</crap4jHome>
 			    <reportsCrap4j>target/crap4j-reports</reportsCrap4j>
 			    <libClasspath>${crap4jHome}${file.separator}lib${file.separator}</libClasspath>
-			    <maxmemory>500m</maxmemory>
+			    <maxmemory>256m</maxmemory>
 			</configuration>
 		</plugin>
 	</plugins>
