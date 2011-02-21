@@ -9,7 +9,7 @@ package CIAPI.Java.examples.ciapi.dto;
 public class TradingAccount {
 
 	private String TradingAccountCode;
-	private String TradingAccountId;
+	private int TradingAccountId;
 	private String TradingAccountStatus;
 	private String TradingAccountType;
 
@@ -23,7 +23,7 @@ public class TradingAccount {
 	/**
 	 * @return the Trading Account Id for this account
 	 */
-	public String getTradingAccountId() {
+	public int getTradingAccountId() {
 		return TradingAccountId;
 	}
 

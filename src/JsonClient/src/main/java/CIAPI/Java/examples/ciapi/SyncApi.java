@@ -12,6 +12,7 @@ import CIAPI.Java.examples.ciapi.dto.AccountInformationResponse;
 import CIAPI.Java.examples.ciapi.dto.CILogOnOrOffRequest;
 import CIAPI.Java.examples.ciapi.dto.CreateSessionResponse;
 import CIAPI.Java.examples.ciapi.dto.DeleteSessionResponse;
+import CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponse;
 import CIAPI.Java.throttle.RequestsPerTimespanTimer;
 import CIAPI.Java.throttle.ThrottledHttpClient;
 
@@ -102,13 +103,31 @@ public class SyncApi {
 	 * @throws ApiException
 	 */
 	public AccountInformationResponse getClientAndTradingAccount() throws ApiException {
-		// Null check so we can throw a better error
-		if (!isLoggedOn()) {
-			throw new IllegalStateException("You must be logged in to use this method.  Use logOn() to log on.");
-		}
+		checkLoggedOn();
 		AccountInformationResponse resp = (AccountInformationResponse) api.callGetMethod(
 				"useraccount/UserAccount/ClientAndTradingAccount", null, AccountInformationResponse.class);
 		return resp;
+	}
+
+	/**
+	 * Lists the trading history for the given account id
+	 * @param tradingAccountId
+	 * @param maxResults
+	 * @return
+	 * @throws ApiException
+	 */
+	public ListTradeHistoryResponse listTradeHistory(int tradingAccountId, int maxResults) throws ApiException {
+		checkLoggedOn();
+		ListTradeHistoryResponse resp = (ListTradeHistoryResponse) api.callGetMethod("order/order/tradehistory",
+				createParamMap("tradingAccountId", tradingAccountId, "maxResults", maxResults),
+				ListTradeHistoryResponse.class);
+		return resp;
+	}
+
+	private void checkLoggedOn() {
+		if (!isLoggedOn()) {
+			throw new IllegalStateException("You must be logged in to use this method.  Use logOn() to log on.");
+		}
 	}
 
 	/**
@@ -133,7 +152,7 @@ public class SyncApi {
 	 *            a list of pairs of parameters
 	 * @return a map containing an 'UnZipped' version of the list.
 	 */
-	private static Map<String, String> createParamMap(String... args) {
+	private static Map<String, String> createParamMap(Object... args) {
 		if (args == null) {
 			// I prefer to allow null when a sane default exists.
 			// the rest of the json api code handles a null map well
@@ -144,7 +163,7 @@ public class SyncApi {
 		Map<String, String> ret = new HashMap<String, String>();
 		// Grab items 2 at a time and place them in the map.
 		for (int i = 0; i < args.length; i += 2) {
-			ret.put(args[i], args[i + 1]);
+			ret.put(args[i].toString(), args[i + 1].toString());
 		}
 		return ret;
 	}

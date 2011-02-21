@@ -88,15 +88,16 @@ public class DefaultJsonClient implements JsonClient {
 		// doing this
 		// But, this is much easier to debug because you can see the actual
 		// data that was returned.
-		StringBuilder strData = new StringBuilder();
+		StringBuilder strBldr = new StringBuilder();
 		while (responseEntityData.hasNextLine()) {
-			strData.append(responseEntityData.nextLine());
+			strBldr.append(responseEntityData.nextLine());
 		}
+		String fullData = strBldr.toString();
 		try {
-			Object result = g.fromJson(strData.toString(), clazz);
+			Object result = g.fromJson(fullData, clazz);
 			return result;
 		} catch (JsonSyntaxException e) {
-			throw new GsonParseException(e, strData.toString());
+			throw new GsonParseException(e, fullData);
 		}
 	}
 }
