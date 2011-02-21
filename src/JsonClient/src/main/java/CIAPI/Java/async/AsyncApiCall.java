@@ -63,7 +63,7 @@ public class AsyncApiCall {
 	 *            The type this method will return
 	 * @return A future that will hold the result of the computation
 	 */
-	public synchronized Future<Object> beginCallGetMethod(final Map<String, String> parameters, final Class<?> returnType) {
+	public synchronized Future<Object> callGetMethod(final Map<String, String> parameters, final Class<?> returnType) {
 		if (started)
 			throw new IllegalStateException("Cannot call more than once.");
 		started = true;
@@ -83,7 +83,9 @@ public class AsyncApiCall {
 	}
 
 	/**
-	 * Method for starting a call to a JsonApi
+	 * Method for starting a call to a JsonApi.<br />
+	 * If you want to end this method immediately, you should call the
+	 * Future.get() method. This will block until the results are returned.
 	 * 
 	 * @param parameters
 	 *            The parameters being passed into the method
@@ -93,7 +95,7 @@ public class AsyncApiCall {
 	 *            The type this method will return
 	 * @return A future that will hold the result of the computation
 	 */
-	public synchronized Future<Object> beginCallPostMethod(final Map<String, String> parameters, final Object inputData, final Class<?> returnType) {
+	public synchronized Future<Object> callPostMethod(final Map<String, String> parameters, final Object inputData, final Class<?> returnType) {
 		if (started)
 			throw new IllegalStateException("Cannot call more than once.");
 		started = true;
@@ -111,7 +113,7 @@ public class AsyncApiCall {
 		listenForDone();
 		return future;
 	}
-
+	
 	/**
 	 * Waits for the Future to be done, and then executes the CallBacks that
 	 * have been registered to the call.<br />
@@ -126,7 +128,7 @@ public class AsyncApiCall {
 					// This call blocks until the result is calculated
 					Object result = future.get();
 					for (CallBack cb : callBaks) {
-						cb.doCallBack(result);
+						cb.doCallBack(result, baseUrl, methodName);
 					}
 				} catch (Exception e) {
 					for (CallBack cb : callBaks) {

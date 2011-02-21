@@ -34,7 +34,6 @@ public class TestFixedWidthThrottleTimer {
 				requestsMade++;
 			}
 		}
-		// TODO, should we allow a 1 request variance?
 		assertEquals(10, requestsMade);
 		requestsMade = 0;
 		startTime = System.currentTimeMillis();

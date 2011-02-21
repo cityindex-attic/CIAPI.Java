@@ -58,7 +58,7 @@ public class AsyncApi {
 			private int count = 0;
 
 			@Override
-			public void doCallBack(Object result) {
+			public void doCallBack(Object result, String baseUrl, String methodName) {
 				Log.debug("Made async request. Count: " + ++count);
 			}
 		});
@@ -78,7 +78,7 @@ public class AsyncApi {
 		AsyncApiCall call = unAuth.createNewCall("");
 		call.addCallCompleteListener(new CallBack() {
 			@Override
-			public void doCallBack(Object result) {
+			public void doCallBack(Object result, String baseUrl, String methodName) {
 				CreateSessionResponse session = (CreateSessionResponse) result;
 				sessionId = session.getSession();
 				ThrottledHttpClient client = new ThrottledHttpClient(new RequestsPerTimespanTimer(10, 1000),
@@ -89,7 +89,7 @@ public class AsyncApi {
 					api.addUniversalCallBack(cb);
 			}
 		});
-		return call.beginCallPostMethod(null, new CILogOnOrOffRequest(username, password), CreateSessionResponse.class);
+		return call.callPostMethod(null, new CILogOnOrOffRequest(username, password), CreateSessionResponse.class);
 	}
 
 	/**
@@ -104,12 +104,12 @@ public class AsyncApi {
 		AsyncApiCall call = api.createNewCall("deleteSession");
 		call.addCallCompleteListener(new CallBack() {
 			@Override
-			public void doCallBack(Object result) {
+			public void doCallBack(Object result, String baseUrl, String methodName) {
 				DeleteSessionResponse resp = (DeleteSessionResponse) result;
 				if (resp == null) throw new NullPointerException();
 				// Nothing to do here.
 			}
 		});
-		return call.beginCallPostMethod(null, new CILogOnOrOffRequest(username, password), DeleteSessionResponse.class);
+		return call.callPostMethod(null, new CILogOnOrOffRequest(username, password), DeleteSessionResponse.class);
 	}
 }

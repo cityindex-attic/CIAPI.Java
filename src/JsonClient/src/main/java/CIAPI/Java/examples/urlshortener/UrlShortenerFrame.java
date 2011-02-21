@@ -75,7 +75,7 @@ public class UrlShortenerFrame extends JFrame {
 				AsyncApiCall call = api.createNewCall("");
 				call.addCallCompleteListener(new CallBack() {
 					@Override
-					public void doCallBack(Object result) {
+					public void doCallBack(Object result, String baseUrl, String methodName) {
 						GooglePostResponse resp = (GooglePostResponse) result;
 						shortenedUrl.setText(resp.getId());
 						south.setVisible(false);
@@ -93,7 +93,7 @@ public class UrlShortenerFrame extends JFrame {
 				key.put("key", "AIzaSyCYMdrcIDWDf6YFFzyFjA2HCEbfazSkf_M");
 				south.setVisible(true);
 				UrlShortenerFrame.this.pack();
-				call.beginCallPostMethod(key, new GooglePostRequest(longUrlField.getText()),
+				call.callPostMethod(key, new GooglePostRequest(longUrlField.getText()),
 						GooglePostResponse.class);
 			}
 		});

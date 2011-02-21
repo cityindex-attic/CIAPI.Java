@@ -120,6 +120,11 @@ public class SyncApi {
 	}
 
 	private static Map<String, String> createParamMap(String... args) {
+		if (args == null) {
+			// I prefer to allow null when a sane default exists.
+			// the rest of the json api code handles a null map well
+			return null;
+		}
 		if (args.length % 2 != 0)
 			throw new IllegalArgumentException("Arguments must be even");
 		Map<String, String> ret = new HashMap<String, String>();

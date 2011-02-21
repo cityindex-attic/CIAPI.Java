@@ -68,7 +68,8 @@ public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 			if (entry.getValue().isExpired())
 				iter.remove();
 		}
-		// TODO, Should I make sure that size is below max size?
+		// Should I make sure that size is below max size?
+		// Deciding against it.
 	}
 
 	@Override

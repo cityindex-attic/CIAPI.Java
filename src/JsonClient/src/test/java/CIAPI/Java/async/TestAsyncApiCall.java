@@ -37,7 +37,7 @@ public class TestAsyncApiCall {
 			}
 
 			@Override
-			public void doCallBack(Object result) {
+			public void doCallBack(Object result, String baseUrl, String methodName) {
 			}
 		});
 		AsyncApiCall call = api.createNewCall("");
@@ -48,12 +48,12 @@ public class TestAsyncApiCall {
 			}
 
 			@Override
-			public void doCallBack(Object result) {
+			public void doCallBack(Object result, String baseUrl, String methodName) {
 				assertTrue("Callback was called", true);
 			}
 		});
 		try {
-			call.beginCallGetMethod(null, SitesWrapper.class).get();
+			call.callGetMethod(null, SitesWrapper.class).get();
 		} catch (InterruptedException e1) {
 			fail("InterruptedException was thrown during the get method.");
 		} catch (ExecutionException e1) {
@@ -72,12 +72,12 @@ public class TestAsyncApiCall {
 			}
 
 			@Override
-			public void doCallBack(Object result) {
+			public void doCallBack(Object result, String baseUrl, String methodName) {
 				assertTrue("Callback was called", true);
 			}
 		});
 		try {
-			call.beginCallPostMethod(null, null, SitesWrapper.class).get();
+			call.callPostMethod(null, null, SitesWrapper.class).get();
 		} catch (InterruptedException e1) {
 			fail("InterruptedException was thrown during the get method.");
 		} catch (ExecutionException e1) {
@@ -96,12 +96,12 @@ public class TestAsyncApiCall {
 			}
 
 			@Override
-			public void doCallBack(Object result) {
+			public void doCallBack(Object result, String baseUrl, String methodName) {
 				fail("Exception expected");
 			}
 		});
 		try {
-			Future<Object> result = call.beginCallPostMethod(null, null, SitesWrapper.class);
+			Future<Object> result = call.callPostMethod(null, null, SitesWrapper.class);
 			while (!result.isDone()) {
 				Thread.sleep(10);
 			}

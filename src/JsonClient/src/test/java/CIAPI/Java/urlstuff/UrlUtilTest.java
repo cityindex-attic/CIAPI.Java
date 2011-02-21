@@ -116,7 +116,6 @@ public class UrlUtilTest {
 		String expected4 = "http://stackoverflow.com/users?" + paramStringPart;
 		assertEquals(expected1, hlpr1.toUrl());
 		assertEquals(expected2, hlpr2.toUrl());
-		// TODO, params order shouldn't matter. Need to fix these fragile tests
 		assertEquals(expected3, hlpr3.toUrl());
 		assertEquals(expected4, hlpr4.toUrl());
 	}

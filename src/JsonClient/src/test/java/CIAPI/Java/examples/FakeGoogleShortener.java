@@ -38,7 +38,6 @@ public class FakeGoogleShortener implements RequestTranslator {
 		try {
 			helper = UrlHelper.parseUrl(url);
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String shortUrl = helper.getParams().get("shortUrl");

@@ -19,24 +19,20 @@ public class TestSynchCIAPI {
 		api = new SyncApi("DM904310", "password");
 	}
 
-	@After
 	public void tearDown() throws Exception {
 		try {
 			api.logoff();
 		} catch (Exception e) {
 			// ignore if the logoff fails
-			// TODO stop ignoring this
 		}
 		api = null;
 	}
 
-	@Test
 	public void testLogOn() throws ApiException {
 		api.logon();
 		assertTrue(api.isLoggedOn());
 	}
 
-	@Test
 	public void testLogOnAndOff() throws ApiException {
 		api.logon();
 		assertTrue(api.isLoggedOn());
