@@ -103,7 +103,7 @@ public class SyncApi {
 	 */
 	public AccountInformationResponse getClientAndTradingAccount() throws ApiException {
 		// Null check so we can throw a better error
-		if (api == null) {
+		if (!isLoggedOn()) {
 			throw new IllegalStateException("You must be logged in to use this method.  Use logOn() to log on.");
 		}
 		AccountInformationResponse resp = (AccountInformationResponse) api.callGetMethod(
