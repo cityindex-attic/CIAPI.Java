@@ -40,6 +40,7 @@ public class DefaultJsonClient implements JsonClient {
 	 *            the client to pass requests to.
 	 */
 	public DefaultJsonClient(SimpleHttpClient httpClient) {
+		// Null check to avoid passing the error further down the chain.
 		if (httpClient == null)
 			throw new NullPointerException("The simple http client must not be null");
 		client = httpClient;
@@ -79,19 +80,23 @@ public class DefaultJsonClient implements JsonClient {
 
 	/**
 	 * Helper method for finishing a get or post request
-	 * 
 	 */
 	private Object finishMakeRequest(InputStream data, Class<?> clazz) throws ApiException {
 		Gson g = new Gson();
 		Scanner responseEntityData = new Scanner(data);
-		String strData = "";
-		while (responseEntityData.hasNextLine())
-			strData += responseEntityData.nextLine();
+		// We can pass an InputStream into the Gson decoder. Probably should be
+		// doing this
+		// But, this is much easier to debug because you can see the actual
+		// data that was returned.
+		StringBuilder strData = new StringBuilder();
+		while (responseEntityData.hasNextLine()) {
+			strData.append(responseEntityData.nextLine());
+		}
 		try {
-			Object result = g.fromJson(strData, clazz);
+			Object result = g.fromJson(strData.toString(), clazz);
 			return result;
 		} catch (JsonSyntaxException e) {
-			throw new GsonParseException(e, strData);
+			throw new GsonParseException(e, strData.toString());
 		}
 	}
 }

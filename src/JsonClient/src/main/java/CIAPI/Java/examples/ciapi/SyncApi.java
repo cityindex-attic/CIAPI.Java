@@ -59,10 +59,16 @@ public class SyncApi {
 	 * @throws ApiException
 	 */
 	public void logon() throws ApiException {
+		// first we make a quick unauthenticated call to get credentials.
 		JsonApi unAuth = new JsonApi(Api_Base_Url, new DefaultJsonClient());
 		CreateSessionResponse session = (CreateSessionResponse) unAuth.callPostMethod("session", null,
 				new CILogOnOrOffRequest(username, password), CreateSessionResponse.class);
 		sessionId = session.getSession();
+		if (sessionId == null) {
+			throw new NullPointerException("Error logging in.  Returned session was null.");
+		}
+		// then we create an authenticated client that adds the username and
+		// session id to each request.
 		ThrottledHttpClient client = new ThrottledHttpClient(new RequestsPerTimespanTimer(10, 1000),
 				new UsernameSessionHttpRequestItemFactory(username, sessionId));
 		api = new JsonApi(Api_Base_Url, new CachedJsonClient(
@@ -76,13 +82,14 @@ public class SyncApi {
 	 */
 	public void logoff() throws ApiException {
 		DeleteSessionResponse resp = (DeleteSessionResponse) api.callPostMethod("session/deleteSession",
-				createParamMap("username", username, "password", password),
-				new CILogOnOrOffRequest(username, password), DeleteSessionResponse.class);
+				createParamMap("session", sessionId, "userName", username),
+				new CILogOnOrOffRequest(username, sessionId), DeleteSessionResponse.class);
 		// TODO, figure out why the session token isn't getting deleted. Or why
 		// it is getting deleted but returning false.
 		if (!resp.getLoggedOut()) {
 			throw new ApiException("Failed to delete session token.");
 		}
+		// Set these to null so they can't accidentally be used later
 		api = null;
 		sessionId = null;
 	}
@@ -119,6 +126,13 @@ public class SyncApi {
 		return getSessionId() != null && api != null;
 	}
 
+	/**
+	 * Helper method for taking a list of strings and turning it into a Map
+	 * 
+	 * @param args
+	 *            a list of pairs of parameters
+	 * @return a map containing an 'UnZipped' version of the list.
+	 */
 	private static Map<String, String> createParamMap(String... args) {
 		if (args == null) {
 			// I prefer to allow null when a sane default exists.
@@ -128,6 +142,7 @@ public class SyncApi {
 		if (args.length % 2 != 0)
 			throw new IllegalArgumentException("Arguments must be even");
 		Map<String, String> ret = new HashMap<String, String>();
+		// Grab items 2 at a time and place them in the map.
 		for (int i = 0; i < args.length; i += 2) {
 			ret.put(args[i], args[i + 1]);
 		}

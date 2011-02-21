@@ -12,7 +12,7 @@ import CIAPI.Java.urlstuff.UrlHelper;
 
 /**
  * Class representing a single async call to the api.<br />
- * Allows for you to register individual events per call. 
+ * Allows for you to register individual events per call.
  * 
  * @author Justin Nelson
  * 
@@ -40,11 +40,12 @@ public class AsyncApiCall {
 	}
 
 	/**
-	 * Adds a new callback to the call
+	 * Adds a new callback to the call. You are allowed to add a new callback
+	 * after the call has been started, but not after it is done.
 	 * 
 	 * @param cb
 	 */
-	public void addCallCompleteListener(CallBack cb) {
+	public synchronized void addCallCompleteListener(CallBack cb) {
 		if (cb == null)
 			throw new NullPointerException("The call back cannot be null");
 		if (done)
@@ -67,6 +68,7 @@ public class AsyncApiCall {
 		if (started)
 			throw new IllegalStateException("Cannot call more than once.");
 		started = true;
+		// Submit a task to the the executor.
 		future = exec.submit(new Callable<Object>() {
 			@Override
 			public Object call() throws Exception {
@@ -95,10 +97,12 @@ public class AsyncApiCall {
 	 *            The type this method will return
 	 * @return A future that will hold the result of the computation
 	 */
-	public synchronized Future<Object> callPostMethod(final Map<String, String> parameters, final Object inputData, final Class<?> returnType) {
+	public synchronized Future<Object> callPostMethod(final Map<String, String> parameters, final Object inputData,
+			final Class<?> returnType) {
 		if (started)
 			throw new IllegalStateException("Cannot call more than once.");
 		started = true;
+		// Submit a task to the the executor.
 		future = exec.submit(new Callable<Object>() {
 			@Override
 			public Object call() throws Exception {
@@ -113,7 +117,7 @@ public class AsyncApiCall {
 		listenForDone();
 		return future;
 	}
-	
+
 	/**
 	 * Waits for the Future to be done, and then executes the CallBacks that
 	 * have been registered to the call.<br />
@@ -121,22 +125,27 @@ public class AsyncApiCall {
 	 * called instead.
 	 */
 	private void listenForDone() {
+		// New thread for the purpose of listening for a response to complete.
 		Thread doneListener = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					// This call blocks until the result is calculated
 					Object result = future.get();
+					// Pass the result to all of the registered callbacks
 					for (CallBack cb : callBaks) {
 						cb.doCallBack(result, baseUrl, methodName);
 					}
 				} catch (Exception e) {
+					// If any exceptions occur during the request the handle
+					// exception method will be called on every callback.
 					for (CallBack cb : callBaks) {
 						cb.handleException(e);
 					}
 				}
 			}
 		});
+		// We want the threads to die if all of the main threads exit.
 		doneListener.setDaemon(true);
 		doneListener.start();
 	}
