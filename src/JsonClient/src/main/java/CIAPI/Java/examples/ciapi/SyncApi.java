@@ -13,6 +13,8 @@ import CIAPI.Java.examples.ciapi.dto.CILogOnOrOffRequest;
 import CIAPI.Java.examples.ciapi.dto.CreateSessionResponse;
 import CIAPI.Java.examples.ciapi.dto.DeleteSessionResponse;
 import CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponse;
+import CIAPI.Java.examples.ciapi.dto.Order;
+import CIAPI.Java.examples.ciapi.dto.TradeOrderResponse;
 import CIAPI.Java.throttle.RequestsPerTimespanTimer;
 import CIAPI.Java.throttle.ThrottledHttpClient;
 
@@ -111,6 +113,7 @@ public class SyncApi {
 
 	/**
 	 * Lists the trading history for the given account id
+	 * 
 	 * @param tradingAccountId
 	 * @param maxResults
 	 * @return
@@ -122,6 +125,18 @@ public class SyncApi {
 				createParamMap("tradingAccountId", tradingAccountId, "maxResults", maxResults),
 				ListTradeHistoryResponse.class);
 		return resp;
+	}
+
+	public TradeOrderResponse order() throws ApiException {
+		TradeOrderResponse resp = (TradeOrderResponse) api.callPostMethod("order/", null, new Order(),
+				TradeOrderResponse.class);
+		return resp;
+	}
+
+	public boolean getChartingEnabled(int id) throws ApiException {
+		boolean chartingEnabled = (Boolean) api.callGetMethod("useraccount/UserAccount/" + id + "/ChartingEnabled",
+				null, Boolean.class);
+		return chartingEnabled;
 	}
 
 	private void checkLoggedOn() {
