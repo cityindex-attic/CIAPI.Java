@@ -1,4 +1,4 @@
-package codegen;
+package modelobjects;
 
 public enum SchemaItemType {
 	Empty,

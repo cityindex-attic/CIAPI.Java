@@ -1,6 +1,7 @@
-package codegen;
+package modelobjects;
 
 import java.util.Map;
+
 
 public class SchemaItem {
 	private SchemaItemType ItemType;

@@ -18,7 +18,7 @@ import org.joda.time.Period;
  */
 public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 
-	private Period maxAge;
+	private long defaultMaxAge;
 
 	private int maxSize = 10000;
 
@@ -27,13 +27,13 @@ public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 	/**
 	 * Creates an empty cache
 	 * 
-	 * @param maxAgeL
+	 * @param defaultMaxAgeL
 	 */
-	public DefaultCache(long maxAgeL) {
-		if (maxAgeL < 1)
+	public DefaultCache(long defaultMaxAgeL) {
+		if (defaultMaxAgeL < 1)
 			throw new IllegalArgumentException("The max age must be greater than 0");
 		storage = new HashMap<TKey, CacheItem>();
-		maxAge = new Period(maxAgeL);
+		defaultMaxAge = defaultMaxAgeL;
 	}
 
 	@Override
@@ -52,9 +52,14 @@ public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 
 	@Override
 	public TValue put(TKey key, TValue value) {
+		return put(key, value, defaultMaxAge);
+	}
+
+	@Override
+	public TValue put(TKey key, TValue value, long durration) {
 		if (key == null)
 			throw new NullPointerException("The key must not be null");
-		CacheItem oldItem = storage.put(key, new CacheItem(value, new DateTime()));
+		CacheItem oldItem = storage.put(key, new CacheItem(value, System.currentTimeMillis(), durration));
 		if (entryCount() > maxSize)
 			clean();
 		return oldItem == null ? null : oldItem.data;
@@ -84,11 +89,6 @@ public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 		return storage.remove(key).data;
 	}
 
-	@Override
-	public Period maxAge() {
-		return maxAge;
-	}
-
 	/**
 	 * Sets the maximum size of the cache
 	 * 
@@ -107,15 +107,16 @@ public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 
 	class CacheItem {
 		private TValue data;
-		private DateTime timeEntered;
+		private long timeEntered;
+		private long maxAge;
 
-		private CacheItem(TValue data, DateTime timeCreated) {
+		private CacheItem(TValue data, long timeCreated, long maxAge) {
 			this.data = data;
 			this.timeEntered = timeCreated;
 		}
 
 		private boolean isExpired() {
-			return timeEntered.plus(maxAge).isBeforeNow();
+			return timeEntered + maxAge < System.currentTimeMillis();
 		}
 	}
 }

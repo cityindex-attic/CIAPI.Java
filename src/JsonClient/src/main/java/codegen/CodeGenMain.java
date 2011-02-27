@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Map;
 
+import modelobjects.DTO;
+
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
