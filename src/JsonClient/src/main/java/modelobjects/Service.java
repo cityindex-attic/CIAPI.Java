@@ -1,5 +1,11 @@
 package modelobjects;
 
+/**
+ * Describes a method that the service described by the SMD provides.
+ * 
+ * @author Justin Nelson
+ * 
+ */
 public class Service {
 
 	private String description;
@@ -13,31 +19,48 @@ public class Service {
 	private String group;
 	private String throttleScope;
 	private Parameter[] parameters;
-	
-	
-	/*
-      "envelope": "JSON",
-      "returns": {
-        "$ref": "#.CreateSessionResponseDTO"
-      },
-      "group": "Authentication",
-      "throttleScope": "data",
-      "parameters": [
-        {
-          "type": "string",
-          "name": "UserName",
-          "description": "Username is case sensitive",
-          "minLength": 6,
-          "maxLength": 20
-        },
-        {
-          "type": "string",
-          "name": "Password",
-          "description": "Password is case sensitive",
-          "minLength": 6,
-          "maxLength": 20
-        }
-      ]
-	 */
-	
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getTarget() {
+		return target;
+	}
+
+	public String getUriTemplate() {
+		return uriTemplate;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public String getResponseContentType() {
+		return responseContentType;
+	}
+
+	public String getTransport() {
+		return transport;
+	}
+
+	public String getEnvelope() {
+		return envelope;
+	}
+
+	public Return getReturns() {
+		return returns;
+	}
+
+	public String getGroup() {
+		return group;
+	}
+
+	public String getThrottleScope() {
+		return throttleScope;
+	}
+
+	public Parameter[] getParameters() {
+		return parameters;
+	}
 }

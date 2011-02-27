@@ -1,11 +1,9 @@
 package modelobjects;
 
-public class Return {
-
+public class Items {
 	private String $ref;
 
 	public String get$ref() {
 		return $ref;
 	}
-
 }

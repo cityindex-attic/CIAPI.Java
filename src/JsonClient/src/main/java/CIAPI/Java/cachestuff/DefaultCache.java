@@ -5,13 +5,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.joda.time.DateTime;
-import org.joda.time.Period;
-
 /**
- * Default implementation of a Cache. Backed by a hashmap
+ * Default implementation of a Cache. Backed by a HashMap.
  * 
- * @author justin nelson
+ * @author Justin Nelson
  * 
  * @param <TKey>
  * @param <TValue>
@@ -56,10 +53,16 @@ public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 	}
 
 	@Override
-	public TValue put(TKey key, TValue value, long durration) {
-		if (key == null)
+	public TValue put(TKey key, TValue value, long duration) {
+		if (key == null) {
 			throw new NullPointerException("The key must not be null");
-		CacheItem oldItem = storage.put(key, new CacheItem(value, System.currentTimeMillis(), durration));
+		}
+		if (duration <= 0) {
+			// Should we allow 0 or negative durations? And just not cache the
+			// item at all?
+			throw new IllegalArgumentException("Durration must be greater than 0");
+		}
+		CacheItem oldItem = storage.put(key, new CacheItem(value, System.currentTimeMillis(), duration));
 		if (entryCount() > maxSize)
 			clean();
 		return oldItem == null ? null : oldItem.data;
@@ -105,6 +108,13 @@ public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 			clean();
 	}
 
+	/**
+	 * The wrapper for an item in the cache. Keeps track of the data and the
+	 * time the item was stored and how long it should be kept.
+	 * 
+	 * @author Justin Nelson
+	 * 
+	 */
 	class CacheItem {
 		private TValue data;
 		private long timeEntered;

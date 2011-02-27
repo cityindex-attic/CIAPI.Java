@@ -12,4 +12,36 @@ public class SMDDescriptor {
 	private String description;
 	private boolean additionalParameters;
 	private Map<String, Service> services;
+
+	public String getSMDVersion() {
+		return SMDVersion;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public String getTarget() {
+		return target;
+	}
+
+	public String getSchema() {
+		return schema;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public boolean isAdditionalParameters() {
+		return additionalParameters;
+	}
+
+	public Map<String, Service> getServices() {
+		return services;
+	}
 }
