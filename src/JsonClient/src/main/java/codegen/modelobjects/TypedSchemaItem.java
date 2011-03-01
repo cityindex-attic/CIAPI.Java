@@ -1,44 +1,28 @@
-package modelobjects;
+package codegen.modelobjects;
 
-public class Property {
+public abstract class TypedSchemaItem {
+	protected String $ref;
+	protected String type;
+	protected Items items;
+	protected String description;
 
-	private String $ref;
-	private String type;
-	private Items items;
-	private String description;
-	private long minLength;
-	private long maxLength;
-
-	public String getType() {
+	public String getType(String packageName) {
 		if ($ref != null && items != null) {
 			throw new IllegalStateException("Not sure if it's legal to have a @ref and items attribute.");
 		}
 		if ($ref != null) {
-			return $ref;
+			return $ref.replaceAll("#", packageName);
 		} else if (items != null) {
 			if (!type.equals("array")) {
 				throw new IllegalStateException(
 						"Not sure if it is legal to have a type of 'array' and no 'items' attribute.");
 			}
-			return items.get$ref() + "[]";
+			return items.getType(packageName) + "[]";
 		} else
 			return DTO.convertJsonTypeToJavaType(type);
-	}
-
-	public String getRawType() {
-		return type;
 	}
 
 	public String getDescription() {
 		return description;
 	}
-
-	public long getMinLength() {
-		return minLength;
-	}
-
-	public long getMaxLength() {
-		return maxLength;
-	}
-
 }

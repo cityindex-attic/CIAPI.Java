@@ -1,6 +1,7 @@
-package modelobjects;
+package codegen.modelobjects;
 
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class SMDDescriptor {
 
@@ -43,5 +44,17 @@ public class SMDDescriptor {
 
 	public Map<String, Service> getServices() {
 		return services;
+	}
+
+	public String toCode(String packageName) {
+		String packageDescriptor = "package " + packageName + ";\n\n";
+		String classDescriptor = "public class ServiceMethods {\n";
+		StringBuilder methodBuilder = new StringBuilder();
+		for (Entry<String, Service> entry : services.entrySet()) {
+			methodBuilder.append(entry.getValue().toCode(packageName));
+		}
+		String methods = methodBuilder.toString();
+		String classEnd = "}\n";
+		return packageDescriptor + classDescriptor + methods + classEnd;
 	}
 }

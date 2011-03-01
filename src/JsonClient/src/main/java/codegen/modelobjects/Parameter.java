@@ -1,4 +1,4 @@
-package modelobjects;
+package codegen.modelobjects;
 
 import java.lang.reflect.Type;
 
@@ -9,21 +9,22 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
-public class Parameter {
+public class Parameter extends TypedSchemaItem {
 
-	private String type;
-	private String description;
+
+	private String name;
 	private int minLength;
 	private int maxLength;
 	private JsonElement default_;
 	private boolean required;
 
-	public String getType() {
-		return type;
+	public String getName() {
+		return name;
 	}
 
-	public String getDescription() {
-		return description;
+
+	public String get$ref() {
+		return $ref;
 	}
 
 	public int getMinLength() {
@@ -34,14 +35,25 @@ public class Parameter {
 		return maxLength;
 	}
 
-	public JsonElement getDefault(){
+	public JsonElement getDefaultValue() {
 		return default_;
 	}
-	
-	public static JsonDeserializer<Parameter> getDeSerializer(){
+
+	public String toCode(String packageName) {
+		return getType(packageName) + " " + name;
+	}
+
+	public static JsonDeserializer<Parameter> getDeSerializer() {
 		return new DeSerializer();
 	}
-	
+
+	/**
+	 * Custom deserializer. Only does the enum_ part. Otherwise just uses the
+	 * Gson de serialization
+	 * 
+	 * @author justin nelson
+	 * 
+	 */
 	static class DeSerializer implements JsonDeserializer<Parameter> {
 		@Override
 		public Parameter deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)

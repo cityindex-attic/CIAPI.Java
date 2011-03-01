@@ -1,4 +1,4 @@
-package modelobjects;
+package codegen.modelobjects;
 
 import java.util.Map;
 

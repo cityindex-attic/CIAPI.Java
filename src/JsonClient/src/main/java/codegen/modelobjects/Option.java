@@ -1,4 +1,4 @@
-package modelobjects;
+package codegen.modelobjects;
 
 public class Option {
 	private int value;

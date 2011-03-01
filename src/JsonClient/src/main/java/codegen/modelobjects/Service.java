@@ -1,4 +1,4 @@
-package modelobjects;
+package codegen.modelobjects;
 
 /**
  * Describes a method that the service described by the SMD provides.
@@ -62,5 +62,27 @@ public class Service {
 
 	public Parameter[] getParameters() {
 		return parameters;
+	}
+
+	public String toCode(String packageName) {
+		String methodName = target + uriTemplate;
+		if (methodName.contains("?")){
+			methodName = methodName.substring(0, methodName.indexOf("?"));
+		}
+		methodName = methodName.replaceAll("/", "_");
+		methodName = methodName.replaceAll("\\{[^}]*\\}", "");
+		methodName = methodName.replaceAll("__", "_");
+		String methodSignature = "public " + returns.get$ref(packageName) + " " + methodName + "(";
+		String parametersStr = "";
+		for (Parameter parm : parameters) {
+			parametersStr += parm.toCode(packageName) + ", ";
+		}
+		if (parametersStr.length() != 0) {
+			parametersStr = parametersStr.substring(0, parametersStr.length() - 2);
+		}
+		methodSignature += parametersStr + ") { \n";
+		String methodBody = "\treturn null;\n";
+		String methodEnd = "}\n";
+		return methodSignature + methodBody + methodEnd;
 	}
 }

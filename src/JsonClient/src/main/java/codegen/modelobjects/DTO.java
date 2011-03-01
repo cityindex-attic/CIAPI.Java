@@ -1,10 +1,8 @@
-package modelobjects;
+package codegen.modelobjects;
 
 import java.lang.reflect.Type;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import modelobjects.Parameter.DeSerializer;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -43,33 +41,42 @@ public class DTO {
 		return properties;
 	}
 
-	public String toCode(String key) {
+	public String toCode(String name, String packageName) {
 		// Enums are parsed differently
 		if (enum_ != null || options != null) {
-			return enumToCode(key);
+			return enumToCode(name, packageName);
 		}
-		String javadocComment = String.format("/**\n" + " * %s\n" + " * Auto generated Class\n" + " */\n", description);
+		
+		// TODO fix the package modifiers on the types.  Currently '#.'
+		String packageDeclaration = "package " + packageName + ";\n\n";
+		String javadocComment = String.format(
+				"/**\n" + 
+				" * %s\n" +
+				" * \n" +
+				" * {auto generated from JSON schema}\n" + 
+				" */\n", description);
 		String classDescriptor = String.format("public class %s {\n", id);
 		StringBuilder membersBuilder = new StringBuilder();
 		if (properties != null) {
 			for (Entry<String, Property> entry : properties.entrySet()) {
-				membersBuilder.append(String.format("\tpublic %s %s\n", entry.getValue().getType(), entry.getKey()));
+				membersBuilder.append(String.format("\tpublic %s %s;\n", entry.getValue().getType(packageName), entry.getKey()));
 			}
 		} else {
 			System.out.println("");
 		}
 		String members = membersBuilder.toString();
 		String classEnd = "}";
-		return javadocComment + classDescriptor + members + classEnd;
+		return packageDeclaration + javadocComment + classDescriptor + members + classEnd;
 	}
 
-	private String enumToCode(String key) {
+	private String enumToCode(String key, String packageName) {
 		if (enum_ == null || options == null) {
 			throw new IllegalStateException("Enums must have both the 'enum' and 'options' property.");
 		}
 		if (options.length != enum_.length) {
 			throw new IllegalStateException("The 'enum' and 'options' property must have the same length.");
 		}
+		String packageDeclaration = "package " + packageName + ";\n\n";
 		String javadocComment = String.format("/**\n" + " * %s\n" + " * Auto generated Enum\n" + " */\n", description);
 		String enumDescriptor = String.format("public enum %s {\n", key);
 		StringBuilder itemBuilder = new StringBuilder();
@@ -79,7 +86,7 @@ public class DTO {
 		}
 		String items = itemBuilder.substring(0, itemBuilder.length() - 2)+"\n";
 		String enumEnd = "}";
-		return javadocComment + enumDescriptor + items + enumEnd;
+		return packageDeclaration + javadocComment + enumDescriptor + items + enumEnd;
 	}
 
 	/**
