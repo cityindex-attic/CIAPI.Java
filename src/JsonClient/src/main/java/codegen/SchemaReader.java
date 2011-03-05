@@ -67,7 +67,7 @@ public class SchemaReader {
 			out.println(entry.getValue().toCode(entry.getKey(), packageName));
 			out.close();
 		}
-		PrintStream out = new PrintStream(new File(saveLocation + File.separatorChar + "Services" + ".java"));
+		PrintStream out = new PrintStream(new File(saveLocation + File.separatorChar + "ServiceMethods" + ".java"));
 		out.println(getServices().toCode(packageName));
 		out.close();
 	}

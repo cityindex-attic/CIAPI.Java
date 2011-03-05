@@ -20,8 +20,16 @@ public class Service {
 	private String throttleScope;
 	private Parameter[] parameters;
 
+	/**
+	 * @return the description of the method. This is essentially the Javadoc
+	 *         comment
+	 */
 	public String getDescription() {
-		return description;
+		if (description == null || description.trim().isEmpty()) {
+			return "No description for this method is provided.";
+		} else {
+			return description;
+		}
 	}
 
 	public String getTarget() {
@@ -40,49 +48,64 @@ public class Service {
 		return responseContentType;
 	}
 
+	/**
+	 * @return the transport method of this method. Either 'GET' or 'SET' (or an
+	 *         exception)
+	 */
 	public String getTransport() {
-		return transport;
+		if (transport == null || transport.equalsIgnoreCase("post") || transport.equalsIgnoreCase("get")) {
+			return transport.toUpperCase();
+		} else {
+			throw new IllegalArgumentException("Sorry, the method must be either GET or POST.  Was instead "
+					+ transport);
+		}
 	}
 
+	/**
+	 * @return the envelope this method transfers data in. (Must be JSON or URL)
+	 */
 	public String getEnvelope() {
-		return envelope;
+		if (envelope == null || envelope.equalsIgnoreCase("url") || envelope.equalsIgnoreCase("json")) {
+			return envelope.toUpperCase();
+		} else {
+			throw new IllegalArgumentException("Sorry, the envelope must be either URL or JSON.  Was instead "
+					+ envelope);
+		}
 	}
 
+	/**
+	 * 
+	 * @return the Object representing the type that this method returns
+	 */
 	public Return getReturns() {
 		return returns;
 	}
 
+	/**
+	 * A group is a logical grouping of methods that perform similar actions
+	 * 
+	 * @return the group this method belongs to
+	 */
 	public String getGroup() {
 		return group;
 	}
 
+	/**
+	 * 
+	 * @return The scope at which the API should be throttled
+	 */
 	public String getThrottleScope() {
 		return throttleScope;
 	}
 
+	/**
+	 * @return all of the parameters of this method.
+	 */
 	public Parameter[] getParameters() {
-		return parameters;
-	}
-
-	public String toCode(String packageName) {
-		String methodName = target + uriTemplate;
-		if (methodName.contains("?")){
-			methodName = methodName.substring(0, methodName.indexOf("?"));
+		if (parameters == null) {
+			return new Parameter[] {};
+		} else {
+			return parameters;
 		}
-		methodName = methodName.replaceAll("/", "_");
-		methodName = methodName.replaceAll("\\{[^}]*\\}", "");
-		methodName = methodName.replaceAll("__", "_");
-		String methodSignature = "public " + returns.get$ref(packageName) + " " + methodName + "(";
-		String parametersStr = "";
-		for (Parameter parm : parameters) {
-			parametersStr += parm.toCode(packageName) + ", ";
-		}
-		if (parametersStr.length() != 0) {
-			parametersStr = parametersStr.substring(0, parametersStr.length() - 2);
-		}
-		methodSignature += parametersStr + ") { \n";
-		String methodBody = "\treturn null;\n";
-		String methodEnd = "}\n";
-		return methodSignature + methodBody + methodEnd;
 	}
 }

@@ -11,7 +11,7 @@ import org.junit.Test;
 public class TestDefaultCache {
 
 	private DefaultCache<String, String> cache;
-	private final long expireTime = 100;
+	private final long expireTime = 2000;
 
 	@Before
 	public void setUp() throws Exception {

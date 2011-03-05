@@ -1,7 +1,13 @@
 package codegen.modelobjects;
 
+import java.io.FileNotFoundException;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import codegen.codecreation.MethodCreator;
+
+import CIAPI.Java.JsonApi;
+import CIAPI.Java.cachestuff.CachedJsonClient;
 
 public class SMDDescriptor {
 
@@ -46,12 +52,14 @@ public class SMDDescriptor {
 		return services;
 	}
 
-	public String toCode(String packageName) {
+	private JsonApi api;
+
+	public String toCode(String packageName) throws FileNotFoundException {
 		String packageDescriptor = "package " + packageName + ";\n\n";
 		String classDescriptor = "public class ServiceMethods {\n";
 		StringBuilder methodBuilder = new StringBuilder();
 		for (Entry<String, Service> entry : services.entrySet()) {
-			methodBuilder.append(entry.getValue().toCode(packageName));
+			methodBuilder.append(new MethodCreator(entry.getValue()).toCode(entry.getKey(), packageName));
 		}
 		String methods = methodBuilder.toString();
 		String classEnd = "}\n";
