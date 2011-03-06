@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import codegen.codecreation.DTOCreator;
 import codegen.modelobjects.DTO;
 import codegen.modelobjects.Parameter;
 import codegen.modelobjects.SMDDescriptor;
@@ -64,7 +65,7 @@ public class SchemaReader {
 			MalformedURLException, IOException {
 		for (Entry<String, DTO> entry : getAllRoutesItems().entrySet()) {
 			PrintStream out = new PrintStream(new File(saveLocation + File.separatorChar + entry.getKey() + ".java"));
-			out.println(entry.getValue().toCode(entry.getKey(), packageName));
+			out.println(new DTOCreator(entry.getValue()).toCode(entry.getKey(), packageName));
 			out.close();
 		}
 		PrintStream out = new PrintStream(new File(saveLocation + File.separatorChar + "ServiceMethods" + ".java"));

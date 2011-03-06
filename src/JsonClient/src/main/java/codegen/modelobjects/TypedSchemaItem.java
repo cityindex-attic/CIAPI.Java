@@ -1,5 +1,7 @@
 package codegen.modelobjects;
 
+import codegen.codecreation.DTOCreator;
+
 public abstract class TypedSchemaItem {
 	protected String $ref;
 	protected String type;
@@ -18,8 +20,9 @@ public abstract class TypedSchemaItem {
 						"Not sure if it is legal to have a type of 'array' and no 'items' attribute.");
 			}
 			return items.getType(packageName) + "[]";
-		} else
-			return DTO.convertJsonTypeToJavaType(type);
+		} else {
+			return DTOCreator.convertJsonTypeToJavaType(type);
+		}
 	}
 
 	public String getDescription() {

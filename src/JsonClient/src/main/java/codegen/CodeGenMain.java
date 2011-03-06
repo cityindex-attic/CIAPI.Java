@@ -11,7 +11,7 @@ import com.google.gson.JsonSyntaxException;
 public class CodeGenMain {
 	public static void main(String[] args) throws JsonIOException, JsonSyntaxException, MalformedURLException,
 			IOException {
-		CIAPICodeGen codeGen = new CIAPICodeGen();
-		codeGen.createLibrary();
+		CodeTemplate template = new CodeTemplate("files/code_templates/ServiceTemplate.jav");
+		System.out.println("done");
 	}
 }

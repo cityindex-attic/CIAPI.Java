@@ -1,10 +1,10 @@
-package !{packageName};
+package <@packageName@>;
 
 /**
  * !This is an auto generated model object!
  *
- * !{description}
+ * <@description@>
  */
-public class !{name} {
-	!{properties}
+public class <@name@> {
+	<@*properties*@>
 }

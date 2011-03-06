@@ -2,7 +2,8 @@ package codegen.modelobjects;
 
 import java.lang.reflect.Type;
 import java.util.Map;
-import java.util.Map.Entry;
+
+import codegen.codecreation.DTOCreator;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -26,7 +27,7 @@ public class DTO {
 	}
 
 	public String getType() {
-		return convertJsonTypeToJavaType(type);
+		return DTOCreator.convertJsonTypeToJavaType(type);
 	}
 
 	public String getRawType() {
@@ -41,72 +42,12 @@ public class DTO {
 		return properties;
 	}
 
-	public String toCode(String name, String packageName) {
-		// Enums are parsed differently
-		if (enum_ != null || options != null) {
-			return enumToCode(name, packageName);
-		}
-		
-		// TODO fix the package modifiers on the types.  Currently '#.'
-		String packageDeclaration = "package " + packageName + ";\n\n";
-		String javadocComment = String.format(
-				"/**\n" + 
-				" * %s\n" +
-				" * \n" +
-				" * {auto generated from JSON schema}\n" + 
-				" */\n", description);
-		String classDescriptor = String.format("public class %s {\n", id);
-		StringBuilder membersBuilder = new StringBuilder();
-		if (properties != null) {
-			for (Entry<String, Property> entry : properties.entrySet()) {
-				membersBuilder.append(String.format("\tpublic %s %s;\n", entry.getValue().getType(packageName), entry.getKey()));
-			}
-		} else {
-			System.out.println("");
-		}
-		String members = membersBuilder.toString();
-		String classEnd = "}";
-		return packageDeclaration + javadocComment + classDescriptor + members + classEnd;
+	public int[] getEnum_() {
+		return enum_;
 	}
 
-	private String enumToCode(String key, String packageName) {
-		if (enum_ == null || options == null) {
-			throw new IllegalStateException("Enums must have both the 'enum' and 'options' property.");
-		}
-		if (options.length != enum_.length) {
-			throw new IllegalStateException("The 'enum' and 'options' property must have the same length.");
-		}
-		String packageDeclaration = "package " + packageName + ";\n\n";
-		String javadocComment = String.format("/**\n" + " * %s\n" + " * Auto generated Enum\n" + " */\n", description);
-		String enumDescriptor = String.format("public enum %s {\n", key);
-		StringBuilder itemBuilder = new StringBuilder();
-		for (Option o : options) {
-			itemBuilder.append("\t/**\n" + "\t * " + o.getDescription() + "\n" + "\t */\n");
-			itemBuilder.append("\t" + o.getLabel() + ",\n");
-		}
-		String items = itemBuilder.substring(0, itemBuilder.length() - 2)+"\n";
-		String enumEnd = "}";
-		return packageDeclaration + javadocComment + enumDescriptor + items + enumEnd;
-	}
-
-	/**
-	 * Converts a Json type into a Java type.
-	 * 
-	 * @param jsonType
-	 * @return
-	 */
-	public static String convertJsonTypeToJavaType(String jsonType) {
-		if (jsonType.equals("string"))
-			return "String";
-		else if (jsonType.equals("number")) {
-			return "double";
-		} else if (jsonType.equals("integer")) {
-			return "int";
-		} else if (jsonType.equals("boolean")) {
-			return "boolean";
-		} else {
-			throw new IllegalArgumentException("Unexpected json type: " + jsonType);
-		}
+	public Option[] getOptions() {
+		return options;
 	}
 
 	public static JsonDeserializer<DTO> getDeSerializer() {
