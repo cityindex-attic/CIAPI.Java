@@ -2,9 +2,8 @@
 /**
  * !This is an auto generated method!
  *
- * -<description>
+ * <@description@>
  */
-public -<return> -<name>(-<parameters>) {
-	-<body>
+public <@return@> <@name@>(<@parameters@>) {
+	return api.call<@methodType@>Method();
 }
- 

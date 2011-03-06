@@ -62,7 +62,7 @@ public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 			// item at all?
 			throw new IllegalArgumentException("Durration must be greater than 0");
 		}
-		CacheItem oldItem = storage.put(key, new CacheItem(value, System.currentTimeMillis(), duration));
+		CacheItem oldItem = storage.put(key, new CacheItem(value, duration));
 		if (entryCount() > maxSize)
 			clean();
 		return oldItem == null ? null : oldItem.data;
@@ -120,9 +120,9 @@ public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 		private long timeEntered;
 		private long maxAge;
 
-		private CacheItem(TValue data, long timeCreated, long maxAge) {
+		private CacheItem(TValue data, long maxAge) {
 			this.data = data;
-			this.timeEntered = timeCreated;
+			this.timeEntered = System.currentTimeMillis();
 		}
 
 		private boolean isExpired() {

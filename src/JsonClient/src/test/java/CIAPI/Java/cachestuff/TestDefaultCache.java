@@ -11,7 +11,7 @@ import org.junit.Test;
 public class TestDefaultCache {
 
 	private DefaultCache<String, String> cache;
-	private final long expireTime = 2000;
+	private final long expireTime = 200;
 
 	@Before
 	public void setUp() throws Exception {
@@ -40,7 +40,7 @@ public class TestDefaultCache {
 
 	@Test
 	public void testGetSimple() {
-		cache.put("1", "1");
+		assertNull(cache.put("1", "1"));
 		assertEquals("1", cache.get("1"));
 		assertNull(cache.get("nonexistantkey"));
 	}
@@ -62,9 +62,9 @@ public class TestDefaultCache {
 		} catch (InterruptedException e) {
 			fail();
 		}
+		assertEquals("1", cache.get("1"));
 		assertEquals(1, cache.entryCount());
 		assertNull(cache.put("2", "2"));
-		assertEquals("1", cache.get("1"));
 		try {
 			Thread.sleep(expireTime / 2 + 1);
 		} catch (InterruptedException e) {
