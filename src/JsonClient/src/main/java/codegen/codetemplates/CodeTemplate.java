@@ -26,9 +26,8 @@ public class CodeTemplate implements TemplateEntry {
 	 * Creates a new template from the given location.
 	 * 
 	 * @param template
-	 * @throws FileNotFoundException
 	 */
-	public CodeTemplate(String template) throws FileNotFoundException {
+	public CodeTemplate(String template) {
 		templateReplacement = new HashMap<String, TemplateEntry>();
 		templateString = template;
 		String compoundPatternS = compoundPatternStartS + "(.)*?" + compoundPatternEndS;
@@ -38,12 +37,15 @@ public class CodeTemplate implements TemplateEntry {
 			String matchedTerm = compoundMatcher.group(1);
 			String matchedTemplate = compoundMatcher.group(0);
 			templateReplacement.put(matchedTerm, new CompoundCodeTemplate(matchedTemplate));
+			templateString = compoundMatcher.replaceFirst("<@" + matchedTerm + "@>");
 		}
 		Pattern simplePattern = Pattern.compile(simplePatternS);
 		Matcher m = simplePattern.matcher(templateString);
 		while (m.find()) {
 			String matchedTerm = m.group(1);
-			templateReplacement.put(matchedTerm, new EmptyCodeTemplate());
+			if (!templateReplacement.containsKey(matchedTerm)) {
+				templateReplacement.put(matchedTerm, new EmptyCodeTemplate());
+			}
 		}
 	}
 
@@ -92,9 +94,29 @@ public class CodeTemplate implements TemplateEntry {
 	public String codeReplacement() {
 		String code = templateString;
 		for (Entry<String, TemplateEntry> entry : templateReplacement.entrySet()) {
-			entry.getKey();
-			code = templateString.replaceFirst(simplePatternS, templateReplacement.get("$1").codeReplacement());
+			code = code.replaceAll("<@" + entry.getKey() + "@>", entry.getValue().codeReplacement());
 		}
 		return code;
+	}
+
+	/**
+	 * Creates an empty template object. Used in copying an item
+	 */
+	private CodeTemplate() {
+	}
+
+	/**
+	 * Creates a copy of this template with empty mappings.
+	 * 
+	 * @return
+	 */
+	public CodeTemplate copyEmptyTemplate() {
+		CodeTemplate copy = new CodeTemplate();
+		copy.templateString = this.templateString;
+		copy.templateReplacement = this.templateReplacement;
+		for (String key : copy.templateReplacement.keySet()) {
+			copy.templateReplacement.put(key, new EmptyCodeTemplate());
+		}
+		return copy;
 	}
 }

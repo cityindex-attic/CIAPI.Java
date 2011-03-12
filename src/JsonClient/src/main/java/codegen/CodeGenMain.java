@@ -1,11 +1,10 @@
 package codegen;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.Scanner;
 
 import codegen.codetemplates.CodeTemplate;
+import codegen.codetemplates.CompoundCodeTemplate;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
@@ -27,8 +26,14 @@ public class CodeGenMain {
 	 */
 	public static void main(String[] args) throws JsonIOException, JsonSyntaxException, MalformedURLException,
 			IOException {
-		CodeTemplate template = new CodeTemplate(new Scanner(new File("files/code_templates/DTOTemplate.jav"))
-				.useDelimiter("\\z").next());
-		System.out.println("done: " + template);
+		CodeTemplate template = CodeTemplate.loadTemplate("files/code_templates/DTOTemplate.jav");
+		CompoundCodeTemplate props = (CompoundCodeTemplate) template.getTemplateEntry("properties");
+		props.addMappingSet(props.getEmptyTemplate());
+		props.addMappingSet(props.getEmptyTemplate());
+		props.addMappingSet(props.getEmptyTemplate());
+		props.addMappingSet(props.getEmptyTemplate());
+		props.addMappingSet(props.getEmptyTemplate());
+		props.addMappingSet(props.getEmptyTemplate());
+		System.out.println(template.codeReplacement());
 	}
 }
