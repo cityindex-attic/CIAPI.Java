@@ -1,5 +1,6 @@
 package codegen.modelobjects;
 
+
 /**
  * Describes a method that the service described by the SMD provides.
  * 
@@ -32,18 +33,32 @@ public class Service {
 		}
 	}
 
+	/**
+	 * @return The target for this method.
+	 */
 	public String getTarget() {
 		return target;
 	}
 
+	/**
+	 * 
+	 * @return the uri template for this method
+	 */
 	public String getUriTemplate() {
 		return uriTemplate;
 	}
 
+	/**
+	 * 
+	 * @return the content type of this method. Should be "application/json".
+	 */
 	public String getContentType() {
 		return contentType;
 	}
 
+	/**
+	 * @return the content type of a response. Should be "application/json".
+	 */
 	public String getResponseContentType() {
 		return responseContentType;
 	}

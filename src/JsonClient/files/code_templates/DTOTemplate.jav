@@ -6,5 +6,11 @@ package <@packageName@>;
  * <@description@>
  */
 public class <@name@> {
-	<@*properties*@>
+	<@@properties@@>
+	private <@propertyType@> <@propertyName@>;
+	
+	public <@propertyType@> get<@propertyName@>() {
+		return <@propertyName@>;
+	}
+	<@@@@>
 }

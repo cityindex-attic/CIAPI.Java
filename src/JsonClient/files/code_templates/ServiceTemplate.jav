@@ -2,15 +2,20 @@ package <@packageName@>;
 
 public class ServiceMethods {
 
-	<@*methods@>
+	<@@methods@@>
 	/**
 	 * !This is an auto generated method!
 	 *
 	 * <@description@>
 	 */
 	public <@return@> <@name@>(<@parameters@>) {
-		
-		return api.call<@methodType@>Method();
+		String url = "";
+		Object postContents = "";
+		Map<String, String> params = new HashMap<String, String>();
+		<@setUrlParams@@>
+		params.put(<@paramName@>, <@paramValue@>);
+		<@@setUrlParams@>
+		return api.call<@methodType@>Method(url, params, returnType);
 	}
-	<@*methods@>
+	<@@@@>
 }

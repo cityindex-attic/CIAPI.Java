@@ -6,10 +6,19 @@ import java.util.regex.Pattern;
 import codegen.modelobjects.Parameter;
 import codegen.modelobjects.Service;
 
+/**
+ * Class for taking a Service model object and creating code.
+ * @author Justin Nelson
+ *
+ */
 public class MethodCreator {
 
 	private Service model;
 
+	/**
+	 * Creates a new MethodCreator out of the given model object.
+	 * @param model
+	 */
 	public MethodCreator(Service model) {
 		this.model = model;
 	}
@@ -26,7 +35,7 @@ public class MethodCreator {
 	private static final String urlPattern = "\\{[^}]*\\}";
 
 	/**
-	 * Some URLs have parameters in the URL, before the actuallt URL param part.
+	 * Some URLs have parameters in the URL, before the actually URL param part.
 	 * We handle those differently
 	 * 
 	 * @return the number of params in the URL
@@ -77,12 +86,12 @@ public class MethodCreator {
 	 * @return a String representing the body of the method.
 	 */
 	private String createBody(String packageName) {
-		String api = "api";
-		String methodToCall = isGet() ? ".callGetMethod" : ".callPostMethod";
+		//String api = "api";
+		//String methodToCall = isGet() ? ".callGetMethod" : ".callPostMethod";
 		// we need to see if one of our parameters is actually in the URL
 		if (numberParamsInUrl() > 0) {
 			// in here we have a url with params built in
-			String tempUriTemplate = "String.format(uriTemplate.replaceAll(\"{[^}]*}\"))";
+			//String tempUriTemplate = "String.format(uriTemplate.replaceAll(\"{[^}]*}\"))";
 		}
 		return "\t\treturn null;\n";
 	}

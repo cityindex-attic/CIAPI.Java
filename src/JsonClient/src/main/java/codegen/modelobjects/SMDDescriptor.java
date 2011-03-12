@@ -52,8 +52,6 @@ public class SMDDescriptor {
 		return services;
 	}
 
-	private JsonApi api;
-
 	public String toCode(String packageName) throws FileNotFoundException {
 		String packageDescriptor = "package " + packageName + ";\n\n";
 		String classDescriptor = "public class ServiceMethods {\n";

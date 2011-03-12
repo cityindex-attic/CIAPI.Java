@@ -34,12 +34,25 @@ public class SchemaReader {
 
 	private String schemaUrl, smdUrl;
 
+	/**
+	 * Creates a new schema reader with the given schema and smd url.
+	 * @param schemaUrl the url pointing to the schema definition
+	 * @param smdUrl the url pointing to the smd definition
+	 */
 	public SchemaReader(String schemaUrl, String smdUrl) {
 		this.schemaUrl = schemaUrl;
 		this.smdUrl = smdUrl;
 	}
 
-	public Map<String, DTO> getAllRoutesItems() throws JsonIOException, JsonSyntaxException, MalformedURLException,
+	/**
+	 * Gets all of the model objects from a given Schema url
+	 * @return the Model objects for a given schema.
+	 * @throws JsonIOException
+	 * @throws JsonSyntaxException
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
+	public Map<String, DTO> getAllModelItems() throws JsonIOException, JsonSyntaxException, MalformedURLException,
 			IOException {
 		Map<String, DTO> ret = new HashMap<String, DTO>();
 		GsonBuilder gb = new GsonBuilder();
@@ -53,6 +66,14 @@ public class SchemaReader {
 		return ret;
 	}
 
+	/**
+	 * 
+	 * @return the object representing all of the services of a given smd
+	 * @throws JsonSyntaxException
+	 * @throws JsonIOException
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
 	public SMDDescriptor getServices() throws JsonSyntaxException, JsonIOException, MalformedURLException, IOException {
 		GsonBuilder gb = new GsonBuilder();
 		gb.registerTypeAdapter(Parameter.class, Parameter.getDeSerializer());
@@ -61,11 +82,20 @@ public class SchemaReader {
 		return result;
 	}
 
+	/**
+	 * Generates all methods an model objects for a given pair of smd and schema url.
+	 * @param packageName
+	 * @param saveLocation
+	 * @throws JsonIOException
+	 * @throws JsonSyntaxException
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
 	public void createPackage(String packageName, String saveLocation) throws JsonIOException, JsonSyntaxException,
 			MalformedURLException, IOException {
-		for (Entry<String, DTO> entry : getAllRoutesItems().entrySet()) {
+		for (Entry<String, DTO> entry : getAllModelItems().entrySet()) {
 			PrintStream out = new PrintStream(new File(saveLocation + File.separatorChar + entry.getKey() + ".java"));
-			out.println(new DTOCreator(entry.getValue()).toCode(entry.getKey(), packageName));
+			out.println(new DTOCreator(entry.getKey(), entry.getValue(), packageName).toCode());
 			out.close();
 		}
 		PrintStream out = new PrintStream(new File(saveLocation + File.separatorChar + "ServiceMethods" + ".java"));
