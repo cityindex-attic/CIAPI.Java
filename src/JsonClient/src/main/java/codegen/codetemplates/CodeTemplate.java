@@ -65,6 +65,13 @@ public class CodeTemplate implements TemplateEntry {
 		return oldEntry;
 	}
 
+	public TemplateEntry putNewTemplateDefinition(String templateKey, String entry) {
+		if (entry == null) {
+			entry = "";
+		}
+		return putNewTemplateDefinition(templateKey, new SimpleTemplateEntry(entry));
+	}
+
 	/**
 	 * @param templateKey
 	 *            the key of the desired template
@@ -108,13 +115,13 @@ public class CodeTemplate implements TemplateEntry {
 	/**
 	 * Creates a copy of this template with empty mappings.
 	 * 
-	 * @return
+	 * @return an empty copy of this object.
 	 */
 	public CodeTemplate copyEmptyTemplate() {
 		CodeTemplate copy = new CodeTemplate();
 		copy.templateString = this.templateString;
-		copy.templateReplacement = this.templateReplacement;
-		for (String key : copy.templateReplacement.keySet()) {
+		copy.templateReplacement = new HashMap<String, TemplateEntry>();
+		for (String key : templateReplacement.keySet()) {
 			copy.templateReplacement.put(key, new EmptyCodeTemplate());
 		}
 		return copy;

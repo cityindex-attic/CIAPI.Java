@@ -1,11 +1,10 @@
 package codegen.codecreation;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Map.Entry;
-import java.util.Scanner;
 
 import codegen.codetemplates.CodeTemplate;
+import codegen.codetemplates.CompoundCodeTemplate;
 import codegen.modelobjects.DTO;
 import codegen.modelobjects.Option;
 import codegen.modelobjects.Property;
@@ -36,22 +35,33 @@ public class DTOCreator {
 		this.packageName = packageName;
 	}
 
-	public String toCode2() throws FileNotFoundException {
-		CodeTemplate template = new CodeTemplate(new Scanner(new File("files/code_templates/DTOTemplate.jav"))
-				.useDelimiter("\\z").next());
-		return null;
+	public String toCode() throws FileNotFoundException {
+		if (dto.getEnum_() != null || dto.getOptions() != null) {
+			return enumToCode();
+		}
+		CodeTemplate template = CodeTemplate.loadTemplate("files/code_templates/DTOTemplate.jav");
+		template.putNewTemplateDefinition("name", name);
+		template.putNewTemplateDefinition("description", dto.getDescription());
+		template.putNewTemplateDefinition("packageName", packageName);
+		CompoundCodeTemplate propertyList = (CompoundCodeTemplate) template.getTemplateEntry("properties");
+		CodeTemplate emptyPropTemplate = propertyList.getEmptyTemplate();
+		for (Entry<String, Property> p : dto.getProperties().entrySet()) {
+			CodeTemplate propTemplate = emptyPropTemplate.copyEmptyTemplate();
+			propTemplate.putNewTemplateDefinition("propertyName", p.getKey());
+			propTemplate.putNewTemplateDefinition("propertyType", p.getValue().getType(packageName));
+			propertyList.addMappingSet(propTemplate);
+		}
+		return template.codeReplacement();
 	}
 
 	/**
 	 * Turns the dto into a code block.
 	 * 
-	 * @param name
-	 *            the name of the DTO
-	 * @param packageName
-	 *            the name of the package this code belongs in.
+	 * This was the original method.
+	 * 
 	 * @return a code representation of the method.
 	 */
-	public String toCode() {
+	private String toCode2() {
 		// Enums are parsed differently
 		if (dto.getEnum_() != null || dto.getOptions() != null) {
 			return enumToCode();

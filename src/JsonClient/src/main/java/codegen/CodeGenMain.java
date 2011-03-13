@@ -2,9 +2,14 @@ package codegen;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.Map;
+import java.util.Map.Entry;
 
+import codegen.CIAPI.CIAPICodeGen;
+import codegen.codecreation.DTOCreator;
 import codegen.codetemplates.CodeTemplate;
 import codegen.codetemplates.CompoundCodeTemplate;
+import codegen.modelobjects.DTO;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
@@ -15,6 +20,9 @@ import com.google.gson.JsonSyntaxException;
  * @author justin nelson
  */
 public class CodeGenMain {
+	private static String schemaLocation = "http://ciapipreprod.cityindextest9.co.uk/TradingApi/schema";
+	private static String smdLocation = "http://ciapipreprod.cityindextest9.co.uk/TradingApi/smd";
+
 	/**
 	 * Stuff...It's a main...what do you expect?
 	 * 
@@ -26,14 +34,11 @@ public class CodeGenMain {
 	 */
 	public static void main(String[] args) throws JsonIOException, JsonSyntaxException, MalformedURLException,
 			IOException {
-		CodeTemplate template = CodeTemplate.loadTemplate("files/code_templates/DTOTemplate.jav");
-		CompoundCodeTemplate props = (CompoundCodeTemplate) template.getTemplateEntry("properties");
-		props.addMappingSet(props.getEmptyTemplate());
-		props.addMappingSet(props.getEmptyTemplate());
-		props.addMappingSet(props.getEmptyTemplate());
-		props.addMappingSet(props.getEmptyTemplate());
-		props.addMappingSet(props.getEmptyTemplate());
-		props.addMappingSet(props.getEmptyTemplate());
-		System.out.println(template.codeReplacement());
+		SchemaReader rdr = new SchemaReader(schemaLocation, smdLocation);
+		Map<String, DTO> dtos = rdr.getAllModelItems();
+		for(Entry<String, DTO> entry: dtos.entrySet()){
+			DTOCreator creator = new DTOCreator(entry.getKey(), entry.getValue(), "coolpkg.pkg");
+			System.out.println(creator.toCode());
+		}
 	}
 }
