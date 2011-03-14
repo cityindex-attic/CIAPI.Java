@@ -38,6 +38,7 @@ public class CodeTemplate implements TemplateEntry {
 			String matchedTemplate = compoundMatcher.group(0);
 			templateReplacement.put(matchedTerm, new CompoundCodeTemplate(matchedTemplate));
 			templateString = compoundMatcher.replaceFirst("<@" + matchedTerm + "@>");
+			compoundMatcher = compoundPattern.matcher(templateString);
 		}
 		Pattern simplePattern = Pattern.compile(simplePatternS);
 		Matcher m = simplePattern.matcher(templateString);

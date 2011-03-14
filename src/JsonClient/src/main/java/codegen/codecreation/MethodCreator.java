@@ -1,15 +1,18 @@
 package codegen.codecreation;
 
+import java.io.FileNotFoundException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import codegen.codetemplates.CodeTemplate;
 import codegen.modelobjects.Parameter;
 import codegen.modelobjects.Service;
 
 /**
  * Class for taking a Service model object and creating code.
+ * 
  * @author Justin Nelson
- *
+ * 
  */
 public class MethodCreator {
 
@@ -17,6 +20,7 @@ public class MethodCreator {
 
 	/**
 	 * Creates a new MethodCreator out of the given model object.
+	 * 
 	 * @param model
 	 */
 	public MethodCreator(Service model) {
@@ -50,6 +54,11 @@ public class MethodCreator {
 		return i;
 	}
 
+	public String toCode2() throws FileNotFoundException{
+		CodeTemplate template = CodeTemplate.loadTemplate("files/code_templates/ServiceTemplate.jav");
+		return template.codeReplacement();
+	}
+	
 	/**
 	 * Turns the object representation of the method into a String that is a
 	 * syntactically correct Java method
@@ -86,12 +95,13 @@ public class MethodCreator {
 	 * @return a String representing the body of the method.
 	 */
 	private String createBody(String packageName) {
-		//String api = "api";
-		//String methodToCall = isGet() ? ".callGetMethod" : ".callPostMethod";
+		// String api = "api";
+		// String methodToCall = isGet() ? ".callGetMethod" : ".callPostMethod";
 		// we need to see if one of our parameters is actually in the URL
 		if (numberParamsInUrl() > 0) {
 			// in here we have a url with params built in
-			//String tempUriTemplate = "String.format(uriTemplate.replaceAll(\"{[^}]*}\"))";
+			// String tempUriTemplate =
+			// "String.format(uriTemplate.replaceAll(\"{[^}]*}\"))";
 		}
 		return "\t\treturn null;\n";
 	}

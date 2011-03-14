@@ -37,7 +37,7 @@ public class CompoundCodeTemplate implements TemplateEntry {
 		// the next two lines strip the compound pattern start and end from the
 		// code if they exist.
 		// this completely breaks if people try to nest compound templates. We
-		// don't support that.
+		// don't support that. TODO, we need to.
 		template = template.replaceAll(compoundPatternStartS, "");
 		template = template.replaceAll(compoundPatternEndS, "");
 		templatePattern = new CodeTemplate(template);
@@ -45,6 +45,9 @@ public class CompoundCodeTemplate implements TemplateEntry {
 
 	/**
 	 * Adds another mapping set to this compound pattern.
+	 * 
+	 * @param mappingSet
+	 *            the template to add to this list
 	 */
 	public void addMappingSet(CodeTemplate mappingSet) {
 		templateReplacements.add(mappingSet);
@@ -62,7 +65,7 @@ public class CompoundCodeTemplate implements TemplateEntry {
 	@Override
 	public String codeReplacement() {
 		StringBuilder bldr = new StringBuilder();
-		for(CodeTemplate template: templateReplacements){
+		for (CodeTemplate template : templateReplacements) {
 			bldr.append(template.codeReplacement());
 			bldr.append("\n");
 		}

@@ -8,13 +8,12 @@ import CIAPI.Java.DefaultJsonClient;
 import CIAPI.Java.JsonApi;
 import CIAPI.Java.cachestuff.CachedJsonClient;
 import CIAPI.Java.cachestuff.DefaultCache;
-import CIAPI.Java.examples.ciapi.dto.AccountInformationResponse;
-import CIAPI.Java.examples.ciapi.dto.CILogOnOrOffRequest;
-import CIAPI.Java.examples.ciapi.dto.CreateSessionResponse;
-import CIAPI.Java.examples.ciapi.dto.DeleteSessionResponse;
-import CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponse;
-import CIAPI.Java.examples.ciapi.dto.Order;
-import CIAPI.Java.examples.ciapi.dto.TradeOrderResponse;
+import CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.LogOnRequestDTO;
+import CIAPI.Java.examples.ciapi.dto.OrderDTO;
+import CIAPI.Java.examples.ciapi.dto.SessionDeletionRequestDTO;
+import CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO;
 import CIAPI.Java.throttle.RequestsPerTimespanTimer;
 import CIAPI.Java.throttle.ThrottledHttpClient;
 
@@ -64,8 +63,8 @@ public class SyncApi {
 	public void logon() throws ApiException {
 		// first we make a quick unauthenticated call to get credentials.
 		JsonApi unAuth = new JsonApi(Api_Base_Url, new DefaultJsonClient());
-		CreateSessionResponse session = (CreateSessionResponse) unAuth.callPostMethod("session", null,
-				new CILogOnOrOffRequest(username, password), CreateSessionResponse.class);
+		CreateSessionResponseDTO session = (CreateSessionResponseDTO) unAuth.callPostMethod("session", null,
+				new LogOnRequestDTO(username, password), CreateSessionResponseDTO.class);
 		sessionId = session.getSession();
 		if (sessionId == null) {
 			throw new NullPointerException("Error logging in.  Returned session was null.");
@@ -84,9 +83,9 @@ public class SyncApi {
 	 * @throws ApiException
 	 */
 	public void logoff() throws ApiException {
-		DeleteSessionResponse resp = (DeleteSessionResponse) api.callPostMethod("session/deleteSession",
+		SessionDeletionResponseDTO resp = (SessionDeletionResponseDTO) api.callPostMethod("session/deleteSession",
 				createParamMap("session", sessionId, "userName", username),
-				new CILogOnOrOffRequest(username, sessionId), DeleteSessionResponse.class);
+				new SessionDeletionRequestDTO(username, sessionId), SessionDeletionResponseDTO.class);
 		// TODO, figure out why the session token isn't getting deleted. Or why
 		// it is getting deleted but returning false.
 		if (!resp.getLoggedOut()) {
@@ -97,39 +96,9 @@ public class SyncApi {
 		sessionId = null;
 	}
 
-	/**
-	 * Gets trading account info for the currently logged on user.
-	 * 
-	 * @return an object holding the account info for the currently logged in
-	 *         user.
-	 * @throws ApiException
-	 */
-	public AccountInformationResponse getClientAndTradingAccount() throws ApiException {
-		checkLoggedOn();
-		AccountInformationResponse resp = (AccountInformationResponse) api.callGetMethod(
-				"useraccount/UserAccount/ClientAndTradingAccount", null, AccountInformationResponse.class);
-		return resp;
-	}
-
-	/**
-	 * Lists the trading history for the given account id
-	 * 
-	 * @param tradingAccountId
-	 * @param maxResults
-	 * @return
-	 * @throws ApiException
-	 */
-	public ListTradeHistoryResponse listTradeHistory(int tradingAccountId, int maxResults) throws ApiException {
-		checkLoggedOn();
-		ListTradeHistoryResponse resp = (ListTradeHistoryResponse) api.callGetMethod("order/order/tradehistory",
-				createParamMap("tradingAccountId", tradingAccountId, "maxResults", maxResults),
-				ListTradeHistoryResponse.class);
-		return resp;
-	}
-
-	public TradeOrderResponse order() throws ApiException {
-		TradeOrderResponse resp = (TradeOrderResponse) api.callPostMethod("order/", null, new Order(),
-				TradeOrderResponse.class);
+	public ApiTradeOrderResponseDTO order() throws ApiException {
+		ApiTradeOrderResponseDTO resp = (ApiTradeOrderResponseDTO) api.callPostMethod("order/", null, new OrderDTO(),
+				ApiTradeOrderResponseDTO.class);
 		return resp;
 	}
 

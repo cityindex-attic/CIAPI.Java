@@ -35,10 +35,8 @@ public class CodeGenMain {
 	public static void main(String[] args) throws JsonIOException, JsonSyntaxException, MalformedURLException,
 			IOException {
 		SchemaReader rdr = new SchemaReader(schemaLocation, smdLocation);
-		Map<String, DTO> dtos = rdr.getAllModelItems();
-		for(Entry<String, DTO> entry: dtos.entrySet()){
-			DTOCreator creator = new DTOCreator(entry.getKey(), entry.getValue(), "coolpkg.pkg");
-			System.out.println(creator.toCode());
+		for (Entry<String, DTO> entry : rdr.getAllModelItems().entrySet()) {
+			System.out.println(new DTOCreator(entry.getKey(), entry.getValue(), "pkg.coolpkg").toCode());
 		}
 	}
 }

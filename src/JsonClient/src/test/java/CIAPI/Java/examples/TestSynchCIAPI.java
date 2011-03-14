@@ -1,14 +1,12 @@
 package CIAPI.Java.examples;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import CIAPI.Java.ApiException;
 import CIAPI.Java.examples.ciapi.SyncApi;
-import CIAPI.Java.examples.ciapi.dto.AccountInformationResponse;
 
 public class TestSynchCIAPI {
 
@@ -43,7 +41,5 @@ public class TestSynchCIAPI {
 	@Test
 	public void testGetClientAndTradingAccount() throws ApiException {
 		api.logon();
-		AccountInformationResponse result = api.getClientAndTradingAccount();
-		assertNotNull(result);
 	}
 }

@@ -1,90 +1,130 @@
 package CIAPI.Java.examples.ciapi.dto;
 
-public class Order {
-
+/**
+ * !This is an auto generated model object!
+ *
+ * An order for a specific Trading Account
+ */
+public class OrderDTO {
+	
 	private int OrderId;
-	private int MarketId;
-	private int ClientAccountId;
-	private int TradingAccountId;
-	private int CurrencyId;
-	private String CurrencyISO;
-	private int Direction;
-	private boolean AutoRollover;
-	private double ExecutionPrice;
-	private String LastChangedTime;
-	private double OpenPrice;
-	private String OriginalLastChangedDateTime;
-	private double OriginalQuantity;
-	private double Quantity;
-	private String Type;
-	private String Status;
-	private int ReasonId;
-
+	
 	public int getOrderId() {
 		return OrderId;
 	}
+	
 
+	private int MarketId;
+	
 	public int getMarketId() {
 		return MarketId;
 	}
+	
 
+	private int ClientAccountId;
+	
 	public int getClientAccountId() {
 		return ClientAccountId;
 	}
+	
 
+	private int TradingAccountId;
+	
 	public int getTradingAccountId() {
 		return TradingAccountId;
 	}
+	
 
+	private int CurrencyId;
+	
 	public int getCurrencyId() {
 		return CurrencyId;
 	}
+	
 
+	private String CurrencyISO;
+	
 	public String getCurrencyISO() {
 		return CurrencyISO;
 	}
+	
 
+	private int Direction;
+	
 	public int getDirection() {
 		return Direction;
 	}
+	
 
-	public boolean isAutoRollover() {
+	private boolean AutoRollover;
+	
+	public boolean getAutoRollover() {
 		return AutoRollover;
 	}
+	
 
+	private double ExecutionPrice;
+	
 	public double getExecutionPrice() {
 		return ExecutionPrice;
 	}
+	
 
+	private String LastChangedTime;
+	
 	public String getLastChangedTime() {
 		return LastChangedTime;
 	}
+	
 
+	private double OpenPrice;
+	
 	public double getOpenPrice() {
 		return OpenPrice;
 	}
+	
 
+	private String OriginalLastChangedDateTime;
+	
 	public String getOriginalLastChangedDateTime() {
 		return OriginalLastChangedDateTime;
 	}
+	
 
+	private double OriginalQuantity;
+	
 	public double getOriginalQuantity() {
 		return OriginalQuantity;
 	}
+	
 
+	private double Quantity;
+	
 	public double getQuantity() {
 		return Quantity;
 	}
+	
 
+	private String Type;
+	
 	public String getType() {
 		return Type;
 	}
+	
 
+	private String Status;
+	
 	public String getStatus() {
 		return Status;
 	}
+	
 
+	private int ReasonId;
+	
 	public int getReasonId() {
 		return ReasonId;
 	}
+	
+
 }
+
