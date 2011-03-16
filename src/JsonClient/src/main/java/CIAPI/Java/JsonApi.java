@@ -1,5 +1,6 @@
 package CIAPI.Java;
 
+import java.net.MalformedURLException;
 import java.util.Map;
 
 import CIAPI.Java.urlstuff.UrlHelper;
@@ -26,7 +27,7 @@ public class JsonApi {
 	 */
 	public JsonApi(String baseUrl, JsonClient client) {
 		if (client == null)
-			throw new NullPointerException("JspnClient must not be null");
+			throw new NullPointerException("JsonClient must not be null");
 		if (baseUrl == null || baseUrl.trim().length() == 0)
 			throw new IllegalArgumentException("The base url must not be null or empty.");
 		this.baseUrl = baseUrl;
@@ -59,6 +60,25 @@ public class JsonApi {
 	/**
 	 * Call an API's GET method
 	 * 
+	 * @param fullUrl
+	 *            the full last part of a url
+	 * @param returnType
+	 *            the type this method should return.
+	 * @return an object of type returnType
+	 * @throws ApiException
+	 * @throws MalformedURLException
+	 */
+	public Object callGetMethod(String fullUrl, Class<?> returnType) throws ApiException, MalformedURLException {
+		if (returnType == null)
+			throw new NullPointerException("Return type must not be null");
+		String url = UrlHelper.parseUrl(baseUrl + fullUrl).toUrl();
+		Object result = client.makeGetRequest(url, returnType);
+		return result;
+	}
+
+	/**
+	 * Call an API's GET method
+	 * 
 	 * @param methodName
 	 *            The name of the method. Use null or "" for no method name (use
 	 *            the base URL)
@@ -77,6 +97,27 @@ public class JsonApi {
 		if (returnType == null)
 			throw new NullPointerException("Return type must not be null");
 		String url = new UrlHelper(baseUrl, methodName, parameters).toUrl();
+		return client.makePostRequest(url, inputData, returnType);
+	}
+
+	/**
+	 * Call an API's POST method
+	 * 
+	 * @param fullUrl
+	 *            The full last part of a url (After the tld)
+	 * @param inputData
+	 *            the data to POST to the server
+	 * @param returnType
+	 *            the type this method should return
+	 * @return an object of type returnType
+	 * @throws ApiException
+	 * @throws MalformedURLException
+	 */
+	public Object callPostMethod(String fullUrl, Object inputData, Class<?> returnType) throws ApiException,
+			MalformedURLException {
+		if (returnType == null)
+			throw new NullPointerException("Return type must not be null");
+		String url = UrlHelper.parseUrl(baseUrl + fullUrl).toUrl();
 		return client.makePostRequest(url, inputData, returnType);
 	}
 }
