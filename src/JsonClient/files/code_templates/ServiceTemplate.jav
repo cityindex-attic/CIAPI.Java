@@ -12,9 +12,6 @@ public class ServiceMethods {
 		String url = "";
 		Object postContents = "";
 		Map<String, String> params = new HashMap<String, String>();
-		<@setUrlParams@@>
-		params.put(<@paramName@>, <@paramValue@>);
-		<@@setUrlParams@>
 		return api.call<@methodType@>Method(url, params, returnType);
 	}
 	<@@@@>

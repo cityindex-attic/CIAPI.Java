@@ -8,8 +8,10 @@ import CIAPI.Java.DefaultJsonClient;
 import CIAPI.Java.JsonApi;
 import CIAPI.Java.cachestuff.CachedJsonClient;
 import CIAPI.Java.cachestuff.DefaultCache;
+import CIAPI.Java.examples.ciapi.dto.AccountInformationResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListCfdMarketsResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.LogOnRequestDTO;
 import CIAPI.Java.examples.ciapi.dto.OrderDTO;
 import CIAPI.Java.examples.ciapi.dto.SessionDeletionRequestDTO;
@@ -84,8 +86,8 @@ public class SyncApi {
 	 */
 	public void logoff() throws ApiException {
 		SessionDeletionResponseDTO resp = (SessionDeletionResponseDTO) api.callPostMethod("session/deleteSession",
-				createParamMap("session", sessionId, "userName", username),
-				new SessionDeletionRequestDTO(username, sessionId), SessionDeletionResponseDTO.class);
+				createParamMap("session", sessionId, "userName", username), new SessionDeletionRequestDTO(username,
+						sessionId), SessionDeletionResponseDTO.class);
 		// TODO, figure out why the session token isn't getting deleted. Or why
 		// it is getting deleted but returning false.
 		if (!resp.getLoggedOut()) {
@@ -96,37 +98,210 @@ public class SyncApi {
 		sessionId = null;
 	}
 
-	public ApiTradeOrderResponseDTO order() throws ApiException {
-		ApiTradeOrderResponseDTO resp = (ApiTradeOrderResponseDTO) api.callPostMethod("order/", null, new OrderDTO(),
-				ApiTradeOrderResponseDTO.class);
-		return resp;
-	}
-
-	public boolean getChartingEnabled(int id) throws ApiException {
-		boolean chartingEnabled = (Boolean) api.callGetMethod("useraccount/UserAccount/" + id + "/ChartingEnabled",
-				null, Boolean.class);
-		return chartingEnabled;
-	}
-
-	private void checkLoggedOn() {
-		if (!isLoggedOn()) {
-			throw new IllegalStateException("You must be logged in to use this method.  Use logOn() to log on.");
-		}
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public boolean GetChartingEnabled(String id) throws ApiException {
+		// Collect variables from method
+		String target = "useraccount";
+		String uriTemplate = "/UserAccount/{id}/ChartingEnabled";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		int holeCount = 0;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		filledUri = uriTemplate.replace("{id}", id);
+		holeCount++;
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		Map<String, String> params = new HashMap<String, String>();
+		// build up the rest of the parameters
+		// end building the rest of the parameters
+		// return type result type get/post url params return type.class
+		Boolean result = (Boolean) api.callGetMethod(fullUrl, params, Boolean.class);
+		return result;
 	}
 
 	/**
-	 * @return The session id for the currently logged on user. The id will be
-	 *         null if this client is not currently logged on.
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
 	 */
-	public String getSessionId() {
-		return sessionId;
+	public AccountInformationResponseDTO GetClientAndTradingAccount() throws ApiException {
+		// Collect variables from method
+		String target = "useraccount";
+		String uriTemplate = "/UserAccount/ClientAndTradingAccount";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		int holeCount = 0;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		Map<String, String> params = new HashMap<String, String>();
+		// build up the rest of the parameters
+		// end building the rest of the parameters
+		// return type result type get/post url params return type.class
+		AccountInformationResponseDTO result = (AccountInformationResponseDTO) api.callGetMethod(fullUrl, params,
+				AccountInformationResponseDTO.class);
+		return result;
 	}
 
 	/**
-	 * @return whether or not the user is logged on
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
 	 */
-	public boolean isLoggedOn() {
-		return getSessionId() != null && api != null;
+	public String GetTermsAndConditions(String clientaccount) throws ApiException {
+		// Collect variables from method
+		String target = "useraccount";
+		String uriTemplate = "/UserAccount/{clientaccount}/TermsAndConditions";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		int holeCount = 0;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		filledUri = filledUri.replace("{clientaccount}", clientaccount);
+		holeCount++;
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		Map<String, String> params = new HashMap<String, String>();
+		// build up the rest of the parameters
+		// end building the rest of the parameters
+		// return type result type get/post url params return type.class
+		String result = (String) api.callGetMethod(fullUrl, params, String.class);
+		return result;
+	}
+
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public CreateSessionResponseDTO CreateSession(String UserName, String Password) throws ApiException {
+		// Collect variables from method
+		String target = "session";
+		String uriTemplate = "/";
+		String transport = "POST";
+		String envelope = "JSON";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		int holeCount = 0;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		Map<String, String> params = new HashMap<String, String>();
+		// build up the rest of the parameters
+		// end building the rest of the parameters
+		// return type result type get/post url params return type.class
+		// TODO, how do I know that this takes a LogOnRequestDTO?
+		CreateSessionResponseDTO result = (CreateSessionResponseDTO) api.callPostMethod(fullUrl, params, null,
+				CreateSessionResponseDTO.class);
+		return result;
+	}
+
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public SessionDeletionResponseDTO DeleteSession(String userName, String session) throws ApiException {
+		// Collect variables from method
+		String target = "session";
+		String uriTemplate = "/deleteSession?userName={userName}&session={session}";
+		String transport = "POST";
+		String envelope = "JSON";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		int holeCount = 0;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		filledUri = filledUri.replace("{userName}", userName);
+		holeCount++;
+		filledUri = filledUri.replace("{session}", session);
+		holeCount++;
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		Map<String, String> params = new HashMap<String, String>();
+		// build up the rest of the parameters
+		// end building the rest of the parameters
+		// return type result type get/post url params return type.class
+		// TODO, how do I know that this takes an empty object `{}`?
+		SessionDeletionResponseDTO result = (SessionDeletionResponseDTO) api.callPostMethod(fullUrl, params, null,
+				SessionDeletionResponseDTO.class);
+		return result;
+	}
+
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public ListCfdMarketsResponseDTO ListCfdMarkets(String searchByMarketName, String searchByMarketCode,
+			int clientAccountId, int maxResults) throws ApiException {
+		// Collect variables from method
+		String target = "cfd/markets";
+		String uriTemplate = "?MarketName={searchByMarketName}&MarketCode={searchByMarketCode}&ClientAccountId={clientAccountId}&MaxResults={maxResults}";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		int holeCount = 0;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		filledUri = filledUri.replace("{userName}", userName);
+		holeCount++;
+		filledUri = filledUri.replace("{session}", session);
+		holeCount++;
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		Map<String, String> params = new HashMap<String, String>();
+		// build up the rest of the parameters
+		// end building the rest of the parameters
+		// return type result type get/post url params return type.class
+		// TODO, how do I know that this takes an empty object `{}`?
+		ListCfdMarketsResponseDTO result = (ListCfdMarketsResponseDTO) api.callPostMethod(fullUrl, params, null,
+				ListCfdMarketsResponseDTO.class);
+		return result;
 	}
 
 	/**
