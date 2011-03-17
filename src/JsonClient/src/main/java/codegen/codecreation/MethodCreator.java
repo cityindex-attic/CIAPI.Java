@@ -56,6 +56,7 @@ public class MethodCreator {
 
 	public String toCode2() throws FileNotFoundException{
 		CodeTemplate template = CodeTemplate.loadTemplate("files/code_templates/ServiceTemplate.jav");
+		
 		return template.codeReplacement();
 	}
 	

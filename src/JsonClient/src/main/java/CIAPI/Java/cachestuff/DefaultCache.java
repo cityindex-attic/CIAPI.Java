@@ -15,11 +15,11 @@ import java.util.Map.Entry;
  */
 public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 
-	private long defaultMaxAge;
+	private final long defaultMaxAge;
 
 	private int maxSize = 10000;
 
-	private Map<TKey, CacheItem> storage;
+	private final Map<TKey, CacheItem> storage;
 
 	/**
 	 * Creates an empty cache
@@ -38,8 +38,9 @@ public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 		if (key == null)
 			throw new NullPointerException("The key must not be null");
 		CacheItem obj = storage.get(key);
-		if (obj == null)
+		if (obj == null) {
 			return null;
+		}
 		if (obj.isExpired()) {
 			delete(key);
 			return null;
@@ -117,16 +118,15 @@ public class DefaultCache<TKey, TValue> implements Cache<TKey, TValue> {
 	 */
 	class CacheItem {
 		private TValue data;
-		private long timeEntered;
-		private long maxAge;
+		private long expiresTime;
 
 		private CacheItem(TValue data, long maxAge) {
 			this.data = data;
-			this.timeEntered = System.currentTimeMillis();
+			this.expiresTime = System.currentTimeMillis() + maxAge;
 		}
 
 		private boolean isExpired() {
-			return timeEntered + maxAge < System.currentTimeMillis();
+			return System.currentTimeMillis() >= expiresTime;
 		}
 	}
 }

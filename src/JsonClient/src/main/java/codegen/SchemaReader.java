@@ -2,10 +2,10 @@ package codegen;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -32,58 +32,51 @@ import com.google.gson.JsonSyntaxException;
  */
 public class SchemaReader {
 
-	private String schemaUrl, smdUrl;
+	private SMDDescriptor smd;
+	private Map<String, DTO> dtos;
 
 	/**
 	 * Creates a new schema reader with the given schema and smd url.
-	 * @param schemaUrl the url pointing to the schema definition
-	 * @param smdUrl the url pointing to the smd definition
+	 * 
+	 * @param schemaStream
+	 *            the stream containing the schema data
+	 * @param smdStream
+	 *            the stream containing the smd data
 	 */
-	public SchemaReader(String schemaUrl, String smdUrl) {
-		this.schemaUrl = schemaUrl;
-		this.smdUrl = smdUrl;
+	public SchemaReader(InputStream schemaStream, InputStream smdStream) {
+		dtos = new HashMap<String, DTO>();
+		GsonBuilder gb = new GsonBuilder();
+		gb.registerTypeAdapter(DTO.class, DTO.getDeSerializer());
+		gb.registerTypeAdapter(Parameter.class, Parameter.getDeSerializer());
+		Gson g = gb.create();
+		JsonParser parser = new JsonParser();
+		JsonObject obj = (JsonObject) parser.parse(new InputStreamReader(schemaStream));
+		for (Entry<String, JsonElement> entry : obj.entrySet()) {
+			dtos.put(entry.getKey(), g.fromJson(entry.getValue(), DTO.class));
+		}
+		smd = g.fromJson(new InputStreamReader(smdStream), SMDDescriptor.class);
 	}
 
 	/**
 	 * Gets all of the model objects from a given Schema url
-	 * @return the Model objects for a given schema.
-	 * @throws JsonIOException
-	 * @throws JsonSyntaxException
-	 * @throws MalformedURLException
-	 * @throws IOException
-	 */
-	public Map<String, DTO> getAllModelItems() throws JsonIOException, JsonSyntaxException, MalformedURLException,
-			IOException {
-		Map<String, DTO> ret = new HashMap<String, DTO>();
-		GsonBuilder gb = new GsonBuilder();
-		gb.registerTypeAdapter(DTO.class, DTO.getDeSerializer());
-		Gson g = gb.create();
-		JsonParser parser = new JsonParser();
-		JsonObject obj = (JsonObject) parser.parse(new InputStreamReader(new URL(schemaUrl).openStream()));
-		for (Entry<String, JsonElement> entry : obj.entrySet()) {
-			ret.put(entry.getKey(), g.fromJson(entry.getValue(), DTO.class));
-		}
-		return ret;
-	}
-
-	/**
 	 * 
-	 * @return the object representing all of the services of a given smd
-	 * @throws JsonSyntaxException
-	 * @throws JsonIOException
-	 * @throws MalformedURLException
-	 * @throws IOException
+	 * @return the Model objects for a given schema.
 	 */
-	public SMDDescriptor getServices() throws JsonSyntaxException, JsonIOException, MalformedURLException, IOException {
-		GsonBuilder gb = new GsonBuilder();
-		gb.registerTypeAdapter(Parameter.class, Parameter.getDeSerializer());
-		Gson g = gb.create();
-		SMDDescriptor result = g.fromJson(new InputStreamReader(new URL(smdUrl).openStream()), SMDDescriptor.class);
-		return result;
+	public Map<String, DTO> getAllModelItems() {
+		return dtos;
 	}
 
 	/**
-	 * Generates all methods an model objects for a given pair of smd and schema url.
+	 * @return the object representing all of the services of a given smd
+	 */
+	public SMDDescriptor getServices() {
+		return smd;
+	}
+
+	/**
+	 * Generates all methods an model objects for a given pair of smd and schema
+	 * url.
+	 * 
 	 * @param packageName
 	 * @param saveLocation
 	 * @throws JsonIOException

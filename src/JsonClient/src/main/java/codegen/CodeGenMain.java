@@ -1,5 +1,6 @@
 package codegen;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
@@ -12,8 +13,8 @@ import com.google.gson.JsonSyntaxException;
  * @author justin nelson
  */
 public class CodeGenMain {
-	private static String schemaLocation = "http://ciapipreprod.cityindextest9.co.uk/TradingApi/schema";
-	private static String smdLocation = "http://ciapipreprod.cityindextest9.co.uk/TradingApi/smd";
+	private static String schemaLocation = "files/smdFiles/schema.js";
+	private static String smdLocation = "files/smdFiles/smd.js";
 
 	/**
 	 * Stuff...It's a main...what do you expect?
@@ -26,7 +27,8 @@ public class CodeGenMain {
 	 */
 	public static void main(String[] args) throws JsonIOException, JsonSyntaxException, MalformedURLException,
 			IOException {
-		SchemaReader rdr = new SchemaReader(schemaLocation, smdLocation);
+		SchemaReader rdr = new SchemaReader(new FileInputStream(schemaLocation), new FileInputStream(smdLocation));
+		rdr.getAllModelItems();
 		rdr.createPackage("somePkg", "/home/justin");
 	}
 }

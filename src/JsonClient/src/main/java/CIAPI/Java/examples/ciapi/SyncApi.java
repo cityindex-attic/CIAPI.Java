@@ -1,23 +1,22 @@
 package CIAPI.Java.examples.ciapi;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import CIAPI.Java.ApiException;
-import CIAPI.Java.DefaultJsonClient;
 import CIAPI.Java.JsonApi;
-import CIAPI.Java.cachestuff.CachedJsonClient;
-import CIAPI.Java.cachestuff.DefaultCache;
 import CIAPI.Java.examples.ciapi.dto.AccountInformationResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListActiveStopLimitOrderResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.ListCfdMarketsResponseDTO;
-import CIAPI.Java.examples.ciapi.dto.LogOnRequestDTO;
-import CIAPI.Java.examples.ciapi.dto.OrderDTO;
-import CIAPI.Java.examples.ciapi.dto.SessionDeletionRequestDTO;
+import CIAPI.Java.examples.ciapi.dto.ListNewsHeadlinesResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.MarketInformationResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO;
-import CIAPI.Java.throttle.RequestsPerTimespanTimer;
-import CIAPI.Java.throttle.ThrottledHttpClient;
 
 /**
  * API for connecting to the City Index Trading RESTful API. All requests are
@@ -57,48 +56,6 @@ public class SyncApi {
 	}
 
 	/**
-	 * Uses the username and password supplied in the constructor to log on to
-	 * the CIAPI.
-	 * 
-	 * @throws ApiException
-	 */
-	public void logon() throws ApiException {
-		// first we make a quick unauthenticated call to get credentials.
-		JsonApi unAuth = new JsonApi(Api_Base_Url, new DefaultJsonClient());
-		CreateSessionResponseDTO session = (CreateSessionResponseDTO) unAuth.callPostMethod("session", null,
-				new LogOnRequestDTO(username, password), CreateSessionResponseDTO.class);
-		sessionId = session.getSession();
-		if (sessionId == null) {
-			throw new NullPointerException("Error logging in.  Returned session was null.");
-		}
-		// then we create an authenticated client that adds the username and
-		// session id to each request.
-		ThrottledHttpClient client = new ThrottledHttpClient(new RequestsPerTimespanTimer(10, 1000),
-				new UsernameSessionHttpRequestItemFactory(username, sessionId));
-		api = new JsonApi(Api_Base_Url, new CachedJsonClient(
-				new DefaultCache<CachedJsonClient.Pair<String, Class<?>>, Object>(1000 * 60), client));
-	}
-
-	/**
-	 * Deletes the session token to essentially log a user off.
-	 * 
-	 * @throws ApiException
-	 */
-	public void logoff() throws ApiException {
-		SessionDeletionResponseDTO resp = (SessionDeletionResponseDTO) api.callPostMethod("session/deleteSession",
-				createParamMap("session", sessionId, "userName", username), new SessionDeletionRequestDTO(username,
-						sessionId), SessionDeletionResponseDTO.class);
-		// TODO, figure out why the session token isn't getting deleted. Or why
-		// it is getting deleted but returning false.
-		if (!resp.getLoggedOut()) {
-			throw new ApiException("Failed to delete session token.");
-		}
-		// Set these to null so they can't accidentally be used later
-		api = null;
-		sessionId = null;
-	}
-
-	/**
 	 * 
 	 * // auto generate these from param list
 	 * 
@@ -114,20 +71,15 @@ public class SyncApi {
 		String envelope = "URL";
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
-		int holeCount = 0;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
 		filledUri = uriTemplate.replace("{id}", id);
-		holeCount++;
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		Map<String, String> params = new HashMap<String, String>();
-		// build up the rest of the parameters
-		// end building the rest of the parameters
 		// return type result type get/post url params return type.class
-		Boolean result = (Boolean) api.callGetMethod(fullUrl, params, Boolean.class);
+		Boolean result = (Boolean) api.callGetMethod(fullUrl, Boolean.class);
 		return result;
 	}
 
@@ -147,18 +99,14 @@ public class SyncApi {
 		String envelope = "URL";
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
-		int holeCount = 0;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		Map<String, String> params = new HashMap<String, String>();
-		// build up the rest of the parameters
-		// end building the rest of the parameters
 		// return type result type get/post url params return type.class
-		AccountInformationResponseDTO result = (AccountInformationResponseDTO) api.callGetMethod(fullUrl, params,
+		AccountInformationResponseDTO result = (AccountInformationResponseDTO) api.callGetMethod(fullUrl,
 				AccountInformationResponseDTO.class);
 		return result;
 	}
@@ -179,20 +127,15 @@ public class SyncApi {
 		String envelope = "URL";
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
-		int holeCount = 0;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
 		filledUri = filledUri.replace("{clientaccount}", clientaccount);
-		holeCount++;
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		Map<String, String> params = new HashMap<String, String>();
-		// build up the rest of the parameters
-		// end building the rest of the parameters
 		// return type result type get/post url params return type.class
-		String result = (String) api.callGetMethod(fullUrl, params, String.class);
+		String result = (String) api.callGetMethod(fullUrl, String.class);
 		return result;
 	}
 
@@ -212,19 +155,15 @@ public class SyncApi {
 		String envelope = "JSON";
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
-		int holeCount = 0;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		Map<String, String> params = new HashMap<String, String>();
-		// build up the rest of the parameters
-		// end building the rest of the parameters
 		// return type result type get/post url params return type.class
 		// TODO, how do I know that this takes a LogOnRequestDTO?
-		CreateSessionResponseDTO result = (CreateSessionResponseDTO) api.callPostMethod(fullUrl, params, null,
+		CreateSessionResponseDTO result = (CreateSessionResponseDTO) api.callPostMethod(fullUrl, null,
 				CreateSessionResponseDTO.class);
 		return result;
 	}
@@ -245,23 +184,17 @@ public class SyncApi {
 		String envelope = "JSON";
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
-		int holeCount = 0;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
 		filledUri = filledUri.replace("{userName}", userName);
-		holeCount++;
 		filledUri = filledUri.replace("{session}", session);
-		holeCount++;
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		Map<String, String> params = new HashMap<String, String>();
-		// build up the rest of the parameters
-		// end building the rest of the parameters
 		// return type result type get/post url params return type.class
 		// TODO, how do I know that this takes an empty object `{}`?
-		SessionDeletionResponseDTO result = (SessionDeletionResponseDTO) api.callPostMethod(fullUrl, params, null,
+		SessionDeletionResponseDTO result = (SessionDeletionResponseDTO) api.callPostMethod(fullUrl, null,
 				SessionDeletionResponseDTO.class);
 		return result;
 	}
@@ -283,47 +216,353 @@ public class SyncApi {
 		String envelope = "URL";
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
-		int holeCount = 0;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		filledUri = filledUri.replace("{userName}", userName);
-		holeCount++;
-		filledUri = filledUri.replace("{session}", session);
-		holeCount++;
+		filledUri = filledUri.replace("{searchByMarketName}", searchByMarketName + "");
+		filledUri = filledUri.replace("{searchByMarketCode}", searchByMarketCode + "");
+		filledUri = filledUri.replace("{clientAccountId}", clientAccountId + "");
+		filledUri = filledUri.replace("{maxResults}", maxResults + "");
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		Map<String, String> params = new HashMap<String, String>();
-		// build up the rest of the parameters
-		// end building the rest of the parameters
 		// return type result type get/post url params return type.class
-		// TODO, how do I know that this takes an empty object `{}`?
-		ListCfdMarketsResponseDTO result = (ListCfdMarketsResponseDTO) api.callPostMethod(fullUrl, params, null,
+		ListCfdMarketsResponseDTO result = (ListCfdMarketsResponseDTO) api.callGetMethod(fullUrl,
 				ListCfdMarketsResponseDTO.class);
 		return result;
 	}
 
 	/**
-	 * Helper method for taking a list of strings and turning it into a Map
 	 * 
-	 * @param args
-	 *            a list of pairs of parameters
-	 * @return a map containing an 'UnZipped' version of the list.
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
 	 */
-	private static Map<String, String> createParamMap(Object... args) {
-		if (args == null) {
-			// I prefer to allow null when a sane default exists.
-			// the rest of the json api code handles a null map well
-			return null;
-		}
-		if (args.length % 2 != 0)
-			throw new IllegalArgumentException("Arguments must be even");
-		Map<String, String> ret = new HashMap<String, String>();
-		// Grab items 2 at a time and place them in the map.
-		for (int i = 0; i < args.length; i += 2) {
-			ret.put(args[i].toString(), args[i + 1].toString());
-		}
-		return ret;
+	public MarketInformationResponseDTO GetMarketInformation(String marketId) throws ApiException {
+		// Collect variables from method
+		String target = "market";
+		String uriTemplate = "/{marketId}/information";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		filledUri = filledUri.replace("{marketId}", marketId + "");
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		// return type result type get/post url params return type.class
+		MarketInformationResponseDTO result = (MarketInformationResponseDTO) api.callGetMethod(fullUrl,
+				MarketInformationResponseDTO.class);
+		return result;
+	}
+
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public GetNewsDetailResponseDTO GetNewsDetail(String storyId) throws ApiException {
+		// Collect variables from method
+		String target = "news";
+		String uriTemplate = "/{storyId}";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		filledUri = filledUri.replace("{storyId}", storyId + "");
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		// return type result type get/post url params return type.class
+		GetNewsDetailResponseDTO result = (GetNewsDetailResponseDTO) api.callGetMethod(fullUrl,
+				GetNewsDetailResponseDTO.class);
+		return result;
+	}
+
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public ListNewsHeadlinesResponseDTO ListNewsHeadlines(String category, int maxResults) throws ApiException {
+		// Collect variables from method
+		String target = "news";
+		String uriTemplate = "?Category={category}&MaxResults={maxResults}";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		filledUri = filledUri.replace("{category}", category + "");
+		filledUri = filledUri.replace("{maxResults}", maxResults + "");
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		// return type result type get/post url params return type.class
+		ListNewsHeadlinesResponseDTO result = (ListNewsHeadlinesResponseDTO) api.callGetMethod(fullUrl,
+				ListNewsHeadlinesResponseDTO.class);
+		return result;
+	}
+
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public GetPriceBarResponseDTO GetPriceBars(String marketId, String interval, int span, String priceBars)
+			throws ApiException {
+		// Collect variables from method
+		String target = "market";
+		String uriTemplate = "/{marketId}/barhistory?interval={interval}&span={span}&pricebars={priceBars}";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		filledUri = filledUri.replace("{marketId}", marketId + "");
+		filledUri = filledUri.replace("{interval}", interval + "");
+		filledUri = filledUri.replace("{span}", span + "");
+		filledUri = filledUri.replace("{priceBars}", priceBars + "");
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		// return type result type get/post url params return type.class
+		GetPriceBarResponseDTO result = (GetPriceBarResponseDTO) api.callGetMethod(fullUrl,
+				GetPriceBarResponseDTO.class);
+		return result;
+	}
+
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public GetPriceTickResponseDTO GetPriceTicks(String marketId, String priceTicks) throws ApiException {
+		// Collect variables from method
+		String target = "market";
+		String uriTemplate = "/{marketId}/tickhistory?priceticks={priceTicks}";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		filledUri = filledUri.replace("{marketId}", marketId + "");
+		filledUri = filledUri.replace("{priceTicks}", priceTicks + "");
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		// return type result type get/post url params return type.class
+		GetPriceTickResponseDTO result = (GetPriceTickResponseDTO) api.callGetMethod(fullUrl,
+				GetPriceTickResponseDTO.class);
+		return result;
+	}
+
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public ListSpreadMarketsResponseDTO ListSpreadMarkets(String searchByMarketName, String searchByMarketCode,
+			int clientAccountId, int maxResults) throws ApiException {
+		// Collect variables from method
+		String target = "spread/markets";
+		String uriTemplate = "?MarketName={searchByMarketName}&MarketCode={searchByMarketCode}&ClientAccountId={clientAccountId}&MaxResults={maxResults}";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		filledUri = filledUri.replace("{searchByMarketName}", searchByMarketName + "");
+		filledUri = filledUri.replace("{searchByMarketCode}", searchByMarketCode + "");
+		filledUri = filledUri.replace("{clientAccountId}", clientAccountId + "");
+		filledUri = filledUri.replace("{maxResults}", maxResults + "");
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		// return type result type get/post url params return type.class
+		ListSpreadMarketsResponseDTO result = (ListSpreadMarketsResponseDTO) api.callGetMethod(fullUrl,
+				ListSpreadMarketsResponseDTO.class);
+		return result;
+	}
+
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public ApiTradeOrderResponseDTO CancelOrder(int OrderId) throws ApiException {
+		// Collect variables from method
+		String target = "order";
+		String uriTemplate = "/cancel";
+		String transport = "POST";
+		String envelope = "JSON";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		filledUri = filledUri.replace("{OrderId}", OrderId + "");
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		// TODO, how am I suposed to know I need to pass in a cancel order
+		// request?
+		// return type result type get/post url params return type.class
+		ApiTradeOrderResponseDTO result = (ApiTradeOrderResponseDTO) api.callPostMethod(fullUrl, null,
+				ApiTradeOrderResponseDTO.class);
+		return result;
+	}
+
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public ListActiveStopLimitOrderResponseDTO ListActiveStopLimitOrders(int tradingAccountId) throws ApiException {
+		// Collect variables from method
+		String target = "order";
+		String uriTemplate = "/order/activestoplimitorders?TradingAccountId={tradingAccountId}";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		// return type result type get/post url params return type.class
+		ListActiveStopLimitOrderResponseDTO result = (ListActiveStopLimitOrderResponseDTO) api.callGetMethod(fullUrl,
+				ListActiveStopLimitOrderResponseDTO.class);
+		return result;
+	}
+
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public ListOpenPositionsResponseDTO ListOpenPositions(int tradingAccountId) throws ApiException {
+		// Collect variables from method
+		String target = "order";
+		String uriTemplate = "/order/openpositions?TradingAccountId={tradingAccountId}";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		// return type result type get/post url params return type.class
+		ListOpenPositionsResponseDTO result = (ListOpenPositionsResponseDTO) api.callGetMethod(fullUrl,
+				ListOpenPositionsResponseDTO.class);
+		return result;
+	}
+
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public ListOrdersResponseDTO ListOrders(int tradingAccountId, boolean openOrders, boolean acceptedOrders)
+			throws ApiException {
+		// Collect variables from method
+		String target = "order";
+		String uriTemplate = "/orders?TradingAccountId={tradingAccountId}&OpenOrders={openOrders}&AcceptedOrders={acceptedOrders}";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
+		filledUri = filledUri.replace("{openOrders}", openOrders + "");
+		filledUri = filledUri.replace("{acceptedOrders}", acceptedOrders + "");
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		// return type result type get/post url params return type.class
+		ListOrdersResponseDTO result = (ListOrdersResponseDTO) api.callGetMethod(fullUrl, ListOrdersResponseDTO.class);
+		return result;
+	}
+
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public ListStopLimitOrderHistoryResponseDTO ListOrders(int tradingAccountId, int maxResults) throws ApiException {
+		// Collect variables from method
+		String target = "order";
+		String uriTemplate = "/order/stoplimitorderhistory?TradingAccountId={tradingAccountId}&MaxResults={maxResults}";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
+		filledUri = filledUri.replace("{maxResults}", maxResults + "");
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		// return type result type get/post url params return type.class
+		ListStopLimitOrderHistoryResponseDTO result = (ListStopLimitOrderHistoryResponseDTO) api.callGetMethod(fullUrl,
+				ListStopLimitOrderHistoryResponseDTO.class);
+		return result;
 	}
 }

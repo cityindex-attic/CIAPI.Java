@@ -66,12 +66,16 @@ public class JsonApi {
 	 *            the type this method should return.
 	 * @return an object of type returnType
 	 * @throws ApiException
-	 * @throws MalformedURLException
 	 */
-	public Object callGetMethod(String fullUrl, Class<?> returnType) throws ApiException, MalformedURLException {
+	public Object callGetMethod(String fullUrl, Class<?> returnType) throws ApiException {
 		if (returnType == null)
 			throw new NullPointerException("Return type must not be null");
-		String url = UrlHelper.parseUrl(baseUrl + fullUrl).toUrl();
+		String url;
+		try {
+			url = UrlHelper.parseUrl(baseUrl + fullUrl).toUrl();
+		} catch (MalformedURLException e) {
+			throw new ApiException(e);
+		}
 		Object result = client.makeGetRequest(url, returnType);
 		return result;
 	}
@@ -111,13 +115,16 @@ public class JsonApi {
 	 *            the type this method should return
 	 * @return an object of type returnType
 	 * @throws ApiException
-	 * @throws MalformedURLException
 	 */
-	public Object callPostMethod(String fullUrl, Object inputData, Class<?> returnType) throws ApiException,
-			MalformedURLException {
+	public Object callPostMethod(String fullUrl, Object inputData, Class<?> returnType) throws ApiException {
 		if (returnType == null)
 			throw new NullPointerException("Return type must not be null");
-		String url = UrlHelper.parseUrl(baseUrl + fullUrl).toUrl();
+		String url;
+		try {
+			url = UrlHelper.parseUrl(baseUrl + fullUrl).toUrl();
+		} catch (MalformedURLException e) {
+			throw new ApiException(e);
+		}
 		return client.makePostRequest(url, inputData, returnType);
 	}
 }

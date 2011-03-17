@@ -2,6 +2,7 @@ package codegen.CIAPI;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
@@ -17,8 +18,8 @@ public class CIAPICodeGen {
 
 	private SchemaReader desc;
 
-	public CIAPICodeGen() {
-		desc = new SchemaReader(schemaLocation, smdLocation);
+	public CIAPICodeGen() throws MalformedURLException, IOException {
+		desc = new SchemaReader(new URL(schemaLocation).openStream(), new URL(smdLocation).openStream());
 	}
 
 	public void createLibrary() throws JsonIOException, JsonSyntaxException, MalformedURLException, IOException {
