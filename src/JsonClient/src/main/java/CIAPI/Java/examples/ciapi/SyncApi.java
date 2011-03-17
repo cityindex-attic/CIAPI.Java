@@ -15,6 +15,7 @@ import CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.MarketInformationResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO;
 
@@ -563,6 +564,98 @@ public class SyncApi {
 		// return type result type get/post url params return type.class
 		ListStopLimitOrderHistoryResponseDTO result = (ListStopLimitOrderHistoryResponseDTO) api.callGetMethod(fullUrl,
 				ListStopLimitOrderHistoryResponseDTO.class);
+		return result;
+	}
+
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public ListTradeHistoryResponseDTO ListTradeHistory(int tradingAccountId, int maxResults) throws ApiException {
+		// Collect variables from method
+		String target = "order";
+		String uriTemplate = "/order/tradehistory?TradingAccountId={tradingAccountId}&MaxResults={maxResults}";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
+		filledUri = filledUri.replace("{maxResults}", maxResults + "");
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		// return type result type get/post url params return type.class
+		ListTradeHistoryResponseDTO result = (ListTradeHistoryResponseDTO) api.callGetMethod(fullUrl,
+				ListTradeHistoryResponseDTO.class);
+		return result;
+	}
+
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public ApiTradeOrderResponseDTO Order(int MarketId, String Direction, double Quantity, double BidPrice,
+			double OfferPrice, String AuditId, int TradingAccountId, String Applicability, String ExpiryDateTimeUTC)
+			throws ApiException {
+		// Collect variables from method
+		String target = "order";
+		String uriTemplate = "/order";
+		String transport = "POST";
+		String envelope = "JSON";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		// return type result type get/post url params return type.class
+		
+		ApiTradeOrderResponseDTO result = (ApiTradeOrderResponseDTO) api.callPostMethod(fullUrl, null,
+				ApiTradeOrderResponseDTO.class);
+		return result;
+	}
+	
+	/**
+	 * 
+	 * // auto generate these from param list
+	 * 
+	 * @param id
+	 *            // params // Auto generate from return type
+	 * @return // return
+	 */
+	public ApiTradeOrderResponseDTO Trade(int MarketId, String Direction, double Quantity, double BidPrice,
+			double OfferPrice, String AuditId, int TradingAccountId)
+			throws ApiException {
+		// Collect variables from method
+		String target = "order";
+		String uriTemplate = "/trade";
+		String transport = "POST";
+		String envelope = "JSON";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		// return type result type get/post url params return type.class
+		
+		ApiTradeOrderResponseDTO result = (ApiTradeOrderResponseDTO) api.callPostMethod(fullUrl, null,
+				ApiTradeOrderResponseDTO.class);
 		return result;
 	}
 }
