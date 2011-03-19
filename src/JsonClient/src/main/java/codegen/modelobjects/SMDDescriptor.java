@@ -53,14 +53,6 @@ public class SMDDescriptor {
 	}
 
 	public String toCode(String packageName) throws FileNotFoundException {
-		String packageDescriptor = "package " + packageName + ";\n\n";
-		String classDescriptor = "public class ServiceMethods {\n";
-		StringBuilder methodBuilder = new StringBuilder();
-		for (Entry<String, Service> entry : services.entrySet()) {
-			methodBuilder.append(new MethodCreator(entry.getValue()).toCode(entry.getKey(), packageName));
-		}
-		String methods = methodBuilder.toString();
-		String classEnd = "}\n";
-		return packageDescriptor + classDescriptor + methods + classEnd;
+		return new MethodCreator(this, packageName).toCode();
 	}
 }

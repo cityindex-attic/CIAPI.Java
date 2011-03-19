@@ -51,21 +51,6 @@ public class DTOCreator {
 			propTemplate.putNewTemplateDefinition("propertyType", p.getValue().getType(packageName));
 			propertyList.addMappingSet(propTemplate);
 		}
-		CompoundCodeTemplate constructorParams = (CompoundCodeTemplate) template.getTemplateEntry("constructorParams");
-		CodeTemplate emptyPropTemplate2 = constructorParams.getEmptyTemplate();
-		for (Entry<String, Property> p : dto.getProperties().entrySet()) {
-			CodeTemplate propTemplate = emptyPropTemplate2.copyEmptyTemplate();
-			propTemplate.putNewTemplateDefinition("propertyName", p.getKey());
-			propTemplate.putNewTemplateDefinition("propertyType", p.getValue().getType(packageName));
-			constructorParams.addMappingSet(propTemplate);
-		}
-		CompoundCodeTemplate constructorBody = (CompoundCodeTemplate) template.getTemplateEntry("constructorBody");
-		CodeTemplate emptyPropTemplate3 = constructorBody.getEmptyTemplate();
-		for (Entry<String, Property> p : dto.getProperties().entrySet()) {
-			CodeTemplate propTemplate = emptyPropTemplate3.copyEmptyTemplate();
-			propTemplate.putNewTemplateDefinition("propertyName", p.getKey());
-			constructorBody.addMappingSet(propTemplate);
-		}
 		return template.codeReplacement();
 	}
 

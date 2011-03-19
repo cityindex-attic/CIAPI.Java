@@ -201,13 +201,14 @@ public class CodeTemplate implements TemplateEntry {
 	 * 
 	 * @return an empty copy of this object.
 	 */
+	@Override
 	public CodeTemplate copyEmptyTemplate() {
 		CodeTemplate copy = new CodeTemplate();
 		copy.fullTemplateString = this.fullTemplateString;
 		copy.resultingTemplate = this.resultingTemplate;
 		copy.templateReplacement = new HashMap<String, TemplateEntry>();
 		for (String key : templateReplacement.keySet()) {
-			copy.templateReplacement.put(key, new EmptyCodeTemplate());
+			copy.templateReplacement.put(key, templateReplacement.get(key).copyEmptyTemplate());
 		}
 		return copy;
 	}

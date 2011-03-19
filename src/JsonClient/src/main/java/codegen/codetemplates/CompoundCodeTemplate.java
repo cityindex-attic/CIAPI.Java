@@ -65,4 +65,16 @@ public class CompoundCodeTemplate implements TemplateEntry {
 		}
 		return bldr.toString();
 	}
+
+	private CompoundCodeTemplate() {
+
+	}
+
+	@Override
+	public TemplateEntry copyEmptyTemplate() {
+		CompoundCodeTemplate copy = new CompoundCodeTemplate();
+		copy.templateReplacements = new ArrayList<CodeTemplate>();
+		copy.templatePattern = this.templatePattern.copyEmptyTemplate();
+		return copy;
+	}
 }

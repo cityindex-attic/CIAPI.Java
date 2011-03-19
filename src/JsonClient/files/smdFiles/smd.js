@@ -1,4 +1,4 @@
-﻿{
+{
     "SMDVersion": "2.6",
     "version": "1",
     "id": "http://ciapipreprod.cityindextest9.co.uk/TradingApi/smd.js?includeDemoValue=true",

@@ -12,4 +12,6 @@ public interface TemplateEntry {
 	 * @return the code version of this element
 	 */
 	public String codeReplacement();
+	
+	public TemplateEntry copyEmptyTemplate();
 }

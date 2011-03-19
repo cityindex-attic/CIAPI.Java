@@ -2,6 +2,8 @@ package <@packageName@>;
 
 public class ServiceMethods {
 
+	private JsonApi api = new JsonApi("someBaseUrl", null);
+
 	<@@methods@@>
 	/**
 	 * !This is an auto generated method!

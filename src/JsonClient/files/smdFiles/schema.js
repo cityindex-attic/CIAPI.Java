@@ -1,4 +1,4 @@
-﻿{
+{
     "GatewayOrderDTO": {
         "id": "GatewayOrderDTO",
         "type": "object",

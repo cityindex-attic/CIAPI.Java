@@ -9,7 +9,11 @@ package codegen.codetemplates;
 public class EmptyCodeTemplate implements TemplateEntry {
 	@Override
 	public String codeReplacement() {
-		return "EMPTIZZLE!!!";
-		//throw new IllegalStateException("This code template was not correctly replaced.");
+		throw new IllegalStateException("This code template was not correctly replaced.");
+	}
+
+	@Override
+	public EmptyCodeTemplate copyEmptyTemplate() {
+		return this;
 	}
 }

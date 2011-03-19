@@ -50,11 +50,11 @@ public class SchemaReader {
 		gb.registerTypeAdapter(Parameter.class, Parameter.getDeSerializer());
 		Gson g = gb.create();
 		JsonParser parser = new JsonParser();
+		smd = g.fromJson(new InputStreamReader(smdStream), SMDDescriptor.class);
 		JsonObject obj = (JsonObject) parser.parse(new InputStreamReader(schemaStream));
 		for (Entry<String, JsonElement> entry : obj.entrySet()) {
 			dtos.put(entry.getKey(), g.fromJson(entry.getValue(), DTO.class));
 		}
-		smd = g.fromJson(new InputStreamReader(smdStream), SMDDescriptor.class);
 	}
 
 	/**
@@ -86,13 +86,15 @@ public class SchemaReader {
 	 */
 	public void createPackage(String packageName, String saveLocation) throws JsonIOException, JsonSyntaxException,
 			MalformedURLException, IOException {
+		{
+			PrintStream out = new PrintStream(new File(saveLocation + File.separatorChar + "ServiceMethods" + ".java"));
+			out.println(getServices().toCode(packageName));
+			out.close();
+		}
 		for (Entry<String, DTO> entry : getAllModelItems().entrySet()) {
 			PrintStream out = new PrintStream(new File(saveLocation + File.separatorChar + entry.getKey() + ".java"));
 			out.println(new DTOCreator(entry.getKey(), entry.getValue(), packageName).toCode());
 			out.close();
 		}
-		PrintStream out = new PrintStream(new File(saveLocation + File.separatorChar + "ServiceMethods" + ".java"));
-		out.println(getServices().toCode(packageName));
-		out.close();
 	}
 }

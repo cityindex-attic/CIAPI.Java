@@ -27,4 +27,9 @@ public class SimpleTemplateEntry implements TemplateEntry {
 	public String codeReplacement() {
 		return replacement;
 	}
+
+	@Override
+	public EmptyCodeTemplate copyEmptyTemplate() {
+		return new EmptyCodeTemplate();
+	}
 }
