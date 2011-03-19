@@ -13,16 +13,6 @@ public class <@name@> {
 	public <@name@>() {
 	}
 
-	/* Commented out for now because I'm not sure how do deal with the trailing comma. (Otherwise it works)
-
-	public <@name@>(<@@constructorParams@@><@propertyType@> <@propertyName@>,<@@@@>) {
-		<@@constructorBody@@>
-			this.<@propertyName@> = <@propertyName@>;
-		<@@@@>
-	}
-	
-	*/
-
 	<@@properties@@>
 	private <@propertyType@> <@propertyName@>;
 	

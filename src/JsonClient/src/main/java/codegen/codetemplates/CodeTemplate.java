@@ -16,9 +16,9 @@ import java.util.regex.Pattern;
  * @author Justin Nelson
  */
 public class CodeTemplate implements TemplateEntry {
-	private String simplePatternS = "<@([^@]*)@>";
-	private String compoundPatternStartS = "<@@([^@]*)@@>";
-	private String compoundPatternEndS = "<@@@@>";
+	private static String simplePatternS = "<@([^@]*)@>";
+	private static String compoundPatternStartS = "<@@([^@]*)@@>";
+	private static String compoundPatternEndS = "<@@@@>";
 	private Map<String, TemplateEntry> templateReplacement;
 	private String templateString;
 
@@ -30,15 +30,28 @@ public class CodeTemplate implements TemplateEntry {
 	public CodeTemplate(String template) {
 		templateReplacement = new HashMap<String, TemplateEntry>();
 		templateString = template;
-		String compoundPatternS = compoundPatternStartS + "(.)*?" + compoundPatternEndS;
-		Pattern compoundPattern = Pattern.compile(compoundPatternS, Pattern.DOTALL);
-		Matcher compoundMatcher = compoundPattern.matcher(templateString);
-		while (compoundMatcher.find()) {
-			String matchedTerm = compoundMatcher.group(1);
-			String matchedTemplate = compoundMatcher.group(0);
-			templateReplacement.put(matchedTerm, new CompoundCodeTemplate(matchedTemplate));
-			templateString = compoundMatcher.replaceFirst("<@" + matchedTerm + "@>");
-			compoundMatcher = compoundPattern.matcher(templateString);
+		Pattern compoundPattern = Pattern.compile(compoundPatternStartS, Pattern.DOTALL);
+		// While there are still compound patterns
+		while (template.contains(compoundPatternEndS)) {
+			String nextTagString = findNextTagString(template, 0);
+			// find the beginning of the compound template
+			int compoundStart = template.indexOf(nextTagString) + nextTagString.length();
+			// find the end of the template
+			int compoundEnd = findMatchingPatternClose(template, compoundStart);
+			// the compound template is the string starting at the open tag, and
+			// going to the close tag
+			String matchedTemplate = template.substring(compoundStart, compoundEnd);
+			// Use this to find the name of the parameter in the compound tag
+			Matcher compoundMatcher = compoundPattern.matcher(matchedTemplate);
+			String matchedTerm;
+			if (compoundMatcher.find()) {
+				matchedTerm = compoundMatcher.group(1);
+			} else {
+				throw new IllegalArgumentException("I think the template was bad:" + matchedTemplate);
+			}
+			String compountPropName = nextTagString.substring(3, nextTagString.length()-3);
+			templateReplacement.put(compountPropName, new CompoundCodeTemplate(matchedTemplate));
+			template = template.replace(matchedTemplate, "<@" + matchedTerm + "@>");
 		}
 		Pattern simplePattern = Pattern.compile(simplePatternS);
 		Matcher m = simplePattern.matcher(templateString);
@@ -47,6 +60,81 @@ public class CodeTemplate implements TemplateEntry {
 			if (!templateReplacement.containsKey(matchedTerm)) {
 				templateReplacement.put(matchedTerm, new EmptyCodeTemplate());
 			}
+		}
+	}
+
+	/**
+	 * From the template, find the next compound tag.
+	 * 
+	 * @param template
+	 *            the template string
+	 * @return
+	 */
+	private static String findNextTagString(String template, int patternStart) {
+		Pattern compoundOpen = Pattern.compile(compoundPatternStartS);
+		Matcher m = compoundOpen.matcher(template);
+		if (!m.find(patternStart)) {
+			// there was no matching pattern
+			return null;
+		} else {
+			if (!m.group().equals(compoundPatternEndS)) {
+				return m.group(0);
+			} else {
+				return null;
+			}
+		}
+	}
+
+	/*
+	Here is the problem before I go to bed:
+		Line 37, the index of the regex is -1 duh.  It is doing a literal indexof...need to use regexs.
+	*/
+	/**
+	 * Parses a string to find matching tag pairs
+	 * 
+	 * @param template
+	 *            the template to match
+	 * @param patternOpenLocation
+	 *            the place in the string the compound pattern begins
+	 * @return the location of the tag that closes the compound pattern
+	 */
+	private static int findMatchingPatternClose(String template, int patternOpenLocation) {
+		// Start looking right after the start index
+		int currentIndex = patternOpenLocation + 1;
+		// keep track of how deep the nesting goes
+		int depthCount = 0;
+		while (true) {
+			String nextOpenTag = findNextTagString(template, patternOpenLocation);
+			// find the next index of an open tag
+			int nextOpenIdx = nextOpenTag == null ? -1 : template.indexOf(nextOpenTag, currentIndex)
+					+ nextOpenTag.length();
+			// find the next index of a closing tag
+			int nextCloseIdx = template.indexOf(compoundPatternEndS, currentIndex) + compoundPatternEndS.length();
+			// if we find a close tag before an open tag
+			if (nextCloseIdx == -1 || nextOpenIdx == -1) {
+				//throw new IllegalArgumentException("I think there were unmatched pairs in your template.");
+			}
+			if (nextCloseIdx > nextOpenIdx) {
+				// if we are a 0 depth
+				if (depthCount == 0) {
+					// then we have found our match
+					return nextCloseIdx;
+				} else {
+					// otherwise, we have gone up a depth, and will start
+					// looking after that tag
+					depthCount--;
+					currentIndex = nextCloseIdx + 1;
+				}
+			} else {
+				// we have found an open tag before a close tag, so we go one
+				// deeper, and begin looking at that point
+				depthCount++;
+				currentIndex = nextOpenIdx + 1;
+			}
+			// if at any point the depth has gone negative, there is a serious
+			// error
+			if (depthCount < 0)
+				throw new AssertionError("The code is broken, or the template is.  Check both.");
 		}
 	}
 
@@ -66,6 +154,13 @@ public class CodeTemplate implements TemplateEntry {
 		return oldEntry;
 	}
 
+	/**
+	 * Convenience method for binding a simple template entry to a key.
+	 * 
+	 * @param templateKey
+	 * @param entry
+	 * @return an entry that was previously bound to the given key.
+	 */
 	public TemplateEntry putNewTemplateDefinition(String templateKey, String entry) {
 		if (entry == null) {
 			entry = "";
