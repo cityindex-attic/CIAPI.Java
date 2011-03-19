@@ -20,7 +20,8 @@ public class CodeTemplate implements TemplateEntry {
 	private static String compoundPatternStartS = "<@@([^@]*)@@>";
 	private static String compoundPatternEndS = "<@@@@>";
 	private Map<String, TemplateEntry> templateReplacement;
-	private String templateString;
+	private String fullTemplateString;
+	private String resultingTemplate;
 
 	/**
 	 * Creates a new template from the given location.
@@ -29,8 +30,7 @@ public class CodeTemplate implements TemplateEntry {
 	 */
 	public CodeTemplate(String template) {
 		templateReplacement = new HashMap<String, TemplateEntry>();
-		templateString = template;
-		Pattern compoundPattern = Pattern.compile(compoundPatternStartS, Pattern.DOTALL);
+		fullTemplateString = template;
 		// While there are still compound patterns
 		while (template.contains(compoundPatternEndS)) {
 			String nextTagString = findNextTagString(template, 0);
@@ -42,25 +42,20 @@ public class CodeTemplate implements TemplateEntry {
 			// going to the close tag
 			String matchedTemplate = template.substring(compoundStart, compoundEnd);
 			// Use this to find the name of the parameter in the compound tag
-			Matcher compoundMatcher = compoundPattern.matcher(matchedTemplate);
-			String matchedTerm;
-			if (compoundMatcher.find()) {
-				matchedTerm = compoundMatcher.group(1);
-			} else {
-				throw new IllegalArgumentException("I think the template was bad:" + matchedTemplate);
-			}
-			String compountPropName = nextTagString.substring(3, nextTagString.length()-3);
+			String compountPropName = nextTagString.substring(3, nextTagString.length() - 3);
 			templateReplacement.put(compountPropName, new CompoundCodeTemplate(matchedTemplate));
-			template = template.replace(matchedTemplate, "<@" + matchedTerm + "@>");
+			template = template.replace(nextTagString + matchedTemplate + compoundPatternEndS, "<@" + compountPropName
+					+ "@>");
 		}
 		Pattern simplePattern = Pattern.compile(simplePatternS);
-		Matcher m = simplePattern.matcher(templateString);
+		Matcher m = simplePattern.matcher(template);
 		while (m.find()) {
 			String matchedTerm = m.group(1);
 			if (!templateReplacement.containsKey(matchedTerm)) {
 				templateReplacement.put(matchedTerm, new EmptyCodeTemplate());
 			}
 		}
+		resultingTemplate = template;
 	}
 
 	/**
@@ -85,10 +80,6 @@ public class CodeTemplate implements TemplateEntry {
 		}
 	}
 
-	/*
-	Here is the problem before I go to bed:
-		Line 37, the index of the regex is -1 duh.  It is doing a literal indexof...need to use regexs.
-	*/
 	/**
 	 * Parses a string to find matching tag pairs
 	 * 
@@ -104,17 +95,14 @@ public class CodeTemplate implements TemplateEntry {
 		// keep track of how deep the nesting goes
 		int depthCount = 0;
 		while (true) {
-			String nextOpenTag = findNextTagString(template, patternOpenLocation);
+			String nextOpenTag = findNextTagString(template, currentIndex);
 			// find the next index of an open tag
 			int nextOpenIdx = nextOpenTag == null ? -1 : template.indexOf(nextOpenTag, currentIndex)
 					+ nextOpenTag.length();
 			// find the next index of a closing tag
-			int nextCloseIdx = template.indexOf(compoundPatternEndS, currentIndex) + compoundPatternEndS.length();
+			int nextCloseIdx = template.indexOf(compoundPatternEndS, currentIndex);
 			// if we find a close tag before an open tag
-			if (nextCloseIdx == -1 || nextOpenIdx == -1) {
-				//throw new IllegalArgumentException("I think there were unmatched pairs in your template.");
-			}
-			if (nextCloseIdx > nextOpenIdx) {
+			if (nextOpenIdx == -1 || nextCloseIdx < nextOpenIdx) {
 				// if we are a 0 depth
 				if (depthCount == 0) {
 					// then we have found our match
@@ -195,7 +183,7 @@ public class CodeTemplate implements TemplateEntry {
 
 	@Override
 	public String codeReplacement() {
-		String code = templateString;
+		String code = resultingTemplate;
 		for (Entry<String, TemplateEntry> entry : templateReplacement.entrySet()) {
 			code = code.replaceAll("<@" + entry.getKey() + "@>", entry.getValue().codeReplacement());
 		}
@@ -215,7 +203,8 @@ public class CodeTemplate implements TemplateEntry {
 	 */
 	public CodeTemplate copyEmptyTemplate() {
 		CodeTemplate copy = new CodeTemplate();
-		copy.templateString = this.templateString;
+		copy.fullTemplateString = this.fullTemplateString;
+		copy.resultingTemplate = this.resultingTemplate;
 		copy.templateReplacement = new HashMap<String, TemplateEntry>();
 		for (String key : templateReplacement.keySet()) {
 			copy.templateReplacement.put(key, new EmptyCodeTemplate());

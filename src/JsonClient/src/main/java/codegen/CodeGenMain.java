@@ -1,6 +1,5 @@
 package codegen;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
@@ -29,7 +28,7 @@ public class CodeGenMain {
 	 */
 	public static void main(String[] args) throws JsonIOException, JsonSyntaxException, MalformedURLException,
 			IOException {
-		CodeTemplate tplate= CodeTemplate.loadTemplate("files/code_templates/DTOTemplate.jav");
+		CodeTemplate tplate= CodeTemplate.loadTemplate("files/code_templates/ServiceTemplate.jav");
 		System.out.println(tplate);
 		//SchemaReader rdr = new SchemaReader(new FileInputStream(schemaLocation), new FileInputStream(smdLocation));
 		//rdr.getAllModelItems();

@@ -34,12 +34,6 @@ public class CompoundCodeTemplate implements TemplateEntry {
 	 */
 	public CompoundCodeTemplate(String template) {
 		templateReplacements = new ArrayList<CodeTemplate>();
-		// the next two lines strip the compound pattern start and end from the
-		// code if they exist.
-		// this completely breaks if people try to nest compound templates. We
-		// don't support that. TODO, we need to.
-		template = template.replaceAll(compoundPatternStartS, "");
-		template = template.replaceAll(compoundPatternEndS, "");
 		templatePattern = new CodeTemplate(template);
 	}
 
