@@ -10,8 +10,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * <p>
  * Represents a Code Template. This can contain simple or complex template
  * entries.
+ * </p>
+ * <p>
+ * The general idea is, that once you have a code template, you are free to
+ * write whatever code you like ot fill those templates. You may have SMD/DTO
+ * objects, or you may have arbitrary other formats of data. You just need to be
+ * able to tell the template what data to put where.
+ * </p>
  * 
  * @author Justin Nelson
  */
@@ -24,7 +32,7 @@ public class CodeTemplate implements TemplateEntry {
 	private String resultingTemplate;
 
 	/**
-	 * Creates a new template from the given location.
+	 * Creates a new template from the given string.
 	 * 
 	 * @param template
 	 */
@@ -81,6 +89,13 @@ public class CodeTemplate implements TemplateEntry {
 	}
 
 	/**
+	 * This number represents the max depth we allow the following method to
+	 * traverse before we assume there is a bug in the code, or the Template
+	 * file was poorly structured.
+	 */
+	private static final int MAX_DEPTH_BEFORE_ERROR = 100000;
+
+	/**
 	 * Parses a string to find matching tag pairs
 	 * 
 	 * @param template
@@ -118,6 +133,13 @@ public class CodeTemplate implements TemplateEntry {
 				// deeper, and begin looking at that point
 				depthCount++;
 				currentIndex = nextOpenIdx + 1;
+				// Check to make sure we aren't stuck in the loop
+				if (depthCount > MAX_DEPTH_BEFORE_ERROR) {
+					throw new IllegalStateException(
+							"The template parser has encountered an error.  "
+									+ "Please make sure your template file is correctly built.  "
+									+ "If there is no error with hte template file, please file a bug with the developers of this API.");
+				}
 			}
 			// if at any point the depth has gone negative, there is a serious
 			// error

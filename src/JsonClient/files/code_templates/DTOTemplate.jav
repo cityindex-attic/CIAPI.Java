@@ -1,4 +1,4 @@
-package <@packageName@>;
+package <@packageName@>.dto;
 
 /**
  * !This is an auto generated model object!

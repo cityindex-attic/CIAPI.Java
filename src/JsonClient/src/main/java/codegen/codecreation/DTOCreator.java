@@ -32,9 +32,15 @@ public class DTOCreator {
 	public DTOCreator(String name, DTO dto, String packageName) {
 		this.dto = dto;
 		this.name = name;
-		this.packageName = packageName;
+		// we generate DTOs in the dto package
+		this.packageName = packageName + ".dto";
 	}
 
+	/**
+	 * 
+	 * @return
+	 * @throws FileNotFoundException
+	 */
 	public String toCode() throws FileNotFoundException {
 		if (dto.getEnum_() != null || dto.getOptions() != null) {
 			return enumToCode();
@@ -52,38 +58,6 @@ public class DTOCreator {
 			propertyList.addMappingSet(propTemplate);
 		}
 		return template.codeReplacement();
-	}
-
-	/**
-	 * Turns the dto into a code block.
-	 * 
-	 * This was the original method.
-	 * 
-	 * @return a code representation of the method.
-	 */
-	private String toCode2() {
-		// Enums are parsed differently
-		if (dto.getEnum_() != null || dto.getOptions() != null) {
-			return enumToCode();
-		}
-
-		// TODO fix the package modifiers on the types. Currently '#.'
-		String packageDeclaration = "package " + packageName + ";\n\n";
-		String javadocComment = String.format("/**\n" + " * %s\n" + " * \n" + " * {auto generated from JSON schema}\n"
-				+ " */\n", dto.getDescription());
-		String classDescriptor = String.format("public class %s {\n", dto.getId());
-		StringBuilder membersBuilder = new StringBuilder();
-		if (dto.getProperties() != null) {
-			for (Entry<String, Property> entry : dto.getProperties().entrySet()) {
-				membersBuilder.append(String.format("\tpublic %s %s;\n", entry.getValue().getType(packageName),
-						entry.getKey()));
-			}
-		} else {
-			System.out.println("");
-		}
-		String members = membersBuilder.toString();
-		String classEnd = "}";
-		return packageDeclaration + javadocComment + classDescriptor + members + classEnd;
 	}
 
 	private String enumToCode() {

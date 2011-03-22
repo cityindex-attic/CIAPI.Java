@@ -51,8 +51,4 @@ public class SMDDescriptor {
 	public Map<String, Service> getServices() {
 		return services;
 	}
-
-	public String toCode(String packageName) throws FileNotFoundException {
-		return new MethodCreator(this, packageName).toCode();
-	}
 }
