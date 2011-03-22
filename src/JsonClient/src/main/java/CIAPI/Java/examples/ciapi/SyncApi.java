@@ -23,6 +23,9 @@ import CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO;
  * API for connecting to the City Index Trading RESTful API. All requests are
  * made synchronously.
  * 
+ * The body of this class will eventually be auto-generated. Right now it just
+ * serves as an example of what we need the generated code to look like.
+ * 
  * @author Justin Nelson
  * 
  */
@@ -74,7 +77,7 @@ public class SyncApi {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		filledUri = uriTemplate.replace("{id}", id);
+		filledUri = filledUri.replace("{id}", id);
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -622,12 +625,12 @@ public class SyncApi {
 		String fullUrl = target + filledUri;
 		// done building final url
 		// return type result type get/post url params return type.class
-		
+
 		ApiTradeOrderResponseDTO result = (ApiTradeOrderResponseDTO) api.callPostMethod(fullUrl, null,
 				ApiTradeOrderResponseDTO.class);
 		return result;
 	}
-	
+
 	/**
 	 * 
 	 * // auto generate these from param list
@@ -637,8 +640,7 @@ public class SyncApi {
 	 * @return // return
 	 */
 	public ApiTradeOrderResponseDTO Trade(int MarketId, String Direction, double Quantity, double BidPrice,
-			double OfferPrice, String AuditId, int TradingAccountId)
-			throws ApiException {
+			double OfferPrice, String AuditId, int TradingAccountId) throws ApiException {
 		// Collect variables from method
 		String target = "order";
 		String uriTemplate = "/trade";
@@ -653,7 +655,7 @@ public class SyncApi {
 		String fullUrl = target + filledUri;
 		// done building final url
 		// return type result type get/post url params return type.class
-		
+
 		ApiTradeOrderResponseDTO result = (ApiTradeOrderResponseDTO) api.callPostMethod(fullUrl, null,
 				ApiTradeOrderResponseDTO.class);
 		return result;

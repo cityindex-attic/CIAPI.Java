@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import codegen.codetemplates.CodeTemplate;
 import codegen.codetemplates.CompoundCodeTemplate;
 import codegen.modelobjects.Parameter;
+import codegen.modelobjects.Property;
 import codegen.modelobjects.SMDDescriptor;
 import codegen.modelobjects.Service;
 
@@ -108,6 +109,15 @@ public class MethodCreator {
 				}
 				propTemplate.putNewTemplateDefinition("parameters",
 						paramString.substring(0, Math.max(paramString.length() - 2, 0)));
+			}
+			CompoundCodeTemplate fillParams = (CompoundCodeTemplate) propTemplate.getTemplateEntry("parameterDescriptions");
+			CodeTemplate emptyFillParamsTemplate = fillParams.getEmptyTemplate();
+			for (Parameter p : s.getParameters()) {
+				// Template responsible for replacing parameters in the URL
+				CodeTemplate fillTemplate = emptyFillParamsTemplate.copyEmptyTemplate();
+				fillTemplate.putNewTemplateDefinition("paramName", p.getName());
+				fillTemplate.putNewTemplateDefinition("paramDesc", p.getDescription());
+				fillParams.addMappingSet(fillTemplate);
 			}
 			methods.addMappingSet(propTemplate);
 		}
