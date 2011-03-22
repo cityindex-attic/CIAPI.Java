@@ -8,7 +8,6 @@ package CIAPI.Java.examples.ciapi.dto;
 public class SessionDeletionRequestDTO {
 
 	public SessionDeletionRequestDTO(String username, String password) {
-		// TODO Auto-generated constructor stub
 	}
 }
 
