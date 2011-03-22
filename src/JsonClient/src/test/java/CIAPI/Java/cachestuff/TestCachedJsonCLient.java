@@ -13,7 +13,7 @@ import CIAPI.Java.httpstuff.FakeSimpleHttpClient;
 
 public class TestCachedJsonCLient {
 
-	private long maxAge = 200;
+	private long maxAge = 2000;
 	private Cache<Pair<String, Class<?>>, Object> cache;
 	private CachedJsonClient client;
 

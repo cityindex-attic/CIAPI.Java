@@ -40,39 +40,21 @@ public class TestDefaultCache {
 
 	@Test
 	public void testGetSimple() {
-		cache.put("1", "1");
+		assertNull(cache.put("1", "1"));
 		assertEquals("1", cache.get("1"));
 		assertNull(cache.get("nonexistantkey"));
 	}
 
 	@Test
-	public void testExpireItem() {
-		cache.put("A", "A");
-		try {
-			// expire the cache
-			Thread.sleep(expireTime + 1);
-		} catch (InterruptedException e) {
-			fail();
-		}
-		assertNull(cache.get("A"));
-		assertEquals(0, cache.entryCount());
+	public void testSimpleExpireItem() {
 		assertNull(cache.put("1", "1"));
-		try {
-			Thread.sleep(expireTime / 2);
-		} catch (InterruptedException e) {
-			fail();
-		}
-		assertEquals(1, cache.entryCount());
-		assertNull(cache.put("2", "2"));
 		assertEquals("1", cache.get("1"));
 		try {
-			Thread.sleep(expireTime / 2 + 1);
+			Thread.sleep(expireTime);
 		} catch (InterruptedException e) {
 			fail();
 		}
 		assertNull(cache.get("1"));
-		assertEquals(1, cache.entryCount());
-		assertEquals("2", cache.get("2"));
 	}
 
 	@Test
@@ -107,15 +89,15 @@ public class TestDefaultCache {
 		cache.put("D", "D");
 		assertEquals(1, cache.entryCount());
 	}
-	
+
 	@Test(expected = NullPointerException.class)
-	public void testAddNullKey(){
+	public void testAddNullKey() {
 		cache.put("A", "A");
 		cache.put(null, "string");
 	}
-	
+
 	@Test(expected = NullPointerException.class)
-	public void testDeleteNullKey(){
+	public void testDeleteNullKey() {
 		cache.put("A", "A");
 		cache.delete(null);
 	}

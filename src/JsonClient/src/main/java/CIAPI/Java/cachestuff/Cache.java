@@ -24,7 +24,7 @@ public interface Cache<TKey, TValue> {
 	public TValue get(TKey key);
 
 	/**
-	 * Puts a new entry into the Cache
+	 * Puts a new entry into the Cache. Uses a default durration.
 	 * 
 	 * @param key
 	 *            the new key
@@ -33,6 +33,19 @@ public interface Cache<TKey, TValue> {
 	 * @return the value that was there before putting a new one. null if none.
 	 */
 	public TValue put(TKey key, TValue value);
+
+	/**
+	 * Puts a new entry into the cache
+	 * 
+	 * @param key
+	 *            the new key
+	 * @param value
+	 *            the new value
+	 * @param durration
+	 *            the length of time to keep this item in the cache.
+	 * @return the item previously bound to the key
+	 */
+	public TValue put(TKey key, TValue value, long durration);
 
 	/**
 	 * Gets the size of the cache
@@ -54,11 +67,4 @@ public interface Cache<TKey, TValue> {
 	 * Removes all old entries from the cache
 	 */
 	public void clean();
-
-	/**
-	 * Determines the max time an item can stay in the cache
-	 * 
-	 * @return a Period of time
-	 */
-	public Period maxAge();
 }

@@ -11,9 +11,10 @@ import CIAPI.Java.async.AsyncJsonApi;
 import CIAPI.Java.async.CallBack;
 import CIAPI.Java.cachestuff.CachedJsonClient;
 import CIAPI.Java.cachestuff.DefaultCache;
-import CIAPI.Java.examples.ciapi.dto.CILogOnOrOffRequest;
-import CIAPI.Java.examples.ciapi.dto.CreateSessionResponse;
-import CIAPI.Java.examples.ciapi.dto.DeleteSessionResponse;
+import CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.LogOnRequestDTO;
+import CIAPI.Java.examples.ciapi.dto.SessionDeletionRequestDTO;
+import CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO;
 import CIAPI.Java.logging.Log;
 import CIAPI.Java.throttle.RequestsPerTimespanTimer;
 import CIAPI.Java.throttle.ThrottledHttpClient;
@@ -79,7 +80,7 @@ public class AsyncApi {
 		call.addCallCompleteListener(new CallBack() {
 			@Override
 			public void doCallBack(Object result, String baseUrl, String methodName) {
-				CreateSessionResponse session = (CreateSessionResponse) result;
+				CreateSessionResponseDTO session = (CreateSessionResponseDTO) result;
 				sessionId = session.getSession();
 				ThrottledHttpClient client = new ThrottledHttpClient(new RequestsPerTimespanTimer(10, 1000),
 						new UsernameSessionHttpRequestItemFactory(username, sessionId));
@@ -89,7 +90,8 @@ public class AsyncApi {
 					api.addUniversalCallBack(cb);
 			}
 		});
-		return call.callPostMethod(null, new CILogOnOrOffRequest(username, password), CreateSessionResponse.class);
+
+		return call.callPostMethod(null, new LogOnRequestDTO(username, password), CreateSessionResponseDTO.class);
 	}
 
 	/**
@@ -105,11 +107,13 @@ public class AsyncApi {
 		call.addCallCompleteListener(new CallBack() {
 			@Override
 			public void doCallBack(Object result, String baseUrl, String methodName) {
-				DeleteSessionResponse resp = (DeleteSessionResponse) result;
-				if (resp == null) throw new NullPointerException();
+				SessionDeletionResponseDTO resp = (SessionDeletionResponseDTO) result;
+				if (resp == null)
+					throw new NullPointerException();
 				// Nothing to do here.
 			}
 		});
-		return call.callPostMethod(null, new CILogOnOrOffRequest(username, password), DeleteSessionResponse.class);
+		return call.callPostMethod(null, new SessionDeletionRequestDTO(username, password),
+				SessionDeletionResponseDTO.class);
 	}
 }
