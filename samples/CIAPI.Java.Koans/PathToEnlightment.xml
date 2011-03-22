@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Packages>
+	<Package pkg="beginner" name="Beginner">
+	<!--
+	TODO: AboutKoans...
+	-->
+	  <Suite class="AboutKoans">
+	  	<Koan name="findAboutKoansFile"
+	  		lesson="You need to change directory into the path of ${file_path} and open the file ${file_name}.java. There should be a method starting with @Koan called ${method_name}, look within it for your first lesson."
+	  		displayIncompleteKoanException="false" />
+	  	<Koan name="definitionOfKoanCompletion"
+	  		lesson="A koan is considered complete when it no longer throws an exception. Often there is more than one way to solve a koan, but only one correct way. This is often hinted at within the koan itself, or the comments appearing here."
+	  		displayIncompleteKoanException="false" />
+	  </Suite>
+	  <Suite class="AboutAssertions">
+	  	<Koan name="assertBooleanTrue"
+	  		lesson="The __ are an attempt to communicate the need to fill in an answer. Judging by context, what should __ be replaced with?"/>
+	  	<Koan name="assertBooleanFalse"
+	  		lesson="Like the prior koan. Ponder if you will, the power of simple assertions when verifying an object's behavior."/>
+		<!-- TODO introduce instantiation, constructors -->
+		<Koan name="assertNullObject"
+	  		lesson="A keyword in java to represent an unitialized reference is 'null'. There are times when something should be null, and this assertion can prove that."/>
+		<Koan name="assertNotNullObject"
+	  		lesson="Sometimes you merely wish to assert an object is not null. This assertion should be used sparingly, often a more specific assertion is appropriate."/>
+		<!-- TODO explain arguments (mention they've been used in prior koans, or maybe wedge that lesson earlier?) -->
+		<Koan name="assertEqualsWithDescriptiveMessage"
+	  		lesson="Like the prior assertions, only this one invokes equals method on the 2nd to last argument, in this case, 1. This will blow up if the last two arguments are not .equal(...)"/>
+		<!-- TODO finish explaining -->
+		<Koan name="assertSameInstance"
+	  		lesson="An object may equal another object, but it will never be the same as another object. Two references to the same object is not the same as two references to two equal objects."/>
+		<Koan name="assertNotSameInstance"
+	  		lesson="Notice the same instance has been reassigned. Both same and sameReference refer to the same Integer instance. If sameReference were a new Object() of any type [hint!] this would pass."/>
+		<!-- TODO assertThatUsingMatcher" -->
+	  </Suite>
+      <Suite class="AboutSession">
+        <Koan name="anApiConnection"
+	  		lesson="Interaction with the API is done via a top level 'client' object that holds details about your connection"
+                  displayIncompleteKoanException="true"/>
+	  	<Koan name="CreatingASession"
+	  		lesson="Nearly every API interaction requires a session.  You get a session using a set of credentials.  You can get test credentials by requesting them at http://ciapipreprod.cityindextest9.co.uk/CIAPI.docs/#content.test-credentials"
+                  displayIncompleteKoanException="true"/>
+	  </Suite>
+	</Package>
+</Packages>

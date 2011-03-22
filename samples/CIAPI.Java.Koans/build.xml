@@ -1,0 +1,66 @@
+<project name="CIAPI.Java.Koans" default="run-koans" basedir=".">
+
+    <description>
+    Set of koans to learn how to use CIAPI.Java in an interactive way
+    </description>
+
+    <!-- load environment variables as properties -->
+    <property environment="env"/>
+
+    <!-- default folder location properties -->
+    <property name="src.rel-dir" value="src"/>
+    <property name="tests.src.rel-dir" value="tests"/>
+    <property name="etc.rel-dir" value="etc"/>
+    <property name="build.rel-dir" value="build"/>
+
+    <!-- project classpath -->
+
+    <path id="project.classpath">
+        <!-- compiled classes -->
+        <pathelement location="${build.rel-dir}" />
+        <!-- libraries -->
+        <fileset dir="lib">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+
+    <!-- basic -->
+    <target name="init">
+        <mkdir dir="${build.rel-dir}"/>
+    </target>
+
+    <target name="clean"
+        description="Delete temporary folders">
+        <delete dir="${build.rel-dir}" failonerror="false" deleteonexit="true" />
+    </target>
+
+     <!-- compile -->
+
+    <property name="compile.debug" value="true" />
+    <property name="compile.debuglevel" value="lines,vars,source" />
+
+    <target name="compile" depends="init">
+    <!-- description="Compile source code" -->
+        <javac
+            srcdir="${src.rel-dir}"
+            destdir="${build.rel-dir}"
+            debug="${compile.debug}"
+            debuglevel="${compile.debuglevel}"
+            includeantruntime="false"
+        >
+            <compilerarg line="" /> <!-- "-Xlint:all", "-Xlint:all,-path", "-Xlint:all,-path,-unchecked" -->
+            <classpath refid="project.classpath" />
+        </javac>
+    </target>
+
+    <!-- build -->
+    <target name="run-koans" depends="clean,compile">
+        <java fork="true" classname="com.sandwich.koan.runner.KoanSuiteRunner">
+            <classpath>
+                <path refid="project.classpath"/>
+                <path location="${build.rel-dir}"/>
+            </classpath>
+        </java>
+    </target>
+
+</project>
