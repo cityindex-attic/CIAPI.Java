@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * A quote for a specific order request
  */
 public class QuoteDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public QuoteDTO() {
+	}
+
 	
 	private int QuoteId;
 	

@@ -3,8 +3,16 @@ package CIAPI.Java.examples.ciapi.dto;
 /**
  * !This is an auto generated model object!
  *
+ * TODO
  */
 public class ApiOrderResponseDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public ApiOrderResponseDTO() {
+	}
+
 	
 	private int OrderId;
 	
@@ -27,9 +35,9 @@ public class ApiOrderResponseDTO {
 	}
 	
 
-	private double Price;
+	private int Price;
 	
-	public double getPrice() {
+	public int getPrice() {
 		return Price;
 	}
 	
@@ -45,20 +53,6 @@ public class ApiOrderResponseDTO {
 	
 	public CIAPI.Java.examples.ciapi.dto.ApiIfDoneResponseDTO[] getIfDone() {
 		return IfDone;
-	}
-	
-
-	private double GuaranteedPremium;
-	
-	public double getGuaranteedPremium() {
-		return GuaranteedPremium;
-	}
-	
-
-	private CIAPI.Java.examples.ciapi.dto.ApiOrderResponseDTO OCO;
-	
-	public CIAPI.Java.examples.ciapi.dto.ApiOrderResponseDTO getOCO() {
-		return OCO;
 	}
 	
 

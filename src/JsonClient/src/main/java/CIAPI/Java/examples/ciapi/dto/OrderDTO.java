@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * An order for a specific Trading Account
  */
 public class OrderDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public OrderDTO() {
+	}
+
 	
 	private int OrderId;
 	

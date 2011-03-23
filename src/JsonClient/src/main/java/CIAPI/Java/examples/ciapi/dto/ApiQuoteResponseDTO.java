@@ -3,8 +3,16 @@ package CIAPI.Java.examples.ciapi.dto;
 /**
  * !This is an auto generated model object!
  *
+ * TODO
  */
 public class ApiQuoteResponseDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public ApiQuoteResponseDTO() {
+	}
+
 	
 	private int QuoteId;
 	

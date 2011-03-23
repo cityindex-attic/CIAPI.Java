@@ -1,6 +1,8 @@
 package <@packageName@>;
 
-public class ServiceMethods {
+import CIAPI.Java.ApiException;
+
+public interface ServiceMethods {
 
 	<@@methods@@>
 	/**
@@ -11,5 +13,5 @@ public class ServiceMethods {
 	 * <@@parameterDescriptions@@>
 	 * @param <@paramName@> <@paramDesc@><@@@@>
 	 */
-	public <@return@> <@name@>(<@parameters@>);<@@@@>
+	public <@return@> <@name@>(<@parameters@>) throws ApiException; <@@@@>
 }

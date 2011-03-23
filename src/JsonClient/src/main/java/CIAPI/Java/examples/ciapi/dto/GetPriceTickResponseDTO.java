@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * The response from a request for Price Ticks
  */
 public class GetPriceTickResponseDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public GetPriceTickResponseDTO() {
+	}
+
 	
 	private CIAPI.Java.examples.ciapi.dto.PriceTickDTO[] PriceTicks;
 	

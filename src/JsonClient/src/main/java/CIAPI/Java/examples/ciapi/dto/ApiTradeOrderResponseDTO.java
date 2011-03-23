@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * The response returned from the underlying trading system
  */
 public class ApiTradeOrderResponseDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public ApiTradeOrderResponseDTO() {
+	}
+
 	
 	private int Status;
 	

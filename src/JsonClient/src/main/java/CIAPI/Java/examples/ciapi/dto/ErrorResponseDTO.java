@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * This is a description of ErrorResponseDTO
  */
 public class ErrorResponseDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public ErrorResponseDTO() {
+	}
+
 	
 	private String ErrorMessage;
 	

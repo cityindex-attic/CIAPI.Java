@@ -28,6 +28,7 @@ public class CodeGenMain {
 	public static void main(String[] args) throws JsonIOException, JsonSyntaxException, MalformedURLException,
 			IOException {
 		SchemaReader rdr = new SchemaReader(new FileInputStream(schemaLocation), new FileInputStream(smdLocation));
-		rdr.createPackage("somePkg", "/home/justin/generatedFIles");
+		rdr.createPackage("CIAPI.Java.examples.ciapi",
+				"/home/justin/workspace/CIAPI.Java/src/JsonClient/src/main/java/CIAPI/Java/examples/ciapi/");
 	}
 }

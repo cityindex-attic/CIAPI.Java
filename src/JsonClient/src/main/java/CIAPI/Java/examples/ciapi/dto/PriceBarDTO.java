@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * The details of a specific price bar, useful for plotting candlestick charts
  */
 public class PriceBarDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public PriceBarDTO() {
+	}
+
 	
 	private String BarDate;
 	

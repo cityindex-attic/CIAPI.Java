@@ -3,8 +3,16 @@ package CIAPI.Java.examples.ciapi.dto;
 /**
  * !This is an auto generated model object!
  *
+ * TODO
  */
 public class ApiStopLimitOrderHistoryDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public ApiStopLimitOrderHistoryDTO() {
+	}
+
 	
 	private int OrderId;
 	

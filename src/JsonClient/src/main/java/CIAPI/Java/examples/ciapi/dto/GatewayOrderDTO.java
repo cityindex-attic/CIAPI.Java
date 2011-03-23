@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * Represents an order
  */
 public class GatewayOrderDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public GatewayOrderDTO() {
+	}
+
 	
 }
 

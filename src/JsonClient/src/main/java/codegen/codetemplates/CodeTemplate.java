@@ -200,7 +200,12 @@ public class CodeTemplate implements TemplateEntry {
 	 *             if the file did not exist
 	 */
 	public static CodeTemplate loadTemplate(String location) throws FileNotFoundException {
-		return new CodeTemplate(new Scanner(new File(location)).useDelimiter("\\z").next());
+		Scanner fin = new Scanner(new File(location));
+		StringBuilder templateString = new StringBuilder();
+		while(fin.hasNextLine()){
+			templateString.append(fin.nextLine()).append("\n");
+		}
+		return new CodeTemplate(templateString.toString());
 	}
 
 	@Override

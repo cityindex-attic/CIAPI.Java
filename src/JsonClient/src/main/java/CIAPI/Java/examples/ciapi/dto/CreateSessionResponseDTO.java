@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * Response to a CreateSessionRequest
  */
 public class CreateSessionResponseDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public CreateSessionResponseDTO() {
+	}
+
 	
 	private String Session;
 	

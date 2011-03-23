@@ -3,14 +3,14 @@ package CIAPI.Java.examples.ciapi.dto;
 /**
  * !This is an auto generated model object!
  *
- * TODO
+ * An trade/order in a 'one cancels the other' relationship
  */
-public class ListOrdersResponseDTO {
+public class OcoOrderRequestDTO {
 
 	/**
 	 * No argument constructor
 	 */
-	public ListOrdersResponseDTO() {
+	public OcoOrderRequestDTO() {
 	}
 
 	

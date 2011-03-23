@@ -3,8 +3,16 @@ package CIAPI.Java.examples.ciapi.dto;
 /**
  * !This is an auto generated model object!
  *
+ * TODO
  */
 public class ApiOpenPositionDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public ApiOpenPositionDTO() {
+	}
+
 	
 	private int OrderId;
 	
@@ -62,9 +70,9 @@ public class ApiOpenPositionDTO {
 	}
 	
 
-	private int Status;
+	private String Status;
 	
-	public int getStatus() {
+	public String getStatus() {
 		return Status;
 	}
 	

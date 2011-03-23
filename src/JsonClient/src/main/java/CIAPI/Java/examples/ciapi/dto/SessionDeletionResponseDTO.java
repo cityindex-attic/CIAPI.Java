@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * 
  */
 public class SessionDeletionResponseDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public SessionDeletionResponseDTO() {
+	}
+
 	
 	private boolean LoggedOut;
 	

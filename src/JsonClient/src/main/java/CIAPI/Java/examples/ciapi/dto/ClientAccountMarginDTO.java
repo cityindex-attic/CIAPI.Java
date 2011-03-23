@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * The current margin for a specific client account
  */
 public class ClientAccountMarginDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public ClientAccountMarginDTO() {
+	}
+
 	
 	private double Cash;
 	

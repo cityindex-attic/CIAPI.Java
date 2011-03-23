@@ -14,7 +14,7 @@ public class TestSynchCIAPI {
 
 	@Before
 	public void setUp() throws Exception {
-		api = new SyncApi("DM904310", "password");
+		api = new SyncApi();
 	}
 
 	public void tearDown() throws Exception {
@@ -22,7 +22,8 @@ public class TestSynchCIAPI {
 	}
 
 	public void testLogOn() throws ApiException {
-		// assertTrue(api.isLoggedOn());
+		//api.logIn("", "", true);
+		//assertTrue(api.isLoggedOn());
 	}
 
 	public void testLogOnAndOff() throws ApiException {

@@ -1,5 +1,9 @@
 package <@packageName@>.impl;
 
+import CIAPI.Java.ApiException;
+import CIAPI.Java.JsonApi;
+import <@packageName@>.ServiceMethods;
+
 public class ServiceMethodsImpl implements ServiceMethods {
 
 	private JsonApi api = new JsonApi("someBaseUrl", null);
@@ -11,7 +15,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * <@description@>
 	 */
 	@Override
-	public <@return@> <@name@>(<@parameters@>) {
+	public <@return@> <@name@>(<@parameters@>) throws ApiException {
 		// Collect variables from method
 		String target = "<@target@>";
 		String uriTemplate = "<@uriTemplate@>";
@@ -22,7 +26,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
 		<@@fillParameters@@>
-		filledUri = filledUri.replace("{<@parameterName@>}", <@parameterName@>);<@@@@>
+		filledUri = filledUri.replace("{<@parameterName@>}", <@parameterName@> + "");<@@@@>
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;

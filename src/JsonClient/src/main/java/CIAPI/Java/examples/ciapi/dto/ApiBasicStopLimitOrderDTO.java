@@ -3,8 +3,16 @@ package CIAPI.Java.examples.ciapi.dto;
 /**
  * !This is an auto generated model object!
  *
+ * TODO
  */
 public class ApiBasicStopLimitOrderDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public ApiBasicStopLimitOrderDTO() {
+	}
+
 	
 	private int OrderId;
 	
@@ -17,13 +25,6 @@ public class ApiBasicStopLimitOrderDTO {
 	
 	public double getTriggerPrice() {
 		return TriggerPrice;
-	}
-	
-
-	private double Quantity;
-	
-	public double getQuantity() {
-		return Quantity;
 	}
 	
 

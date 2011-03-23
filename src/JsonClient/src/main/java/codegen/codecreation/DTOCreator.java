@@ -38,7 +38,7 @@ public class DTOCreator {
 
 	/**
 	 * 
-	 * @return
+	 * @return Java code
 	 * @throws FileNotFoundException
 	 */
 	public String toCode() throws FileNotFoundException {

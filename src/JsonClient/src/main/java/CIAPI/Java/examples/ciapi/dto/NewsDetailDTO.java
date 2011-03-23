@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * Contains details of a specific news story
  */
 public class NewsDetailDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public NewsDetailDTO() {
+	}
+
 	
 	private String Story;
 	

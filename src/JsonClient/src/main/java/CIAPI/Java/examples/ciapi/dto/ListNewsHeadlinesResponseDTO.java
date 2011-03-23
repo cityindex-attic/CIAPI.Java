@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * The response from a GET request for News headlines
  */
 public class ListNewsHeadlinesResponseDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public ListNewsHeadlinesResponseDTO() {
+	}
+
 	
 	private CIAPI.Java.examples.ciapi.dto.NewsDTO[] Headlines;
 	

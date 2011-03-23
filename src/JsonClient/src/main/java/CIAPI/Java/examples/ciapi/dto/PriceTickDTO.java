@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * The mid price at a particular point in time.
  */
 public class PriceTickDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public PriceTickDTO() {
+	}
+
 	
 	private String TickDate;
 	

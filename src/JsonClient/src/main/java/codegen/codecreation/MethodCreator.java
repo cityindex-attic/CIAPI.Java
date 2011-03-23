@@ -6,7 +6,6 @@ import java.util.Map.Entry;
 import codegen.codetemplates.CodeTemplate;
 import codegen.codetemplates.CompoundCodeTemplate;
 import codegen.modelobjects.Parameter;
-import codegen.modelobjects.Property;
 import codegen.modelobjects.SMDDescriptor;
 import codegen.modelobjects.Service;
 
@@ -67,7 +66,8 @@ public class MethodCreator {
 				}
 				propTemplate.putNewTemplateDefinition("parameters",
 						paramString.substring(0, Math.max(paramString.length() - 2, 0)));
-				// The Math.max() above accounts for cases when there are no parameters.
+				// The Math.max() above accounts for cases when there are no
+				// parameters.
 			}
 			CompoundCodeTemplate fillParams = (CompoundCodeTemplate) propTemplate.getTemplateEntry("fillParameters");
 			CodeTemplate emptyFillParamsTemplate = fillParams.getEmptyTemplate();
@@ -85,7 +85,7 @@ public class MethodCreator {
 	/**
 	 * Creates the interface describing the code that was generated
 	 * 
-	 * @return
+	 * @return a String of Java code
 	 * @throws FileNotFoundException
 	 */
 	public String toInterface() throws FileNotFoundException {
@@ -110,7 +110,8 @@ public class MethodCreator {
 				propTemplate.putNewTemplateDefinition("parameters",
 						paramString.substring(0, Math.max(paramString.length() - 2, 0)));
 			}
-			CompoundCodeTemplate fillParams = (CompoundCodeTemplate) propTemplate.getTemplateEntry("parameterDescriptions");
+			CompoundCodeTemplate fillParams = (CompoundCodeTemplate) propTemplate
+					.getTemplateEntry("parameterDescriptions");
 			CodeTemplate emptyFillParamsTemplate = fillParams.getEmptyTemplate();
 			for (Parameter p : s.getParameters()) {
 				// Template responsible for replacing parameters in the URL

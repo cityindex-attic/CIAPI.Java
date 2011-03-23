@@ -6,32 +6,18 @@ package CIAPI.Java.examples.ciapi.dto;
  * A request for a stop/limit order
  */
 public class NewStopLimitOrderRequestDTO {
-	
-	private int OrderId;
-	
-	public int getOrderId() {
-		return OrderId;
-	}
-	
 
+	/**
+	 * No argument constructor
+	 */
+	public NewStopLimitOrderRequestDTO() {
+	}
+
+	
 	private int MarketId;
 	
 	public int getMarketId() {
 		return MarketId;
-	}
-	
-
-	private String Currency;
-	
-	public String getCurrency() {
-		return Currency;
-	}
-	
-
-	private boolean AutoRollover;
-	
-	public boolean getAutoRollover() {
-		return AutoRollover;
 	}
 	
 
@@ -77,20 +63,6 @@ public class NewStopLimitOrderRequestDTO {
 	}
 	
 
-	private CIAPI.Java.examples.ciapi.dto.GatewayIfDoneDTO[] IfDone;
-	
-	public CIAPI.Java.examples.ciapi.dto.GatewayIfDoneDTO[] getIfDone() {
-		return IfDone;
-	}
-	
-
-	private CIAPI.Java.examples.ciapi.dto.NewStopLimitOrderRequestDTO OcoOrder;
-	
-	public CIAPI.Java.examples.ciapi.dto.NewStopLimitOrderRequestDTO getOcoOrder() {
-		return OcoOrder;
-	}
-	
-
 	private String Applicability;
 	
 	public String getApplicability() {
@@ -102,20 +74,6 @@ public class NewStopLimitOrderRequestDTO {
 	
 	public String getExpiryDateTimeUTC() {
 		return ExpiryDateTimeUTC;
-	}
-	
-
-	private boolean Guaranteed;
-	
-	public boolean getGuaranteed() {
-		return Guaranteed;
-	}
-	
-
-	private double TriggerPrice;
-	
-	public double getTriggerPrice() {
-		return TriggerPrice;
 	}
 	
 

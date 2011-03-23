@@ -3,20 +3,21 @@ package CIAPI.Java.examples.ciapi.dto;
 /**
  * !This is an auto generated model object!
  *
+ * TODO
  */
 public class ApiActiveStopLimitOrderDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public ApiActiveStopLimitOrderDTO() {
+	}
+
 	
 	private int OrderId;
 	
 	public int getOrderId() {
 		return OrderId;
-	}
-	
-
-	private String ParentOrderId;
-	
-	public String getParentOrderId() {
-		return ParentOrderId;
 	}
 	
 
@@ -62,16 +63,16 @@ public class ApiActiveStopLimitOrderDTO {
 	}
 	
 
-	private int Type;
+	private String Type;
 	
-	public int getType() {
+	public String getType() {
 		return Type;
 	}
 	
 
-	private int Applicability;
+	private String Applicability;
 	
-	public int getApplicability() {
+	public String getApplicability() {
 		return Applicability;
 	}
 	
@@ -83,9 +84,9 @@ public class ApiActiveStopLimitOrderDTO {
 	}
 	
 
-	private int Status;
+	private String Status;
 	
-	public int getStatus() {
+	public String getStatus() {
 		return Status;
 	}
 	

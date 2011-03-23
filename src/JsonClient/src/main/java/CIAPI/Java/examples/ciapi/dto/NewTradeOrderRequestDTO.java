@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * A request for a trade order
  */
 public class NewTradeOrderRequestDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public NewTradeOrderRequestDTO() {
+	}
+
 	
 	private int MarketId;
 	
@@ -53,20 +60,6 @@ public class NewTradeOrderRequestDTO {
 	
 	public int getTradingAccountId() {
 		return TradingAccountId;
-	}
-	
-
-	private CIAPI.Java.examples.ciapi.dto.GatewayIfDoneDTO[] IfDone;
-	
-	public CIAPI.Java.examples.ciapi.dto.GatewayIfDoneDTO[] getIfDone() {
-		return IfDone;
-	}
-	
-
-	private int[] Close;
-	
-	public int[] getClose() {
-		return Close;
 	}
 	
 

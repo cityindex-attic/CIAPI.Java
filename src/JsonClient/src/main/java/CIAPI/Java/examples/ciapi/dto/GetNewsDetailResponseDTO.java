@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * JSON returned from News Detail GET request
  */
 public class GetNewsDetailResponseDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public GetNewsDetailResponseDTO() {
+	}
+
 	
 	private CIAPI.Java.examples.ciapi.dto.NewsDetailDTO NewsDetail;
 	

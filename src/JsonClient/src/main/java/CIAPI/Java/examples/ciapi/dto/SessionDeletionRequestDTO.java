@@ -7,7 +7,12 @@ package CIAPI.Java.examples.ciapi.dto;
  */
 public class SessionDeletionRequestDTO {
 
-	public SessionDeletionRequestDTO(String username, String password) {
+	/**
+	 * No argument constructor
+	 */
+	public SessionDeletionRequestDTO() {
 	}
+
+	
 }
 

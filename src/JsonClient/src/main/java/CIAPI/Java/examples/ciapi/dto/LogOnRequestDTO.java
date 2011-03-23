@@ -6,14 +6,16 @@ package CIAPI.Java.examples.ciapi.dto;
  * 
  */
 public class LogOnRequestDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public LogOnRequestDTO() {
+	}
+
 	
 	private String UserName;
 	
-	public LogOnRequestDTO(String username2, String password2) {
-		UserName = username2;
-		Password = password2;
-	}
-
 	public String getUserName() {
 		return UserName;
 	}

@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * 
  */
 public class G2SessionValidationResponseDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public G2SessionValidationResponseDTO() {
+	}
+
 	
 	private int[] ClientAccountIds;
 	

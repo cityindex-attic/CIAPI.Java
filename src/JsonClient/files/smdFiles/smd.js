@@ -21,23 +21,23 @@
             "group": "Authentication",
             "throttleScope": "data",
             "parameters": [
-        {
-            "type": "string",
-            "name": "UserName",
-            "description": "Username is case sensitive",
-            "demoValue": "CC735158",
-            "minLength": 6,
-            "maxLength": 20
-        },
-        {
-            "type": "string",
-            "name": "Password",
-            "description": "Password is case sensitive",
-            "demoValue": "password",
-            "minLength": 6,
-            "maxLength": 20
-        }
-      ]
+				{
+				    "type": "string",
+				    "name": "UserName",
+				    "description": "Username is case sensitive",
+				    "demoValue": "CC735158",
+				    "minLength": 6,
+				    "maxLength": 20
+				},
+				{
+				    "type": "string",
+				    "name": "Password",
+				    "description": "Password is case sensitive",
+				    "demoValue": "password",
+				    "minLength": 6,
+				    "maxLength": 20
+				}
+      		]
         },
         "DeleteSession": {
             "description": "Delete a session. This is how you \"log off\" from the CIAPI.",

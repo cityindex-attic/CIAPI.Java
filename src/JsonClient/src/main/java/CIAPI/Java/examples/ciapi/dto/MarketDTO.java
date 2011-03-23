@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * Information about a Market
  */
 public class MarketDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public MarketDTO() {
+	}
+
 	
 	private int MarketId;
 	

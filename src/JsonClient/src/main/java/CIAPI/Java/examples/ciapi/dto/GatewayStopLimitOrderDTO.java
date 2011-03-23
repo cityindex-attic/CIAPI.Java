@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * Represents a stop/limit order
  */
 public class GatewayStopLimitOrderDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public GatewayStopLimitOrderDTO() {
+	}
+
 	
 	private String ExpiryDateTimeUTC;
 	

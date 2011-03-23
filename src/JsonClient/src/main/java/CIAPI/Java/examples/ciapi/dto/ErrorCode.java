@@ -36,13 +36,5 @@ public enum ErrorCode {
 	/**
 	 * The credentials used to authenticate are invalid.  Either the username, password or both are incorrect.
 	 */
-	InvalidCredentials,
-	/**
-	 * The session credentials supplied are invalid
-	 */
-	InvalidSession,
-	/**
-	 * There is no data available
-	 */
-	NoDataAvailable
+	InvalidCredentials
 }

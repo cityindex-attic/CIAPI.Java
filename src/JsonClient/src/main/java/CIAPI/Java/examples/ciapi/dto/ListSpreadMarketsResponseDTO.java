@@ -6,6 +6,13 @@ package CIAPI.Java.examples.ciapi.dto;
  * Contains the result of a ListSpreadMarketsResponseDTO query
  */
 public class ListSpreadMarketsResponseDTO {
+
+	/**
+	 * No argument constructor
+	 */
+	public ListSpreadMarketsResponseDTO() {
+	}
+
 	
 	private CIAPI.Java.examples.ciapi.dto.MarketDTO[] Markets;
 	
