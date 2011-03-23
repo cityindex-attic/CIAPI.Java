@@ -67,6 +67,10 @@ public class UrlHelper {
 		return params;
 	}
 
+	public void setParams(Map<String, String> params){
+		this.params = params;
+	}
+	
 	/**
 	 * Takes a full url and parses it into its various parts
 	 * 

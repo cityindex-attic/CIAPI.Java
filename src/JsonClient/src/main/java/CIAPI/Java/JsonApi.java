@@ -1,7 +1,9 @@
 package CIAPI.Java;
 
 import java.net.MalformedURLException;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import CIAPI.Java.urlstuff.UrlHelper;
 
@@ -12,6 +14,9 @@ import CIAPI.Java.urlstuff.UrlHelper;
  * 
  */
 public class JsonApi {
+
+	// holds parameters that will always be passed into the url
+	private Map<String, String> constantParameters;
 
 	private JsonClient client;
 	private String baseUrl;
@@ -32,6 +37,15 @@ public class JsonApi {
 			throw new IllegalArgumentException("The base url must not be null or empty.");
 		this.baseUrl = baseUrl;
 		this.client = client;
+		this.constantParameters = new HashMap<String, String>();
+	}
+
+	public void addConstantParameter(String param, String value) {
+		constantParameters.put(param, value);
+	}
+
+	public void clearConstantParams() {
+		constantParameters.clear();
 	}
 
 	/**
@@ -52,7 +66,7 @@ public class JsonApi {
 			throws ApiException {
 		if (returnType == null)
 			throw new NullPointerException("Return type must not be null");
-		String url = new UrlHelper(baseUrl, methodName, parameters).toUrl();
+		String url = new UrlHelper(baseUrl, methodName, mergeMaps(parameters, constantParameters)).toUrl();
 		Object result = client.makeGetRequest(url, returnType);
 		return result;
 	}
@@ -72,7 +86,9 @@ public class JsonApi {
 			throw new NullPointerException("Return type must not be null");
 		String url;
 		try {
-			url = UrlHelper.parseUrl(baseUrl + fullUrl).toUrl();
+			UrlHelper hlpr = UrlHelper.parseUrl(baseUrl + fullUrl);
+			hlpr.setParams(mergeMaps(constantParameters, hlpr.getParams()));
+			url = hlpr.toUrl();
 		} catch (MalformedURLException e) {
 			throw new ApiException(e);
 		}
@@ -100,7 +116,7 @@ public class JsonApi {
 			Class<?> returnType) throws ApiException {
 		if (returnType == null)
 			throw new NullPointerException("Return type must not be null");
-		String url = new UrlHelper(baseUrl, methodName, parameters).toUrl();
+		String url = new UrlHelper(baseUrl, methodName, mergeMaps(parameters, constantParameters)).toUrl();
 		return client.makePostRequest(url, inputData, returnType);
 	}
 
@@ -121,10 +137,23 @@ public class JsonApi {
 			throw new NullPointerException("Return type must not be null");
 		String url;
 		try {
-			url = UrlHelper.parseUrl(baseUrl + fullUrl).toUrl();
+			UrlHelper hlpr = UrlHelper.parseUrl(baseUrl + fullUrl);
+			hlpr.setParams(mergeMaps(constantParameters, hlpr.getParams()));
+			url = hlpr.toUrl();
 		} catch (MalformedURLException e) {
 			throw new ApiException(e);
 		}
 		return client.makePostRequest(url, inputData, returnType);
+	}
+
+	private static Map<String, String> mergeMaps(Map<String, String> m1, Map<String, String> m2) {
+		Map<String, String> result = new HashMap<String, String>();
+		for (Entry<String, String> entry : m1.entrySet()) {
+			result.put(entry.getKey(), entry.getValue());
+		}
+		for (Entry<String, String> entry : m2.entrySet()) {
+			result.put(entry.getKey(), entry.getValue());
+		}
+		return result;
 	}
 }

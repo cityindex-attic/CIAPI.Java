@@ -6,8 +6,6 @@ import <@packageName@>.ServiceMethods;
 
 public class ServiceMethodsImpl implements ServiceMethods {
 
-	private JsonApi api = new JsonApi("someBaseUrl", null);
-
 	<@@methods@@>
 	/**
 	 * !This is an auto generated method!
@@ -15,7 +13,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * <@description@>
 	 */
 	@Override
-	public <@return@> <@name@>(<@parameters@>) throws ApiException {
+	public <@return@> <@name@>(<@parameters@>, JsonApi api) throws ApiException {
 		// Collect variables from method
 		String target = "<@target@>";
 		String uriTemplate = "<@uriTemplate@>";
