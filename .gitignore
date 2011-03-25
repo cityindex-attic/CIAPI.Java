@@ -27,3 +27,6 @@ target
 #Java related
 .class
 
+#Intellij related
+.idea/
+.iml
