@@ -2,33 +2,38 @@ package CIAPI.Java.examples.ciapi;
 
 import CIAPI.Java.ApiException;
 import CIAPI.Java.JsonApi;
+import CIAPI.Java.cachestuff.Cache;
+import CIAPI.Java.cachestuff.CachedJsonClient;
 import CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO;
 import CIAPI.Java.examples.ciapi.impl.ServiceMethodsImpl;
+import CIAPI.Java.httpstuff.DefaultHttpRequestItemFactory;
+import CIAPI.Java.throttle.RequestQueue;
+import CIAPI.Java.throttle.ThrottledHttpClient;
 
 /**
  * API for connecting to the City Index Trading RESTful API. All requests are
  * made synchronously.
  * 
- * The body of this class will eventually be auto-generated. Right now it just
- * serves as an example of what we need the generated code to look like.
- * 
  * @author Justin Nelson
- * 
  */
 public class SyncApi {
-	private final String Api_Base_Url = "http://ciapipreprod.cityindextest9.co.uk/TradingApi";
-
 	private JsonApi api;
 
 	private String username;
 	private String password;
 	private String sessionId;
+	public String getSessionId() {
+		return sessionId;
+	}
+
 	private boolean keepAlive;
 	private ServiceMethods methods;
 
-	public SyncApi() {
+	protected SyncApi(String baseUrl, Cache<CachedJsonClient.Pair<String, Class<?>>, Object> cache, RequestQueue queue) {
 		methods = new ServiceMethodsImpl();
+		api = new JsonApi(baseUrl, new CachedJsonClient(cache, new ThrottledHttpClient(
+				new DefaultHttpRequestItemFactory(), queue)));
 	}
 
 	public void logIn(String username, String password, boolean keepAlive) throws ApiException {
@@ -39,11 +44,19 @@ public class SyncApi {
 		if (keepAlive) {
 			this.password = password;
 		}
+		api.addConstantParameter("UserName", username);
+		api.addConstantParameter("Session", sessionId);
 	}
 
 	public boolean logOff() throws ApiException {
 		SessionDeletionResponseDTO response = methods.DeleteSession(username, sessionId);
-		return response.getLoggedOut();
+		if (response.getLoggedOut()) {
+			api.clearConstantParams();
+			return true;
+		}
+		{
+			return false;
+		}
 	}
 
 	private void keepAlive() throws ApiException {

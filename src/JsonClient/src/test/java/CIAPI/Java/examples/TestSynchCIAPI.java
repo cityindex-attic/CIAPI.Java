@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import CIAPI.Java.ApiException;
 import CIAPI.Java.examples.ciapi.SyncApi;
+import CIAPI.Java.examples.ciapi.SyncApiFActory;
 
 public class TestSynchCIAPI {
 
@@ -14,7 +15,7 @@ public class TestSynchCIAPI {
 
 	@Before
 	public void setUp() throws Exception {
-		api = new SyncApi();
+		api = new SyncApiFActory().getApi();
 	}
 
 	public void tearDown() throws Exception {

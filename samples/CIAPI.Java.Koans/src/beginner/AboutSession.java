@@ -4,10 +4,14 @@ import static com.sandwich.koan.KoanConstants.__;
 import static com.sandwich.util.Assert.assertEquals;
 import static com.sandwich.util.Assert.assertNotNull;
 import static com.sandwich.util.Assert.fail;
+import static com.sandwich.util.Assert.assertTrue;
 
 import CIAPI.Java.ApiException;
 import CIAPI.Java.examples.ciapi.SyncApi;
+import CIAPI.Java.examples.ciapi.SyncApiFActory;
+
 import com.sandwich.koan.Koan;
+import com.sandwich.util.Assert;
 
 public class AboutSession {
 
@@ -16,9 +20,8 @@ public class AboutSession {
 
     @Koan()
 	public void anApiConnection() throws ApiException {
-        //
 
-        SyncApi api = new SyncApi(null, null);
+        SyncApi api = new SyncApiFActory().getApi();
 
         assertNotNull(api);
     }
@@ -26,19 +29,20 @@ public class AboutSession {
     @Koan()
 	public void CreatingASession() throws ApiException {
 
-        SyncApi api = new SyncApi(USERNAME, PASSWORD);
+        SyncApi api = new SyncApiFActory().getApi();
 
-//        try
-//        {
-//            _rpcClient.LogIn(USERNAME, PASSWORD);
-//        }
-//        catch (ApiException apiException)
-//        {
-//            KoanAssert.Fail(string.Format("cannot login because {0}", apiException.Message));
-//        }
-//
-//        KoanAssert.That(_rpcClient.SessionId != "", "after logging in, you should have a valid session");
-        fail("how do you create a session?");
+        try
+        {
+			// the 'true' tells the api to renew the session token automatically if it expires
+            api.logIn(USERNAME, PASSWORD, true);
+        }
+        catch (ApiException apiException)
+        {
+            Assert.fail(String.format("cannot login because %s", apiException.getMessage()));
+        }
+
+        // KoanAssert.That(api.getSessionId() !=null && !api.getSessionId().equals(""), "after logging in, you should have a valid session");
+        // Not exactly sure how to use the Koans API, but you get the idea.
+        assertTrue(api.getSessionId() !=null && !api.getSessionId().equals(""));
     }
-
 }

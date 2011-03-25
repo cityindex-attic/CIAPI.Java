@@ -26,20 +26,18 @@ public class ThrottledHttpClient implements SimpleHttpClient {
 	 * DefaultHttpRequestItemFactory
 	 */
 	public ThrottledHttpClient() {
-		this(new FixedWidthThrottleTimer(100), new DefaultHttpRequestItemFactory());
+		this(new DefaultHttpRequestItemFactory(), new RequestQueue(new FixedWidthThrottleTimer(100)));
 	}
 
 	/**
 	 * Creates a basic throttled client.
 	 * 
-	 * @param timer
-	 *            the given timer
 	 * @param fact
 	 *            the given fact
 	 */
-	public ThrottledHttpClient(ThrottleTimer timer, HttpRequestItemFactory fact) {
-		queue = new RequestQueue(timer);
-		factory = fact;
+	public ThrottledHttpClient(HttpRequestItemFactory fact, RequestQueue queue) {
+		this.queue = queue;
+		this.factory = fact;
 	}
 
 	@Override
