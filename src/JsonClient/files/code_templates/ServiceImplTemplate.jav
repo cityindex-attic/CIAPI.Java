@@ -23,6 +23,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
+		// Concatenating the empty string is a hackey way of converting all params to a String
 		<@@fillParameters@@>
 		filledUri = filledUri.replace("{<@parameterName@>}", <@parameterName@> + "");<@@@@>
 		// Done filling in holes

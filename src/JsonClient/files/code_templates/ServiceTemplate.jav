@@ -3,6 +3,10 @@ package <@packageName@>;
 import CIAPI.Java.ApiException;
 import CIAPI.Java.JsonApi;
 
+/**
+ * Auto-generated interface for interacting with the REST CIAPI
+ * 
+ */
 public interface ServiceMethods {
 
 	<@@methods@@>

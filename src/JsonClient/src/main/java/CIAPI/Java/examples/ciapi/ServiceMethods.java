@@ -1,7 +1,12 @@
 package CIAPI.Java.examples.ciapi;
 
 import CIAPI.Java.ApiException;
+import CIAPI.Java.JsonApi;
 
+/**
+ * Auto-generated interface for interacting with the REST CIAPI
+ * 
+ */
 public interface ServiceMethods {
 
 	/**
@@ -15,9 +20,12 @@ public interface ServiceMethods {
 	 * 
 	 * @param Password
 	 *            Password is case sensitive
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
-	public CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO CreateSession(String UserName, String Password)
-			throws ApiException;
+	public CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO CreateSession(String UserName, String Password,
+			JsonApi api) throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -32,9 +40,12 @@ public interface ServiceMethods {
 	 * @param session
 	 *            The session token. May be set as a service parameter or as a
 	 *            request header.
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
-	public CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO DeleteSession(String userName, String session)
-			throws ApiException;
+	public CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO DeleteSession(String userName, String session,
+			JsonApi api) throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -62,9 +73,12 @@ public interface ServiceMethods {
 	 * 
 	 * @param priceBars
 	 *            The total number of pricebars to return
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
 	public CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO GetPriceBars(String marketId, String interval,
-			int span, String priceBars) throws ApiException;
+			int span, String priceBars, JsonApi api) throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -78,9 +92,12 @@ public interface ServiceMethods {
 	 * 
 	 * @param priceTicks
 	 *            The total number of price ticks to return
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
-	public CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO GetPriceTicks(String marketId, String priceTicks)
-			throws ApiException;
+	public CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO GetPriceTicks(String marketId, String priceTicks,
+			JsonApi api) throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -90,8 +107,11 @@ public interface ServiceMethods {
 	 * 
 	 * @param marketId
 	 *            The marketId
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
-	public CIAPI.Java.examples.ciapi.dto.MarketInformationResponseDTO GetMarketInformation(String marketId)
+	public CIAPI.Java.examples.ciapi.dto.MarketInformationResponseDTO GetMarketInformation(String marketId, JsonApi api)
 			throws ApiException;
 
 	/**
@@ -105,9 +125,12 @@ public interface ServiceMethods {
 	 * 
 	 * @param maxResults
 	 *            Restrict the number of headlines returned
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
-	public CIAPI.Java.examples.ciapi.dto.ListNewsHeadlinesResponseDTO ListNewsHeadlines(String category, int maxResults)
-			throws ApiException;
+	public CIAPI.Java.examples.ciapi.dto.ListNewsHeadlinesResponseDTO ListNewsHeadlines(String category,
+			int maxResults, JsonApi api) throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -117,8 +140,12 @@ public interface ServiceMethods {
 	 * 
 	 * @param storyId
 	 *            The news story Id
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
-	public CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO GetNewsDetail(String storyId) throws ApiException;
+	public CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO GetNewsDetail(String storyId, JsonApi api)
+			throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -139,9 +166,12 @@ public interface ServiceMethods {
 	 * 
 	 * @param maxResults
 	 *            The maximum number of markets to return.
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
 	public CIAPI.Java.examples.ciapi.dto.ListCfdMarketsResponseDTO ListCfdMarkets(String searchByMarketName,
-			String searchByMarketCode, int clientAccountId, int maxResults) throws ApiException;
+			String searchByMarketCode, int clientAccountId, int maxResults, JsonApi api) throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -163,9 +193,12 @@ public interface ServiceMethods {
 	 * 
 	 * @param maxResults
 	 *            The maximum number of markets to return.
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
 	public CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO ListSpreadMarkets(String searchByMarketName,
-			String searchByMarketCode, int clientAccountId, int maxResults) throws ApiException;
+			String searchByMarketCode, int clientAccountId, int maxResults, JsonApi api) throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -205,10 +238,13 @@ public interface ServiceMethods {
 	 * @param ExpiryDateTimeUTC
 	 *            The associated expiry DateTime for a pair of GoodTillDate
 	 *            IfDone orders
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
 	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO Order(int MarketId, String Direction,
 			double Quantity, double BidPrice, double OfferPrice, String AuditId, int TradingAccountId,
-			String Applicability, String ExpiryDateTimeUTC) throws ApiException;
+			String Applicability, String ExpiryDateTimeUTC, JsonApi api) throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -218,8 +254,12 @@ public interface ServiceMethods {
 	 * 
 	 * @param OrderId
 	 *            The order identifier
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
-	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO CancelOrder(int OrderId) throws ApiException;
+	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO CancelOrder(int OrderId, JsonApi api)
+			throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -235,9 +275,12 @@ public interface ServiceMethods {
 	 * 
 	 * @param acceptedOrders
 	 *            TODO
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
 	public CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO ListOrders(int tradingAccountId, boolean openOrders,
-			boolean acceptedOrders) throws ApiException;
+			boolean acceptedOrders, JsonApi api) throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -247,9 +290,12 @@ public interface ServiceMethods {
 	 * 
 	 * @param tradingAccountId
 	 *            TODO
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
-	public CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO ListOpenPositions(int tradingAccountId)
-			throws ApiException;
+	public CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO ListOpenPositions(int tradingAccountId,
+			JsonApi api) throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -259,9 +305,12 @@ public interface ServiceMethods {
 	 * 
 	 * @param tradingAccountId
 	 *            TODO
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
 	public CIAPI.Java.examples.ciapi.dto.ListActiveStopLimitOrderResponseDTO ListActiveStopLimitOrders(
-			int tradingAccountId) throws ApiException;
+			int tradingAccountId, JsonApi api) throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -274,9 +323,12 @@ public interface ServiceMethods {
 	 * 
 	 * @param maxResults
 	 *            TODO
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
 	public CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO ListTradeHistory(int tradingAccountId,
-			int maxResults) throws ApiException;
+			int maxResults, JsonApi api) throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -289,9 +341,12 @@ public interface ServiceMethods {
 	 * 
 	 * @param maxResults
 	 *            TODO
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
 	public CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO ListStopLimitOrderHistory(
-			int tradingAccountId, int maxResults) throws ApiException;
+			int tradingAccountId, int maxResults, JsonApi api) throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -322,9 +377,12 @@ public interface ServiceMethods {
 	 * 
 	 * @param TradingAccountId
 	 *            TradingAccount associated with the trade/order request
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
 	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO Trade(int MarketId, String Direction,
-			double Quantity, double BidPrice, double OfferPrice, String AuditId, int TradingAccountId)
+			double Quantity, double BidPrice, double OfferPrice, String AuditId, int TradingAccountId, JsonApi api)
 			throws ApiException;
 
 	/**
@@ -335,8 +393,11 @@ public interface ServiceMethods {
 	 * 
 	 * @param id
 	 *            Whether a User is allowed to see Charting Data
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
-	public Boolean GetChartingEnabled(String id) throws ApiException;
+	public Boolean GetChartingEnabled(String id, JsonApi api) throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -346,8 +407,11 @@ public interface ServiceMethods {
 	 * 
 	 * @param clientaccount
 	 *            What are the Users Terms and Conditions
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
-	public String GetTermsAndConditions(String clientaccount) throws ApiException;
+	public String GetTermsAndConditions(String clientaccount, JsonApi api) throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -355,8 +419,11 @@ public interface ServiceMethods {
 	 * Returns the Users ClientAccountId and a list of their TradingAccounts
 	 * 
 	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
-	public CIAPI.Java.examples.ciapi.dto.AccountInformationResponseDTO GetClientAndTradingAccount() throws ApiException;
+	public CIAPI.Java.examples.ciapi.dto.AccountInformationResponseDTO GetClientAndTradingAccount(JsonApi api)
+			throws ApiException;
 
 	/**
 	 * !This is an auto generated method signature!
@@ -366,7 +433,11 @@ public interface ServiceMethods {
 	 * 
 	 * @param errorCode
 	 *            Simulates an error condition.
+	 * 
+	 * @param api
+	 *            The JsonApi implementation that you would like.
 	 */
-	public CIAPI.Java.examples.ciapi.dto.ErrorResponseDTO GenerateException(int errorCode) throws ApiException;
+	public CIAPI.Java.examples.ciapi.dto.ErrorResponseDTO GenerateException(int errorCode, JsonApi api)
+			throws ApiException;
 
 }
