@@ -1,13 +1,11 @@
 package CIAPI.Java.examples;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import CIAPI.Java.ApiException;
-import CIAPI.Java.examples.ciapi.SyncApi;
 import CIAPI.Java.examples.ciapi.ApiFActory;
+import CIAPI.Java.examples.ciapi.SyncApi;
 
 public class TestSynchCIAPI {
 
@@ -15,7 +13,7 @@ public class TestSynchCIAPI {
 
 	@Before
 	public void setUp() throws Exception {
-		api = new ApiFActory().getApi();
+		api = new ApiFActory().getSyncApi();
 	}
 
 	public void tearDown() throws Exception {
