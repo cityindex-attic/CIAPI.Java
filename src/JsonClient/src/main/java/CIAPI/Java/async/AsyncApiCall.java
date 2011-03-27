@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
@@ -24,15 +25,18 @@ public class AsyncApiCall {
 	private JsonClient client;
 	private ExecutorService exec;
 
+	private Map<String, String> initialParams;
+
 	private List<CallBack> callBaks;
 	private Future<Object> future;
 
 	private boolean done;
 	private boolean started;
 
-	protected AsyncApiCall(String baseUrl, JsonClient client, ExecutorService exec) {
+	protected AsyncApiCall(String baseUrl, Map<String, String> initialParams, JsonClient client, ExecutorService exec) {
 		this.baseUrl = baseUrl;
 		this.client = client;
+		this.initialParams = initialParams;
 		this.exec = exec;
 		callBaks = new ArrayList<CallBack>();
 		done = false;
@@ -85,6 +89,7 @@ public class AsyncApiCall {
 		if (started)
 			throw new IllegalStateException("Cannot call more than once.");
 		started = true;
+		placeParamsInHlpr(urlHlpr, initialParams);
 		// Submit a task to the the executor.
 		future = exec.submit(new Callable<Object>() {
 			@Override
@@ -137,6 +142,7 @@ public class AsyncApiCall {
 		if (started)
 			throw new IllegalStateException("Cannot call more than once.");
 		started = true;
+		placeParamsInHlpr(urlHlpr, initialParams);
 		// Submit a task to the the executor.
 		future = exec.submit(new Callable<Object>() {
 			@Override
@@ -183,5 +189,13 @@ public class AsyncApiCall {
 		// We want the threads to die if all of the main threads exit.
 		doneListener.setDaemon(true);
 		doneListener.start();
+	}
+
+	private static void placeParamsInHlpr(UrlHelper hlpr, Map<String, String> paramsToAdd) {
+		Map<String, String> result = hlpr.getParams();
+		for (Entry<String, String> entry : paramsToAdd.entrySet()) {
+			result.put(entry.getKey(), entry.getValue());
+		}
+		hlpr.setParams(result);
 	}
 }

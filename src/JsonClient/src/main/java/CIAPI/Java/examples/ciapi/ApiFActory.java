@@ -6,7 +6,7 @@ import CIAPI.Java.cachestuff.DefaultCache;
 import CIAPI.Java.throttle.FixedWidthThrottleTimer;
 import CIAPI.Java.throttle.RequestQueue;
 
-public class SyncApiFActory {
+public class ApiFActory {
 
 	public static final long DEFAULT_CACHE_TIME = 1000L;
 	public static final long DEFAULT_REQUEST_WAIT_TIME = 10L;
@@ -16,7 +16,7 @@ public class SyncApiFActory {
 			DEFAULT_CACHE_TIME);
 	private RequestQueue queue = new RequestQueue(new FixedWidthThrottleTimer(DEFAULT_REQUEST_WAIT_TIME));
 
-	public SyncApiFActory() {
+	public ApiFActory() {
 
 	}
 
@@ -44,7 +44,10 @@ public class SyncApiFActory {
 		this.queue = queue;
 	}
 
-	public SyncApi getApi() {
+	public SyncApi getSyncApi() {
 		return new SyncApi(baseUrl, cache, queue);
+	}
+	public AsyncApi getAsyncApi() {
+		return new AsyncApi(baseUrl, cache, queue);
 	}
 }

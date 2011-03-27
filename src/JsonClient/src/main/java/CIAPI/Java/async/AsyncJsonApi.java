@@ -1,7 +1,9 @@
 package CIAPI.Java.async;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -22,6 +24,7 @@ public class AsyncJsonApi {
 	private ExecutorService exec;
 
 	private List<CallBack> universalCallBacks;
+	private Map<String, String> constantParams;
 
 	/**
 	 * Creates a new AsyncJsonApi with a given JsonClient and base Url.
@@ -36,6 +39,7 @@ public class AsyncJsonApi {
 		this.client = client;
 		exec = new ThreadPoolExecutor(2, 20, 1, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(50));
 		universalCallBacks = new ArrayList<CallBack>();
+		constantParams = new HashMap<String, String>();
 	}
 
 	/**
@@ -48,7 +52,7 @@ public class AsyncJsonApi {
 	 * @return a new ApiCall object that will allow you to add events to it.
 	 */
 	public AsyncApiCall createNewCall() {
-		AsyncApiCall call = new AsyncApiCall(baseUrl, client, exec);
+		AsyncApiCall call = new AsyncApiCall(baseUrl, constantParams, client, exec);
 		for (CallBack cb : universalCallBacks) {
 			call.addCallCompleteListener(cb);
 		}
@@ -63,5 +67,13 @@ public class AsyncJsonApi {
 	 */
 	public void addUniversalCallBack(CallBack cb) {
 		universalCallBacks.add(cb);
+	}
+
+	public void addConstantParameter(String key, String value) {
+		constantParams.put(key, value);
+	}
+
+	public void clearConstantParams() {
+		constantParams.clear();
 	}
 }
