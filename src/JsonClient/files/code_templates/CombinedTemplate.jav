@@ -1,7 +1,10 @@
 package <@packageName@>;
 
+import java.util.concurrent.Future;
 import CIAPI.Java.ApiException;
 import CIAPI.Java.JsonApi;
+import CIAPI.Java.async.AsyncJsonApi;
+import CIAPI.Java.async.CallBack;
 
 /**
  * Auto-generated interface for interacting with the REST CIAPI

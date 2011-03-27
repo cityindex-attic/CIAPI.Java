@@ -3,6 +3,9 @@ package <@packageName@>.impl;
 import java.util.concurrent.Future;
 import CIAPI.Java.ApiException;
 import CIAPI.Java.JsonApi;
+import CIAPI.Java.async.AsyncJsonApi;
+import CIAPI.Java.async.CallBack;
+import CIAPI.Java.async.AsyncApiCall;
 import <@packageName@>.ServiceMethods;
 
 public class ServiceMethodsImpl implements ServiceMethods {
@@ -42,7 +45,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * <@description@>
 	 */
 	@Override
-	public Future<Object> <@name@>Async(<@parameters@>, AsyncJsonApi api, CalBack... callBacks) throws ApiException {
+	public Future<Object> <@name@>Async(<@parameters@>, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
 		// Collect variables from method
 		String target = "<@target@>";
 		String uriTemplate = "<@uriTemplate@>";
@@ -63,7 +66,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, <@return@>);
+		Future<Object> result = call.callGetMethod(fullUrl, <@return@>.class);
 		return result;
 	}<@@@@>
 }
