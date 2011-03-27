@@ -16,17 +16,23 @@ public class PriceTickDTO {
 	
 	private String TickDate;
 	
+	/**
+	 * 
+	 * The datetime at which a price tick occured. Accurate to the millisecond
+	 */
 	public String getTickDate() {
 		return TickDate;
 	}
-	
 
 	private double Price;
 	
+	/**
+	 * 
+	 * The mid price
+	 */
 	public double getPrice() {
 		return Price;
 	}
-	
 
 }
 

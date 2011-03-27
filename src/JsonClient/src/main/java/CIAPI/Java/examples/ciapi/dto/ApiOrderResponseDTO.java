@@ -16,45 +16,63 @@ public class ApiOrderResponseDTO {
 	
 	private int OrderId;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public int getOrderId() {
 		return OrderId;
 	}
-	
 
 	private int StatusReason;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public int getStatusReason() {
 		return StatusReason;
 	}
-	
 
 	private int Status;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public int getStatus() {
 		return Status;
 	}
-	
 
 	private int Price;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public int getPrice() {
 		return Price;
 	}
-	
 
 	private double CommissionCharge;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public double getCommissionCharge() {
 		return CommissionCharge;
 	}
-	
 
 	private CIAPI.Java.examples.ciapi.dto.ApiIfDoneResponseDTO[] IfDone;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public CIAPI.Java.examples.ciapi.dto.ApiIfDoneResponseDTO[] getIfDone() {
 		return IfDone;
 	}
-	
 
 }
 

@@ -16,10 +16,13 @@ public class ListCfdMarketsResponseDTO {
 	
 	private CIAPI.Java.examples.ciapi.dto.MarketDTO[] Markets;
 	
+	/**
+	 * 
+	 * A list of CFD markets
+	 */
 	public CIAPI.Java.examples.ciapi.dto.MarketDTO[] getMarkets() {
 		return Markets;
 	}
-	
 
 }
 

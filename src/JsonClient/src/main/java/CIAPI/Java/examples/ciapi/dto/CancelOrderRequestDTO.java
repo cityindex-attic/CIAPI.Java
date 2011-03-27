@@ -16,10 +16,13 @@ public class CancelOrderRequestDTO {
 	
 	private int OrderId;
 	
+	/**
+	 * 
+	 * The order identifier
+	 */
 	public int getOrderId() {
 		return OrderId;
 	}
-	
 
 }
 

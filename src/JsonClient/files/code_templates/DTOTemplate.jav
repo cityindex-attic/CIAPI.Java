@@ -16,8 +16,11 @@ public class <@name@> {
 	<@@properties@@>
 	private <@propertyType@> <@propertyName@>;
 	
+	/**
+	 * 
+	 * <@propDesc@>
+	 */
 	public <@propertyType@> get<@propertyName@>() {
 		return <@propertyName@>;
-	}
-	<@@@@>
+	}<@@@@>
 }

@@ -16,10 +16,13 @@ public class ListTradeHistoryResponseDTO {
 	
 	private CIAPI.Java.examples.ciapi.dto.ApiTradeHistoryDTO[] TradeHistory;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public CIAPI.Java.examples.ciapi.dto.ApiTradeHistoryDTO[] getTradeHistory() {
 		return TradeHistory;
 	}
-	
 
 }
 

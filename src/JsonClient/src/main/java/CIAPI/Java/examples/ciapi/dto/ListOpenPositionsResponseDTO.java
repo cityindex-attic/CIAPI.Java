@@ -16,10 +16,13 @@ public class ListOpenPositionsResponseDTO {
 	
 	private CIAPI.Java.examples.ciapi.dto.ApiOpenPositionDTO[] OpenPositions;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public CIAPI.Java.examples.ciapi.dto.ApiOpenPositionDTO[] getOpenPositions() {
 		return OpenPositions;
 	}
-	
 
 }
 

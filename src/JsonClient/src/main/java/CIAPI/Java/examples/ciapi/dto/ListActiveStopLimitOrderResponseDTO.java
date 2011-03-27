@@ -16,10 +16,13 @@ public class ListActiveStopLimitOrderResponseDTO {
 	
 	private CIAPI.Java.examples.ciapi.dto.ApiActiveStopLimitOrderDTO[] ActiveStopLimitOrders;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public CIAPI.Java.examples.ciapi.dto.ApiActiveStopLimitOrderDTO[] getActiveStopLimitOrders() {
 		return ActiveStopLimitOrders;
 	}
-	
 
 }
 

@@ -16,17 +16,23 @@ public class LogOnRequestDTO {
 	
 	private String UserName;
 	
+	/**
+	 * 
+	 * Username is case sensitive
+	 */
 	public String getUserName() {
 		return UserName;
 	}
-	
 
 	private String Password;
 	
+	/**
+	 * 
+	 * Password is case sensitive
+	 */
 	public String getPassword() {
 		return Password;
 	}
-	
 
 }
 

@@ -85,24 +85,26 @@ public class AsyncApi {
 	 */
 	public Future<Object> logIn(final String username, final String password, final boolean keepAlive, CallBack callBack)
 			throws ApiException {
-		return methods.CreateSessionAsync(username, password, api, new CallBack() {
-			@Override
-			public void doCallBack(Object result, String baseUrl, String methodName) {
-				CreateSessionResponseDTO response = (CreateSessionResponseDTO) result;
-				sessionId = response.getSession();
-				AsyncApi.this.keepAlive = keepAlive;
-				AsyncApi.this.username = username;
-				if (keepAlive) {
-					// need to save the password if we are going to re-use it to
-					// authenticate with
-					AsyncApi.this.password = password;
-				}
-				api.addConstantParameter("UserName", username);
-				api.addConstantParameter("Session", sessionId);
-			}
-		}, callBack);
+		return methods.CreateSessionAsync(username, password, api, logOnCallback, callBack);
 	}
 
+	private final CallBack logOnCallback = new CallBack() {
+		@Override
+		public void doCallBack(Object result, String baseUrl, String methodName) {
+			CreateSessionResponseDTO response = (CreateSessionResponseDTO) result;
+			sessionId = response.getSession();
+			AsyncApi.this.keepAlive = keepAlive;
+			AsyncApi.this.username = username;
+			if (keepAlive) {
+				// need to save the password if we are going to re-use it to
+				// authenticate with
+				AsyncApi.this.password = password;
+			}
+			api.addConstantParameter("UserName", username);
+			api.addConstantParameter("Session", sessionId);
+		}
+	};
+	
 	/**
 	 * Removes the user's session token from the server. Also, sets the client
 	 * to not keep-alive. If the log out fails, the token will naturally expire.
@@ -123,7 +125,6 @@ public class AsyncApi {
 			}
 		});
 	}
-
 	
 	public Future<Object> getPriceBars(String marketId, String interval, int span, String priceBars, CallBack... callBacks) throws ApiException {
 		return methods.GetPriceBarsAsync(marketId, interval, span, priceBars, api, callBacks);
@@ -224,12 +225,12 @@ public class AsyncApi {
 		AccountInformationResponseDTO response = methods.GetClientAndTradingAccount(api);
 		return response;
 	}
-
-	private void keepAlive() throws ApiException {
-		if (keepAlive) {
-			logIn(username, password, keepAlive);
-		}
-	}
 	
 	*/
+	
+	private void keepAlive() throws ApiException {
+		if (keepAlive) {
+			logIn(username, password, keepAlive, logOnCallback);
+		}
+	}
 }

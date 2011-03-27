@@ -16,24 +16,33 @@ public class ApiQuoteResponseDTO {
 	
 	private int QuoteId;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public int getQuoteId() {
 		return QuoteId;
 	}
-	
 
 	private int Status;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public int getStatus() {
 		return Status;
 	}
-	
 
 	private int StatusReason;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public int getStatusReason() {
 		return StatusReason;
 	}
-	
 
 }
 

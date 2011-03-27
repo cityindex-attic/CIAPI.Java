@@ -16,10 +16,13 @@ public class GetNewsDetailResponseDTO {
 	
 	private CIAPI.Java.examples.ciapi.dto.NewsDetailDTO NewsDetail;
 	
+	/**
+	 * 
+	 * The details of the news item
+	 */
 	public CIAPI.Java.examples.ciapi.dto.NewsDetailDTO getNewsDetail() {
 		return NewsDetail;
 	}
-	
 
 }
 

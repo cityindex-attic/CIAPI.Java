@@ -16,10 +16,13 @@ public class GetPriceTickResponseDTO {
 	
 	private CIAPI.Java.examples.ciapi.dto.PriceTickDTO[] PriceTicks;
 	
+	/**
+	 * 
+	 * An array of price ticks, sorted in ascending order by PriceTick.TickDate
+	 */
 	public CIAPI.Java.examples.ciapi.dto.PriceTickDTO[] getPriceTicks() {
 		return PriceTicks;
 	}
-	
 
 }
 

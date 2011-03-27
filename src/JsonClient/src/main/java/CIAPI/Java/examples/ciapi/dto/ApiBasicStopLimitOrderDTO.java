@@ -16,17 +16,23 @@ public class ApiBasicStopLimitOrderDTO {
 	
 	private int OrderId;
 	
+	/**
+	 * 
+	 * The order's unique identifier.
+	 */
 	public int getOrderId() {
 		return OrderId;
 	}
-	
 
 	private double TriggerPrice;
 	
+	/**
+	 * 
+	 * The order's trigger price.
+	 */
 	public double getTriggerPrice() {
 		return TriggerPrice;
 	}
-	
 
 }
 

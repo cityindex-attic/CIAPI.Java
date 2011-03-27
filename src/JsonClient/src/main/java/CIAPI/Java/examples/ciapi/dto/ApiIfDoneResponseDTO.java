@@ -16,17 +16,23 @@ public class ApiIfDoneResponseDTO {
 	
 	private CIAPI.Java.examples.ciapi.dto.ApiStopLimitResponseDTO Stop;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public CIAPI.Java.examples.ciapi.dto.ApiStopLimitResponseDTO getStop() {
 		return Stop;
 	}
-	
 
 	private CIAPI.Java.examples.ciapi.dto.ApiStopLimitResponseDTO Limit;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public CIAPI.Java.examples.ciapi.dto.ApiStopLimitResponseDTO getLimit() {
 		return Limit;
 	}
-	
 
 }
 

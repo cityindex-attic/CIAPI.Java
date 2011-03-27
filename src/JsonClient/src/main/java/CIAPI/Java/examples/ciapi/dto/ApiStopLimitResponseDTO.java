@@ -16,17 +16,23 @@ public class ApiStopLimitResponseDTO {
 	
 	private double GuaranteedPremium;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public double getGuaranteedPremium() {
 		return GuaranteedPremium;
 	}
-	
 
 	private CIAPI.Java.examples.ciapi.dto.ApiStopLimitResponseDTO OCO;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public CIAPI.Java.examples.ciapi.dto.ApiStopLimitResponseDTO getOCO() {
 		return OCO;
 	}
-	
 
 }
 

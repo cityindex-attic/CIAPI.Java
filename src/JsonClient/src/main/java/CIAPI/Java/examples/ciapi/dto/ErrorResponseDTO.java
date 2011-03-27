@@ -16,17 +16,23 @@ public class ErrorResponseDTO {
 	
 	private String ErrorMessage;
 	
+	/**
+	 * 
+	 * This is a description of the ErrorMessage property
+	 */
 	public String getErrorMessage() {
 		return ErrorMessage;
 	}
-	
 
 	private CIAPI.Java.examples.ciapi.dto.ErrorCode ErrorCode;
 	
+	/**
+	 * 
+	 * The error code
+	 */
 	public CIAPI.Java.examples.ciapi.dto.ErrorCode getErrorCode() {
 		return ErrorCode;
 	}
-	
 
 }
 

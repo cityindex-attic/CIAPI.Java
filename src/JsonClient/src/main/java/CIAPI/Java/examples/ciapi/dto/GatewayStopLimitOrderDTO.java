@@ -16,17 +16,23 @@ public class GatewayStopLimitOrderDTO {
 	
 	private String ExpiryDateTimeUTC;
 	
+	/**
+	 * 
+	 * The associated expiry DateTime for a pair of GoodTillDate IfDone orders
+	 */
 	public String getExpiryDateTimeUTC() {
 		return ExpiryDateTimeUTC;
 	}
-	
 
 	private String Applicability;
 	
+	/**
+	 * 
+	 * Identifier which relates to the expiry of the order/trade, i.e. GoodTillDate (GTD), GoodTillCancelled (GTC) or GoodForDay (GFD)
+	 */
 	public String getApplicability() {
 		return Applicability;
 	}
-	
 
 }
 

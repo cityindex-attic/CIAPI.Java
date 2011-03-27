@@ -16,10 +16,13 @@ public class ListSpreadMarketsResponseDTO {
 	
 	private CIAPI.Java.examples.ciapi.dto.MarketDTO[] Markets;
 	
+	/**
+	 * 
+	 * A list of Spread Betting markets
+	 */
 	public CIAPI.Java.examples.ciapi.dto.MarketDTO[] getMarkets() {
 		return Markets;
 	}
-	
 
 }
 

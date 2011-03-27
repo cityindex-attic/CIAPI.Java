@@ -53,6 +53,7 @@ public class DTOCreator {
 		CodeTemplate emptyPropTemplate = propertyList.getEmptyTemplate();
 		for (Entry<String, Property> p : dto.getProperties().entrySet()) {
 			CodeTemplate propTemplate = emptyPropTemplate.copyEmptyTemplate();
+			propTemplate.putNewTemplateDefinition("propDesc", p.getValue().getDescription());
 			propTemplate.putNewTemplateDefinition("propertyName", p.getKey());
 			propTemplate.putNewTemplateDefinition("propertyType", p.getValue().getType(packageName));
 			propertyList.addMappingSet(propTemplate);

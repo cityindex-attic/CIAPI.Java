@@ -16,10 +16,13 @@ public class ListStopLimitOrderHistoryResponseDTO {
 	
 	private CIAPI.Java.examples.ciapi.dto.ApiStopLimitOrderHistoryDTO[] StopLimitOrderHistory;
 	
+	/**
+	 * 
+	 * TODO
+	 */
 	public CIAPI.Java.examples.ciapi.dto.ApiStopLimitOrderHistoryDTO[] getStopLimitOrderHistory() {
 		return StopLimitOrderHistory;
 	}
-	
 
 }
 

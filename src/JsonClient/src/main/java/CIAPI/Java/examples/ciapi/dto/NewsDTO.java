@@ -16,24 +16,33 @@ public class NewsDTO {
 	
 	private int StoryId;
 	
+	/**
+	 * 
+	 * The unique identifier for a news story
+	 */
 	public int getStoryId() {
 		return StoryId;
 	}
-	
 
 	private String Headline;
 	
+	/**
+	 * 
+	 * The News story headline
+	 */
 	public String getHeadline() {
 		return Headline;
 	}
-	
 
 	private String PublishDate;
 	
+	/**
+	 * 
+	 * The date on which the news story was published. Always in UTC
+	 */
 	public String getPublishDate() {
 		return PublishDate;
 	}
-	
 
 }
 

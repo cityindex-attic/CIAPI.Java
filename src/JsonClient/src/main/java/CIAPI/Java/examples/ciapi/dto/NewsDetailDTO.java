@@ -16,10 +16,13 @@ public class NewsDetailDTO {
 	
 	private String Story;
 	
+	/**
+	 * 
+	 * The detail of the story. This can contain HTML characters.
+	 */
 	public String getStory() {
 		return Story;
 	}
-	
 
 }
 
