@@ -1,5 +1,6 @@
 package CIAPI.Java.async;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,6 @@ import CIAPI.Java.urlstuff.UrlHelper;
 public class AsyncApiCall {
 
 	private String baseUrl;
-	private String methodName;
 	private JsonClient client;
 	private ExecutorService exec;
 
@@ -30,7 +30,7 @@ public class AsyncApiCall {
 	private boolean done;
 	private boolean started;
 
-	protected AsyncApiCall(String baseUrl, String methodName, JsonClient client, ExecutorService exec) {
+	protected AsyncApiCall(String baseUrl, JsonClient client, ExecutorService exec) {
 		this.baseUrl = baseUrl;
 		this.client = client;
 		this.exec = exec;
@@ -53,6 +53,23 @@ public class AsyncApiCall {
 		callBaks.add(cb);
 	}
 
+	public synchronized Future<Object> callGetMethod(final String extendedUrlPart, final Map<String, String> params,
+			final Class<?> returnType) {
+		UrlHelper hlpr = new UrlHelper(baseUrl, extendedUrlPart, params);
+		return callGetMethod(hlpr, returnType);
+	}
+
+	public synchronized Future<Object> callGetMethod(final String fullSecondHalfUrl, final Class<?> returnType) {
+		UrlHelper hlpr;
+		try {
+			hlpr = UrlHelper.parseUrl(baseUrl + fullSecondHalfUrl);
+			return callGetMethod(hlpr, returnType);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	/**
 	 * Method for starting a call to a JsonApi. <br />
 	 * If you want to end this method immediately, you should call the
@@ -64,7 +81,7 @@ public class AsyncApiCall {
 	 *            The type this method will return
 	 * @return A future that will hold the result of the computation
 	 */
-	public synchronized Future<Object> callGetMethod(final Map<String, String> parameters, final Class<?> returnType) {
+	protected synchronized Future<Object> callGetMethod(final UrlHelper urlHlpr, final Class<?> returnType) {
 		if (started)
 			throw new IllegalStateException("Cannot call more than once.");
 		started = true;
@@ -72,7 +89,7 @@ public class AsyncApiCall {
 		future = exec.submit(new Callable<Object>() {
 			@Override
 			public Object call() throws Exception {
-				String url = new UrlHelper(baseUrl, methodName, parameters).toUrl();
+				String url = urlHlpr.toUrl();
 				// synchronously make a request in another thread
 				Object result = client.makeGetRequest(url, returnType);
 				done = true;
@@ -80,8 +97,26 @@ public class AsyncApiCall {
 			}
 		});
 		// start listening for the future to complete
-		listenForDone();
+		listenForDone(urlHlpr.getExtendedUrl());
 		return future;
+	}
+
+	public synchronized Future<Object> callPostMethod(final String extendedUrlPart, final Map<String, String> params,
+			final Object inputData, final Class<?> returnType) {
+		UrlHelper hlpr = new UrlHelper(baseUrl, extendedUrlPart, params);
+		return callPostMethod(hlpr, inputData, returnType);
+	}
+
+	public synchronized Future<Object> callPostMethod(final String fullSecondHalfUrl, final Object inputData,
+			final Class<?> returnType) {
+		UrlHelper hlpr;
+		try {
+			hlpr = UrlHelper.parseUrl(baseUrl + fullSecondHalfUrl);
+			return callPostMethod(hlpr, inputData, returnType);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	/**
@@ -97,7 +132,7 @@ public class AsyncApiCall {
 	 *            The type this method will return
 	 * @return A future that will hold the result of the computation
 	 */
-	public synchronized Future<Object> callPostMethod(final Map<String, String> parameters, final Object inputData,
+	protected synchronized Future<Object> callPostMethod(final UrlHelper urlHlpr, final Object inputData,
 			final Class<?> returnType) {
 		if (started)
 			throw new IllegalStateException("Cannot call more than once.");
@@ -106,7 +141,7 @@ public class AsyncApiCall {
 		future = exec.submit(new Callable<Object>() {
 			@Override
 			public Object call() throws Exception {
-				String url = new UrlHelper(baseUrl, methodName, parameters).toUrl();
+				String url = urlHlpr.toUrl();
 				// synchronously make a request in another thread
 				Object result = client.makePostRequest(url, inputData, returnType);
 				done = true;
@@ -114,7 +149,7 @@ public class AsyncApiCall {
 			}
 		});
 		// start listening for the future to complete
-		listenForDone();
+		listenForDone(urlHlpr.getExtendedUrl());
 		return future;
 	}
 
@@ -124,7 +159,7 @@ public class AsyncApiCall {
 	 * If the method throws any exceptions, the handleException method will be
 	 * called instead.
 	 */
-	private void listenForDone() {
+	private void listenForDone(final String methodName) {
 		// New thread for the purpose of listening for a response to complete.
 		Thread doneListener = new Thread(new Runnable() {
 			@Override

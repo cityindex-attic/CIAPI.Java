@@ -40,7 +40,7 @@ public class TestAsyncApiCall {
 			public void doCallBack(Object result, String baseUrl, String methodName) {
 			}
 		});
-		AsyncApiCall call = api.createNewCall("");
+		AsyncApiCall call = api.createNewCall();
 		call.addCallCompleteListener(new CallBack() {
 			@Override
 			public void handleException(Exception e) {
@@ -53,7 +53,7 @@ public class TestAsyncApiCall {
 			}
 		});
 		try {
-			call.callGetMethod(null, SitesWrapper.class).get();
+			call.callGetMethod("", null, SitesWrapper.class).get();
 		} catch (InterruptedException e1) {
 			fail("InterruptedException was thrown during the get method.");
 		} catch (ExecutionException e1) {
@@ -64,7 +64,7 @@ public class TestAsyncApiCall {
 	@Test
 	public void testSimplePostRequest() {
 		AsyncJsonApi api = new AsyncJsonApi("files/test/testStatsResponse.json", client);
-		AsyncApiCall call = api.createNewCall("");
+		AsyncApiCall call = api.createNewCall();
 		call.addCallCompleteListener(new CallBack() {
 			@Override
 			public void handleException(Exception e) {
@@ -77,7 +77,7 @@ public class TestAsyncApiCall {
 			}
 		});
 		try {
-			call.callPostMethod(null, null, SitesWrapper.class).get();
+			call.callPostMethod("",null, null, SitesWrapper.class).get();
 		} catch (InterruptedException e1) {
 			fail("InterruptedException was thrown during the get method.");
 		} catch (ExecutionException e1) {
@@ -88,7 +88,7 @@ public class TestAsyncApiCall {
 	@Test
 	public void testFailRequest() {
 		AsyncJsonApi api = new AsyncJsonApi("files/testStatsResponse.json", client);
-		AsyncApiCall call = api.createNewCall("");
+		AsyncApiCall call = api.createNewCall();
 		call.addCallCompleteListener(new CallBack() {
 			@Override
 			public void handleException(Exception e) {
@@ -101,7 +101,7 @@ public class TestAsyncApiCall {
 			}
 		});
 		try {
-			Future<Object> result = call.callPostMethod(null, null, SitesWrapper.class);
+			Future<Object> result = call.callPostMethod("", null, null, SitesWrapper.class);
 			while (!result.isDone()) {
 				Thread.sleep(10);
 			}

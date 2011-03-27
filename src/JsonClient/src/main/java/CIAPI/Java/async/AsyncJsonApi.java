@@ -47,8 +47,8 @@ public class AsyncJsonApi {
 	 * 
 	 * @return a new ApiCall object that will allow you to add events to it.
 	 */
-	public AsyncApiCall createNewCall(String methodName) {
-		AsyncApiCall call = new AsyncApiCall(baseUrl, methodName, client, exec);
+	public AsyncApiCall createNewCall() {
+		AsyncApiCall call = new AsyncApiCall(baseUrl, client, exec);
 		for (CallBack cb : universalCallBacks) {
 			call.addCallCompleteListener(cb);
 		}

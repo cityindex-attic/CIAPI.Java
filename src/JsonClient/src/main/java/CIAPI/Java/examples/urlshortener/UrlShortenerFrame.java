@@ -72,7 +72,7 @@ public class UrlShortenerFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				AsyncJsonApi api = new AsyncJsonApi("https://www.googleapis.com/urlshortener/v1/url",
 						new DefaultJsonClient(new ThrottledHttpClient()));
-				AsyncApiCall call = api.createNewCall("");
+				AsyncApiCall call = api.createNewCall();
 				call.addCallCompleteListener(new CallBack() {
 					@Override
 					public void doCallBack(Object result, String baseUrl, String methodName) {
@@ -93,7 +93,7 @@ public class UrlShortenerFrame extends JFrame {
 				key.put("key", "AIzaSyCYMdrcIDWDf6YFFzyFjA2HCEbfazSkf_M");
 				south.setVisible(true);
 				UrlShortenerFrame.this.pack();
-				call.callPostMethod(key, new GooglePostRequest(longUrlField.getText()),
+				call.callPostMethod("", key, new GooglePostRequest(longUrlField.getText()),
 						GooglePostResponse.class);
 			}
 		});
