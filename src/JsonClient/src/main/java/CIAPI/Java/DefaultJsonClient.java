@@ -93,11 +93,18 @@ public class DefaultJsonClient implements JsonClient {
 			strBldr.append(responseEntityData.nextLine());
 		}
 		String fullData = strBldr.toString();
+		checkException(fullData);
 		try {
 			Object result = g.fromJson(fullData, clazz);
 			return result;
 		} catch (JsonSyntaxException e) {
 			throw new GsonParseException(e, fullData);
+		}
+	}
+
+	private void checkException(String fullData) throws ApiException {
+		if (fullData.startsWith("{\"ErrorCode\"")){
+			throw new ApiException("API Request caused error: " + fullData);
 		}
 	}
 }
