@@ -5,6 +5,33 @@ import CIAPI.Java.ApiException;
 import CIAPI.Java.JsonApi;
 import CIAPI.Java.async.AsyncJsonApi;
 import CIAPI.Java.async.CallBack;
+import CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.CancelOrderRequestDTO;
+import CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ErrorResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.GetActiveStopLimitOrderResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.GetMarketInformationResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.GetOpenPositionResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.GetOrderResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListActiveStopLimitOrderResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListCfdMarketsResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListMarketInformationRequestDTO;
+import CIAPI.Java.examples.ciapi.dto.ListMarketInformationResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListMarketInformationSearchResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListNewsHeadlinesResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.LogOnRequestDTO;
+import CIAPI.Java.examples.ciapi.dto.NewStopLimitOrderRequestDTO;
+import CIAPI.Java.examples.ciapi.dto.NewTradeOrderRequestDTO;
+import CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.UpdateTradeOrderRequestDTO;
 
 /**
  * Auto-generated interface for interacting with the REST CIAPI

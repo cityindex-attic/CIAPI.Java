@@ -3,36 +3,15 @@ package CIAPI.Java.examples.ciapi;
 import java.util.concurrent.Future;
 
 import CIAPI.Java.ApiException;
-import CIAPI.Java.JsonApi;
 import CIAPI.Java.async.AsyncJsonApi;
 import CIAPI.Java.async.CallBack;
 import CIAPI.Java.cachestuff.Cache;
 import CIAPI.Java.cachestuff.CachedJsonClient;
-import CIAPI.Java.examples.ciapi.dto.ApiActiveStopLimitOrderDTO;
-import CIAPI.Java.examples.ciapi.dto.ApiOpenPositionDTO;
-import CIAPI.Java.examples.ciapi.dto.ApiStopLimitOrderHistoryDTO;
-import CIAPI.Java.examples.ciapi.dto.ApiTradeHistoryDTO;
-import CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.CancelOrderRequestDTO;
 import CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO;
-import CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO;
-import CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO;
-import CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO;
-import CIAPI.Java.examples.ciapi.dto.ListActiveStopLimitOrderResponseDTO;
-import CIAPI.Java.examples.ciapi.dto.ListCfdMarketsResponseDTO;
-import CIAPI.Java.examples.ciapi.dto.ListNewsHeadlinesResponseDTO;
-import CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO;
-import CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO;
-import CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO;
-import CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO;
-import CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.LogOnRequestDTO;
-import CIAPI.Java.examples.ciapi.dto.MarketDTO;
 import CIAPI.Java.examples.ciapi.dto.NewStopLimitOrderRequestDTO;
-import CIAPI.Java.examples.ciapi.dto.NewsDTO;
-import CIAPI.Java.examples.ciapi.dto.NewsDetailDTO;
-import CIAPI.Java.examples.ciapi.dto.PriceBarDTO;
-import CIAPI.Java.examples.ciapi.dto.PriceTickDTO;
+import CIAPI.Java.examples.ciapi.dto.NewTradeOrderRequestDTO;
 import CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO;
 import CIAPI.Java.examples.ciapi.impl.ServiceMethodsImpl;
 import CIAPI.Java.httpstuff.DefaultHttpRequestItemFactory;
@@ -47,7 +26,6 @@ import CIAPI.Java.throttle.ThrottledHttpClient;
  */
 public class AsyncApi {
 	private AsyncJsonApi api;
-
 	private String username;
 	private String password;
 	private String sessionId;
@@ -179,61 +157,46 @@ public class AsyncApi {
 		return methods.OrderAsync(data, api, callBacks);
 	}
 
-	public Future<Object> cancelOrder(int orderId, CallBack...callBacks) throws ApiException {
+	public Future<Object> cancelOrder(int orderId, CallBack... callBacks) throws ApiException {
 		CancelOrderRequestDTO data = new CancelOrderRequestDTO();
 		return methods.CancelOrderAsync(data, api, callBacks);
 	}
-	/* The below methods need to be converted to async versions of the same code
 
-	public ListOrdersResponseDTO listOrders(int tradingAccountId, boolean openOrders, boolean acceptedOrders)
+	public Future<Object> listOrders(int tradingAccountId, boolean openOrders, boolean acceptedOrders,
+			CallBack... callbacks) throws ApiException {
+		return methods.ListOrdersAsync(tradingAccountId, openOrders, acceptedOrders, api, callbacks);
+	}
+
+	public Future<Object> listOpenPositions(int tradingAccountId, CallBack... callBacks) throws ApiException {
+		return methods.ListOpenPositionsAsync(tradingAccountId, api, callBacks);
+	}
+
+	public Future<Object> listActiveStopLimitOrders(int tradingAccountId, CallBack... callbacks) throws ApiException {
+		return methods.ListActiveStopLimitOrdersAsync(tradingAccountId, api, callbacks);
+	}
+
+	public Future<Object> listTradeHistory(int tradingAccountId, int maxResults, CallBack... callbacks)
 			throws ApiException {
-		ListOrdersResponseDTO response = methods.ListOrders(tradingAccountId, openOrders, acceptedOrders, api);
-		return response;
+		return methods.ListTradeHistoryAsync(tradingAccountId, maxResults, api, callbacks);
 	}
 
-	public ApiOpenPositionDTO[] listOpenPositions(int tradingAccountId) throws ApiException {
-		ListOpenPositionsResponseDTO response = methods.ListOpenPositions(tradingAccountId, api);
-		return response.getOpenPositions();
-	}
-
-	public ApiActiveStopLimitOrderDTO[] listActiveStopLimitOrders(int tradingAccountId) throws ApiException {
-		ListActiveStopLimitOrderResponseDTO response = methods.ListActiveStopLimitOrders(tradingAccountId, api);
-		return response.getActiveStopLimitOrders();
-	}
-
-	public ApiTradeHistoryDTO[] listTradeHistory(int tradingAccountId, int maxResults) throws ApiException {
-		ListTradeHistoryResponseDTO response = methods.ListTradeHistory(tradingAccountId, maxResults, api);
-		return response.getTradeHistory();
-	}
-
-	public ApiStopLimitOrderHistoryDTO[] listStopLimitOrderHistory(int tradingAccountId, int maxResults)
+	public Future<Object> listStopLimitOrderHistory(int tradingAccountId, int maxResults, CallBack... callbacks)
 			throws ApiException {
-		ListStopLimitOrderHistoryResponseDTO response = methods.ListStopLimitOrderHistory(tradingAccountId, maxResults,
-				api);
-		return response.getStopLimitOrderHistory();
+		return methods.ListStopLimitOrderHistoryAsync(tradingAccountId, maxResults, api, callbacks);
 	}
 
-	public ApiTradeOrderResponseDTO trade(int MarketId, String Direction, double Quantity, double BidPrice,
-			double OfferPrice, String AuditId, int TradingAccountId) throws ApiException {
-		ApiTradeOrderResponseDTO response = methods.Trade(MarketId, Direction, Quantity, BidPrice, OfferPrice, AuditId,
-				TradingAccountId, api);
-		return response;
+	public Future<Object> trade(int MarketId, String Direction, double Quantity, double BidPrice,
+			double OfferPrice, String AuditId, int TradingAccountId, CallBack...callbacks) throws ApiException {
+		NewTradeOrderRequestDTO data = new NewTradeOrderRequestDTO();
+		data.setMarketId(MarketId);
+		data.setDirection(Direction);
+		data.setQuantity(Quantity);
+		data.setBidPrice(BidPrice);
+		data.setOfferPrice(OfferPrice);
+		data.setAuditId(AuditId);
+		data.setTradingAccountId(TradingAccountId);
+		return methods.TradeAsync(data, api, callbacks);
 	}
-
-	public boolean getChartingEnabled(String id) throws ApiException {
-		return methods.GetChartingEnabled(id, api);
-	}
-
-	public String getTermsAndConditions(String clientaccount) throws ApiException {
-		return methods.GetTermsAndConditions(clientaccount, api);
-	}
-
-	public AccountInformationResponseDTO getClientAndTradingAccount() throws ApiException {
-		AccountInformationResponseDTO response = methods.GetClientAndTradingAccount(api);
-		return response;
-	}
-	
-	*/
 
 	private void keepAlive() throws ApiException {
 		if (keepAlive) {

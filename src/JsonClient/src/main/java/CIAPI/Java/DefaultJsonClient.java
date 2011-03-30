@@ -84,10 +84,6 @@ public class DefaultJsonClient implements JsonClient {
 	private Object finishMakeRequest(InputStream data, Class<?> clazz) throws ApiException {
 		Gson g = new Gson();
 		Scanner responseEntityData = new Scanner(data);
-		// We can pass an InputStream into the Gson decoder. Probably should be
-		// doing this
-		// But, this is much easier to debug because you can see the actual
-		// data that was returned.
 		StringBuilder strBldr = new StringBuilder();
 		while (responseEntityData.hasNextLine()) {
 			strBldr.append(responseEntityData.nextLine());
@@ -102,8 +98,15 @@ public class DefaultJsonClient implements JsonClient {
 		}
 	}
 
+	/**
+	 * Checks to see if the data begins with an error message. If it does, ist
+	 * simply throws an exception.
+	 * 
+	 * @param fullData the data returned from an API call.
+	 * @throws ApiException
+	 */
 	private void checkException(String fullData) throws ApiException {
-		if (fullData.startsWith("{\"ErrorCode\"")){
+		if (fullData.startsWith("{\"ErrorCode\"")) {
 			throw new ApiException("API Request caused error: " + fullData);
 		}
 	}
