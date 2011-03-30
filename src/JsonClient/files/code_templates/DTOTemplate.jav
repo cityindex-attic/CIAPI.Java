@@ -17,10 +17,13 @@ public class <@name@> {
 	private <@propertyType@> <@propertyName@>;
 	
 	/**
-	 * 
 	 * <@propDesc@>
 	 */
 	public <@propertyType@> get<@propertyName@>() {
 		return <@propertyName@>;
+	}
+	
+	public void set<@propertyName@>(<@propertyType@> <@propertyName@>) {
+		this.<@propertyName@> = <@propertyName@>;
 	}<@@@@>
 }
