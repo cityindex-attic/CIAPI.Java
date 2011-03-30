@@ -17,7 +17,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * Create a new session. The is how you "log on" to the CIAPI.
 	 */
 	@Override
-	public CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO CreateSession(String UserName, String Password, JsonApi api) throws ApiException {
+	public CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO CreateSession(CIAPI.Java.examples.ciapi.dto.LogOnRequestDTO logOnRequest, JsonApi api) throws ApiException {
 		// Collect variables from method
 		String target = "session";
 		String uriTemplate = "/";
@@ -26,19 +26,25 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{UserName}", UserName + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{logOnRequest}", logOnRequest + "");
 
-		filledUri = filledUri.replace("{Password}", Password + "");
-
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO result = (CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO) api.callPostMethod(fullUrl, logOnRequest, CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
@@ -48,7 +54,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * Create a new session. The is how you "log on" to the CIAPI.
 	 */
 	@Override
-	public Future<Object> CreateSessionAsync(String UserName, String Password, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
+	public Future<Object> CreateSessionAsync(CIAPI.Java.examples.ciapi.dto.LogOnRequestDTO logOnRequest, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
 		// Collect variables from method
 		String target = "session";
 		String uriTemplate = "/";
@@ -58,12 +64,12 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{UserName}", UserName + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{logOnRequest}", logOnRequest + "");
 
-		filledUri = filledUri.replace("{Password}", Password + "");
-
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -72,7 +78,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, logOnRequest, CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
@@ -91,19 +104,27 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{userName}", userName + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{userName}", userName + "");
 
-		filledUri = filledUri.replace("{session}", session + "");
+			filledUri = filledUri.replace("{session}", session + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO result = (CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO) api.callPostMethod(fullUrl, userName, CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
@@ -123,12 +144,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{userName}", userName + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{userName}", userName + "");
 
-		filledUri = filledUri.replace("{session}", session + "");
+			filledUri = filledUri.replace("{session}", session + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -137,7 +160,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, userName, CIAPI.Java.examples.ciapi.dto.SessionDeletionResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
@@ -156,23 +186,31 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{marketId}", marketId + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{marketId}", marketId + "");
 
-		filledUri = filledUri.replace("{interval}", interval + "");
+			filledUri = filledUri.replace("{interval}", interval + "");
 
-		filledUri = filledUri.replace("{span}", span + "");
+			filledUri = filledUri.replace("{span}", span + "");
 
-		filledUri = filledUri.replace("{priceBars}", priceBars + "");
+			filledUri = filledUri.replace("{priceBars}", priceBars + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO result = (CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
@@ -192,16 +230,18 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{marketId}", marketId + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{marketId}", marketId + "");
 
-		filledUri = filledUri.replace("{interval}", interval + "");
+			filledUri = filledUri.replace("{interval}", interval + "");
 
-		filledUri = filledUri.replace("{span}", span + "");
+			filledUri = filledUri.replace("{span}", span + "");
 
-		filledUri = filledUri.replace("{priceBars}", priceBars + "");
+			filledUri = filledUri.replace("{priceBars}", priceBars + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -210,7 +250,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
@@ -229,19 +276,27 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{marketId}", marketId + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{marketId}", marketId + "");
 
-		filledUri = filledUri.replace("{priceTicks}", priceTicks + "");
+			filledUri = filledUri.replace("{priceTicks}", priceTicks + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO result = (CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
@@ -261,12 +316,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{marketId}", marketId + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{marketId}", marketId + "");
 
-		filledUri = filledUri.replace("{priceTicks}", priceTicks + "");
+			filledUri = filledUri.replace("{priceTicks}", priceTicks + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -275,17 +332,24 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
 	/**
 	 * !This is an auto generated method!
 	 *
-	 * Get Market Information for the specified market.
+	 * Get Market Information for the specified market. You must be authorised to view the market, or the query will fail.
 	 */
 	@Override
-	public CIAPI.Java.examples.ciapi.dto.MarketInformationResponseDTO GetMarketInformation(String marketId, JsonApi api) throws ApiException {
+	public CIAPI.Java.examples.ciapi.dto.GetMarketInformationResponseDTO GetMarketInformation(String marketId, JsonApi api) throws ApiException {
 		// Collect variables from method
 		String target = "market";
 		String uriTemplate = "/{marketId}/information";
@@ -294,24 +358,32 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{marketId}", marketId + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{marketId}", marketId + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.MarketInformationResponseDTO result = (CIAPI.Java.examples.ciapi.dto.MarketInformationResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.MarketInformationResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.GetMarketInformationResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.GetMarketInformationResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetMarketInformationResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.GetMarketInformationResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.GetMarketInformationResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
 	/**
 	 * !This is an auto generated method!
 	 *
-	 * Get Market Information for the specified market.
+	 * Get Market Information for the specified market. You must be authorised to view the market, or the query will fail.
 	 */
 	@Override
 	public Future<Object> GetMarketInformationAsync(String marketId, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
@@ -324,10 +396,12 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{marketId}", marketId + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{marketId}", marketId + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -336,7 +410,194 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.MarketInformationResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetMarketInformationResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.GetMarketInformationResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
+		return result;
+	}
+
+	/**
+	 * !This is an auto generated method!
+	 *
+	 * Get Market Information for markets that fit the query.
+	 */
+	@Override
+	public CIAPI.Java.examples.ciapi.dto.ListMarketInformationSearchResponseDTO ListMarketInformationSearch(boolean searchByMarketCode, boolean searchByMarketName, boolean spreadProductType, boolean cfdProductType, boolean binaryProductType, String query, int maxResults, JsonApi api) throws ApiException {
+		// Collect variables from method
+		String target = "market";
+		String uriTemplate = "/market/informationsearch?SearchByMarketCode={searchByMarketCode}&SearchByMarketName={searchByMarketName}&SpreadProductType={spreadProductType}&CfdProductType={cfdProductType}&BinaryProductType={binaryProductType}&Query={query}&MaxResults={maxResults}";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{searchByMarketCode}", searchByMarketCode + "");
+
+			filledUri = filledUri.replace("{searchByMarketName}", searchByMarketName + "");
+
+			filledUri = filledUri.replace("{spreadProductType}", spreadProductType + "");
+
+			filledUri = filledUri.replace("{cfdProductType}", cfdProductType + "");
+
+			filledUri = filledUri.replace("{binaryProductType}", binaryProductType + "");
+
+			filledUri = filledUri.replace("{query}", query + "");
+
+			filledUri = filledUri.replace("{maxResults}", maxResults + "");
+
+		}
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		CIAPI.Java.examples.ciapi.dto.ListMarketInformationSearchResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListMarketInformationSearchResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListMarketInformationSearchResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListMarketInformationSearchResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListMarketInformationSearchResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
+		return result;
+	}
+	
+	/**
+	 * !This is an auto generated method!
+	 *
+	 * Get Market Information for markets that fit the query.
+	 */
+	@Override
+	public Future<Object> ListMarketInformationSearchAsync(boolean searchByMarketCode, boolean searchByMarketName, boolean spreadProductType, boolean cfdProductType, boolean binaryProductType, String query, int maxResults, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
+		// Collect variables from method
+		String target = "market";
+		String uriTemplate = "/market/informationsearch?SearchByMarketCode={searchByMarketCode}&SearchByMarketName={searchByMarketName}&SpreadProductType={spreadProductType}&CfdProductType={cfdProductType}&BinaryProductType={binaryProductType}&Query={query}&MaxResults={maxResults}";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{searchByMarketCode}", searchByMarketCode + "");
+
+			filledUri = filledUri.replace("{searchByMarketName}", searchByMarketName + "");
+
+			filledUri = filledUri.replace("{spreadProductType}", spreadProductType + "");
+
+			filledUri = filledUri.replace("{cfdProductType}", cfdProductType + "");
+
+			filledUri = filledUri.replace("{binaryProductType}", binaryProductType + "");
+
+			filledUri = filledUri.replace("{query}", query + "");
+
+			filledUri = filledUri.replace("{maxResults}", maxResults + "");
+
+		}
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		AsyncApiCall call = api.createNewCall();
+		for (CallBack cb : callBacks) {
+			call.addCallCompleteListener(cb);
+		}
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListMarketInformationSearchResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListMarketInformationSearchResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
+		return result;
+	}
+
+	/**
+	 * !This is an auto generated method!
+	 *
+	 * Get Market Information for the specified list of markets. You must be authorised to view all the markets in the supplied list, or the query will fail.
+	 */
+	@Override
+	public CIAPI.Java.examples.ciapi.dto.ListMarketInformationResponseDTO ListMarketInformation(CIAPI.Java.examples.ciapi.dto.ListMarketInformationRequestDTO[] listMarketInformationRequestDTO, JsonApi api) throws ApiException {
+		// Collect variables from method
+		String target = "market";
+		String uriTemplate = "/market/information";
+		String transport = "POST";
+		String envelope = "JSON";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{listMarketInformationRequestDTO}", listMarketInformationRequestDTO + "");
+
+		}
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		CIAPI.Java.examples.ciapi.dto.ListMarketInformationResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListMarketInformationResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListMarketInformationResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListMarketInformationResponseDTO) api.callPostMethod(fullUrl, listMarketInformationRequestDTO, CIAPI.Java.examples.ciapi.dto.ListMarketInformationResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
+		return result;
+	}
+	
+	/**
+	 * !This is an auto generated method!
+	 *
+	 * Get Market Information for the specified list of markets. You must be authorised to view all the markets in the supplied list, or the query will fail.
+	 */
+	@Override
+	public Future<Object> ListMarketInformationAsync(CIAPI.Java.examples.ciapi.dto.ListMarketInformationRequestDTO[] listMarketInformationRequestDTO, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
+		// Collect variables from method
+		String target = "market";
+		String uriTemplate = "/market/information";
+		String transport = "POST";
+		String envelope = "JSON";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{listMarketInformationRequestDTO}", listMarketInformationRequestDTO + "");
+
+		}
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		AsyncApiCall call = api.createNewCall();
+		for (CallBack cb : callBacks) {
+			call.addCallCompleteListener(cb);
+		}
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListMarketInformationResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, listMarketInformationRequestDTO, CIAPI.Java.examples.ciapi.dto.ListMarketInformationResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
@@ -355,19 +616,27 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{category}", category + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{category}", category + "");
 
-		filledUri = filledUri.replace("{maxResults}", maxResults + "");
+			filledUri = filledUri.replace("{maxResults}", maxResults + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.ListNewsHeadlinesResponseDTO result = (CIAPI.Java.examples.ciapi.dto.ListNewsHeadlinesResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListNewsHeadlinesResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.ListNewsHeadlinesResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListNewsHeadlinesResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListNewsHeadlinesResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListNewsHeadlinesResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListNewsHeadlinesResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
@@ -387,12 +656,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{category}", category + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{category}", category + "");
 
-		filledUri = filledUri.replace("{maxResults}", maxResults + "");
+			filledUri = filledUri.replace("{maxResults}", maxResults + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -401,7 +672,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListNewsHeadlinesResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListNewsHeadlinesResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListNewsHeadlinesResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
@@ -420,17 +698,25 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{storyId}", storyId + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{storyId}", storyId + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO result = (CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
@@ -450,10 +736,12 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{storyId}", storyId + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{storyId}", storyId + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -462,7 +750,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
@@ -481,23 +776,31 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{searchByMarketName}", searchByMarketName + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{searchByMarketName}", searchByMarketName + "");
 
-		filledUri = filledUri.replace("{searchByMarketCode}", searchByMarketCode + "");
+			filledUri = filledUri.replace("{searchByMarketCode}", searchByMarketCode + "");
 
-		filledUri = filledUri.replace("{clientAccountId}", clientAccountId + "");
+			filledUri = filledUri.replace("{clientAccountId}", clientAccountId + "");
 
-		filledUri = filledUri.replace("{maxResults}", maxResults + "");
+			filledUri = filledUri.replace("{maxResults}", maxResults + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.ListCfdMarketsResponseDTO result = (CIAPI.Java.examples.ciapi.dto.ListCfdMarketsResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListCfdMarketsResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.ListCfdMarketsResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListCfdMarketsResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListCfdMarketsResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListCfdMarketsResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListCfdMarketsResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
@@ -517,16 +820,18 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{searchByMarketName}", searchByMarketName + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{searchByMarketName}", searchByMarketName + "");
 
-		filledUri = filledUri.replace("{searchByMarketCode}", searchByMarketCode + "");
+			filledUri = filledUri.replace("{searchByMarketCode}", searchByMarketCode + "");
 
-		filledUri = filledUri.replace("{clientAccountId}", clientAccountId + "");
+			filledUri = filledUri.replace("{clientAccountId}", clientAccountId + "");
 
-		filledUri = filledUri.replace("{maxResults}", maxResults + "");
+			filledUri = filledUri.replace("{maxResults}", maxResults + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -535,7 +840,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListCfdMarketsResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListCfdMarketsResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListCfdMarketsResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
@@ -554,23 +866,31 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{searchByMarketName}", searchByMarketName + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{searchByMarketName}", searchByMarketName + "");
 
-		filledUri = filledUri.replace("{searchByMarketCode}", searchByMarketCode + "");
+			filledUri = filledUri.replace("{searchByMarketCode}", searchByMarketCode + "");
 
-		filledUri = filledUri.replace("{clientAccountId}", clientAccountId + "");
+			filledUri = filledUri.replace("{clientAccountId}", clientAccountId + "");
 
-		filledUri = filledUri.replace("{maxResults}", maxResults + "");
+			filledUri = filledUri.replace("{maxResults}", maxResults + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO result = (CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
@@ -590,16 +910,18 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{searchByMarketName}", searchByMarketName + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{searchByMarketName}", searchByMarketName + "");
 
-		filledUri = filledUri.replace("{searchByMarketCode}", searchByMarketCode + "");
+			filledUri = filledUri.replace("{searchByMarketCode}", searchByMarketCode + "");
 
-		filledUri = filledUri.replace("{clientAccountId}", clientAccountId + "");
+			filledUri = filledUri.replace("{clientAccountId}", clientAccountId + "");
 
-		filledUri = filledUri.replace("{maxResults}", maxResults + "");
+			filledUri = filledUri.replace("{maxResults}", maxResults + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -608,7 +930,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
@@ -618,7 +947,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * Place an order on a particular market
 	 */
 	@Override
-	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO Order(int MarketId, String Direction, double Quantity, double BidPrice, double OfferPrice, String AuditId, int TradingAccountId, String Applicability, String ExpiryDateTimeUTC, JsonApi api) throws ApiException {
+	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO Order(CIAPI.Java.examples.ciapi.dto.NewStopLimitOrderRequestDTO order, JsonApi api) throws ApiException {
 		// Collect variables from method
 		String target = "order";
 		String uriTemplate = "/order";
@@ -627,33 +956,25 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{MarketId}", MarketId + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{order}", order + "");
 
-		filledUri = filledUri.replace("{Direction}", Direction + "");
-
-		filledUri = filledUri.replace("{Quantity}", Quantity + "");
-
-		filledUri = filledUri.replace("{BidPrice}", BidPrice + "");
-
-		filledUri = filledUri.replace("{OfferPrice}", OfferPrice + "");
-
-		filledUri = filledUri.replace("{AuditId}", AuditId + "");
-
-		filledUri = filledUri.replace("{TradingAccountId}", TradingAccountId + "");
-
-		filledUri = filledUri.replace("{Applicability}", Applicability + "");
-
-		filledUri = filledUri.replace("{ExpiryDateTimeUTC}", ExpiryDateTimeUTC + "");
-
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO result = (CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO) api.callPostMethod(fullUrl, order, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
@@ -663,7 +984,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * Place an order on a particular market
 	 */
 	@Override
-	public Future<Object> OrderAsync(int MarketId, String Direction, double Quantity, double BidPrice, double OfferPrice, String AuditId, int TradingAccountId, String Applicability, String ExpiryDateTimeUTC, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
+	public Future<Object> OrderAsync(CIAPI.Java.examples.ciapi.dto.NewStopLimitOrderRequestDTO order, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
 		// Collect variables from method
 		String target = "order";
 		String uriTemplate = "/order";
@@ -673,26 +994,12 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{MarketId}", MarketId + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{order}", order + "");
 
-		filledUri = filledUri.replace("{Direction}", Direction + "");
-
-		filledUri = filledUri.replace("{Quantity}", Quantity + "");
-
-		filledUri = filledUri.replace("{BidPrice}", BidPrice + "");
-
-		filledUri = filledUri.replace("{OfferPrice}", OfferPrice + "");
-
-		filledUri = filledUri.replace("{AuditId}", AuditId + "");
-
-		filledUri = filledUri.replace("{TradingAccountId}", TradingAccountId + "");
-
-		filledUri = filledUri.replace("{Applicability}", Applicability + "");
-
-		filledUri = filledUri.replace("{ExpiryDateTimeUTC}", ExpiryDateTimeUTC + "");
-
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -701,7 +1008,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, order, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
@@ -711,7 +1025,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * Cancel an order
 	 */
 	@Override
-	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO CancelOrder(int OrderId, JsonApi api) throws ApiException {
+	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO CancelOrder(CIAPI.Java.examples.ciapi.dto.CancelOrderRequestDTO cancelOrder, JsonApi api) throws ApiException {
 		// Collect variables from method
 		String target = "order";
 		String uriTemplate = "/cancel";
@@ -720,17 +1034,25 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{OrderId}", OrderId + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{cancelOrder}", cancelOrder + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO result = (CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO) api.callPostMethod(fullUrl, cancelOrder, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
@@ -740,7 +1062,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * Cancel an order
 	 */
 	@Override
-	public Future<Object> CancelOrderAsync(int OrderId, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
+	public Future<Object> CancelOrderAsync(CIAPI.Java.examples.ciapi.dto.CancelOrderRequestDTO cancelOrder, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
 		// Collect variables from method
 		String target = "order";
 		String uriTemplate = "/cancel";
@@ -750,10 +1072,12 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{OrderId}", OrderId + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{cancelOrder}", cancelOrder + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -762,14 +1086,21 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, cancelOrder, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
 	/**
 	 * !This is an auto generated method!
 	 *
-	 * TODO
+	 * Not Implemented.
 	 */
 	@Override
 	public CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO ListOrders(int tradingAccountId, boolean openOrders, boolean acceptedOrders, JsonApi api) throws ApiException {
@@ -781,28 +1112,36 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
 
-		filledUri = filledUri.replace("{openOrders}", openOrders + "");
+			filledUri = filledUri.replace("{openOrders}", openOrders + "");
 
-		filledUri = filledUri.replace("{acceptedOrders}", acceptedOrders + "");
+			filledUri = filledUri.replace("{acceptedOrders}", acceptedOrders + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO result = (CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
 	/**
 	 * !This is an auto generated method!
 	 *
-	 * TODO
+	 * Not Implemented.
 	 */
 	@Override
 	public Future<Object> ListOrdersAsync(int tradingAccountId, boolean openOrders, boolean acceptedOrders, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
@@ -815,14 +1154,16 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
 
-		filledUri = filledUri.replace("{openOrders}", openOrders + "");
+			filledUri = filledUri.replace("{openOrders}", openOrders + "");
 
-		filledUri = filledUri.replace("{acceptedOrders}", acceptedOrders + "");
+			filledUri = filledUri.replace("{acceptedOrders}", acceptedOrders + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -831,14 +1172,21 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
 	/**
 	 * !This is an auto generated method!
 	 *
-	 * TODO
+	 * Queries for a specified trading account's trades / open positions.
 	 */
 	@Override
 	public CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO ListOpenPositions(int tradingAccountId, JsonApi api) throws ApiException {
@@ -850,24 +1198,32 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO result = (CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
 	/**
 	 * !This is an auto generated method!
 	 *
-	 * TODO
+	 * Queries for a specified trading account's trades / open positions.
 	 */
 	@Override
 	public Future<Object> ListOpenPositionsAsync(int tradingAccountId, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
@@ -880,10 +1236,12 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -892,14 +1250,21 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListOpenPositionsResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
 	/**
 	 * !This is an auto generated method!
 	 *
-	 * TODO
+	 * Queries for a specified trading account's active stop / limit orders.
 	 */
 	@Override
 	public CIAPI.Java.examples.ciapi.dto.ListActiveStopLimitOrderResponseDTO ListActiveStopLimitOrders(int tradingAccountId, JsonApi api) throws ApiException {
@@ -911,24 +1276,32 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.ListActiveStopLimitOrderResponseDTO result = (CIAPI.Java.examples.ciapi.dto.ListActiveStopLimitOrderResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListActiveStopLimitOrderResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.ListActiveStopLimitOrderResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListActiveStopLimitOrderResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListActiveStopLimitOrderResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListActiveStopLimitOrderResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListActiveStopLimitOrderResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
 	/**
 	 * !This is an auto generated method!
 	 *
-	 * TODO
+	 * Queries for a specified trading account's active stop / limit orders.
 	 */
 	@Override
 	public Future<Object> ListActiveStopLimitOrdersAsync(int tradingAccountId, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
@@ -941,10 +1314,12 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -953,14 +1328,177 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListActiveStopLimitOrderResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListActiveStopLimitOrderResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListActiveStopLimitOrderResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
 	/**
 	 * !This is an auto generated method!
 	 *
-	 * TODO
+	 * Queries for a active stop limit order with a specified order id. It will return a null value if the order doesn't exist, or is not an active stop limit order.
+	 */
+	@Override
+	public CIAPI.Java.examples.ciapi.dto.GetActiveStopLimitOrderResponseDTO GetActiveStopLimitOrder(String orderId, JsonApi api) throws ApiException {
+		// Collect variables from method
+		String target = "order";
+		String uriTemplate = "/{orderId}/activestoplimitorder";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{orderId}", orderId + "");
+
+		}
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		CIAPI.Java.examples.ciapi.dto.GetActiveStopLimitOrderResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.GetActiveStopLimitOrderResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetActiveStopLimitOrderResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.GetActiveStopLimitOrderResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.GetActiveStopLimitOrderResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
+		return result;
+	}
+	
+	/**
+	 * !This is an auto generated method!
+	 *
+	 * Queries for a active stop limit order with a specified order id. It will return a null value if the order doesn't exist, or is not an active stop limit order.
+	 */
+	@Override
+	public Future<Object> GetActiveStopLimitOrderAsync(String orderId, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
+		// Collect variables from method
+		String target = "order";
+		String uriTemplate = "/{orderId}/activestoplimitorder";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{orderId}", orderId + "");
+
+		}
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		AsyncApiCall call = api.createNewCall();
+		for (CallBack cb : callBacks) {
+			call.addCallCompleteListener(cb);
+		}
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetActiveStopLimitOrderResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.GetActiveStopLimitOrderResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
+		return result;
+	}
+
+	/**
+	 * !This is an auto generated method!
+	 *
+	 * Queries for a trade / open position with a specified order id. It will return a null value if the order doesn't exist, or is not a trade / open position.
+	 */
+	@Override
+	public CIAPI.Java.examples.ciapi.dto.GetOpenPositionResponseDTO GetOpenPosition(String orderId, JsonApi api) throws ApiException {
+		// Collect variables from method
+		String target = "order";
+		String uriTemplate = "/{orderId}/openposition";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{orderId}", orderId + "");
+
+		}
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		CIAPI.Java.examples.ciapi.dto.GetOpenPositionResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.GetOpenPositionResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetOpenPositionResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.GetOpenPositionResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.GetOpenPositionResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
+		return result;
+	}
+	
+	/**
+	 * !This is an auto generated method!
+	 *
+	 * Queries for a trade / open position with a specified order id. It will return a null value if the order doesn't exist, or is not a trade / open position.
+	 */
+	@Override
+	public Future<Object> GetOpenPositionAsync(String orderId, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
+		// Collect variables from method
+		String target = "order";
+		String uriTemplate = "/{orderId}/openposition";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{orderId}", orderId + "");
+
+		}
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		AsyncApiCall call = api.createNewCall();
+		for (CallBack cb : callBacks) {
+			call.addCallCompleteListener(cb);
+		}
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetOpenPositionResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.GetOpenPositionResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
+		return result;
+	}
+
+	/**
+	 * !This is an auto generated method!
+	 *
+	 * Queries for a specified trading account's trade history.
 	 */
 	@Override
 	public CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO ListTradeHistory(int tradingAccountId, int maxResults, JsonApi api) throws ApiException {
@@ -972,26 +1510,34 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
 
-		filledUri = filledUri.replace("{maxResults}", maxResults + "");
+			filledUri = filledUri.replace("{maxResults}", maxResults + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO result = (CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
 	/**
 	 * !This is an auto generated method!
 	 *
-	 * TODO
+	 * Queries for a specified trading account's trade history.
 	 */
 	@Override
 	public Future<Object> ListTradeHistoryAsync(int tradingAccountId, int maxResults, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
@@ -1004,12 +1550,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
 
-		filledUri = filledUri.replace("{maxResults}", maxResults + "");
+			filledUri = filledUri.replace("{maxResults}", maxResults + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -1018,14 +1566,21 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
 	/**
 	 * !This is an auto generated method!
 	 *
-	 * TODO
+	 * Queries for a specified trading account's stop / limit order history.
 	 */
 	@Override
 	public CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO ListStopLimitOrderHistory(int tradingAccountId, int maxResults, JsonApi api) throws ApiException {
@@ -1037,26 +1592,34 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
 
-		filledUri = filledUri.replace("{maxResults}", maxResults + "");
+			filledUri = filledUri.replace("{maxResults}", maxResults + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO result = (CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
 	/**
 	 * !This is an auto generated method!
 	 *
-	 * TODO
+	 * Queries for a specified trading account's stop / limit order history.
 	 */
 	@Override
 	public Future<Object> ListStopLimitOrderHistoryAsync(int tradingAccountId, int maxResults, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
@@ -1069,12 +1632,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{tradingAccountId}", tradingAccountId + "");
 
-		filledUri = filledUri.replace("{maxResults}", maxResults + "");
+			filledUri = filledUri.replace("{maxResults}", maxResults + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -1083,7 +1648,92 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
+		return result;
+	}
+
+	/**
+	 * !This is an auto generated method!
+	 *
+	 * Queries for an order by a specific order id. The current implementation only returns active orders (i.e. those with a status of 1 - Pending, 2 - Accepted, 3 - Open, 6 - Suspended, 8 - Yellow Card, 11 - Triggered).
+	 */
+	@Override
+	public CIAPI.Java.examples.ciapi.dto.GetOrderResponseDTO GetOrder(String orderId, JsonApi api) throws ApiException {
+		// Collect variables from method
+		String target = "order";
+		String uriTemplate = "/{orderId}";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{orderId}", orderId + "");
+
+		}
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		CIAPI.Java.examples.ciapi.dto.GetOrderResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.GetOrderResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetOrderResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.GetOrderResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.GetOrderResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
+		return result;
+	}
+	
+	/**
+	 * !This is an auto generated method!
+	 *
+	 * Queries for an order by a specific order id. The current implementation only returns active orders (i.e. those with a status of 1 - Pending, 2 - Accepted, 3 - Open, 6 - Suspended, 8 - Yellow Card, 11 - Triggered).
+	 */
+	@Override
+	public Future<Object> GetOrderAsync(String orderId, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
+		// Collect variables from method
+		String target = "order";
+		String uriTemplate = "/{orderId}";
+		String transport = "GET";
+		String envelope = "URL";
+		String contentType = "application/json";
+		String filledUri = uriTemplate;
+		// Done collecting variables
+		// Fill in necessary holes in the URL.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{orderId}", orderId + "");
+
+		}
+		// Done filling in holes
+		// build final URL
+		String fullUrl = target + filledUri;
+		// done building final url
+		AsyncApiCall call = api.createNewCall();
+		for (CallBack cb : callBacks) {
+			call.addCallCompleteListener(cb);
+		}
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.GetOrderResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.GetOrderResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
@@ -1093,7 +1743,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * Place a trade on a particular market
 	 */
 	@Override
-	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO Trade(int MarketId, String Direction, double Quantity, double BidPrice, double OfferPrice, String AuditId, int TradingAccountId, JsonApi api) throws ApiException {
+	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO Trade(CIAPI.Java.examples.ciapi.dto.NewTradeOrderRequestDTO trade, JsonApi api) throws ApiException {
 		// Collect variables from method
 		String target = "order";
 		String uriTemplate = "/trade";
@@ -1102,29 +1752,25 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{MarketId}", MarketId + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{trade}", trade + "");
 
-		filledUri = filledUri.replace("{Direction}", Direction + "");
-
-		filledUri = filledUri.replace("{Quantity}", Quantity + "");
-
-		filledUri = filledUri.replace("{BidPrice}", BidPrice + "");
-
-		filledUri = filledUri.replace("{OfferPrice}", OfferPrice + "");
-
-		filledUri = filledUri.replace("{AuditId}", AuditId + "");
-
-		filledUri = filledUri.replace("{TradingAccountId}", TradingAccountId + "");
-
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO result = (CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO) api.callPostMethod(fullUrl, trade, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
@@ -1134,7 +1780,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * Place a trade on a particular market
 	 */
 	@Override
-	public Future<Object> TradeAsync(int MarketId, String Direction, double Quantity, double BidPrice, double OfferPrice, String AuditId, int TradingAccountId, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
+	public Future<Object> TradeAsync(CIAPI.Java.examples.ciapi.dto.NewTradeOrderRequestDTO trade, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
 		// Collect variables from method
 		String target = "order";
 		String uriTemplate = "/trade";
@@ -1144,22 +1790,12 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{MarketId}", MarketId + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{trade}", trade + "");
 
-		filledUri = filledUri.replace("{Direction}", Direction + "");
-
-		filledUri = filledUri.replace("{Quantity}", Quantity + "");
-
-		filledUri = filledUri.replace("{BidPrice}", BidPrice + "");
-
-		filledUri = filledUri.replace("{OfferPrice}", OfferPrice + "");
-
-		filledUri = filledUri.replace("{AuditId}", AuditId + "");
-
-		filledUri = filledUri.replace("{TradingAccountId}", TradingAccountId + "");
-
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -1168,59 +1804,76 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, trade, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 
 	/**
 	 * !This is an auto generated method!
 	 *
-	 * Whether a User is allowed to see Charting Data
+	 * Update a trade
 	 */
 	@Override
-	public Boolean GetChartingEnabled(String id, JsonApi api) throws ApiException {
+	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO Update(CIAPI.Java.examples.ciapi.dto.UpdateTradeOrderRequestDTO update, JsonApi api) throws ApiException {
 		// Collect variables from method
-		String target = "useraccount";
-		String uriTemplate = "/UserAccount/{id}/ChartingEnabled";
-		String transport = "GET";
-		String envelope = "URL";
+		String target = "order";
+		String uriTemplate = "/update";
+		String transport = "POST";
+		String envelope = "JSON";
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{id}", id + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{update}", update + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		Boolean result = (Boolean) api.callGetMethod(fullUrl, Boolean.class);
+		CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO) api.callPostMethod(fullUrl, update, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
 	/**
 	 * !This is an auto generated method!
 	 *
-	 * Whether a User is allowed to see Charting Data
+	 * Update a trade
 	 */
 	@Override
-	public Future<Object> GetChartingEnabledAsync(String id, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
+	public Future<Object> UpdateAsync(CIAPI.Java.examples.ciapi.dto.UpdateTradeOrderRequestDTO update, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
 		// Collect variables from method
-		String target = "useraccount";
-		String uriTemplate = "/UserAccount/{id}/ChartingEnabled";
-		String transport = "GET";
-		String envelope = "URL";
+		String target = "order";
+		String uriTemplate = "/update";
+		String transport = "POST";
+		String envelope = "JSON";
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{id}", id + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{update}", update + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -1229,125 +1882,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, Boolean.class);
-		return result;
-	}
-
-	/**
-	 * !This is an auto generated method!
-	 *
-	 * What are the Users Terms and Conditions
-	 */
-	@Override
-	public String GetTermsAndConditions(String clientaccount, JsonApi api) throws ApiException {
-		// Collect variables from method
-		String target = "useraccount";
-		String uriTemplate = "/UserAccount/{clientaccount}/TermsAndConditions";
-		String transport = "GET";
-		String envelope = "URL";
-		String contentType = "application/json";
-		String filledUri = uriTemplate;
-		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{clientaccount}", clientaccount + "");
-
-		// Done filling in holes
-		// build final URL
-		String fullUrl = target + filledUri;
-		// done building final url
-		// return type result type get/post url params return type.class
-		String result = (String) api.callGetMethod(fullUrl, String.class);
-		return result;
-	}
-	
-	/**
-	 * !This is an auto generated method!
-	 *
-	 * What are the Users Terms and Conditions
-	 */
-	@Override
-	public Future<Object> GetTermsAndConditionsAsync(String clientaccount, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
-		// Collect variables from method
-		String target = "useraccount";
-		String uriTemplate = "/UserAccount/{clientaccount}/TermsAndConditions";
-		String transport = "GET";
-		String envelope = "URL";
-		String contentType = "application/json";
-		String filledUri = uriTemplate;
-		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{clientaccount}", clientaccount + "");
-
-		// Done filling in holes
-		// build final URL
-		String fullUrl = target + filledUri;
-		// done building final url
-		AsyncApiCall call = api.createNewCall();
-		for (CallBack cb : callBacks) {
-			call.addCallCompleteListener(cb);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, update, CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, String.class);
-		return result;
-	}
-
-	/**
-	 * !This is an auto generated method!
-	 *
-	 * Returns the Users ClientAccountId and a list of their TradingAccounts
-	 */
-	@Override
-	public CIAPI.Java.examples.ciapi.dto.AccountInformationResponseDTO GetClientAndTradingAccount(JsonApi api) throws ApiException {
-		// Collect variables from method
-		String target = "useraccount";
-		String uriTemplate = "/UserAccount/ClientAndTradingAccount";
-		String transport = "GET";
-		String envelope = "URL";
-		String contentType = "application/json";
-		String filledUri = uriTemplate;
-		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		// Done filling in holes
-		// build final URL
-		String fullUrl = target + filledUri;
-		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.AccountInformationResponseDTO result = (CIAPI.Java.examples.ciapi.dto.AccountInformationResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.AccountInformationResponseDTO.class);
-		return result;
-	}
-	
-	/**
-	 * !This is an auto generated method!
-	 *
-	 * Returns the Users ClientAccountId and a list of their TradingAccounts
-	 */
-	@Override
-	public Future<Object> GetClientAndTradingAccountAsync(AsyncJsonApi api, CallBack... callBacks) throws ApiException {
-		// Collect variables from method
-		String target = "useraccount";
-		String uriTemplate = "/UserAccount/ClientAndTradingAccount";
-		String transport = "GET";
-		String envelope = "URL";
-		String contentType = "application/json";
-		String filledUri = uriTemplate;
-		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		// Done filling in holes
-		// build final URL
-		String fullUrl = target + filledUri;
-		// done building final url
-		AsyncApiCall call = api.createNewCall();
-		for (CallBack cb : callBacks) {
-			call.addCallCompleteListener(cb);
-		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.AccountInformationResponseDTO.class);
 		return result;
 	}
 
@@ -1366,17 +1908,25 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "application/json";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{errorCode}", errorCode + "");
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{errorCode}", errorCode + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		CIAPI.Java.examples.ciapi.dto.ErrorResponseDTO result = (CIAPI.Java.examples.ciapi.dto.ErrorResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ErrorResponseDTO.class);
+		CIAPI.Java.examples.ciapi.dto.ErrorResponseDTO result;
+		if (transport.equals("GET")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ErrorResponseDTO) api.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ErrorResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = (CIAPI.Java.examples.ciapi.dto.ErrorResponseDTO) api.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ErrorResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
@@ -1396,10 +1946,12 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		
-		filledUri = filledUri.replace("{errorCode}", errorCode + "");
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			
+			filledUri = filledUri.replace("{errorCode}", errorCode + "");
 
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -1408,7 +1960,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ErrorResponseDTO.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, CIAPI.Java.examples.ciapi.dto.ErrorResponseDTO.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, null, CIAPI.Java.examples.ciapi.dto.ErrorResponseDTO.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 

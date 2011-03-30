@@ -1,4 +1,4 @@
-package CIAPI.Java.examples.ciapi.dto;
+package CIAPI.Java.examples.ciapi;
 
 public class MarketInformationResponseDTO {
 

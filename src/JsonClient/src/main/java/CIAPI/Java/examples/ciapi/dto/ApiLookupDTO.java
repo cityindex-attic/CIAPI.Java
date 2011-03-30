@@ -3,14 +3,14 @@ package CIAPI.Java.examples.ciapi.dto;
 /**
  * !This is an auto generated model object!
  *
- * TODO
+ * Generic look up data
  */
-public class ApiStopLimitResponseDTO {
+public class ApiLookupDTO {
 
 	/**
 	 * No argument constructor
 	 */
-	public ApiStopLimitResponseDTO() {
+	public ApiLookupDTO() {
 	}
 
 	

@@ -17,11 +17,14 @@ public class SessionDeletionResponseDTO {
 	private boolean LoggedOut;
 	
 	/**
-	 * 
 	 * LogOut status
 	 */
 	public boolean getLoggedOut() {
 		return LoggedOut;
+	}
+	
+	public void setLoggedOut(boolean LoggedOut) {
+		this.LoggedOut = LoggedOut;
 	}
 
 }

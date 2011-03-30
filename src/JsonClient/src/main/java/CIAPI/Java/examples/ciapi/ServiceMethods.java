@@ -19,13 +19,11 @@ public interface ServiceMethods {
 	 * Create a new session. The is how you "log on" to the CIAPI.
 	 *
 	 * 
-	 * @param UserName Username is case sensitive
-
-	 * @param Password Password is case sensitive
+	 * @param logOnRequest Create a new session.  The is how you "log on" to the CIAPI.
 
 	 * @param api The JsonApi implementation that you would like.
 	 */
-	public CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO CreateSession(String UserName, String Password, JsonApi api) throws ApiException; 
+	public CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO CreateSession(CIAPI.Java.examples.ciapi.dto.LogOnRequestDTO logOnRequest, JsonApi api) throws ApiException; 
 	
 	/**
 	 * !This is an auto generated method signature!
@@ -33,13 +31,11 @@ public interface ServiceMethods {
 	 * Create a new session. The is how you "log on" to the CIAPI.
 	 *
 	 * 
-	 * @param UserName Username is case sensitive
-
-	 * @param Password Password is case sensitive
+	 * @param logOnRequest Create a new session.  The is how you "log on" to the CIAPI.
 
 	 * @param api The AsyncJsonApi implementation that you would like.
 	 */
-	public Future<Object> CreateSessionAsync(String UserName, String Password, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
+	public Future<Object> CreateSessionAsync(CIAPI.Java.examples.ciapi.dto.LogOnRequestDTO logOnRequest, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
 
 	/**
 	 * !This is an auto generated method signature!
@@ -136,19 +132,19 @@ public interface ServiceMethods {
 	/**
 	 * !This is an auto generated method signature!
 	 *
-	 * Get Market Information for the specified market.
+	 * Get Market Information for the specified market. You must be authorised to view the market, or the query will fail.
 	 *
 	 * 
 	 * @param marketId The marketId
 
 	 * @param api The JsonApi implementation that you would like.
 	 */
-	public CIAPI.Java.examples.ciapi.dto.MarketInformationResponseDTO GetMarketInformation(String marketId, JsonApi api) throws ApiException; 
+	public CIAPI.Java.examples.ciapi.dto.GetMarketInformationResponseDTO GetMarketInformation(String marketId, JsonApi api) throws ApiException; 
 	
 	/**
 	 * !This is an auto generated method signature!
 	 *
-	 * Get Market Information for the specified market.
+	 * Get Market Information for the specified market. You must be authorised to view the market, or the query will fail.
 	 *
 	 * 
 	 * @param marketId The marketId
@@ -156,6 +152,78 @@ public interface ServiceMethods {
 	 * @param api The AsyncJsonApi implementation that you would like.
 	 */
 	public Future<Object> GetMarketInformationAsync(String marketId, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
+
+	/**
+	 * !This is an auto generated method signature!
+	 *
+	 * Get Market Information for markets that fit the query.
+	 *
+	 * 
+	 * @param searchByMarketCode Should the search be done by market code
+
+	 * @param searchByMarketName Should the search be done by market Name
+
+	 * @param spreadProductType Should the search include spread bet markets
+
+	 * @param cfdProductType Should the search include CFD markets
+
+	 * @param binaryProductType Should the search include binary markets
+
+	 * @param query The text to search for.  Matches part of market name / code from the start.
+
+	 * @param maxResults The maximum number of results to return
+
+	 * @param api The JsonApi implementation that you would like.
+	 */
+	public CIAPI.Java.examples.ciapi.dto.ListMarketInformationSearchResponseDTO ListMarketInformationSearch(boolean searchByMarketCode, boolean searchByMarketName, boolean spreadProductType, boolean cfdProductType, boolean binaryProductType, String query, int maxResults, JsonApi api) throws ApiException; 
+	
+	/**
+	 * !This is an auto generated method signature!
+	 *
+	 * Get Market Information for markets that fit the query.
+	 *
+	 * 
+	 * @param searchByMarketCode Should the search be done by market code
+
+	 * @param searchByMarketName Should the search be done by market Name
+
+	 * @param spreadProductType Should the search include spread bet markets
+
+	 * @param cfdProductType Should the search include CFD markets
+
+	 * @param binaryProductType Should the search include binary markets
+
+	 * @param query The text to search for.  Matches part of market name / code from the start.
+
+	 * @param maxResults The maximum number of results to return
+
+	 * @param api The AsyncJsonApi implementation that you would like.
+	 */
+	public Future<Object> ListMarketInformationSearchAsync(boolean searchByMarketCode, boolean searchByMarketName, boolean spreadProductType, boolean cfdProductType, boolean binaryProductType, String query, int maxResults, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
+
+	/**
+	 * !This is an auto generated method signature!
+	 *
+	 * Get Market Information for the specified list of markets. You must be authorised to view all the markets in the supplied list, or the query will fail.
+	 *
+	 * 
+	 * @param listMarketInformationRequestDTO Get Market Information for the specified list of markets.  You must be authorised to view all the markets in the supplied list, or the query will fail.
+
+	 * @param api The JsonApi implementation that you would like.
+	 */
+	public CIAPI.Java.examples.ciapi.dto.ListMarketInformationResponseDTO ListMarketInformation(CIAPI.Java.examples.ciapi.dto.ListMarketInformationRequestDTO[] listMarketInformationRequestDTO, JsonApi api) throws ApiException; 
+	
+	/**
+	 * !This is an auto generated method signature!
+	 *
+	 * Get Market Information for the specified list of markets. You must be authorised to view all the markets in the supplied list, or the query will fail.
+	 *
+	 * 
+	 * @param listMarketInformationRequestDTO Get Market Information for the specified list of markets.  You must be authorised to view all the markets in the supplied list, or the query will fail.
+
+	 * @param api The AsyncJsonApi implementation that you would like.
+	 */
+	public Future<Object> ListMarketInformationAsync(CIAPI.Java.examples.ciapi.dto.ListMarketInformationRequestDTO[] listMarketInformationRequestDTO, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
 
 	/**
 	 * !This is an auto generated method signature!
@@ -287,32 +355,11 @@ public interface ServiceMethods {
 	 * Place an order on a particular market
 	 *
 	 * 
-	 * @param MarketId A market's unique identifier
-
-	 * @param Direction Direction identifier for order/trade, values supported are buy or sell
-
-	 * @param Quantity Size of the order/trade
-
-	 * @param BidPrice Market prices are quoted as a pair (buy/sell or bid/offer), 
-            the BidPrice is the lower of the two
-
-	 * @param OfferPrice Market prices are quote as a pair (buy/sell or bid/offer),
-            the OfferPrice is the higher of the market price pair
-
-	 * @param AuditId Unique identifier for a price tick
-
-	 * @param TradingAccountId TradingAccount associated with the trade/order request
-
-	 * @param Applicability Identifier which relates to the expiry of the
-            order/trade, i.e. GoodTillDate (GTD), 
-            GoodTillCancelled (GTC) or GoodForDay (GFD)
-
-	 * @param ExpiryDateTimeUTC The associated expiry DateTime for a 
-            pair of GoodTillDate IfDone orders
+	 * @param order The order request
 
 	 * @param api The JsonApi implementation that you would like.
 	 */
-	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO Order(int MarketId, String Direction, double Quantity, double BidPrice, double OfferPrice, String AuditId, int TradingAccountId, String Applicability, String ExpiryDateTimeUTC, JsonApi api) throws ApiException; 
+	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO Order(CIAPI.Java.examples.ciapi.dto.NewStopLimitOrderRequestDTO order, JsonApi api) throws ApiException; 
 	
 	/**
 	 * !This is an auto generated method signature!
@@ -320,32 +367,11 @@ public interface ServiceMethods {
 	 * Place an order on a particular market
 	 *
 	 * 
-	 * @param MarketId A market's unique identifier
-
-	 * @param Direction Direction identifier for order/trade, values supported are buy or sell
-
-	 * @param Quantity Size of the order/trade
-
-	 * @param BidPrice Market prices are quoted as a pair (buy/sell or bid/offer), 
-            the BidPrice is the lower of the two
-
-	 * @param OfferPrice Market prices are quote as a pair (buy/sell or bid/offer),
-            the OfferPrice is the higher of the market price pair
-
-	 * @param AuditId Unique identifier for a price tick
-
-	 * @param TradingAccountId TradingAccount associated with the trade/order request
-
-	 * @param Applicability Identifier which relates to the expiry of the
-            order/trade, i.e. GoodTillDate (GTD), 
-            GoodTillCancelled (GTC) or GoodForDay (GFD)
-
-	 * @param ExpiryDateTimeUTC The associated expiry DateTime for a 
-            pair of GoodTillDate IfDone orders
+	 * @param order The order request
 
 	 * @param api The AsyncJsonApi implementation that you would like.
 	 */
-	public Future<Object> OrderAsync(int MarketId, String Direction, double Quantity, double BidPrice, double OfferPrice, String AuditId, int TradingAccountId, String Applicability, String ExpiryDateTimeUTC, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
+	public Future<Object> OrderAsync(CIAPI.Java.examples.ciapi.dto.NewStopLimitOrderRequestDTO order, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
 
 	/**
 	 * !This is an auto generated method signature!
@@ -353,11 +379,11 @@ public interface ServiceMethods {
 	 * Cancel an order
 	 *
 	 * 
-	 * @param OrderId The order identifier
+	 * @param cancelOrder The cancel order request
 
 	 * @param api The JsonApi implementation that you would like.
 	 */
-	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO CancelOrder(int OrderId, JsonApi api) throws ApiException; 
+	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO CancelOrder(CIAPI.Java.examples.ciapi.dto.CancelOrderRequestDTO cancelOrder, JsonApi api) throws ApiException; 
 	
 	/**
 	 * !This is an auto generated method signature!
@@ -365,23 +391,23 @@ public interface ServiceMethods {
 	 * Cancel an order
 	 *
 	 * 
-	 * @param OrderId The order identifier
+	 * @param cancelOrder The cancel order request
 
 	 * @param api The AsyncJsonApi implementation that you would like.
 	 */
-	public Future<Object> CancelOrderAsync(int OrderId, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
+	public Future<Object> CancelOrderAsync(CIAPI.Java.examples.ciapi.dto.CancelOrderRequestDTO cancelOrder, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
 
 	/**
 	 * !This is an auto generated method signature!
 	 *
-	 * TODO
+	 * Not Implemented.
 	 *
 	 * 
-	 * @param tradingAccountId TODO
+	 * @param tradingAccountId Not Implemented.
 
-	 * @param openOrders TODO
+	 * @param openOrders Not Implemented.
 
-	 * @param acceptedOrders TODO
+	 * @param acceptedOrders Not Implemented.
 
 	 * @param api The JsonApi implementation that you would like.
 	 */
@@ -390,14 +416,14 @@ public interface ServiceMethods {
 	/**
 	 * !This is an auto generated method signature!
 	 *
-	 * TODO
+	 * Not Implemented.
 	 *
 	 * 
-	 * @param tradingAccountId TODO
+	 * @param tradingAccountId Not Implemented.
 
-	 * @param openOrders TODO
+	 * @param openOrders Not Implemented.
 
-	 * @param acceptedOrders TODO
+	 * @param acceptedOrders Not Implemented.
 
 	 * @param api The AsyncJsonApi implementation that you would like.
 	 */
@@ -406,10 +432,10 @@ public interface ServiceMethods {
 	/**
 	 * !This is an auto generated method signature!
 	 *
-	 * TODO
+	 * Queries for a specified trading account's trades / open positions.
 	 *
 	 * 
-	 * @param tradingAccountId TODO
+	 * @param tradingAccountId Queries for a specified trading account's trades / open positions.
 
 	 * @param api The JsonApi implementation that you would like.
 	 */
@@ -418,10 +444,10 @@ public interface ServiceMethods {
 	/**
 	 * !This is an auto generated method signature!
 	 *
-	 * TODO
+	 * Queries for a specified trading account's trades / open positions.
 	 *
 	 * 
-	 * @param tradingAccountId TODO
+	 * @param tradingAccountId Queries for a specified trading account's trades / open positions.
 
 	 * @param api The AsyncJsonApi implementation that you would like.
 	 */
@@ -430,10 +456,10 @@ public interface ServiceMethods {
 	/**
 	 * !This is an auto generated method signature!
 	 *
-	 * TODO
+	 * Queries for a specified trading account's active stop / limit orders.
 	 *
 	 * 
-	 * @param tradingAccountId TODO
+	 * @param tradingAccountId Queries for a specified trading account's active stop / limit orders.
 
 	 * @param api The JsonApi implementation that you would like.
 	 */
@@ -442,10 +468,10 @@ public interface ServiceMethods {
 	/**
 	 * !This is an auto generated method signature!
 	 *
-	 * TODO
+	 * Queries for a specified trading account's active stop / limit orders.
 	 *
 	 * 
-	 * @param tradingAccountId TODO
+	 * @param tradingAccountId Queries for a specified trading account's active stop / limit orders.
 
 	 * @param api The AsyncJsonApi implementation that you would like.
 	 */
@@ -454,12 +480,60 @@ public interface ServiceMethods {
 	/**
 	 * !This is an auto generated method signature!
 	 *
-	 * TODO
+	 * Queries for a active stop limit order with a specified order id. It will return a null value if the order doesn't exist, or is not an active stop limit order.
 	 *
 	 * 
-	 * @param tradingAccountId TODO
+	 * @param orderId Queries for a active stop limit order with a specified order id.  It will return a null value if the order doesn't exist, or is not an active stop limit order.
 
-	 * @param maxResults TODO
+	 * @param api The JsonApi implementation that you would like.
+	 */
+	public CIAPI.Java.examples.ciapi.dto.GetActiveStopLimitOrderResponseDTO GetActiveStopLimitOrder(String orderId, JsonApi api) throws ApiException; 
+	
+	/**
+	 * !This is an auto generated method signature!
+	 *
+	 * Queries for a active stop limit order with a specified order id. It will return a null value if the order doesn't exist, or is not an active stop limit order.
+	 *
+	 * 
+	 * @param orderId Queries for a active stop limit order with a specified order id.  It will return a null value if the order doesn't exist, or is not an active stop limit order.
+
+	 * @param api The AsyncJsonApi implementation that you would like.
+	 */
+	public Future<Object> GetActiveStopLimitOrderAsync(String orderId, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
+
+	/**
+	 * !This is an auto generated method signature!
+	 *
+	 * Queries for a trade / open position with a specified order id. It will return a null value if the order doesn't exist, or is not a trade / open position.
+	 *
+	 * 
+	 * @param orderId Queries for a trade / open position with a specified order id.  It will return a null value if the order doesn't exist, or is not a trade / open position.
+
+	 * @param api The JsonApi implementation that you would like.
+	 */
+	public CIAPI.Java.examples.ciapi.dto.GetOpenPositionResponseDTO GetOpenPosition(String orderId, JsonApi api) throws ApiException; 
+	
+	/**
+	 * !This is an auto generated method signature!
+	 *
+	 * Queries for a trade / open position with a specified order id. It will return a null value if the order doesn't exist, or is not a trade / open position.
+	 *
+	 * 
+	 * @param orderId Queries for a trade / open position with a specified order id.  It will return a null value if the order doesn't exist, or is not a trade / open position.
+
+	 * @param api The AsyncJsonApi implementation that you would like.
+	 */
+	public Future<Object> GetOpenPositionAsync(String orderId, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
+
+	/**
+	 * !This is an auto generated method signature!
+	 *
+	 * Queries for a specified trading account's trade history.
+	 *
+	 * 
+	 * @param tradingAccountId Queries for a specified trading account's trade history.
+
+	 * @param maxResults Queries for a specified trading account's trade history.
 
 	 * @param api The JsonApi implementation that you would like.
 	 */
@@ -468,12 +542,12 @@ public interface ServiceMethods {
 	/**
 	 * !This is an auto generated method signature!
 	 *
-	 * TODO
+	 * Queries for a specified trading account's trade history.
 	 *
 	 * 
-	 * @param tradingAccountId TODO
+	 * @param tradingAccountId Queries for a specified trading account's trade history.
 
-	 * @param maxResults TODO
+	 * @param maxResults Queries for a specified trading account's trade history.
 
 	 * @param api The AsyncJsonApi implementation that you would like.
 	 */
@@ -482,12 +556,12 @@ public interface ServiceMethods {
 	/**
 	 * !This is an auto generated method signature!
 	 *
-	 * TODO
+	 * Queries for a specified trading account's stop / limit order history.
 	 *
 	 * 
-	 * @param tradingAccountId TODO
+	 * @param tradingAccountId Queries for a specified trading account's stop / limit order history.
 
-	 * @param maxResults TODO
+	 * @param maxResults Queries for a specified trading account's stop / limit order history.
 
 	 * @param api The JsonApi implementation that you would like.
 	 */
@@ -496,12 +570,12 @@ public interface ServiceMethods {
 	/**
 	 * !This is an auto generated method signature!
 	 *
-	 * TODO
+	 * Queries for a specified trading account's stop / limit order history.
 	 *
 	 * 
-	 * @param tradingAccountId TODO
+	 * @param tradingAccountId Queries for a specified trading account's stop / limit order history.
 
-	 * @param maxResults TODO
+	 * @param maxResults Queries for a specified trading account's stop / limit order history.
 
 	 * @param api The AsyncJsonApi implementation that you would like.
 	 */
@@ -510,28 +584,38 @@ public interface ServiceMethods {
 	/**
 	 * !This is an auto generated method signature!
 	 *
+	 * Queries for an order by a specific order id. The current implementation only returns active orders (i.e. those with a status of 1 - Pending, 2 - Accepted, 3 - Open, 6 - Suspended, 8 - Yellow Card, 11 - Triggered).
+	 *
+	 * 
+	 * @param orderId Queries for an order by a specific order id.  The current implementation only returns active orders (i.e. those with a status of 1 - Pending, 2 - Accepted, 3 - Open, 6 - Suspended, 8 - Yellow Card, 11 - Triggered).
+
+	 * @param api The JsonApi implementation that you would like.
+	 */
+	public CIAPI.Java.examples.ciapi.dto.GetOrderResponseDTO GetOrder(String orderId, JsonApi api) throws ApiException; 
+	
+	/**
+	 * !This is an auto generated method signature!
+	 *
+	 * Queries for an order by a specific order id. The current implementation only returns active orders (i.e. those with a status of 1 - Pending, 2 - Accepted, 3 - Open, 6 - Suspended, 8 - Yellow Card, 11 - Triggered).
+	 *
+	 * 
+	 * @param orderId Queries for an order by a specific order id.  The current implementation only returns active orders (i.e. those with a status of 1 - Pending, 2 - Accepted, 3 - Open, 6 - Suspended, 8 - Yellow Card, 11 - Triggered).
+
+	 * @param api The AsyncJsonApi implementation that you would like.
+	 */
+	public Future<Object> GetOrderAsync(String orderId, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
+
+	/**
+	 * !This is an auto generated method signature!
+	 *
 	 * Place a trade on a particular market
 	 *
 	 * 
-	 * @param MarketId A market's unique identifier
-
-	 * @param Direction Direction identifier for order/trade, values supported are buy or sell
-
-	 * @param Quantity Size of the order/trade
-
-	 * @param BidPrice Market prices are quoted as a pair (buy/sell or bid/offer), 
-            the BidPrice is the lower of the two
-
-	 * @param OfferPrice Market prices are quote as a pair (buy/sell or bid/offer),
-            the OfferPrice is the higher of the market price pair
-
-	 * @param AuditId Unique identifier for a price tick
-
-	 * @param TradingAccountId TradingAccount associated with the trade/order request
+	 * @param trade Place a trade on a particular market
 
 	 * @param api The JsonApi implementation that you would like.
 	 */
-	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO Trade(int MarketId, String Direction, double Quantity, double BidPrice, double OfferPrice, String AuditId, int TradingAccountId, JsonApi api) throws ApiException; 
+	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO Trade(CIAPI.Java.examples.ciapi.dto.NewTradeOrderRequestDTO trade, JsonApi api) throws ApiException; 
 	
 	/**
 	 * !This is an auto generated method signature!
@@ -539,93 +623,35 @@ public interface ServiceMethods {
 	 * Place a trade on a particular market
 	 *
 	 * 
-	 * @param MarketId A market's unique identifier
-
-	 * @param Direction Direction identifier for order/trade, values supported are buy or sell
-
-	 * @param Quantity Size of the order/trade
-
-	 * @param BidPrice Market prices are quoted as a pair (buy/sell or bid/offer), 
-            the BidPrice is the lower of the two
-
-	 * @param OfferPrice Market prices are quote as a pair (buy/sell or bid/offer),
-            the OfferPrice is the higher of the market price pair
-
-	 * @param AuditId Unique identifier for a price tick
-
-	 * @param TradingAccountId TradingAccount associated with the trade/order request
+	 * @param trade Place a trade on a particular market
 
 	 * @param api The AsyncJsonApi implementation that you would like.
 	 */
-	public Future<Object> TradeAsync(int MarketId, String Direction, double Quantity, double BidPrice, double OfferPrice, String AuditId, int TradingAccountId, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
+	public Future<Object> TradeAsync(CIAPI.Java.examples.ciapi.dto.NewTradeOrderRequestDTO trade, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
 
 	/**
 	 * !This is an auto generated method signature!
 	 *
-	 * Whether a User is allowed to see Charting Data
+	 * Update a trade
 	 *
 	 * 
-	 * @param id Whether a User is allowed to see Charting Data
+	 * @param update Update a trade
 
 	 * @param api The JsonApi implementation that you would like.
 	 */
-	public Boolean GetChartingEnabled(String id, JsonApi api) throws ApiException; 
+	public CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO Update(CIAPI.Java.examples.ciapi.dto.UpdateTradeOrderRequestDTO update, JsonApi api) throws ApiException; 
 	
 	/**
 	 * !This is an auto generated method signature!
 	 *
-	 * Whether a User is allowed to see Charting Data
+	 * Update a trade
 	 *
 	 * 
-	 * @param id Whether a User is allowed to see Charting Data
+	 * @param update Update a trade
 
 	 * @param api The AsyncJsonApi implementation that you would like.
 	 */
-	public Future<Object> GetChartingEnabledAsync(String id, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
-
-	/**
-	 * !This is an auto generated method signature!
-	 *
-	 * What are the Users Terms and Conditions
-	 *
-	 * 
-	 * @param clientaccount What are the Users Terms and Conditions
-
-	 * @param api The JsonApi implementation that you would like.
-	 */
-	public String GetTermsAndConditions(String clientaccount, JsonApi api) throws ApiException; 
-	
-	/**
-	 * !This is an auto generated method signature!
-	 *
-	 * What are the Users Terms and Conditions
-	 *
-	 * 
-	 * @param clientaccount What are the Users Terms and Conditions
-
-	 * @param api The AsyncJsonApi implementation that you would like.
-	 */
-	public Future<Object> GetTermsAndConditionsAsync(String clientaccount, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
-
-	/**
-	 * !This is an auto generated method signature!
-	 *
-	 * Returns the Users ClientAccountId and a list of their TradingAccounts
-	 *
-	 * 
-	 * @param api The JsonApi implementation that you would like.
-	 */
-	public CIAPI.Java.examples.ciapi.dto.AccountInformationResponseDTO GetClientAndTradingAccount(JsonApi api) throws ApiException; 
-	
-	/**
-	 * !This is an auto generated method signature!
-	 *
-	 * Returns the Users ClientAccountId and a list of their TradingAccounts
-	 *
-	 * 
-	 * @param api The AsyncJsonApi implementation that you would like.
-	 */
-	public Future<Object> GetClientAndTradingAccountAsync(AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
+	public Future<Object> UpdateAsync(CIAPI.Java.examples.ciapi.dto.UpdateTradeOrderRequestDTO update, AsyncJsonApi api, CallBack... callBacks) throws ApiException; 
 
 	/**
 	 * !This is an auto generated method signature!

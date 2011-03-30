@@ -57,12 +57,19 @@ public class MethodCreator {
 			propTemplate.putNewTemplateDefinition("transport", s.getTransport());
 			propTemplate.putNewTemplateDefinition("envelope", s.getEnvelope());
 			propTemplate.putNewTemplateDefinition("contentType", s.getContentType());
+			if (s.getTransport().equals("POST")) {
+				propTemplate.putNewTemplateDefinition("postParam", s.getParameters()[0].getName());
+			} else if (s.getTransport().equals("GET")) {
+				propTemplate.putNewTemplateDefinition("postParam", "null");
+			} else {
+				throw new IllegalArgumentException("Unexpected transport type");
+			}
 			propTemplate.putNewTemplateDefinition("return", s.getReturns().get$ref(packageName + ".dto"));
 			{
 				// Build up parameters String
 				String paramString = "";
 				for (Parameter p : s.getParameters()) {
-					paramString += (p.getType(packageName) + " " + p.getName() + ", ");
+					paramString += (p.getType(packageName+".dto") + " " + p.getName() + ", ");
 				}
 				propTemplate.putNewTemplateDefinition("parameters",
 						paramString.substring(0, Math.max(paramString.length() - 2, 0)));
@@ -105,7 +112,7 @@ public class MethodCreator {
 				// Build up parameters String
 				String paramString = "";
 				for (Parameter p : s.getParameters()) {
-					paramString += (p.getType(packageName) + " " + p.getName() + ", ");
+					paramString += (p.getType(packageName+".dto") + " " + p.getName() + ", ");
 				}
 				propTemplate.putNewTemplateDefinition("parameters",
 						paramString.substring(0, Math.max(paramString.length() - 2, 0)));

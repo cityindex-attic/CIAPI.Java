@@ -3,7 +3,7 @@ package CIAPI.Java.examples.ciapi.dto;
 /**
  * !This is an auto generated model object!
  *
- * TODO
+ * A stop or limit order that is currently active.
  */
 public class ApiActiveStopLimitOrderDTO {
 
@@ -17,151 +17,222 @@ public class ApiActiveStopLimitOrderDTO {
 	private int OrderId;
 	
 	/**
-	 * 
 	 * The order's unique identifier.
 	 */
 	public int getOrderId() {
 		return OrderId;
 	}
+	
+	public void setOrderId(int OrderId) {
+		this.OrderId = OrderId;
+	}
+
+	private String ParentOrderId;
+	
+	/**
+	 * The order's parent OrderId.
+	 */
+	public String getParentOrderId() {
+		return ParentOrderId;
+	}
+	
+	public void setParentOrderId(String ParentOrderId) {
+		this.ParentOrderId = ParentOrderId;
+	}
 
 	private int MarketId;
 	
 	/**
-	 * 
 	 * The markets unique identifier.
 	 */
 	public int getMarketId() {
 		return MarketId;
 	}
+	
+	public void setMarketId(int MarketId) {
+		this.MarketId = MarketId;
+	}
 
 	private String MarketName;
 	
 	/**
-	 * 
 	 * The market's name.
 	 */
 	public String getMarketName() {
 		return MarketName;
 	}
+	
+	public void setMarketName(String MarketName) {
+		this.MarketName = MarketName;
+	}
 
 	private String Direction;
 	
 	/**
-	 * 
 	 * The direction, buy or sell.
 	 */
 	public String getDirection() {
 		return Direction;
 	}
+	
+	public void setDirection(String Direction) {
+		this.Direction = Direction;
+	}
 
 	private double Quantity;
 	
 	/**
-	 * 
-	 * TODO
+	 * The quantity of the product.
 	 */
 	public double getQuantity() {
 		return Quantity;
+	}
+	
+	public void setQuantity(double Quantity) {
+		this.Quantity = Quantity;
 	}
 
 	private double TriggerPrice;
 	
 	/**
-	 * 
-	 * TODO
+	 * The marked to market price at which the order will trigger at.
 	 */
 	public double getTriggerPrice() {
 		return TriggerPrice;
+	}
+	
+	public void setTriggerPrice(double TriggerPrice) {
+		this.TriggerPrice = TriggerPrice;
 	}
 
 	private double TradingAccountId;
 	
 	/**
-	 * 
-	 * TODO
+	 * The trading account that the order is on.
 	 */
 	public double getTradingAccountId() {
 		return TradingAccountId;
 	}
-
-	private String Type;
 	
-	/**
-	 * 
-	 * TODO
-	 */
-	public String getType() {
-		return Type;
+	public void setTradingAccountId(double TradingAccountId) {
+		this.TradingAccountId = TradingAccountId;
 	}
 
-	private String Applicability;
+	private int Type;
 	
 	/**
-	 * 
-	 * TODO
+	 * The type of order, i.e. stop or limit.
 	 */
-	public String getApplicability() {
+	public int getType() {
+		return Type;
+	}
+	
+	public void setType(int Type) {
+		this.Type = Type;
+	}
+
+	private int Applicability;
+	
+	/**
+	 * When the order applies until. i.e. good till cancelled (GTC) good for day (GFD) or good till time (GTT).
+	 */
+	public int getApplicability() {
 		return Applicability;
+	}
+	
+	public void setApplicability(int Applicability) {
+		this.Applicability = Applicability;
+	}
+
+	private String ExpiryDateTimeUTC;
+	
+	/**
+	 * The associated expiry DateTime.
+	 */
+	public String getExpiryDateTimeUTC() {
+		return ExpiryDateTimeUTC;
+	}
+	
+	public void setExpiryDateTimeUTC(String ExpiryDateTimeUTC) {
+		this.ExpiryDateTimeUTC = ExpiryDateTimeUTC;
 	}
 
 	private String Currency;
 	
 	/**
-	 * 
-	 * TODO
+	 * The trade currency.
 	 */
 	public String getCurrency() {
 		return Currency;
 	}
+	
+	public void setCurrency(String Currency) {
+		this.Currency = Currency;
+	}
 
-	private String Status;
+	private int Status;
 	
 	/**
-	 * 
-	 * TODO
+	 * The order status.
 	 */
-	public String getStatus() {
+	public int getStatus() {
 		return Status;
+	}
+	
+	public void setStatus(int Status) {
+		this.Status = Status;
 	}
 
 	private CIAPI.Java.examples.ciapi.dto.ApiBasicStopLimitOrderDTO StopOrder;
 	
 	/**
-	 * 
-	 * TODO
+	 * The if done stop order.
 	 */
 	public CIAPI.Java.examples.ciapi.dto.ApiBasicStopLimitOrderDTO getStopOrder() {
 		return StopOrder;
+	}
+	
+	public void setStopOrder(CIAPI.Java.examples.ciapi.dto.ApiBasicStopLimitOrderDTO StopOrder) {
+		this.StopOrder = StopOrder;
 	}
 
 	private CIAPI.Java.examples.ciapi.dto.ApiBasicStopLimitOrderDTO LimitOrder;
 	
 	/**
-	 * 
-	 * TODO
+	 * The if done limit order
 	 */
 	public CIAPI.Java.examples.ciapi.dto.ApiBasicStopLimitOrderDTO getLimitOrder() {
 		return LimitOrder;
+	}
+	
+	public void setLimitOrder(CIAPI.Java.examples.ciapi.dto.ApiBasicStopLimitOrderDTO LimitOrder) {
+		this.LimitOrder = LimitOrder;
 	}
 
 	private CIAPI.Java.examples.ciapi.dto.ApiBasicStopLimitOrderDTO OcoOrder;
 	
 	/**
-	 * 
-	 * TODO
+	 * The order on the other side of a one Cancels the other relationship.
 	 */
 	public CIAPI.Java.examples.ciapi.dto.ApiBasicStopLimitOrderDTO getOcoOrder() {
 		return OcoOrder;
+	}
+	
+	public void setOcoOrder(CIAPI.Java.examples.ciapi.dto.ApiBasicStopLimitOrderDTO OcoOrder) {
+		this.OcoOrder = OcoOrder;
 	}
 
 	private String LastChangedDateTimeUTC;
 	
 	/**
-	 * 
-	 * TODO
+	 * The last time that the order changed. Note - Does not include things such as the current market price.
 	 */
 	public String getLastChangedDateTimeUTC() {
 		return LastChangedDateTimeUTC;
+	}
+	
+	public void setLastChangedDateTimeUTC(String LastChangedDateTimeUTC) {
+		this.LastChangedDateTimeUTC = LastChangedDateTimeUTC;
 	}
 
 }

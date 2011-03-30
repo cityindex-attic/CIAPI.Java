@@ -3,7 +3,7 @@ package CIAPI.Java.examples.ciapi.dto;
 /**
  * !This is an auto generated model object!
  *
- * TODO
+ * Contains the result of a ListOpenPositions query
  */
 public class ListOpenPositionsResponseDTO {
 
@@ -17,11 +17,14 @@ public class ListOpenPositionsResponseDTO {
 	private CIAPI.Java.examples.ciapi.dto.ApiOpenPositionDTO[] OpenPositions;
 	
 	/**
-	 * 
-	 * TODO
+	 * A list of trades / open positions.
 	 */
 	public CIAPI.Java.examples.ciapi.dto.ApiOpenPositionDTO[] getOpenPositions() {
 		return OpenPositions;
+	}
+	
+	public void setOpenPositions(CIAPI.Java.examples.ciapi.dto.ApiOpenPositionDTO[] OpenPositions) {
+		this.OpenPositions = OpenPositions;
 	}
 
 }

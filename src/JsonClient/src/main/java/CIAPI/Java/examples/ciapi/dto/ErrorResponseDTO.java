@@ -17,21 +17,40 @@ public class ErrorResponseDTO {
 	private String ErrorMessage;
 	
 	/**
-	 * 
 	 * This is a description of the ErrorMessage property
 	 */
 	public String getErrorMessage() {
 		return ErrorMessage;
 	}
+	
+	public void setErrorMessage(String ErrorMessage) {
+		this.ErrorMessage = ErrorMessage;
+	}
 
 	private CIAPI.Java.examples.ciapi.dto.ErrorCode ErrorCode;
 	
 	/**
-	 * 
 	 * The error code
 	 */
 	public CIAPI.Java.examples.ciapi.dto.ErrorCode getErrorCode() {
 		return ErrorCode;
+	}
+	
+	public void setErrorCode(CIAPI.Java.examples.ciapi.dto.ErrorCode ErrorCode) {
+		this.ErrorCode = ErrorCode;
+	}
+
+	private int HttpStatusCode;
+	
+	/**
+	 * HTTP status code
+	 */
+	public int getHttpStatusCode() {
+		return HttpStatusCode;
+	}
+	
+	public void setHttpStatusCode(int HttpStatusCode) {
+		this.HttpStatusCode = HttpStatusCode;
 	}
 
 }

@@ -26,16 +26,24 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String contentType = "<@contentType@>";
 		String filledUri = uriTemplate;
 		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		<@@fillParameters@@>
-		filledUri = filledUri.replace("{<@parameterName@>}", <@parameterName@> + "");<@@@@>
+		// Fill in necessary holes in the URL if it is GET.
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			<@@fillParameters@@>
+			filledUri = filledUri.replace("{<@parameterName@>}", <@parameterName@> + "");<@@@@>
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		// return type result type get/post url params return type.class
-		<@return@> result = (<@return@>) api.callGetMethod(fullUrl, <@return@>.class);
+		<@return@> result;
+		if (transport.equals("GET")) {
+			result = (<@return@>) api.callGetMethod(fullUrl, <@return@>.class);
+		} else if (transport.equals("POST")) {
+			result = (<@return@>) api.callPostMethod(fullUrl, <@postParam@>, <@return@>.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}
 	
@@ -55,9 +63,11 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL.
-		// Concatenating the empty string is a hackey way of converting all params to a String
-		<@@fillParameters@@>
-		filledUri = filledUri.replace("{<@parameterName@>}", <@parameterName@> + "");<@@@@>
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
+			<@@fillParameters@@>
+			filledUri = filledUri.replace("{<@parameterName@>}", <@parameterName@> + "");<@@@@>
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
@@ -66,7 +76,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result = call.callGetMethod(fullUrl, <@return@>.class);
+		Future<Object> result;
+		if (transport.equals("GET")) {
+			result = call.callGetMethod(fullUrl, <@return@>.class);
+		} else if (transport.equals("POST")) {
+			result = call.callPostMethod(fullUrl, <@postParam@>, <@return@>.class);
+		} else {
+			throw new IllegalArgumentException("Unexpected transport type: " + transport);
+		}
 		return result;
 	}<@@@@>
 }

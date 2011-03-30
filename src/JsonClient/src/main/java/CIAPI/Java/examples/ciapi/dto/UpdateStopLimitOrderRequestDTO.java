@@ -3,14 +3,14 @@ package CIAPI.Java.examples.ciapi.dto;
 /**
  * !This is an auto generated model object!
  *
- * TODO
+ * A request for updating a stop/limit order
  */
-public class ApiStopLimitResponseDTO {
+public class UpdateStopLimitOrderRequestDTO {
 
 	/**
 	 * No argument constructor
 	 */
-	public ApiStopLimitResponseDTO() {
+	public UpdateStopLimitOrderRequestDTO() {
 	}
 
 	

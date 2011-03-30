@@ -4,13 +4,14 @@ import CIAPI.Java.ApiException;
 import CIAPI.Java.JsonApi;
 import CIAPI.Java.cachestuff.Cache;
 import CIAPI.Java.cachestuff.CachedJsonClient;
-import CIAPI.Java.examples.ciapi.dto.AccountInformationResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.ApiActiveStopLimitOrderDTO;
 import CIAPI.Java.examples.ciapi.dto.ApiOpenPositionDTO;
 import CIAPI.Java.examples.ciapi.dto.ApiStopLimitOrderHistoryDTO;
 import CIAPI.Java.examples.ciapi.dto.ApiTradeHistoryDTO;
 import CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.CancelOrderRequestDTO;
 import CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.GetMarketInformationResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.GetPriceTickResponseDTO;
@@ -22,8 +23,9 @@ import CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.LogOnRequestDTO;
 import CIAPI.Java.examples.ciapi.dto.MarketDTO;
-import CIAPI.Java.examples.ciapi.dto.MarketInformationResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.NewStopLimitOrderRequestDTO;
 import CIAPI.Java.examples.ciapi.dto.NewsDTO;
 import CIAPI.Java.examples.ciapi.dto.NewsDetailDTO;
 import CIAPI.Java.examples.ciapi.dto.PriceBarDTO;
@@ -80,7 +82,10 @@ public class SyncApi {
 	 * @throws ApiException
 	 */
 	public void logIn(String username, String password, boolean keepAlive) throws ApiException {
-		CreateSessionResponseDTO response = methods.CreateSession(username, password, api);
+		LogOnRequestDTO logOn = new LogOnRequestDTO();
+		logOn.setPassword(password);
+		logOn.setUserName(username);
+		CreateSessionResponseDTO response = methods.CreateSession(logOn, api);
 		sessionId = response.getSession();
 		this.keepAlive = keepAlive;
 		this.username = username;
@@ -122,8 +127,8 @@ public class SyncApi {
 		return response.getPriceTicks();
 	}
 
-	public MarketInformationResponseDTO getMarketInformation(String marketId) throws ApiException {
-		MarketInformationResponseDTO response = methods.GetMarketInformation(marketId, api);
+	public GetMarketInformationResponseDTO getMarketInformation(String marketId) throws ApiException {
+		GetMarketInformationResponseDTO response = methods.GetMarketInformation(marketId, api);
 		return response;
 	}
 
@@ -154,13 +159,23 @@ public class SyncApi {
 	public ApiTradeOrderResponseDTO order(int MarketId, String Direction, double Quantity, double BidPrice,
 			double OfferPrice, String AuditId, int TradingAccountId, String Applicability, String ExpiryDateTimeUTC)
 			throws ApiException {
-		ApiTradeOrderResponseDTO response = methods.Order(MarketId, Direction, Quantity, BidPrice, OfferPrice, AuditId,
-				TradingAccountId, Applicability, ExpiryDateTimeUTC, api);
+		NewStopLimitOrderRequestDTO data = new NewStopLimitOrderRequestDTO();
+		data.setMarketId(MarketId);
+		data.setDirection(Direction);
+		data.setQuantity(Quantity);
+		data.setBidPrice(BidPrice);
+		data.setOfferPrice(OfferPrice);
+		data.setAuditId(AuditId);
+		data.setTradingAccountId(TradingAccountId);
+		data.setApplicability(Applicability);
+		data.setExpiryDateTimeUTC(ExpiryDateTimeUTC);
+		ApiTradeOrderResponseDTO response = methods.Order(data, api);
 		return response;
 	}
 
 	public ApiTradeOrderResponseDTO cancelOrder(int orderId) throws ApiException {
-		ApiTradeOrderResponseDTO response = methods.CancelOrder(orderId, api);
+		CancelOrderRequestDTO data = new CancelOrderRequestDTO();
+		ApiTradeOrderResponseDTO response = methods.CancelOrder(data, api);
 		return response;
 	}
 
@@ -192,6 +207,8 @@ public class SyncApi {
 		return response.getStopLimitOrderHistory();
 	}
 
+	/*
+	
 	public ApiTradeOrderResponseDTO trade(int MarketId, String Direction, double Quantity, double BidPrice,
 			double OfferPrice, String AuditId, int TradingAccountId) throws ApiException {
 		ApiTradeOrderResponseDTO response = methods.Trade(MarketId, Direction, Quantity, BidPrice, OfferPrice, AuditId,
@@ -211,6 +228,8 @@ public class SyncApi {
 		AccountInformationResponseDTO response = methods.GetClientAndTradingAccount(api);
 		return response;
 	}
+
+	*/
 
 	private void keepAlive() throws ApiException {
 		if (keepAlive) {

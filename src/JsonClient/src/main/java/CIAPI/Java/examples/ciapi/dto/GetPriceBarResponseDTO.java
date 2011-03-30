@@ -17,11 +17,14 @@ public class GetPriceBarResponseDTO {
 	private CIAPI.Java.examples.ciapi.dto.PriceBarDTO[] PriceBars;
 	
 	/**
-	 * 
 	 * An array of finalized price bars, sorted in ascending order based on PriceBar.BarDate
 	 */
 	public CIAPI.Java.examples.ciapi.dto.PriceBarDTO[] getPriceBars() {
 		return PriceBars;
+	}
+	
+	public void setPriceBars(CIAPI.Java.examples.ciapi.dto.PriceBarDTO[] PriceBars) {
+		this.PriceBars = PriceBars;
 	}
 
 }

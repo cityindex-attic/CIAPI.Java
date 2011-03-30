@@ -3,15 +3,8 @@ package codegen;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.concurrent.Future;
 
 import CIAPI.Java.ApiException;
-import CIAPI.Java.async.AsyncApiCall;
-import CIAPI.Java.async.CallBack;
-import CIAPI.Java.examples.ciapi.AsyncApi;
-import CIAPI.Java.examples.ciapi.SyncApi;
-import CIAPI.Java.examples.ciapi.ApiFActory;
-import CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;

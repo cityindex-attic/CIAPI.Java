@@ -3,7 +3,7 @@ package CIAPI.Java.examples.ciapi.dto;
 /**
  * !This is an auto generated model object!
  *
- * TODO
+ * Contains the result of a ListActiveStopLimitOrder query
  */
 public class ListActiveStopLimitOrderResponseDTO {
 
@@ -17,11 +17,14 @@ public class ListActiveStopLimitOrderResponseDTO {
 	private CIAPI.Java.examples.ciapi.dto.ApiActiveStopLimitOrderDTO[] ActiveStopLimitOrders;
 	
 	/**
-	 * 
-	 * TODO
+	 * The requested list of active stop / limit orders.
 	 */
 	public CIAPI.Java.examples.ciapi.dto.ApiActiveStopLimitOrderDTO[] getActiveStopLimitOrders() {
 		return ActiveStopLimitOrders;
+	}
+	
+	public void setActiveStopLimitOrders(CIAPI.Java.examples.ciapi.dto.ApiActiveStopLimitOrderDTO[] ActiveStopLimitOrders) {
+		this.ActiveStopLimitOrders = ActiveStopLimitOrders;
 	}
 
 }

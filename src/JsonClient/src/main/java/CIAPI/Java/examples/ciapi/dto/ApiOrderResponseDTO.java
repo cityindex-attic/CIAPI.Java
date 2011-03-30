@@ -17,61 +17,105 @@ public class ApiOrderResponseDTO {
 	private int OrderId;
 	
 	/**
-	 * 
 	 * TODO
 	 */
 	public int getOrderId() {
 		return OrderId;
 	}
+	
+	public void setOrderId(int OrderId) {
+		this.OrderId = OrderId;
+	}
 
 	private int StatusReason;
 	
 	/**
-	 * 
 	 * TODO
 	 */
 	public int getStatusReason() {
 		return StatusReason;
 	}
+	
+	public void setStatusReason(int StatusReason) {
+		this.StatusReason = StatusReason;
+	}
 
 	private int Status;
 	
 	/**
-	 * 
 	 * TODO
 	 */
 	public int getStatus() {
 		return Status;
 	}
+	
+	public void setStatus(int Status) {
+		this.Status = Status;
+	}
 
-	private int Price;
+	private double Price;
 	
 	/**
-	 * 
 	 * TODO
 	 */
-	public int getPrice() {
+	public double getPrice() {
 		return Price;
+	}
+	
+	public void setPrice(double Price) {
+		this.Price = Price;
 	}
 
 	private double CommissionCharge;
 	
 	/**
-	 * 
 	 * TODO
 	 */
 	public double getCommissionCharge() {
 		return CommissionCharge;
 	}
+	
+	public void setCommissionCharge(double CommissionCharge) {
+		this.CommissionCharge = CommissionCharge;
+	}
 
 	private CIAPI.Java.examples.ciapi.dto.ApiIfDoneResponseDTO[] IfDone;
 	
 	/**
-	 * 
 	 * TODO
 	 */
 	public CIAPI.Java.examples.ciapi.dto.ApiIfDoneResponseDTO[] getIfDone() {
 		return IfDone;
+	}
+	
+	public void setIfDone(CIAPI.Java.examples.ciapi.dto.ApiIfDoneResponseDTO[] IfDone) {
+		this.IfDone = IfDone;
+	}
+
+	private double GuaranteedPremium;
+	
+	/**
+	 * TODO
+	 */
+	public double getGuaranteedPremium() {
+		return GuaranteedPremium;
+	}
+	
+	public void setGuaranteedPremium(double GuaranteedPremium) {
+		this.GuaranteedPremium = GuaranteedPremium;
+	}
+
+	private CIAPI.Java.examples.ciapi.dto.ApiOrderResponseDTO OCO;
+	
+	/**
+	 * TODO
+	 */
+	public CIAPI.Java.examples.ciapi.dto.ApiOrderResponseDTO getOCO() {
+		return OCO;
+	}
+	
+	public void setOCO(CIAPI.Java.examples.ciapi.dto.ApiOrderResponseDTO OCO) {
+		this.OCO = OCO;
 	}
 
 }

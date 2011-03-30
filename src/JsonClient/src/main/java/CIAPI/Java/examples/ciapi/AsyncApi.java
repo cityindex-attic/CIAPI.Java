@@ -8,12 +8,12 @@ import CIAPI.Java.async.AsyncJsonApi;
 import CIAPI.Java.async.CallBack;
 import CIAPI.Java.cachestuff.Cache;
 import CIAPI.Java.cachestuff.CachedJsonClient;
-import CIAPI.Java.examples.ciapi.dto.AccountInformationResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.ApiActiveStopLimitOrderDTO;
 import CIAPI.Java.examples.ciapi.dto.ApiOpenPositionDTO;
 import CIAPI.Java.examples.ciapi.dto.ApiStopLimitOrderHistoryDTO;
 import CIAPI.Java.examples.ciapi.dto.ApiTradeHistoryDTO;
 import CIAPI.Java.examples.ciapi.dto.ApiTradeOrderResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.CancelOrderRequestDTO;
 import CIAPI.Java.examples.ciapi.dto.CreateSessionResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.GetNewsDetailResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.GetPriceBarResponseDTO;
@@ -26,8 +26,9 @@ import CIAPI.Java.examples.ciapi.dto.ListOrdersResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.ListSpreadMarketsResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.ListStopLimitOrderHistoryResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.LogOnRequestDTO;
 import CIAPI.Java.examples.ciapi.dto.MarketDTO;
-import CIAPI.Java.examples.ciapi.dto.MarketInformationResponseDTO;
+import CIAPI.Java.examples.ciapi.dto.NewStopLimitOrderRequestDTO;
 import CIAPI.Java.examples.ciapi.dto.NewsDTO;
 import CIAPI.Java.examples.ciapi.dto.NewsDetailDTO;
 import CIAPI.Java.examples.ciapi.dto.PriceBarDTO;
@@ -85,7 +86,10 @@ public class AsyncApi {
 	 */
 	public Future<Object> logIn(final String username, final String password, final boolean keepAlive, CallBack callBack)
 			throws ApiException {
-		return methods.CreateSessionAsync(username, password, api, logOnCallback, callBack);
+		LogOnRequestDTO logOn = new LogOnRequestDTO();
+		logOn.setPassword(password);
+		logOn.setUserName(username);
+		return methods.CreateSessionAsync(logOn, api, logOnCallback, callBack);
 	}
 
 	private final CallBack logOnCallback = new CallBack() {
@@ -104,7 +108,7 @@ public class AsyncApi {
 			api.addConstantParameter("Session", sessionId);
 		}
 	};
-	
+
 	/**
 	 * Removes the user's session token from the server. Also, sets the client
 	 * to not keep-alive. If the log out fails, the token will naturally expire.
@@ -125,8 +129,9 @@ public class AsyncApi {
 			}
 		});
 	}
-	
-	public Future<Object> getPriceBars(String marketId, String interval, int span, String priceBars, CallBack... callBacks) throws ApiException {
+
+	public Future<Object> getPriceBars(String marketId, String interval, int span, String priceBars,
+			CallBack... callBacks) throws ApiException {
 		return methods.GetPriceBarsAsync(marketId, interval, span, priceBars, api, callBacks);
 	}
 
@@ -134,49 +139,51 @@ public class AsyncApi {
 		return methods.GetPriceTicksAsync(marketId, priceTicks, api, callBacks);
 	}
 
-	/* The below methods need to be converted to async versions of the same code
-
-	public MarketInformationResponseDTO getMarketInformation(String marketId) throws ApiException {
-		MarketInformationResponseDTO response = methods.GetMarketInformation(marketId, api);
-		return response;
+	public Future<Object> getMarketInformation(String marketId, CallBack... callBacks) throws ApiException {
+		return methods.GetMarketInformationAsync(marketId, api, callBacks);
 	}
 
-	public NewsDTO[] listNewsHeadlines(String category, int maxResults) throws ApiException {
-		ListNewsHeadlinesResponseDTO response = methods.ListNewsHeadlines(category, maxResults, api);
-		return response.getHeadlines();
+	public Future<Object> listNewsHeadlines(String category, int maxResults, CallBack... callBacks) throws ApiException {
+		return methods.ListNewsHeadlinesAsync(category, maxResults, api, callBacks);
 	}
 
-	public NewsDetailDTO getNewsDetail(String storyId) throws ApiException {
-		GetNewsDetailResponseDTO response = methods.GetNewsDetail(storyId, api);
-		return response.getNewsDetail();
+	public Future<Object> getNewsDetail(String storyId, CallBack... callBacks) throws ApiException {
+		return methods.GetNewsDetailAsync(storyId, api, callBacks);
 	}
 
-	public MarketDTO[] listCfdMarkets(String searchByMarketName, String searchByMarketCode, int clientAccountId,
-			int maxResults) throws ApiException {
-		ListCfdMarketsResponseDTO response = methods.ListCfdMarkets(searchByMarketName, searchByMarketCode,
-				clientAccountId, maxResults, api);
-		return response.getMarkets();
+	public Future<Object> listCfdMarkets(String searchByMarketName, String searchByMarketCode, int clientAccountId,
+			int maxResults, CallBack... callBacks) throws ApiException {
+		return methods.ListCfdMarketsAsync(searchByMarketName, searchByMarketCode, clientAccountId, maxResults, api,
+				callBacks);
 	}
 
-	public MarketDTO[] listSpreadMarkets(String searchByMarketName, String searchByMarketCode, int clientAccountId,
-			int maxResults) throws ApiException {
-		ListSpreadMarketsResponseDTO response = methods.ListSpreadMarkets(searchByMarketName, searchByMarketCode,
-				clientAccountId, maxResults, api);
-		return response.getMarkets();
+	public Future<Object> listSpreadMarkets(String searchByMarketName, String searchByMarketCode, int clientAccountId,
+			int maxResults, CallBack... callBacks) throws ApiException {
+		return methods.ListSpreadMarketsAsync(searchByMarketName, searchByMarketCode, clientAccountId, maxResults, api,
+				callBacks);
 	}
 
-	public ApiTradeOrderResponseDTO order(int MarketId, String Direction, double Quantity, double BidPrice,
-			double OfferPrice, String AuditId, int TradingAccountId, String Applicability, String ExpiryDateTimeUTC)
+	public Future<Object> order(int MarketId, String Direction, double Quantity, double BidPrice, double OfferPrice,
+			String AuditId, int TradingAccountId, String Applicability, String ExpiryDateTimeUTC, CallBack... callBacks)
 			throws ApiException {
-		ApiTradeOrderResponseDTO response = methods.Order(MarketId, Direction, Quantity, BidPrice, OfferPrice, AuditId,
-				TradingAccountId, Applicability, ExpiryDateTimeUTC, api);
-		return response;
+		NewStopLimitOrderRequestDTO data = new NewStopLimitOrderRequestDTO();
+		data.setMarketId(MarketId);
+		data.setDirection(Direction);
+		data.setQuantity(Quantity);
+		data.setBidPrice(BidPrice);
+		data.setOfferPrice(OfferPrice);
+		data.setAuditId(AuditId);
+		data.setTradingAccountId(TradingAccountId);
+		data.setApplicability(Applicability);
+		data.setExpiryDateTimeUTC(ExpiryDateTimeUTC);
+		return methods.OrderAsync(data, api, callBacks);
 	}
 
-	public ApiTradeOrderResponseDTO cancelOrder(int orderId) throws ApiException {
-		ApiTradeOrderResponseDTO response = methods.CancelOrder(orderId, api);
-		return response;
+	public Future<Object> cancelOrder(int orderId, CallBack...callBacks) throws ApiException {
+		CancelOrderRequestDTO data = new CancelOrderRequestDTO();
+		return methods.CancelOrderAsync(data, api, callBacks);
 	}
+	/* The below methods need to be converted to async versions of the same code
 
 	public ListOrdersResponseDTO listOrders(int tradingAccountId, boolean openOrders, boolean acceptedOrders)
 			throws ApiException {
@@ -227,7 +234,7 @@ public class AsyncApi {
 	}
 	
 	*/
-	
+
 	private void keepAlive() throws ApiException {
 		if (keepAlive) {
 			logIn(username, password, keepAlive, logOnCallback);

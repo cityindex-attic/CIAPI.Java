@@ -17,11 +17,14 @@ public class ListNewsHeadlinesResponseDTO {
 	private CIAPI.Java.examples.ciapi.dto.NewsDTO[] Headlines;
 	
 	/**
-	 * 
 	 * A list of News headlines
 	 */
 	public CIAPI.Java.examples.ciapi.dto.NewsDTO[] getHeadlines() {
 		return Headlines;
+	}
+	
+	public void setHeadlines(CIAPI.Java.examples.ciapi.dto.NewsDTO[] Headlines) {
+		this.Headlines = Headlines;
 	}
 
 }

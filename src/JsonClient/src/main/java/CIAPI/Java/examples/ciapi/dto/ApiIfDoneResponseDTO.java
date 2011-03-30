@@ -14,24 +14,30 @@ public class ApiIfDoneResponseDTO {
 	}
 
 	
-	private CIAPI.Java.examples.ciapi.dto.ApiStopLimitResponseDTO Stop;
+	private CIAPI.Java.examples.ciapi.dto.ApiOrderResponseDTO Stop;
 	
 	/**
-	 * 
 	 * TODO
 	 */
-	public CIAPI.Java.examples.ciapi.dto.ApiStopLimitResponseDTO getStop() {
+	public CIAPI.Java.examples.ciapi.dto.ApiOrderResponseDTO getStop() {
 		return Stop;
 	}
+	
+	public void setStop(CIAPI.Java.examples.ciapi.dto.ApiOrderResponseDTO Stop) {
+		this.Stop = Stop;
+	}
 
-	private CIAPI.Java.examples.ciapi.dto.ApiStopLimitResponseDTO Limit;
+	private CIAPI.Java.examples.ciapi.dto.ApiOrderResponseDTO Limit;
 	
 	/**
-	 * 
 	 * TODO
 	 */
-	public CIAPI.Java.examples.ciapi.dto.ApiStopLimitResponseDTO getLimit() {
+	public CIAPI.Java.examples.ciapi.dto.ApiOrderResponseDTO getLimit() {
 		return Limit;
+	}
+	
+	public void setLimit(CIAPI.Java.examples.ciapi.dto.ApiOrderResponseDTO Limit) {
+		this.Limit = Limit;
 	}
 
 }
