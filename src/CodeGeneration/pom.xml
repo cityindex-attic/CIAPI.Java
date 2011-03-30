@@ -5,9 +5,9 @@
     <artifactId>CityIndex.Java</artifactId>
     <version>0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>JsonClient</artifactId>
+  <artifactId>CodeGen</artifactId>
   <packaging>jar</packaging>  
-  <name>JsonClient</name>
+  <name>CodeGeneration</name>
   <properties>
 	<crap4jHome>${project.parent.basedir}${file.separator}..${file.separator}tools${file.separator}crap4j</crap4jHome>
   </properties>
@@ -33,18 +33,6 @@
 	</plugins>
   </build>
    <dependencies>
-    <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpcore</artifactId>
-      <version>4.1</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpclient</artifactId>
-      <version>4.0.3</version>
-      <scope>compile</scope>
-    </dependency>
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
