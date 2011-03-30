@@ -30,3 +30,6 @@ target
 #Intellij related
 .idea/
 .iml
+
+#Eclipse files
+*.metadata/
