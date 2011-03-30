@@ -86,7 +86,7 @@ public class JsonApi {
 			throw new NullPointerException("Return type must not be null");
 		String url;
 		try {
-			UrlHelper hlpr = UrlHelper.parseUrl(baseUrl + fullUrl);
+			UrlHelper hlpr = UrlHelper.parseUrl(baseUrl + "/" + fullUrl);
 			hlpr.setParams(mergeMaps(constantParameters, hlpr.getParams()));
 			url = hlpr.toUrl();
 		} catch (MalformedURLException e) {
@@ -137,7 +137,7 @@ public class JsonApi {
 			throw new NullPointerException("Return type must not be null");
 		String url;
 		try {
-			UrlHelper hlpr = UrlHelper.parseUrl(baseUrl + fullUrl);
+			UrlHelper hlpr = UrlHelper.parseUrl(baseUrl + "/" + fullUrl);
 			hlpr.setParams(mergeMaps(constantParameters, hlpr.getParams()));
 			url = hlpr.toUrl();
 		} catch (MalformedURLException e) {

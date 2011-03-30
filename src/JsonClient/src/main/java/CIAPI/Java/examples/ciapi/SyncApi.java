@@ -26,6 +26,7 @@ import CIAPI.Java.examples.ciapi.dto.ListTradeHistoryResponseDTO;
 import CIAPI.Java.examples.ciapi.dto.LogOnRequestDTO;
 import CIAPI.Java.examples.ciapi.dto.MarketDTO;
 import CIAPI.Java.examples.ciapi.dto.NewStopLimitOrderRequestDTO;
+import CIAPI.Java.examples.ciapi.dto.NewTradeOrderRequestDTO;
 import CIAPI.Java.examples.ciapi.dto.NewsDTO;
 import CIAPI.Java.examples.ciapi.dto.NewsDetailDTO;
 import CIAPI.Java.examples.ciapi.dto.PriceBarDTO;
@@ -207,29 +208,19 @@ public class SyncApi {
 		return response.getStopLimitOrderHistory();
 	}
 
-	/*
-	
 	public ApiTradeOrderResponseDTO trade(int MarketId, String Direction, double Quantity, double BidPrice,
 			double OfferPrice, String AuditId, int TradingAccountId) throws ApiException {
-		ApiTradeOrderResponseDTO response = methods.Trade(MarketId, Direction, Quantity, BidPrice, OfferPrice, AuditId,
-				TradingAccountId, api);
+		NewTradeOrderRequestDTO data = new NewTradeOrderRequestDTO();
+		data.setMarketId(MarketId);
+		data.setDirection(Direction);
+		data.setQuantity(Quantity);
+		data.setBidPrice(BidPrice);
+		data.setOfferPrice(OfferPrice);
+		data.setAuditId(AuditId);
+		data.setTradingAccountId(TradingAccountId);
+		ApiTradeOrderResponseDTO response = methods.Trade(data, api);
 		return response;
 	}
-
-	public boolean getChartingEnabled(String id) throws ApiException {
-		return methods.GetChartingEnabled(id, api);
-	}
-
-	public String getTermsAndConditions(String clientaccount) throws ApiException {
-		return methods.GetTermsAndConditions(clientaccount, api);
-	}
-
-	public AccountInformationResponseDTO getClientAndTradingAccount() throws ApiException {
-		AccountInformationResponseDTO response = methods.GetClientAndTradingAccount(api);
-		return response;
-	}
-
-	*/
 
 	private void keepAlive() throws ApiException {
 		if (keepAlive) {
