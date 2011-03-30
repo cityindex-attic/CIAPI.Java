@@ -1,4 +1,4 @@
-package CIAPI.Java.examples;
+package CIAPI.Java;
 
 import org.junit.Before;
 import org.junit.Test;
