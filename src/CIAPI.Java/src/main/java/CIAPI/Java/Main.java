@@ -1,6 +1,6 @@
 package CIAPI.Java;
 
-import CIAPI.Java.ApiException;
+import JsonClient.Java.ApiException;
 
 public class Main {
 	public static void main(String[] args) throws ApiException {

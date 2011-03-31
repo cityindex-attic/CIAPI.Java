@@ -1,5 +1,8 @@
 package CIAPI.Java;
 
+import JsonClient.Java.ApiException;
+import JsonClient.Java.JsonClient;
+
 public class FakeJsonClient implements JsonClient {
 
 	private RequestTranslator translator;

@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import CIAPI.Java.cachestuff.CachedJsonClient.Pair;
+import JsonClient.Java.cachestuff.CachedJsonClient.Pair;
 
 public class PairTest {
 

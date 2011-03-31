@@ -1,10 +1,10 @@
 package CIAPI.Java;
 
-import CIAPI.Java.cachestuff.Cache;
-import CIAPI.Java.cachestuff.CachedJsonClient;
-import CIAPI.Java.cachestuff.DefaultCache;
-import CIAPI.Java.throttle.FixedWidthThrottleTimer;
-import CIAPI.Java.throttle.RequestQueue;
+import JsonClient.Java.cachestuff.Cache;
+import JsonClient.Java.cachestuff.CachedJsonClient;
+import JsonClient.Java.cachestuff.DefaultCache;
+import JsonClient.Java.throttle.FixedWidthThrottleTimer;
+import JsonClient.Java.throttle.RequestQueue;
 
 /**
  * Interface for getting access to City Index trading API Java client.

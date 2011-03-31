@@ -1,15 +1,21 @@
 package CIAPI.Java.cachestuff;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import CIAPI.Java.ApiException;
-import CIAPI.Java.cachestuff.CachedJsonClient.Pair;
-import CIAPI.Java.examples.stackexchange.SitesWrapper;
 import CIAPI.Java.httpstuff.FakeSimpleHttpClient;
+import JsonClient.Java.ApiException;
+import JsonClient.Java.cachestuff.Cache;
+import JsonClient.Java.cachestuff.CachedJsonClient;
+import JsonClient.Java.cachestuff.CachedJsonClient.Pair;
+import JsonClient.Java.cachestuff.DefaultCache;
+import examples.stackexchange.SitesWrapper;
 
 public class TestCachedJsonCLient {
 

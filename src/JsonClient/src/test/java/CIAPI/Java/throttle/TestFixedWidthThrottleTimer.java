@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import JsonClient.Java.throttle.FixedWidthThrottleTimer;
+
 public class TestFixedWidthThrottleTimer {
 	private FixedWidthThrottleTimer timer;
 	private long distance = 100;

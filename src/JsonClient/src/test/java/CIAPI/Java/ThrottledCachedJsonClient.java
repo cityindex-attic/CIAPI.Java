@@ -1,13 +1,13 @@
 package CIAPI.Java;
 
-import CIAPI.Java.cachestuff.Cache;
-import CIAPI.Java.cachestuff.CachedJsonClient;
-import CIAPI.Java.cachestuff.DefaultCache;
-import CIAPI.Java.httpstuff.DefaultHttpRequestItemFactory;
-import CIAPI.Java.throttle.RequestQueue;
-import CIAPI.Java.throttle.RequestsPerTimespanTimer;
-import CIAPI.Java.throttle.ThrottleTimer;
-import CIAPI.Java.throttle.ThrottledHttpClient;
+import JsonClient.Java.cachestuff.Cache;
+import JsonClient.Java.cachestuff.CachedJsonClient;
+import JsonClient.Java.cachestuff.DefaultCache;
+import JsonClient.Java.httpstuff.DefaultHttpRequestItemFactory;
+import JsonClient.Java.throttle.RequestQueue;
+import JsonClient.Java.throttle.RequestsPerTimespanTimer;
+import JsonClient.Java.throttle.ThrottleTimer;
+import JsonClient.Java.throttle.ThrottledHttpClient;
 
 /**
  * Convenience class for combining the cached client and throttled client

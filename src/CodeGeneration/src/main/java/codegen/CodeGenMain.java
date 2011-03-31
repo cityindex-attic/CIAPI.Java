@@ -1,10 +1,9 @@
 package codegen;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-import CIAPI.Java.ApiException;
+import JsonClient.Java.ApiException;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;

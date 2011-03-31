@@ -1,7 +1,5 @@
 package CIAPI.Java;
 
-import CIAPI.Java.cachestuff.Cache;
-import CIAPI.Java.cachestuff.CachedJsonClient;
 import CIAPI.Java.dto.ApiActiveStopLimitOrderDTO;
 import CIAPI.Java.dto.ApiOpenPositionDTO;
 import CIAPI.Java.dto.ApiStopLimitOrderHistoryDTO;
@@ -30,10 +28,14 @@ import CIAPI.Java.dto.NewsDetailDTO;
 import CIAPI.Java.dto.PriceBarDTO;
 import CIAPI.Java.dto.PriceTickDTO;
 import CIAPI.Java.dto.SessionDeletionResponseDTO;
-import CIAPI.Java.httpstuff.DefaultHttpRequestItemFactory;
 import CIAPI.Java.impl.ServiceMethodsImpl;
-import CIAPI.Java.throttle.RequestQueue;
-import CIAPI.Java.throttle.ThrottledHttpClient;
+import JsonClient.Java.ApiException;
+import JsonClient.Java.JsonApi;
+import JsonClient.Java.cachestuff.Cache;
+import JsonClient.Java.cachestuff.CachedJsonClient;
+import JsonClient.Java.httpstuff.DefaultHttpRequestItemFactory;
+import JsonClient.Java.throttle.RequestQueue;
+import JsonClient.Java.throttle.ThrottledHttpClient;
 
 /**
  * API for connecting to the City Index Trading RESTful API. All requests are

@@ -13,6 +13,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import JsonClient.Java.urlstuff.UrlHelper;
+
 /**
  * Tests for the URL parsing of the API.
  * 

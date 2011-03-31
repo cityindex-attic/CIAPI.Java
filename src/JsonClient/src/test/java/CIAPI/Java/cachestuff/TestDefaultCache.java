@@ -8,6 +8,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import JsonClient.Java.cachestuff.DefaultCache;
+
 public class TestDefaultCache {
 
 	private DefaultCache<String, String> cache;

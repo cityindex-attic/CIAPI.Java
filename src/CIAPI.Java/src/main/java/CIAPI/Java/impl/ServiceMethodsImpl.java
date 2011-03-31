@@ -1,12 +1,13 @@
 package CIAPI.Java.impl;
 
 import java.util.concurrent.Future;
-import CIAPI.Java.ApiException;
-import CIAPI.Java.JsonApi;
-import CIAPI.Java.async.AsyncJsonApi;
-import CIAPI.Java.async.CallBack;
-import CIAPI.Java.async.AsyncApiCall;
+
 import CIAPI.Java.ServiceMethods;
+import JsonClient.Java.ApiException;
+import JsonClient.Java.JsonApi;
+import JsonClient.Java.async.AsyncApiCall;
+import JsonClient.Java.async.AsyncJsonApi;
+import JsonClient.Java.async.CallBack;
 
 public class ServiceMethodsImpl implements ServiceMethods {
 

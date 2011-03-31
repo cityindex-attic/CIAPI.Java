@@ -4,12 +4,13 @@ import java.io.ByteArrayInputStream;
 import java.net.MalformedURLException;
 
 import CIAPI.Java.RequestTranslator;
-import CIAPI.Java.examples.urlshortener.GoogleGetResponse;
-import CIAPI.Java.examples.urlshortener.GooglePostRequest;
-import CIAPI.Java.examples.urlshortener.GooglePostResponse;
-import CIAPI.Java.urlstuff.UrlHelper;
+import JsonClient.Java.urlstuff.UrlHelper;
 
 import com.google.gson.Gson;
+
+import examples.urlshortener.GoogleGetResponse;
+import examples.urlshortener.GooglePostRequest;
+import examples.urlshortener.GooglePostResponse;
 
 /**
  * Client that uses generated files to make requests.

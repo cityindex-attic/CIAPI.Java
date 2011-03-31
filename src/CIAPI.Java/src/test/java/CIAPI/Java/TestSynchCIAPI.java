@@ -3,9 +3,9 @@ package CIAPI.Java;
 import org.junit.Before;
 import org.junit.Test;
 
-import CIAPI.Java.ApiException;
 import CIAPI.Java.ApiFActory;
 import CIAPI.Java.SyncApi;
+import JsonClient.Java.ApiException;
 
 public class TestSynchCIAPI {
 

@@ -10,10 +10,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import CIAPI.Java.DefaultJsonClient;
-import CIAPI.Java.JsonClient;
-import CIAPI.Java.examples.stackexchange.SitesWrapper;
 import CIAPI.Java.httpstuff.FakeSimpleHttpClient;
+import JsonClient.Java.DefaultJsonClient;
+import JsonClient.Java.JsonClient;
+import JsonClient.Java.async.AsyncApiCall;
+import JsonClient.Java.async.AsyncJsonApi;
+import JsonClient.Java.async.CallBack;
+import examples.stackexchange.SitesWrapper;
 
 public class TestAsyncApiCall {
 	private JsonClient client;

@@ -7,6 +7,8 @@ import java.io.InputStream;
 
 import org.apache.http.client.ClientProtocolException;
 
+import JsonClient.Java.httpstuff.HttpRequestItem;
+
 /**
  * HttpRequest implementation for testing.
  * 

@@ -5,6 +5,8 @@ import java.io.InputStream;
 
 import org.apache.http.client.ClientProtocolException;
 
+import JsonClient.Java.httpstuff.SimpleHttpClient;
+
 public class FakeSimpleHttpClient implements SimpleHttpClient {
 
 	@Override

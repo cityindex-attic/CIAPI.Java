@@ -1,18 +1,23 @@
 package CIAPI.Java;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import CIAPI.Java.examples.stackexchange.Site;
-import CIAPI.Java.examples.stackexchange.SitesWrapper;
-import CIAPI.Java.examples.stackexchange.StackExchangeStats;
-import CIAPI.Java.examples.stackexchange.StatsWrapper;
 import CIAPI.Java.httpstuff.FakeSimpleHttpClient;
+import JsonClient.Java.ApiException;
+import JsonClient.Java.DefaultJsonClient;
+import JsonClient.Java.JsonApi;
+import JsonClient.Java.JsonClient;
+import examples.stackexchange.Site;
+import examples.stackexchange.SitesWrapper;
+import examples.stackexchange.StackExchangeStats;
+import examples.stackexchange.StatsWrapper;
 
 public class TestJsonClient {
 
