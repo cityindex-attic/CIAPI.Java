@@ -1,5 +1,6 @@
 package CIAPI.Java;
 
+import java.util.Arrays;
 import java.util.concurrent.Future;
 
 import CIAPI.Java.dto.CancelOrderRequestDTO;
@@ -62,12 +63,14 @@ public class AsyncApi {
 	 *            expires.
 	 * @throws ApiException
 	 */
-	public Future<Object> logIn(final String username, final String password, final boolean keepAlive, CallBack callBack)
+	public Future<Object> logIn(final String username, final String password, final boolean keepAlive, CallBack...callbacks)
 			throws ApiException {
 		LogOnRequestDTO logOn = new LogOnRequestDTO();
 		logOn.setPassword(password);
 		logOn.setUserName(username);
-		return methods.CreateSessionAsync(logOn, api, logOnCallback, callBack);
+		CallBack[] cbs = Arrays.copyOf(callbacks, callbacks.length + 1);
+		cbs[cbs.length-1] = logOnCallback;
+		return methods.CreateSessionAsync(logOn, api, cbs);
 	}
 
 	private final CallBack logOnCallback = new CallBack() {

@@ -33,7 +33,8 @@ public class AsyncApiCall {
 	private boolean done;
 	private boolean started;
 
-	protected AsyncApiCall(String baseUrl, Map<String, String> initialParams, JsonClient client, ExecutorService exec) {
+	protected AsyncApiCall(String baseUrl, Map<String, String> initialParams,
+			JsonClient client, ExecutorService exec) {
 		this.baseUrl = baseUrl;
 		this.client = client;
 		this.initialParams = initialParams;
@@ -53,20 +54,23 @@ public class AsyncApiCall {
 		if (cb == null)
 			throw new NullPointerException("The call back cannot be null");
 		if (done)
-			throw new IllegalStateException("Cannot add a call back to a call that has completed.");
+			throw new IllegalStateException(
+					"Cannot add a call back to a call that has completed.");
 		callBaks.add(cb);
 	}
 
-	public synchronized Future<Object> callGetMethod(final String extendedUrlPart, final Map<String, String> params,
+	public synchronized Future<Object> callGetMethod(
+			final String extendedUrlPart, final Map<String, String> params,
 			final Class<?> returnType) {
 		UrlHelper hlpr = new UrlHelper(baseUrl, extendedUrlPart, params);
 		return callGetMethod(hlpr, returnType);
 	}
 
-	public synchronized Future<Object> callGetMethod(final String fullSecondHalfUrl, final Class<?> returnType) {
+	public synchronized Future<Object> callGetMethod(
+			final String fullSecondHalfUrl, final Class<?> returnType) {
 		UrlHelper hlpr;
 		try {
-			hlpr = UrlHelper.parseUrl(baseUrl + fullSecondHalfUrl);
+			hlpr = UrlHelper.parseUrl(baseUrl + "/" + fullSecondHalfUrl);
 			return callGetMethod(hlpr, returnType);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -85,7 +89,8 @@ public class AsyncApiCall {
 	 *            The type this method will return
 	 * @return A future that will hold the result of the computation
 	 */
-	protected synchronized Future<Object> callGetMethod(final UrlHelper urlHlpr, final Class<?> returnType) {
+	protected synchronized Future<Object> callGetMethod(
+			final UrlHelper urlHlpr, final Class<?> returnType) {
 		if (started)
 			throw new IllegalStateException("Cannot call more than once.");
 		started = true;
@@ -106,17 +111,19 @@ public class AsyncApiCall {
 		return future;
 	}
 
-	public synchronized Future<Object> callPostMethod(final String extendedUrlPart, final Map<String, String> params,
+	public synchronized Future<Object> callPostMethod(
+			final String extendedUrlPart, final Map<String, String> params,
 			final Object inputData, final Class<?> returnType) {
 		UrlHelper hlpr = new UrlHelper(baseUrl, extendedUrlPart, params);
 		return callPostMethod(hlpr, inputData, returnType);
 	}
 
-	public synchronized Future<Object> callPostMethod(final String fullSecondHalfUrl, final Object inputData,
+	public synchronized Future<Object> callPostMethod(
+			final String fullSecondHalfUrl, final Object inputData,
 			final Class<?> returnType) {
 		UrlHelper hlpr;
 		try {
-			hlpr = UrlHelper.parseUrl(baseUrl + fullSecondHalfUrl);
+			hlpr = UrlHelper.parseUrl(baseUrl + "/" + fullSecondHalfUrl);
 			return callPostMethod(hlpr, inputData, returnType);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -137,7 +144,8 @@ public class AsyncApiCall {
 	 *            The type this method will return
 	 * @return A future that will hold the result of the computation
 	 */
-	protected synchronized Future<Object> callPostMethod(final UrlHelper urlHlpr, final Object inputData,
+	protected synchronized Future<Object> callPostMethod(
+			final UrlHelper urlHlpr, final Object inputData,
 			final Class<?> returnType) {
 		if (started)
 			throw new IllegalStateException("Cannot call more than once.");
@@ -149,7 +157,8 @@ public class AsyncApiCall {
 			public Object call() throws Exception {
 				String url = urlHlpr.toUrl();
 				// synchronously make a request in another thread
-				Object result = client.makePostRequest(url, inputData, returnType);
+				Object result = client.makePostRequest(url, inputData,
+						returnType);
 				done = true;
 				return result;
 			}
@@ -191,7 +200,8 @@ public class AsyncApiCall {
 		doneListener.start();
 	}
 
-	private static void placeParamsInHlpr(UrlHelper hlpr, Map<String, String> paramsToAdd) {
+	private static void placeParamsInHlpr(UrlHelper hlpr,
+			Map<String, String> paramsToAdd) {
 		Map<String, String> result = hlpr.getParams();
 		for (Entry<String, String> entry : paramsToAdd.entrySet()) {
 			result.put(entry.getKey(), entry.getValue());

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -37,7 +38,15 @@ public class AsyncJsonApi {
 	public AsyncJsonApi(String baseUrl, JsonClient client) {
 		this.baseUrl = baseUrl;
 		this.client = client;
-		exec = new ThreadPoolExecutor(2, 20, 1, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(50));
+		exec = new ThreadPoolExecutor(2, 20, 1, TimeUnit.HOURS,
+				new ArrayBlockingQueue<Runnable>(50), new ThreadFactory() {
+					@Override
+					public Thread newThread(Runnable r) {
+						Thread t = new Thread(r);
+						t.setDaemon(true);
+						return t;
+					}
+				});
 		universalCallBacks = new ArrayList<CallBack>();
 		constantParams = new HashMap<String, String>();
 	}
@@ -52,7 +61,8 @@ public class AsyncJsonApi {
 	 * @return a new ApiCall object that will allow you to add events to it.
 	 */
 	public AsyncApiCall createNewCall() {
-		AsyncApiCall call = new AsyncApiCall(baseUrl, constantParams, client, exec);
+		AsyncApiCall call = new AsyncApiCall(baseUrl, constantParams, client,
+				exec);
 		for (CallBack cb : universalCallBacks) {
 			call.addCallCompleteListener(cb);
 		}
