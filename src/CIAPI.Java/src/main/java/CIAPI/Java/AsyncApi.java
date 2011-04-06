@@ -15,6 +15,7 @@ import JsonClient.Java.async.AsyncJsonApi;
 import JsonClient.Java.async.CallBack;
 import JsonClient.Java.cachestuff.Cache;
 import JsonClient.Java.cachestuff.CachedJsonClient;
+import JsonClient.Java.cachestuff.Pair;
 import JsonClient.Java.httpstuff.DefaultHttpRequestItemFactory;
 import JsonClient.Java.throttle.RequestQueue;
 import JsonClient.Java.throttle.ThrottledHttpClient;
@@ -44,7 +45,7 @@ public class AsyncApi {
 	private boolean keepAlive;
 	private ServiceMethods methods;
 
-	protected AsyncApi(String baseUrl, Cache<CachedJsonClient.Pair<String, Class<?>>, Object> cache, RequestQueue queue) {
+	protected AsyncApi(String baseUrl, Cache<Pair<String, Class<?>>, Object> cache, RequestQueue queue) {
 		methods = new ServiceMethodsImpl();
 		api = new AsyncJsonApi(baseUrl, new CachedJsonClient(cache, new ThrottledHttpClient(
 				new DefaultHttpRequestItemFactory(), queue)));

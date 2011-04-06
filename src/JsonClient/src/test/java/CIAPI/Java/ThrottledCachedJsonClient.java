@@ -3,6 +3,7 @@ package CIAPI.Java;
 import JsonClient.Java.cachestuff.Cache;
 import JsonClient.Java.cachestuff.CachedJsonClient;
 import JsonClient.Java.cachestuff.DefaultCache;
+import JsonClient.Java.cachestuff.Pair;
 import JsonClient.Java.httpstuff.DefaultHttpRequestItemFactory;
 import JsonClient.Java.throttle.RequestQueue;
 import JsonClient.Java.throttle.RequestsPerTimespanTimer;

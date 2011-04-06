@@ -1,11 +1,16 @@
-package CIAPI.Java.android;
+package CIAPI.Java.android.activities;
 
+import CIAPI.Java.android.R;
+import CIAPI.Java.android.R.id;
+import CIAPI.Java.android.R.layout;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 public class ButtonCounter extends Activity {
@@ -28,6 +33,24 @@ public class ButtonCounter extends Activity {
 				count++;
 				TextView counter = (TextView) findViewById(R.id.countValue);
 				counter.setText("" + count);
+			}
+		});
+		SeekBar seek = (SeekBar) findViewById(R.id.seekBar1);
+		TextView seekCOunt = (TextView)findViewById(R.id.seekAnmt);
+		seekCOunt.setText(seek.getProgress()+"");
+		seek.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+			}
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+			}
+			
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress,
+					boolean fromUser) {
+				TextView seekCOunt = (TextView)findViewById(R.id.seekAnmt);
+				seekCOunt.setText(progress+"");
 			}
 		});
 	}

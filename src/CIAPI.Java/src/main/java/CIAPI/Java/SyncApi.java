@@ -33,6 +33,7 @@ import JsonClient.Java.ApiException;
 import JsonClient.Java.JsonApi;
 import JsonClient.Java.cachestuff.Cache;
 import JsonClient.Java.cachestuff.CachedJsonClient;
+import JsonClient.Java.cachestuff.Pair;
 import JsonClient.Java.httpstuff.DefaultHttpRequestItemFactory;
 import JsonClient.Java.throttle.RequestQueue;
 import JsonClient.Java.throttle.ThrottledHttpClient;
@@ -63,7 +64,7 @@ public class SyncApi {
 	private boolean keepAlive;
 	private ServiceMethods methods;
 
-	protected SyncApi(String baseUrl, Cache<CachedJsonClient.Pair<String, Class<?>>, Object> cache, RequestQueue queue) {
+	protected SyncApi(String baseUrl, Cache<Pair<String, Class<?>>, Object> cache, RequestQueue queue) {
 		methods = new ServiceMethodsImpl();
 		api = new JsonApi(baseUrl, new CachedJsonClient(cache, new ThrottledHttpClient(
 				new DefaultHttpRequestItemFactory(), queue)));

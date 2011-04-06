@@ -2,4 +2,8 @@
 <resources>
     <string name="hello">Hello World, TradingApp!</string>
     <string name="app_name">TradingApp</string>
+    <string name="tradingApiIntro">Welcome to the City Index trading app</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Log In</string>
 </resources>

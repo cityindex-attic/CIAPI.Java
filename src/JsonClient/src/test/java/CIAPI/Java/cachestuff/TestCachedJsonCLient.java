@@ -13,8 +13,8 @@ import CIAPI.Java.httpstuff.FakeSimpleHttpClient;
 import JsonClient.Java.ApiException;
 import JsonClient.Java.cachestuff.Cache;
 import JsonClient.Java.cachestuff.CachedJsonClient;
-import JsonClient.Java.cachestuff.CachedJsonClient.Pair;
 import JsonClient.Java.cachestuff.DefaultCache;
+import JsonClient.Java.cachestuff.Pair;
 import examples.stackexchange.SitesWrapper;
 
 public class TestCachedJsonCLient {
