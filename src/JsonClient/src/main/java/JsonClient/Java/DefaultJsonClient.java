@@ -42,14 +42,17 @@ public class DefaultJsonClient implements JsonClient {
 	public DefaultJsonClient(SimpleHttpClient httpClient) {
 		// Null check to avoid passing the error further down the chain.
 		if (httpClient == null)
-			throw new NullPointerException("The simple http client must not be null");
+			throw new NullPointerException(
+					"The simple http client must not be null");
 		client = httpClient;
 	}
 
 	@Override
-	public Object makeGetRequest(String url, Class<?> clazz) throws ApiException {
+	public Object makeGetRequest(String url, Class<?> clazz)
+			throws ApiException {
 		if (url == null || url.trim().length() == 0)
-			throw new IllegalArgumentException("The url must not be null or empty");
+			throw new IllegalArgumentException(
+					"The url must not be null or empty");
 		if (clazz == null)
 			throw new NullPointerException("The clazz must not be null");
 		try {
@@ -62,15 +65,19 @@ public class DefaultJsonClient implements JsonClient {
 	}
 
 	@Override
-	public Object makePostRequest(String url, Object content, Class<?> clazz) throws ApiException {
+	public Object makePostRequest(String url, Object content, Class<?> clazz)
+			throws ApiException {
 		if (url == null || url.trim().length() == 0)
-			throw new IllegalArgumentException("The url must not be null or empty");
+			throw new IllegalArgumentException(
+					"The url must not be null or empty");
 		if (clazz == null)
 			throw new NullPointerException("The clazz must not be null");
 		Gson g = new Gson();
-		String strContent = (content instanceof String) ? (String) content : g.toJson(content);
+		String strContent = (content instanceof String) ? (String) content : g
+				.toJson(content);
 		try {
-			return finishMakeRequest(client.makePostRequest(url, strContent), clazz);
+			return finishMakeRequest(client.makePostRequest(url, strContent),
+					clazz);
 		} catch (ClientProtocolException e) {
 			throw new ApiException(e);
 		} catch (IOException e) {
@@ -81,7 +88,8 @@ public class DefaultJsonClient implements JsonClient {
 	/**
 	 * Helper method for finishing a get or post request
 	 */
-	private Object finishMakeRequest(InputStream data, Class<?> clazz) throws ApiException {
+	private Object finishMakeRequest(InputStream data, Class<?> clazz)
+			throws ApiException {
 		Gson g = new Gson();
 		Scanner responseEntityData = new Scanner(data);
 		StringBuilder strBldr = new StringBuilder();
@@ -102,7 +110,8 @@ public class DefaultJsonClient implements JsonClient {
 	 * Checks to see if the data begins with an error message. If it does, ist
 	 * simply throws an exception.
 	 * 
-	 * @param fullData the data returned from an API call.
+	 * @param fullData
+	 *            the data returned from an API call.
 	 * @throws ApiException
 	 */
 	private void checkException(String fullData) throws ApiException {

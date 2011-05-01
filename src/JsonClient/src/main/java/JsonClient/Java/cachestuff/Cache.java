@@ -1,7 +1,5 @@
 package JsonClient.Java.cachestuff;
 
-import org.joda.time.Period;
-
 /**
  * A basic cache interface
  * 
