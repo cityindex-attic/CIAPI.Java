@@ -36,7 +36,8 @@ public class CodeGenMain {
 	 */
 	public static void main(String[] args) throws JsonIOException, JsonSyntaxException, MalformedURLException,
 			IOException, ApiException, ParserConfigurationException, SAXException {
-		new ReplacementRoot("files/code_replacement_rules/dto_replacement_rule.xml");
+		ReplacementRoot root = new ReplacementRoot("files/code_replacement_rules/dto_replacement_rule.xml");
+		System.out.println(root);
 		//SchemaReader rdr = new SchemaReader(new FileInputStream(schemaLocation), new FileInputStream(smdLocation));
 		//rdr.createPackage("CIAPI.Java",
 		//		"/home/justin/workspace/CIAPI.Java/src/CIAPI.Java/src/main/java/CIAPI/Java/");

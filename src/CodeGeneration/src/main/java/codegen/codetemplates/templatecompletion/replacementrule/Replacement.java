@@ -13,6 +13,6 @@ public interface Replacement {
 	 *            the text of the template to perform the replacement on
 	 * @return the template with the replacement performed
 	 */
-	public String performReplacement(String template);
+	public Object getObjectValue(Object obj);
 
 }
