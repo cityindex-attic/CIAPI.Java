@@ -2,17 +2,17 @@ package codegen.codetemplates.templatecompletion.replacementrule;
 
 import java.util.List;
 
-public class ReplacementSet implements Replacement {
+import codegen.codetemplates.CodeTemplate;
+import codegen.codetemplates.CompoundCodeTemplate;
 
-	private String templateValue;
-	private String objectValue;
+public class ReplacementSet extends Replacement {
+
 	private String subObjName;
 	private List<Replacement> subPlacemnets;
 
-	public ReplacementSet(String templateValue, String objectValue, String subObjName,
-			List<Replacement> subPlacements) {
-		this.templateValue = templateValue;
-		this.objectValue = objectValue;
+	public ReplacementSet(String templateValue, String objectValue, String objName,
+			String subObjName, List<Replacement> subPlacements) {
+		super(templateValue, objectValue, objName);
 		this.subObjName = subObjName;
 		this.subPlacemnets = subPlacements;
 	}
@@ -23,8 +23,16 @@ public class ReplacementSet implements Replacement {
 	}
 
 	@Override
-	public Object getObjectValue(Object obj) {
-		// TODO Auto-generated method stub
-		return null;
+	public void fillTemplateHole(Object obj, CodeTemplate template, String... args) {
+		Iterable<?> result = (Iterable<?>) resolveValue(obj, args);
+		CompoundCodeTemplate comp = (CompoundCodeTemplate) template.getTemplateEntry(templateValue);
+		CodeTemplate toFill = comp.getEmptyTemplate();
+		for (Object o : result) {
+			CodeTemplate clone = toFill.copyEmptyTemplate();
+			for (Replacement r : subPlacemnets) {
+				r.fillTemplateHole(o, clone, args);
+			}
+			comp.addMappingSet(clone);
+		}
 	}
 }

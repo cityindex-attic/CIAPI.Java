@@ -3,6 +3,7 @@ package codegen.codetemplates.templatecompletion.replacementrule;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -16,7 +17,7 @@ import org.xml.sax.SAXException;
 import codegen.codetemplates.templatecompletion.replacementrule.xmlparsing.MyNd;
 import codegen.codetemplates.templatecompletion.replacementrule.xmlparsing.NdLst;
 
-public class ReplacementRoot {
+public class ReplacementRoot implements Iterable<Replacement>{
 
 	private List<Replacement> replacements;
 
@@ -56,7 +57,7 @@ public class ReplacementRoot {
 			replacements.add(nodeToReplacement(node));
 		}
 		ReplacementSet ret = new ReplacementSet(templateValue.getTextContent(),
-				objectValue.getTextContent(), subObjectName, replacements);
+				objectValue.getTextContent(), "",subObjectName, replacements);
 		return ret;
 	}
 
@@ -65,7 +66,12 @@ public class ReplacementRoot {
 		Node templateValue = children.single("templateValue");
 		Node objectValue = children.single("objectValue");
 		SimpleReplacement rep = new SimpleReplacement(templateValue.getTextContent(),
-				objectValue.getTextContent());
+				objectValue.getTextContent(), null);
 		return rep;
+	}
+
+	@Override
+	public Iterator<Replacement> iterator() {
+		return replacements.iterator();
 	}
 }
