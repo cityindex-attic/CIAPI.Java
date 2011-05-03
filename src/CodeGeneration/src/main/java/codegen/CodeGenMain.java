@@ -51,6 +51,7 @@ public class CodeGenMain {
 		TemplateFiller filler = new TemplateFiller();
 		SchemaReader rdr = new SchemaReader(new FileInputStream(schemaLocation),
 				new FileInputStream(smdLocation));
+		
 		for(Entry<String, DTO>e: rdr.getAllModelItems().entrySet()){
 			System.out.println(filler.fillTemplate(e.getValue(), template, root, e.getKey(), "CIAPI.Java"));
 		}
