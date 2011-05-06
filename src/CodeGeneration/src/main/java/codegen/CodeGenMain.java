@@ -3,9 +3,8 @@ package codegen;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.Map.Entry;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -13,18 +12,13 @@ import org.xml.sax.SAXException;
 
 import JsonClient.Java.ApiException;
 
-import codegen.codetemplates.CodeTemplate;
-import codegen.codetemplates.templatecompletion.TemplateFiller;
-import codegen.codetemplates.templatecompletion.replacementrule.ReplacementRoot;
-import codegen.modelobjects.DTO;
-
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
 /**
  * Main class for running stuff
  * 
- * @author justin nelson
+ * @author Justin Nelson
  */
 public class CodeGenMain {
 	private static String schemaLocation = "files/smdFiles/schema.js";
@@ -44,18 +38,49 @@ public class CodeGenMain {
 	public static void main(String[] args) throws JsonIOException, JsonSyntaxException,
 			MalformedURLException, IOException, ApiException, ParserConfigurationException,
 			SAXException {
-		String test = "prop.getValue().getType($args[1])";
-		ReplacementRoot root = new ReplacementRoot(
-				"files/code_replacement_rules/dto_replacement_rule.xml");
-		CodeTemplate template = CodeTemplate.loadTemplate("files/code_templates/DTOTemplate.jav");
-		TemplateFiller filler = new TemplateFiller();
+		List<ClParam> params = parseParams(args);
 		SchemaReader rdr = new SchemaReader(new FileInputStream(schemaLocation),
 				new FileInputStream(smdLocation));
-		
-		for(Entry<String, DTO>e: rdr.getAllModelItems().entrySet()){
-			System.out.println(filler.fillTemplate(e.getValue(), template, root, e.getKey(), "CIAPI.Java"));
+		rdr.createPackage("CIAPI.Java",
+				"/home/justin/workspace/CIAPI.Java/src/CIAPI.Java/src/main/java/CIAPI/Java/");
+	}
+
+	public static List<ClParam> parseParams(String[] array) {
+		List<ClParam> ret = new ArrayList<ClParam>();
+		for (int i = 0; i < array.length; i += 2) {
+			ret.add(new ClParam(array[i], array[i + 1]));
 		}
-		//rdr.createPackage("CIAPI.Java",
-		//		"/home/justin/workspace/CIAPI.Java/src/CIAPI.Java/src/main/java/CIAPI/Java/");
+		return ret;
+	}
+
+	static enum SpecificParams {
+		SCHEMA_URI("-sch", "The URI location of the SMD descriptor."), 
+		SMD_URI("-smd", "The URI location of the Schema descriptor.");
+		
+		public final String option;
+		public final String description;
+
+		private SpecificParams(String option, String description) {
+			this.option = option;
+			this.description = description;
+		}
+	}
+
+	static class ClParam {
+		public final String option;
+		public final String value;
+
+		public ClParam(String option, String value) {
+			this.option = option;
+			this.value = value;
+			checkValues();
+		}
+
+		private void checkValues() {
+			if (!option.startsWith("-")) {
+				throw new IllegalArgumentException("The parameter '" + option
+						+ "' is not a valid switch.");
+			}
+		}
 	}
 }

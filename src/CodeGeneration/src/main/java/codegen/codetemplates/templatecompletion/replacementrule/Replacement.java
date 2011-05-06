@@ -6,22 +6,53 @@ import java.util.regex.Pattern;
 
 import codegen.codetemplates.CodeTemplate;
 
+/**
+ * Class that handles parsing a string and using reflection to create actual method calls and
+ * resulting return values.
+ * 
+ * @author Justin
+ * 
+ */
 public abstract class Replacement {
 
 	protected String templateValue;
 	protected String objectValue;
 	protected String objectName;
 
+	/**
+	 * Creates a new Replacement with the given values.
+	 * 
+	 * @param templateValue
+	 *            the name of the value in the template to replace
+	 * @param objectValue
+	 *            the methods to call on the object to retrieve the desired result
+	 * @param objectName
+	 *            the name of the variable we are calling methods on
+	 */
 	public Replacement(String templateValue, String objectValue, String objectName) {
 		this.templateValue = templateValue;
 		this.objectValue = objectValue;
 		this.objectName = objectName;
 	}
 
+	/**
+	 * The name of the template value we are replacing
+	 * 
+	 * @return
+	 */
 	public String getTemplateName() {
 		return templateValue;
 	}
 
+	/**
+	 * Given some object, call the method chain and create a result.
+	 * 
+	 * @param obj
+	 *            the object to mutate
+	 * @param args
+	 *            extra arguments passed into the template
+	 * @return the resulting object
+	 */
 	protected Object resolveValue(Object obj, String... args) {
 		Object result;
 		if (objectValue.startsWith("$args")) {
@@ -44,6 +75,9 @@ public abstract class Replacement {
 						method2.setAccessible(true);
 						result = method2.invoke(result, indexArray(args, methodArgs));
 					}
+					if (result == null){
+						System.out.println("Whoops!!");
+					}
 				} catch (Exception e) {
 					throw new RuntimeException("The given method (" + method
 							+ ") isn't valid for object of type " + obj.getClass());
@@ -53,8 +87,22 @@ public abstract class Replacement {
 		return result;
 	}
 
+	/**
+	 * Fills a template given the rules of this replacement object
+	 * 
+	 * @param obj
+	 * @param template
+	 * @param args
+	 */
 	public abstract void fillTemplateHole(Object obj, CodeTemplate template, String... args);
 
+	/**
+	 * Takes an index that looks like "$args[n]" and returns item from arr at position 'n'
+	 * 
+	 * @param arr
+	 * @param index
+	 * @return
+	 */
 	private static String indexArray(String[] arr, String index) {
 		String regex = "\\$args\\[(\\d)\\]";
 		Pattern p = Pattern.compile(regex);
