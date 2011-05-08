@@ -45,17 +45,19 @@ public class DTOCreator {
 		if (dto.getEnum_() != null || dto.getOptions() != null) {
 			return enumToCode();
 		}
-		CodeTemplate template = CodeTemplate.loadTemplate("files/code_templates/DTOTemplate.jav");
+		CodeTemplate template = CodeTemplate.loadTemplate("C:/Users/Justin/workspace/CIAPI.Java/src/CodeGeneration/files/code_templates/DTOTemplate.jav");
 		template.putNewTemplateDefinition("name", name);
 		template.putNewTemplateDefinition("description", dto.getDescription());
 		template.putNewTemplateDefinition("packageName", packageName);
-		CompoundCodeTemplate propertyList = (CompoundCodeTemplate) template.getTemplateEntry("properties");
+		CompoundCodeTemplate propertyList = (CompoundCodeTemplate) template
+				.getTemplateEntry("properties");
 		CodeTemplate emptyPropTemplate = propertyList.getEmptyTemplate();
 		for (Entry<String, Property> p : dto.getProperties().entrySet()) {
 			CodeTemplate propTemplate = emptyPropTemplate.copyEmptyTemplate();
 			propTemplate.putNewTemplateDefinition("propDesc", p.getValue().getDescription());
 			propTemplate.putNewTemplateDefinition("propertyName", p.getKey());
-			propTemplate.putNewTemplateDefinition("propertyType", p.getValue().getType(packageName));
+			propTemplate
+					.putNewTemplateDefinition("propertyType", p.getValue().getType(packageName));
 			propertyList.addMappingSet(propTemplate);
 		}
 		return template.codeReplacement();
@@ -63,14 +65,16 @@ public class DTOCreator {
 
 	private String enumToCode() {
 		if (dto.getEnum_() == null || dto.getOptions() == null) {
-			throw new IllegalStateException("Enums must have both the 'enum' and 'options' property.");
+			throw new IllegalStateException(
+					"Enums must have both the 'enum' and 'options' property.");
 		}
 		if (dto.getOptions().length != dto.getEnum_().length) {
-			throw new IllegalStateException("The 'enum' and 'options' property must have the same length.");
+			throw new IllegalStateException(
+					"The 'enum' and 'options' property must have the same length.");
 		}
 		String packageDeclaration = "package " + packageName + ";\n\n";
-		String javadocComment = String.format("/**\n" + " * %s\n" + " * Auto generated Enum\n" + " */\n",
-				dto.getDescription());
+		String javadocComment = String.format("/**\n" + " * %s\n" + " * Auto generated Enum\n"
+				+ " */\n", dto.getDescription());
 		String enumDescriptor = String.format("public enum %s {\n", name);
 		StringBuilder itemBuilder = new StringBuilder();
 		for (Option o : dto.getOptions()) {

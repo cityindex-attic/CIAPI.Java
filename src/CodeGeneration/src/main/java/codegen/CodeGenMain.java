@@ -1,8 +1,12 @@
 package codegen;
 
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +25,6 @@ import com.google.gson.JsonSyntaxException;
  * @author Justin Nelson
  */
 public class CodeGenMain {
-	private static String schemaLocation = "files/smdFiles/schema.js";
-	private static String smdLocation = "files/smdFiles/smd.js";
-
 	/**
 	 * Stuff...It's a main...what do you expect?
 	 * 
@@ -34,18 +35,73 @@ public class CodeGenMain {
 	 * @throws IOException
 	 * @throws ParserConfigurationException
 	 * @throws SAXException
+	 * @throws URISyntaxException
 	 */
 	public static void main(String[] args) throws JsonIOException, JsonSyntaxException,
 			MalformedURLException, IOException, ApiException, ParserConfigurationException,
-			SAXException {
+			SAXException, URISyntaxException {
+		if (args.length == 0 || args[0].matches("(-h|-H|--help)") || args.length % 2 == 1) {
+			CodeGenMain.printUsage();
+			return;
+		}
 		List<ClParam> params = parseParams(args);
-		SchemaReader rdr = new SchemaReader(new FileInputStream(schemaLocation),
-				new FileInputStream(smdLocation));
-		rdr.createPackage("CIAPI.Java",
-				"/home/justin/workspace/CIAPI.Java/src/CIAPI.Java/src/main/java/CIAPI/Java/");
+		try {
+			CodeGenMain.generateCode(params);
+		} catch (IllegalArgumentException e) {
+			printUsage();
+		}
 	}
 
-	public static List<ClParam> parseParams(String[] array) {
+	private static void printUsage() {
+		String usage = "Please specify the following arguments:\n" + SpecificParams.toUsageString();
+		System.out.println(usage);
+	}
+
+	public static void generateCode(List<ClParam> params) throws URISyntaxException, IOException {
+		if (params.size() < 3)
+			throw new IllegalArgumentException("At least 3 parameters must be provided.");
+		String schemaLocation = null;
+		String smdLocation = null;
+		String saveLocation = null;
+		for (ClParam p : params) {
+			if (p.option.equals("-sch")) {
+				schemaLocation = p.value;
+			} else if (p.option.equals("-smd")) {
+				smdLocation = p.value;
+			} else if (p.option.equals("-l")) {
+				saveLocation = p.value;
+			} else if (p.option.equals("-t")) {
+			}
+		}
+		if (schemaLocation == null || smdLocation == null || saveLocation == null) {
+			printUsage();
+			return;
+		}
+		InputStream schemaStream = openFileOrUrl(schemaLocation);
+		InputStream smdStream = openFileOrUrl(smdLocation);
+
+		SchemaReader rdr = new SchemaReader(schemaStream, smdStream);
+		rdr.createPackage("CIAPI.Java", saveLocation);
+	}
+
+	private static InputStream openFileOrUrl(String path) throws IOException {
+		URL url;
+		if (path.matches("\\w:\\\\.*")) {
+			File f = new File(path);
+			url = f.toURI().toURL();
+		} else {
+			url = new URL(path);
+		}
+		return url.openStream();
+	}
+
+	/**
+	 * Parses params into objects.
+	 * 
+	 * @param array
+	 * @return
+	 */
+	private static List<ClParam> parseParams(String[] array) {
 		List<ClParam> ret = new ArrayList<ClParam>();
 		for (int i = 0; i < array.length; i += 2) {
 			ret.add(new ClParam(array[i], array[i + 1]));
@@ -54,15 +110,33 @@ public class CodeGenMain {
 	}
 
 	static enum SpecificParams {
-		SCHEMA_URI("-sch", "The URI location of the SMD descriptor."), 
-		SMD_URI("-smd", "The URI location of the Schema descriptor.");
-		
+		SCHEMA_URI("-sch", "The URI location of the SMD descriptor"), SMD_URI("-smd",
+				"The URI location of the Schema descriptor"), SAVE_LOCATION("-l",
+				"The location to save the generated code");
+
 		public final String option;
 		public final String description;
 
 		private SpecificParams(String option, String description) {
 			this.option = option;
 			this.description = description;
+		}
+
+		public static String toUsageString() {
+			String ret = "";
+			for (SpecificParams p : values()) {
+				ret += "\t" + p.option + " <" + p.description + ">\n";
+			}
+			return ret;
+		}
+
+		public static SpecificParams fromOption(String option) {
+			for (SpecificParams p : values()) {
+				if (p.option.equals(option)) {
+					return p;
+				}
+			}
+			return null;
 		}
 	}
 
@@ -74,6 +148,10 @@ public class CodeGenMain {
 			this.option = option;
 			this.value = value;
 			checkValues();
+		}
+
+		public SpecificParams toSpecificParam() {
+			return SpecificParams.fromOption(option);
 		}
 
 		private void checkValues() {

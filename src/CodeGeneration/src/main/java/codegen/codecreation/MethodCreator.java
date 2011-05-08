@@ -42,7 +42,7 @@ public class MethodCreator {
 	 */
 	public String toCode() throws FileNotFoundException {
 		// Top level template. Responsible for all methods
-		CodeTemplate template = CodeTemplate.loadTemplate("files/code_templates/CombinedTemplateImpl.jav");
+		CodeTemplate template = CodeTemplate.loadTemplate("C:/Users/Justin/workspace/CIAPI.Java/src/CodeGeneration/files/code_templates/CombinedTemplateImpl.jav");
 		template.putNewTemplateDefinition("packageName", packageName);
 		CompoundCodeTemplate methods = (CompoundCodeTemplate) template.getTemplateEntry("methods");
 		CodeTemplate emptyPropTemplate = methods.getEmptyTemplate();
@@ -97,7 +97,7 @@ public class MethodCreator {
 	 */
 	public String toInterface() throws FileNotFoundException {
 		// Top level template. Responsible for all methods
-		CodeTemplate template = CodeTemplate.loadTemplate("files/code_templates/CombinedTemplate.jav");
+		CodeTemplate template = CodeTemplate.loadTemplate("C:/Users/Justin/workspace/CIAPI.Java/src/CodeGeneration/files/code_templates/CombinedTemplate.jav");
 		template.putNewTemplateDefinition("packageName", packageName);
 		CompoundCodeTemplate methods = (CompoundCodeTemplate) template.getTemplateEntry("methods");
 		CodeTemplate emptyPropTemplate = methods.getEmptyTemplate();
