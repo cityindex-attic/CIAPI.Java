@@ -10,7 +10,7 @@ import codegen.codetemplates.CodeTemplate;
  * Class that handles parsing a string and using reflection to create actual method calls and
  * resulting return values.
  * 
- * @author Justin
+ * @author Justin Nelson
  * 
  */
 public abstract class Replacement {
