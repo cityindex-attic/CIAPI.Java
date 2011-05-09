@@ -1,36 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <replacementRoot xmlns="http://www.w3schools.com"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="files/code_replacement_rules/replacement_rule.xsd"
+	xsi:schemaLocation="replacement_rule.xsd"
 	objName="dto" extraArgs="args">
 	<replacement>
 		<templateValue>name</templateValue>
 		<objectValue>$args[0]</objectValue>
 	</replacement>
-	<replacement>
-		<templateValue>description</templateValue>
-		<objectValue>dto.getDescription()</objectValue>
-	</replacement>
-	<replacement>
-		<templateValue>packageName</templateValue>
-		<objectValue>$args[1]</objectValue>
-	</replacement>
-	<replacementSet subObjName="prop">
-		<templateValue>properties</templateValue>
-		<objectValue>dto.getProperties().entrySet()</objectValue>
-		<replacements>
-			<replacement>
-				<templateValue>propDesc</templateValue>
-				<objectValue>prop.getValue().getDescription()</objectValue>
-			</replacement>
-			<replacement>
-				<templateValue>propertyName</templateValue>
-				<objectValue>prop.getKey()</objectValue>
-			</replacement>
-			<replacement>
-				<templateValue>propertyType</templateValue>
-				<objectValue>prop.getValue().getType($args[1])</objectValue>
-			</replacement>
-		</replacements>
+	<replacement name="descrpition" value="dto.getDescription()" />
+	<replacement name="packageName" value="$args[1]" />
+	<replacementSet subObjName="prop" name="properties"
+		value="dto.getProperties().entrySet()">
+		<replacement name="propDesc" value="prop.getValue().getDescription()" />
+		<replacement name="propertyName" value="prop.getKey()" />
+		<replacement name="propertyType" value="prop.getValue().getType($args[1])" />
 	</replacementSet>
 </replacementRoot>

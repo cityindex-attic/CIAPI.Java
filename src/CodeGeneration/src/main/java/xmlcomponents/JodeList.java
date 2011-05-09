@@ -35,6 +35,10 @@ public class JodeList implements Iterable<Jode> {
         return new Jode(l.single(nodeName));
     }
 
+    public Jode first(){
+    	return new Jode(l.item(0));
+    }
+    
     public ExtendedNodeList extend(){
         return l;
     }

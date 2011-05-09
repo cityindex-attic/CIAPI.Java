@@ -1,29 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <replacementRoot xmlns="http://www.w3schools.com"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="files/code_replacement_rules/replacement_rule.xsd"
-	objName="smd" extraArgs="args">
+	xsi:schemaLocation="replacement_rule.xsd" objName="smd" extraArgs="args">
 	<replacement>
 		<templateValue>packageName</templateValue>
 		<objectValue>$args[0]</objectValue>
 	</replacement>
-	<replacementSet subObjName="method">
-		<templateValue>methods</templateValue>
-		<objectValue>smd.getServices().entrySet()</objectValue>
-		<replacements>
-			<replacement>
-				<templateValue>description</templateValue>
-				<objectValue>method.getValue().getDescription()</objectValue>
-			</replacement>
-			<replacement>
-				<templateValue>return</templateValue>
-				<objectValue>method.getValue().getReturn()</objectValue>
-			</replacement>
-			<replacement>
-				<templateValue>name</templateValue>
-				<objectValue>method.getKey()</objectValue>
-			</replacement>
-			
-		</replacements>
+	<replacementSet subObjName="method" name="methods"
+		value="smd.getServices().entrySet()">
+		<replacement>
+			<templateValue>description</templateValue>
+			<objectValue>method.getValue().getDescription()</objectValue>
+		</replacement>
+		<replacement>
+			<templateValue>return</templateValue>
+			<objectValue>method.getValue().getReturn()</objectValue>
+		</replacement>
+		<replacement>
+			<templateValue>name</templateValue>
+			<objectValue>method.getKey()</objectValue>
+		</replacement>
+		<replacement>
+			<templateValue>target</templateValue>
+			<objectValue>method.getValue().getTarget()</objectValue>
+		</replacement>
+		<replacement>
+			<templateValue>uriTemplate</templateValue>
+			<objectValue>method.getValue().getUriTemplate()</objectValue>
+		</replacement>
+		<replacement>
+			<templateValue>transport</templateValue>
+			<objectValue>method.getValue().getTransport()</objectValue>
+		</replacement>
 	</replacementSet>
 </replacementRoot>

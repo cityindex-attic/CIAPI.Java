@@ -7,60 +7,52 @@ import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
+import xmlcomponents.Jocument;
 import xmlcomponents.Jode;
-import xmlcomponents.complex.ExtendedDocument;
-import xmlcomponents.complex.ExtendedNode;
-import xmlcomponents.complex.ExtendedNodeList;
+import xmlcomponents.JodeList;
 
-public class ReplacementRoot implements Iterable<Replacement>{
+public class ReplacementRoot implements Iterable<Replacement> {
 
 	private List<Replacement> replacements;
 
 	public ReplacementRoot(String location) throws ParserConfigurationException, SAXException,
 			IOException {
-		ExtendedDocument doc = ExtendedDocument.load(location);
-		ExtendedNodeList replacementNodes = new ExtendedNodeList(doc.children().item(0).getChildNodes());
+		Jocument doc = Jocument.load(location);
+		JodeList replacementNodes = doc.children().first().children();
 		replacements = new ArrayList<Replacement>();
-		for (ExtendedNode n : replacementNodes) {
+		for (Jode n : replacementNodes) {
 			replacements.add(nodeToReplacement(n));
 		}
 	}
 
-	private static Replacement nodeToReplacement(ExtendedNode n) {
-		if (n.getNodeName().equals("replacement")) {
+	private static Replacement nodeToReplacement(Jode n) {
+		if (n.name().equals("replacement")) {
 			return parseSimpleNode(n);
-		} else if (n.getNodeName().equals("replacementSet")) {
+		} else if (n.name().equals("replacementSet")) {
 			return parseComplexNode(n);
 		} else {
 			throw new IllegalArgumentException("The node is not allowed in the context: "
-					+ n.getNodeName());
+					+ n.name());
 		}
 	}
 
-	private static ReplacementSet parseComplexNode(ExtendedNode n) {
-		ExtendedNodeList children = new ExtendedNodeList(n.getChildNodes());
-		ExtendedNode templateValue = children.single("templateValue");
-		ExtendedNode objectValue = children.single("objectValue");
-		String subObjectName = new Jode(n).attribute("subObjName").name();
-		ExtendedNode replacementsNode = children.single("replacements");
+	private static ReplacementSet parseComplexNode(Jode n) {
+		JodeList children = n.children();
+		String subObjectName = n.attribute("subObjName").name();
 		List<Replacement> replacements = new ArrayList<Replacement>();
-		for (ExtendedNode node : replacementsNode.getChildNodes()) {
+		for (Jode node : children) {
 			replacements.add(nodeToReplacement(node));
 		}
-		ReplacementSet ret = new ReplacementSet(templateValue.getTextContent(),
-				objectValue.getTextContent(), "",subObjectName, replacements);
+		ReplacementSet ret = new ReplacementSet(n.attribute("name").value(), n.attribute("value")
+				.value(), "", subObjectName, replacements);
 		return ret;
 	}
 
-	private static SimpleReplacement parseSimpleNode(ExtendedNode n) {
-		ExtendedNodeList children = new ExtendedNodeList(n.getChildNodes());
-		Node templateValue = children.single("templateValue");
-		Node objectValue = children.single("objectValue");
-		SimpleReplacement rep = new SimpleReplacement(templateValue.getTextContent(),
-				objectValue.getTextContent(), null);
+	private static SimpleReplacement parseSimpleNode(Jode n) {
+		SimpleReplacement rep = new SimpleReplacement(n.attribute("name").value(), n.attribute(
+				"value").value(), null);
 		return rep;
 	}
 

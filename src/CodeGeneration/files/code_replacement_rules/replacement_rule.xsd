@@ -15,26 +15,19 @@
 			<xs:attribute name="extraArgs" type="xs:string" />
 		</xs:complexType>
 	</xs:element>
-	<xs:complexType name="replacements">
+	<xs:complexType name="replacement">
+		<xs:attribute name="name" use="required" type="xs:string" />
+		<xs:attribute name="value" use="required" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="replacementSet">
 		<xs:sequence>
 			<xs:element name="replacement" type="replacement"
 				minOccurs="0" maxOccurs="unbounded" />
 			<xs:element name="replacementSet" type="replacementSet"
 				minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
-	</xs:complexType>
-	<xs:complexType name="replacement">
-		<xs:all>
-			<xs:element name="templateValue" minOccurs="1" maxOccurs="1" />
-			<xs:element name="objectValue" minOccurs="1" maxOccurs="1" />
-		</xs:all>
-	</xs:complexType>
-	<xs:complexType name="replacementSet">
-		<xs:all>
-			<xs:element name="templateValue" minOccurs="1" maxOccurs="1" />
-			<xs:element name="objectValue" minOccurs="1" maxOccurs="1" />
-			<xs:element name="replacements" type="replacements" />
-		</xs:all>
+		<xs:attribute name="name" use="required" type="xs:string" />
+		<xs:attribute name="value" use="required" type="xs:string" />
 		<xs:attribute name="subObjName" type="xs:string" />
 	</xs:complexType>
 </xs:schema>

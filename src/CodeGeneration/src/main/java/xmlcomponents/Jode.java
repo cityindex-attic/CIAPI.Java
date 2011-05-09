@@ -19,6 +19,14 @@ public class Jode {
 		this.n = n;
 	}
 
+	public String name(){
+		return n.getNodeName();
+	}
+	
+	public String text(){
+		return n.getTextContent();
+	}
+	
 	public JodeList children() {
 		return new JodeList(n.children());
 	}
