@@ -6,8 +6,8 @@
 	<xs:element name="replacementRoot">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="replacement" type="replacement"
-					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="replacement" type="replacement" minOccurs="0"
+					maxOccurs="unbounded" />
 				<xs:element name="replacementSet" type="replacementSet"
 					minOccurs="0" maxOccurs="unbounded" />
 			</xs:sequence>
@@ -18,16 +18,18 @@
 	<xs:complexType name="replacement">
 		<xs:attribute name="name" use="required" type="xs:string" />
 		<xs:attribute name="value" use="required" type="xs:string" />
+		<xs:attribute name="default" use="optional" type="xs:string" />
 	</xs:complexType>
 	<xs:complexType name="replacementSet">
 		<xs:sequence>
-			<xs:element name="replacement" type="replacement"
-				minOccurs="0" maxOccurs="unbounded" />
-			<xs:element name="replacementSet" type="replacementSet"
-				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="replacement" type="replacement" minOccurs="0"
+				maxOccurs="unbounded" />
+			<xs:element name="replacementSet" type="replacementSet" minOccurs="0"
+				maxOccurs="unbounded" />
 		</xs:sequence>
 		<xs:attribute name="name" use="required" type="xs:string" />
 		<xs:attribute name="value" use="required" type="xs:string" />
 		<xs:attribute name="subObjName" type="xs:string" />
+		<xs:attribute name="delim" type="xs:string" use="optional" />
 	</xs:complexType>
 </xs:schema>

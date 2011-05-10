@@ -17,7 +17,8 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * <@description@>
 	 */
 	@Override
-	public <@return@> <@name@>(<@parameters@>, JsonApi api) throws ApiException {
+	public <@return@> <@name@>(<@@parameters:,@@><@pType@> <@pName@><@@@@>, JsonApi api) 
+												throws ApiException {
 		// Collect variables from method
 		String target = "<@target@>";
 		String uriTemplate = "<@uriTemplate@>";
@@ -28,8 +29,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// Done collecting variables
 		// Fill in necessary holes in the URL if it is GET.
 		if (transport.equals("GET")) {
-			// Concatenating the empty string is a hackey way of converting all params to a String
-			<@@fillParameters@@>
+			// Concatenating the empty string is a hackey way of converting all params to a String <@@fillParameters@@>
 			filledUri = filledUri.replace("{<@parameterName@>}", <@parameterName@> + "");<@@@@>
 		}
 		// Done filling in holes
@@ -53,7 +53,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * <@description@>
 	 */
 	@Override
-	public Future<Object> <@name@>Async(<@parameters@>, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
+	public Future<Object> <@name@>Async(<@@parameters:,@@><@pType@> <@pName@><@@@@>, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
 		// Collect variables from method
 		String target = "<@target@>";
 		String uriTemplate = "<@uriTemplate@>";

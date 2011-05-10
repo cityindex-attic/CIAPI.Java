@@ -41,12 +41,13 @@ public class ReplacementRoot implements Iterable<Replacement> {
 	private static ReplacementSet parseComplexNode(Jode n) {
 		JodeList children = n.children();
 		String subObjectName = n.attribute("subObjName").name();
+		String delim = n.attribute("delim").value();
 		List<Replacement> replacements = new ArrayList<Replacement>();
 		for (Jode node : children) {
 			replacements.add(nodeToReplacement(node));
 		}
 		ReplacementSet ret = new ReplacementSet(n.attribute("name").value(), n.attribute("value")
-				.value(), "", subObjectName, replacements);
+				.value(), "", subObjectName, replacements, delim);
 		return ret;
 	}
 

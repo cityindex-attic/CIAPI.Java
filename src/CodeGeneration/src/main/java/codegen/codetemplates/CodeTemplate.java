@@ -11,14 +11,12 @@ import java.util.regex.Pattern;
 
 /**
  * <p>
- * Represents a Code Template. This can contain simple or complex template
- * entries.
+ * Represents a Code Template. This can contain simple or complex template entries.
  * </p>
  * <p>
- * The general idea is, that once you have a code template, you are free to
- * write whatever code you like ot fill those templates. You may have SMD/DTO
- * objects, or you may have arbitrary other formats of data. You just need to be
- * able to tell the template what data to put where.
+ * The general idea is, that once you have a code template, you are free to write whatever code you
+ * like ot fill those templates. You may have SMD/DTO objects, or you may have arbitrary other
+ * formats of data. You just need to be able to tell the template what data to put where.
  * </p>
  * 
  * @author Justin Nelson
@@ -50,10 +48,15 @@ public class CodeTemplate implements TemplateEntry {
 			// going to the close tag
 			String matchedTemplate = template.substring(compoundStart, compoundEnd);
 			// Use this to find the name of the parameter in the compound tag
-			String compountPropName = nextTagString.substring(3, nextTagString.length() - 3);
-			templateReplacement.put(compountPropName, new CompoundCodeTemplate(matchedTemplate));
-			template = template.replace(nextTagString + matchedTemplate + compoundPatternEndS, "<@" + compountPropName
-					+ "@>");
+			String compountPropDescriptor = nextTagString.substring(3, nextTagString.length() - 3);
+			// compoundProperties may have a delimiter specified
+			String[] compoundPropNameParts = compountPropDescriptor.split(":");
+			String delim = null;
+			if (compoundPropNameParts.length == 2)
+				delim = compoundPropNameParts[1];
+			templateReplacement.put(compoundPropNameParts[0], new CompoundCodeTemplate(matchedTemplate, delim));
+			template = template.replace(nextTagString + matchedTemplate + compoundPatternEndS, "<@"
+					+ compoundPropNameParts[0] + "@>");
 		}
 		Pattern simplePattern = Pattern.compile(simplePatternS);
 		Matcher m = simplePattern.matcher(template);
@@ -89,9 +92,8 @@ public class CodeTemplate implements TemplateEntry {
 	}
 
 	/**
-	 * This number represents the max depth we allow the following method to
-	 * traverse before we assume there is a bug in the code, or the Template
-	 * file was poorly structured.
+	 * This number represents the max depth we allow the following method to traverse before we
+	 * assume there is a bug in the code, or the Template file was poorly structured.
 	 */
 	private static final int MAX_DEPTH_BEFORE_ERROR = 100000;
 
@@ -112,8 +114,8 @@ public class CodeTemplate implements TemplateEntry {
 		while (true) {
 			String nextOpenTag = findNextTagString(template, currentIndex);
 			// find the next index of an open tag
-			int nextOpenIdx = nextOpenTag == null ? -1 : template.indexOf(nextOpenTag, currentIndex)
-					+ nextOpenTag.length();
+			int nextOpenIdx = nextOpenTag == null ? -1 : template
+					.indexOf(nextOpenTag, currentIndex) + nextOpenTag.length();
 			// find the next index of a closing tag
 			int nextCloseIdx = template.indexOf(compoundPatternEndS, currentIndex);
 			// if we find a close tag before an open tag
@@ -159,7 +161,8 @@ public class CodeTemplate implements TemplateEntry {
 		TemplateEntry oldEntry = templateReplacement.put(templateKey, entry);
 		// You can't replace a template definition for a key that doesn't exist
 		if (oldEntry == null) {
-			throw new IllegalArgumentException("This template does not contain a definition for the given term.");
+			throw new IllegalArgumentException(
+					"This template does not contain a definition for the given term.");
 		}
 		return oldEntry;
 	}
@@ -202,7 +205,7 @@ public class CodeTemplate implements TemplateEntry {
 	public static CodeTemplate loadTemplate(String location) throws FileNotFoundException {
 		Scanner fin = new Scanner(new File(location));
 		StringBuilder templateString = new StringBuilder();
-		while(fin.hasNextLine()){
+		while (fin.hasNextLine()) {
 			templateString.append(fin.nextLine()).append("\n");
 		}
 		return new CodeTemplate(templateString.toString());
@@ -212,7 +215,8 @@ public class CodeTemplate implements TemplateEntry {
 	public String codeReplacement() {
 		String code = resultingTemplate;
 		for (Entry<String, TemplateEntry> entry : templateReplacement.entrySet()) {
-			code = code.replaceAll("<@" + entry.getKey() + "@>", entry.getValue().codeReplacement());
+			code = code
+					.replaceAll("<@" + entry.getKey() + "@>", entry.getValue().codeReplacement());
 		}
 		return code;
 	}

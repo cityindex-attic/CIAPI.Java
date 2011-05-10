@@ -1,6 +1,7 @@
 package codegen;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -85,14 +86,15 @@ public class CodeGenMain {
 	}
 
 	private static InputStream openFileOrUrl(String path) throws IOException {
-		URL url;
-		if (path.matches("\\w:\\\\.*")) {
-			File f = new File(path);
-			url = f.toURI().toURL();
-		} else {
-			url = new URL(path);
-		}
-		return url.openStream();
+		return new FileInputStream(new File(path));
+		//URL url;
+		//if (path.matches("\\w:\\\\.*")) {
+		//	File f = new File(path);
+			//url = f.toURI().toURL();
+		//} else {
+			//url = new URL(path);
+		//}
+		//return url.openStream();
 	}
 
 	/**

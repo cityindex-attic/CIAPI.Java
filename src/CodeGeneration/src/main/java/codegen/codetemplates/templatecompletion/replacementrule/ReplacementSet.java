@@ -9,12 +9,15 @@ public class ReplacementSet extends Replacement {
 
 	private String subObjName;
 	private List<Replacement> subPlacemnets;
-
+	private String deilm;
+	
 	public ReplacementSet(String templateValue, String objectValue, String objName,
-			String subObjName, List<Replacement> subPlacements) {
+			String subObjName, List<Replacement> subPlacements, String delim) {
 		super(templateValue, objectValue, objName);
 		this.subObjName = subObjName;
 		this.subPlacemnets = subPlacements;
+		this.deilm = delim;
+		if (this.deilm == null)this.deilm = "";
 	}
 
 	@Override
@@ -28,11 +31,15 @@ public class ReplacementSet extends Replacement {
 		CompoundCodeTemplate comp = (CompoundCodeTemplate) template.getTemplateEntry(templateValue);
 		CodeTemplate toFill = comp.getEmptyTemplate();
 		for (Object o : result) {
-			CodeTemplate clone = toFill.copyEmptyTemplate();
-			for (Replacement r : subPlacemnets) {
-				r.fillTemplateHole(o, clone, args);
-			}
-			comp.addMappingSet(clone);
+			fillSubTemplate(o, toFill, comp, args);
 		}
+	}
+	
+	protected void fillSubTemplate(Object subObj, CodeTemplate subTemplateToFill, CompoundCodeTemplate masterTemplate, String...args){
+		CodeTemplate clone = subTemplateToFill.copyEmptyTemplate();
+		for (Replacement r : subPlacemnets) {
+			r.fillTemplateHole(subObj, clone, args);
+		}
+		masterTemplate.addMappingSet(clone);
 	}
 }

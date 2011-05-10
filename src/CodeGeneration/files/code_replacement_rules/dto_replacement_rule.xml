@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <replacementRoot xmlns="http://www.w3schools.com"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="replacement_rule.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="replacement_rule.xsd"
 	objName="dto" extraArgs="args">
-	<replacement>
-		<templateValue>name</templateValue>
-		<objectValue>$args[0]</objectValue>
-	</replacement>
+	<replacement name="name" value="$args[0]" />
 	<replacement name="descrpition" value="dto.getDescription()" />
 	<replacement name="packageName" value="$args[1]" />
 	<replacementSet subObjName="prop" name="properties"
