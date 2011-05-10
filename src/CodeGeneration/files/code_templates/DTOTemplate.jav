@@ -12,7 +12,6 @@ public class <@name@> {
 	 */
 	public <@name@>() {
 	}
-
 	<@@properties@@>
 	private <@propertyType@> <@propertyName@>;
 	

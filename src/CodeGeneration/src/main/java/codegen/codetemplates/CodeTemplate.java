@@ -162,7 +162,7 @@ public class CodeTemplate implements TemplateEntry {
 		// You can't replace a template definition for a key that doesn't exist
 		if (oldEntry == null) {
 			throw new IllegalArgumentException(
-					"This template does not contain a definition for the given term.");
+					"This template does not contain a definition for the given term: " + templateKey);
 		}
 		return oldEntry;
 	}

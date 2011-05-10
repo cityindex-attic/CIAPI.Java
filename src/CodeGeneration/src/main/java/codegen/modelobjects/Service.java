@@ -1,5 +1,8 @@
 package codegen.modelobjects;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Describes a method that the service described by the SMD provides.
@@ -19,7 +22,7 @@ public class Service {
 	private Return returns;
 	private String group;
 	private String throttleScope;
-	private Parameter[] parameters;
+	private List<Parameter> parameters;
 
 	/**
 	 * @return the description of the method. This is essentially the Javadoc
@@ -116,9 +119,9 @@ public class Service {
 	/**
 	 * @return all of the parameters of this method.
 	 */
-	public Parameter[] getParameters() {
+	public List<Parameter> getParameters() {
 		if (parameters == null) {
-			return new Parameter[] {};
+			return new ArrayList<Parameter>();
 		} else {
 			return parameters;
 		}

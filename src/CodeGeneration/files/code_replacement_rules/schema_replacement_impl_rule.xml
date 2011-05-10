@@ -7,7 +7,7 @@
 		value="smd.getServices().entrySet()">
 		<replacement name="description" value="method.getValue().getDescription()" />
 		<replacement name="return"
-			value="method.getValue().getReturns().get$ref($args[0] + @'.dto'" ) />
+			value="method.getValue().getReturns().get$ref($args[1])" />
 		<replacement name="name" value="method.getKey()" />
 		<replacement name="target" value="method.getValue().getTarget()" />
 		<replacement name="uriTemplate" value="method.getValue().getUriTemplate()" />
@@ -15,11 +15,14 @@
 		<replacement name="envelope" value="method.getValue().getEnvelope()" />
 		<replacement name="contentType" value="method.getValue().getContentType()" />
 		<replacement name="postParam"
-			value="method.getValue().getParameters()$[0].getName()" default="null" />
+			value="method.getValue().getParameters().get(#0).getName()" default="null" />
 		<replacementSet subObjName="p" name="parameters"
 			value="method.getValue().getParameters()">
-			<replacement name="paramType" value="p.getType(packageName+@'.dto')" />
-			<replacement name="paramName" value="p.getName()" />
+			<replacement name="pType" value="p.getType($args[1])" />
+			<replacement name="pName" value="p.getName()" />
+		</replacementSet>
+		<replacementSet subObjName="p" name="fillParameters" value="method.getValue().getParameters()">
+			<replacement name="parameterName" value="p.getName()" />
 		</replacementSet>
 	</replacementSet>
 </replacementRoot>

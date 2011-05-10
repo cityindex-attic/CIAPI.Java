@@ -45,38 +45,29 @@ public class MethodCreator {
 		CodeTemplate template = CodeTemplate.loadTemplate("C:/Users/Justin/workspace/CIAPI.Java/src/CodeGeneration/files/code_templates/CombinedTemplateImpl.jav");
 		template.putNewTemplateDefinition("packageName", packageName);
 		CompoundCodeTemplate methods = (CompoundCodeTemplate) template.getTemplateEntry("methods");
-		CodeTemplate emptyPropTemplate = methods.getEmptyTemplate();
+		CodeTemplate emptyMethodTemplate = methods.getEmptyTemplate();
 		for (Entry<String, Service> entry : model.getServices().entrySet()) {
 			// Template responsible only for 1 method
-			CodeTemplate propTemplate = emptyPropTemplate.copyEmptyTemplate();
-			propTemplate.putNewTemplateDefinition("name", entry.getKey());
+			CodeTemplate methodTemplate = emptyMethodTemplate.copyEmptyTemplate();
+			methodTemplate.putNewTemplateDefinition("name", entry.getKey());
 			Service s = entry.getValue();
-			propTemplate.putNewTemplateDefinition("description", s.getDescription());
-			propTemplate.putNewTemplateDefinition("target", s.getTarget());
-			propTemplate.putNewTemplateDefinition("uriTemplate", s.getUriTemplate());
-			propTemplate.putNewTemplateDefinition("transport", s.getTransport());
-			propTemplate.putNewTemplateDefinition("envelope", s.getEnvelope());
-			propTemplate.putNewTemplateDefinition("contentType", s.getContentType());
-			if (s.getTransport().equals("POST")) {
-				propTemplate.putNewTemplateDefinition("postParam", s.getParameters()[0].getName());
-			} else if (s.getTransport().equals("GET")) {
-				propTemplate.putNewTemplateDefinition("postParam", "null");
-			} else {
-				throw new IllegalArgumentException("Unexpected transport type");
+			methodTemplate.putNewTemplateDefinition("description", s.getDescription());
+			methodTemplate.putNewTemplateDefinition("target", s.getTarget());
+			methodTemplate.putNewTemplateDefinition("uriTemplate", s.getUriTemplate());
+			methodTemplate.putNewTemplateDefinition("transport", s.getTransport());
+			methodTemplate.putNewTemplateDefinition("envelope", s.getEnvelope());
+			methodTemplate.putNewTemplateDefinition("contentType", s.getContentType());
+			methodTemplate.putNewTemplateDefinition("postParam", s.getParameters().get(0).getName());
+			methodTemplate.putNewTemplateDefinition("return", s.getReturns().get$ref(packageName + ".dto"));
+			CompoundCodeTemplate params = (CompoundCodeTemplate) methodTemplate.getTemplateEntry("parameters");
+			CodeTemplate emptyParamsTemplate = params.getEmptyTemplate();
+			for (Parameter p : s.getParameters()) {
+				CodeTemplate paramTemplate = emptyParamsTemplate.copyEmptyTemplate();
+				paramTemplate.putNewTemplateDefinition("pName", p.getName());
+				paramTemplate.putNewTemplateDefinition("pType", p.getType(packageName+".dto"));
+				params.addMappingSet(paramTemplate);
 			}
-			propTemplate.putNewTemplateDefinition("return", s.getReturns().get$ref(packageName + ".dto"));
-			{
-				// Build up parameters String
-				String paramString = "";
-				for (Parameter p : s.getParameters()) {
-					paramString += (p.getType(packageName+".dto") + " " + p.getName() + ", ");
-				}
-				propTemplate.putNewTemplateDefinition("parameters",
-						paramString.substring(0, Math.max(paramString.length() - 2, 0)));
-				// The Math.max() above accounts for cases when there are no
-				// parameters.
-			}
-			CompoundCodeTemplate fillParams = (CompoundCodeTemplate) propTemplate.getTemplateEntry("fillParameters");
+			CompoundCodeTemplate fillParams = (CompoundCodeTemplate) methodTemplate.getTemplateEntry("fillParameters");
 			CodeTemplate emptyFillParamsTemplate = fillParams.getEmptyTemplate();
 			for (Parameter p : s.getParameters()) {
 				// Template responsible for replacing parameters in the URL
@@ -84,7 +75,7 @@ public class MethodCreator {
 				fillTemplate.putNewTemplateDefinition("parameterName", p.getName());
 				fillParams.addMappingSet(fillTemplate);
 			}
-			methods.addMappingSet(propTemplate);
+			methods.addMappingSet(methodTemplate);
 		}
 		return template.codeReplacement();
 	}
@@ -108,14 +99,13 @@ public class MethodCreator {
 			Service s = entry.getValue();
 			propTemplate.putNewTemplateDefinition("description", s.getDescription());
 			propTemplate.putNewTemplateDefinition("return", s.getReturns().get$ref(packageName + ".dto"));
-			{
-				// Build up parameters String
-				String paramString = "";
-				for (Parameter p : s.getParameters()) {
-					paramString += (p.getType(packageName+".dto") + " " + p.getName() + ", ");
-				}
-				propTemplate.putNewTemplateDefinition("parameters",
-						paramString.substring(0, Math.max(paramString.length() - 2, 0)));
+			CompoundCodeTemplate params = (CompoundCodeTemplate) propTemplate.getTemplateEntry("parameters");
+			CodeTemplate emptyParamsTemplate = params.getEmptyTemplate();
+			for (Parameter p : s.getParameters()) {
+				CodeTemplate paramTemplate = emptyParamsTemplate.copyEmptyTemplate();
+				paramTemplate.putNewTemplateDefinition("pName", p.getName());
+				paramTemplate.putNewTemplateDefinition("pType", p.getType(packageName+".dto"));
+				params.addMappingSet(paramTemplate);
 			}
 			CompoundCodeTemplate fillParams = (CompoundCodeTemplate) propTemplate
 					.getTemplateEntry("parameterDescriptions");

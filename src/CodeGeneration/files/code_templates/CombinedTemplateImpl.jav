@@ -29,7 +29,8 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// Done collecting variables
 		// Fill in necessary holes in the URL if it is GET.
 		if (transport.equals("GET")) {
-			// Concatenating the empty string is a hackey way of converting all params to a String <@@fillParameters@@>
+			// Concatenating the empty string is a hackey way of converting all params to a String 
+			<@@fillParameters@@>
 			filledUri = filledUri.replace("{<@parameterName@>}", <@parameterName@> + "");<@@@@>
 		}
 		// Done filling in holes

@@ -17,6 +17,10 @@ import org.xml.sax.SAXException;
 
 import JsonClient.Java.ApiException;
 
+import codegen.codetemplates.CodeTemplate;
+import codegen.codetemplates.templatecompletion.TemplateFiller;
+import codegen.codetemplates.templatecompletion.replacementrule.ReplacementRoot;
+
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
@@ -41,6 +45,14 @@ public class CodeGenMain {
 	public static void main(String[] args) throws JsonIOException, JsonSyntaxException,
 			MalformedURLException, IOException, ApiException, ParserConfigurationException,
 			SAXException, URISyntaxException {
+		CodeTemplate template = CodeTemplate.loadTemplate("files/code_templates/CombinedTemplateImpl.jav");
+		ReplacementRoot rep = new ReplacementRoot("files/code_replacement_rules/schema_replacement_impl_rule.xml");
+		TemplateFiller filler = new TemplateFiller(template, rep);
+		InputStream schemaStream = openFileOrUrl("files/smdFiles/schema.js");
+		InputStream smdStream = openFileOrUrl("files/smdFiles/smd.js");
+		SchemaReader rdr = new SchemaReader(schemaStream, smdStream);
+		System.out.println(filler.fillTemplate(rdr.getServices(), "CIAPI.Java", "CIAPI.Java.dto"));
+		// TODO: Finish this test
 		if (args.length == 0 || args[0].matches("(-h|-H|--help)") || args.length % 2 == 1) {
 			CodeGenMain.printUsage();
 			return;
@@ -87,14 +99,6 @@ public class CodeGenMain {
 
 	private static InputStream openFileOrUrl(String path) throws IOException {
 		return new FileInputStream(new File(path));
-		//URL url;
-		//if (path.matches("\\w:\\\\.*")) {
-		//	File f = new File(path);
-			//url = f.toURI().toURL();
-		//} else {
-			//url = new URL(path);
-		//}
-		//return url.openStream();
 	}
 
 	/**

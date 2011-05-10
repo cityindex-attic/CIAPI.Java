@@ -54,15 +54,20 @@ public abstract class Replacement {
 	 * @return the resulting object
 	 */
 	protected Object resolveValue(Object obj, String... args) {
-		Object result;
+		Object result = obj;
+		// simple args access
 		if (objectValue.startsWith("$args")) {
 			result = indexArray(args, objectValue);
 		} else {
+			// otherwise we are using reflection to call the specified method
+			// break the statement into the different method calls
 			String[] methods = objectValue.split("\\.");
-			result = obj;
 			for (String method : methods) {
-				if (!method.contains("("))
+				if (!method.contains("(")) {
+					// this is the case for the name of the variable the methods are being called on
+					// we just ignore it
 					continue;
+				}
 				String name = method.substring(0, method.indexOf('('));
 				String methodArgs = method.substring(method.indexOf("(") + 1, method.indexOf(')'));
 				try {
@@ -71,20 +76,40 @@ public abstract class Replacement {
 						method2.setAccessible(true);
 						result = method2.invoke(result);
 					} else {
-						Method method2 = result.getClass().getMethod(name, String.class);
+						Class<?> argType = inferType(methodArgs);
+						Object value = getValue(methodArgs, args);
+						Method method2 = result.getClass().getMethod(name, argType);
 						method2.setAccessible(true);
-						result = method2.invoke(result, indexArray(args, methodArgs));
+						result = method2.invoke(result, value);
 					}
-					if (result == null){
+					if (result == null) {
 						System.out.println("Whoops!!");
 					}
 				} catch (Exception e) {
 					throw new RuntimeException("The given method (" + method
-							+ ") isn't valid for object of type " + obj.getClass());
+							+ ") isn't valid for object of type " + result.getClass());
 				}
 			}
 		}
 		return result;
+	}
+
+	private Object getValue(String methodArgs, String...args) {
+		if (methodArgs.startsWith("$")){
+			return indexArray(args, methodArgs);
+		}else if (methodArgs.startsWith("#")){
+			return Integer.parseInt(methodArgs.substring(1));
+		}
+		return null;
+	}
+
+	private Class<?> inferType(String methodArgs) {
+		if (methodArgs.startsWith("$")){
+			return String.class;
+		}else if (methodArgs.startsWith("#")){
+			return int.class;
+		}
+		return null;
 	}
 
 	/**
