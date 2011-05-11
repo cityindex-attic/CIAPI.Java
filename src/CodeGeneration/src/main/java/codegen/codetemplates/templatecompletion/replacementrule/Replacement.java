@@ -58,6 +58,8 @@ public abstract class Replacement {
 		// simple args access
 		if (objectValue.startsWith("$args")) {
 			result = indexArray(args, objectValue);
+		} else if (objectValue.startsWith("@")) {
+			return objectValue.substring(1);
 		} else {
 			// otherwise we are using reflection to call the specified method
 			// break the statement into the different method calls
@@ -86,27 +88,28 @@ public abstract class Replacement {
 						System.out.println("Whoops!!");
 					}
 				} catch (Exception e) {
-					throw new RuntimeException("The given method (" + method
-							+ ") isn't valid for object of type " + result.getClass());
+					return null;
+					// throw new RuntimeException("The given method (" + method
+					// + ") isn't valid for object of type " + result.getClass());
 				}
 			}
 		}
 		return result;
 	}
 
-	private Object getValue(String methodArgs, String...args) {
-		if (methodArgs.startsWith("$")){
+	private Object getValue(String methodArgs, String... args) {
+		if (methodArgs.startsWith("$")) {
 			return indexArray(args, methodArgs);
-		}else if (methodArgs.startsWith("#")){
+		} else if (methodArgs.startsWith("#")) {
 			return Integer.parseInt(methodArgs.substring(1));
 		}
 		return null;
 	}
 
 	private Class<?> inferType(String methodArgs) {
-		if (methodArgs.startsWith("$")){
+		if (methodArgs.startsWith("$")) {
 			return String.class;
-		}else if (methodArgs.startsWith("#")){
+		} else if (methodArgs.startsWith("#")) {
 			return int.class;
 		}
 		return null;

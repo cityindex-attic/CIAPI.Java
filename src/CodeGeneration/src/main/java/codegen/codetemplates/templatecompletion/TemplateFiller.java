@@ -1,5 +1,7 @@
 package codegen.codetemplates.templatecompletion;
 
+import java.io.FileNotFoundException;
+
 import codegen.codetemplates.CodeTemplate;
 import codegen.codetemplates.templatecompletion.replacementrule.Replacement;
 import codegen.codetemplates.templatecompletion.replacementrule.ReplacementRoot;
@@ -19,9 +21,10 @@ public class TemplateFiller {
 	 * Creates a new template filler that will use the supplied template and replacement set
 	 * @param toFill
 	 * @param replacementTemplate
+	 * @throws FileNotFoundException 
 	 */
-	public TemplateFiller(CodeTemplate toFill, ReplacementRoot replacementTemplate){
-		this.toFill = toFill;
+	public TemplateFiller(ReplacementRoot replacementTemplate) throws FileNotFoundException{
+		this.toFill = replacementTemplate.getTemplate();
 		this.replacemnetTemplate = replacementTemplate;
 	}
 	

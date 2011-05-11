@@ -1,5 +1,6 @@
 package codegen.codetemplates.templatecompletion.replacementrule;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -11,20 +12,47 @@ import org.xml.sax.SAXException;
 
 import xmlcomponents.Jocument;
 import xmlcomponents.Jode;
+import xmlcomponents.JodeFilter;
 import xmlcomponents.JodeList;
+import codegen.codetemplates.CodeTemplate;
 
 public class ReplacementRoot implements Iterable<Replacement> {
 
 	private List<Replacement> replacements;
+	private String codeTemplateLocation;
+	private Class<?> requiredType;
+	private FileNameFiller fileName;
 
 	public ReplacementRoot(String location) throws ParserConfigurationException, SAXException,
-			IOException {
+			IOException, ClassNotFoundException {
 		Jocument doc = Jocument.load(location);
-		JodeList replacementNodes = doc.children().first().children();
+		codeTemplateLocation = doc.children().first().attribute("templateLocation").value();
+		String typeName = doc.children().first().attribute("objectType").value();
+		requiredType = Class.forName(typeName);
+		JodeList replacementNodes = doc.children().first().children().filter(new JodeFilter() {
+			@Override
+			public boolean accept(Jode j) {
+				return j.name().startsWith("replacement");
+			}
+		});
 		replacements = new ArrayList<Replacement>();
 		for (Jode n : replacementNodes) {
 			replacements.add(nodeToReplacement(n));
 		}
+		Jode fileNameNode = doc.children().first().children().first();
+		fileName = new FileNameFiller(fileNameNode.attribute("value").value());
+	}
+
+	public Class<?> getRequiredClass() {
+		return requiredType;
+	}
+
+	public String fileName(Object obj, String... args) {
+		return fileName.resolveFileName(obj, args);
+	}
+
+	public CodeTemplate getTemplate() throws FileNotFoundException {
+		return CodeTemplate.loadTemplate(codeTemplateLocation);
 	}
 
 	private static Replacement nodeToReplacement(Jode n) {

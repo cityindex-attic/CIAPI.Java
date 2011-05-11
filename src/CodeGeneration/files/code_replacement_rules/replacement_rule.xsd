@@ -6,6 +6,7 @@
 	<xs:element name="replacementRoot">
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element name="fileName" type="fileName" minOccurs="1" maxOccurs="1" />
 				<xs:element name="replacement" type="replacement" minOccurs="0"
 					maxOccurs="unbounded" />
 				<xs:element name="replacementSet" type="replacementSet"
@@ -13,8 +14,12 @@
 			</xs:sequence>
 			<xs:attribute name="objName" type="xs:string" />
 			<xs:attribute name="extraArgs" type="xs:string" />
+			<xs:attribute name="templateLocation" type="xs:string" />
 		</xs:complexType>
 	</xs:element>
+	<xs:complexType name="fileName">
+		<xs:attribute name="value" use="required" type="xs:string" />
+	</xs:complexType>
 	<xs:complexType name="replacement">
 		<xs:attribute name="name" use="required" type="xs:string" />
 		<xs:attribute name="value" use="required" type="xs:string" />

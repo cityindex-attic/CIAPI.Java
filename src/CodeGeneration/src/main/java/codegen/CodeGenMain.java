@@ -5,9 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +14,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import JsonClient.Java.ApiException;
-
-import codegen.codetemplates.CodeTemplate;
 import codegen.codetemplates.templatecompletion.TemplateFiller;
 import codegen.codetemplates.templatecompletion.replacementrule.ReplacementRoot;
 
@@ -41,18 +37,11 @@ public class CodeGenMain {
 	 * @throws ParserConfigurationException
 	 * @throws SAXException
 	 * @throws URISyntaxException
+	 * @throws ClassNotFoundException 
 	 */
 	public static void main(String[] args) throws JsonIOException, JsonSyntaxException,
 			MalformedURLException, IOException, ApiException, ParserConfigurationException,
-			SAXException, URISyntaxException {
-		CodeTemplate template = CodeTemplate.loadTemplate("files/code_templates/CombinedTemplateImpl.jav");
-		ReplacementRoot rep = new ReplacementRoot("files/code_replacement_rules/schema_replacement_impl_rule.xml");
-		TemplateFiller filler = new TemplateFiller(template, rep);
-		InputStream schemaStream = openFileOrUrl("files/smdFiles/schema.js");
-		InputStream smdStream = openFileOrUrl("files/smdFiles/smd.js");
-		SchemaReader rdr = new SchemaReader(schemaStream, smdStream);
-		System.out.println(filler.fillTemplate(rdr.getServices(), "CIAPI.Java", "CIAPI.Java.dto"));
-		// TODO: Finish this test
+			SAXException, URISyntaxException, ClassNotFoundException {
 		if (args.length == 0 || args[0].matches("(-h|-H|--help)") || args.length % 2 == 1) {
 			CodeGenMain.printUsage();
 			return;
@@ -70,12 +59,13 @@ public class CodeGenMain {
 		System.out.println(usage);
 	}
 
-	public static void generateCode(List<ClParam> params) throws URISyntaxException, IOException {
+	public static void generateCode(List<ClParam> params) throws URISyntaxException, IOException, ParserConfigurationException, SAXException, ClassNotFoundException {
 		if (params.size() < 3)
-			throw new IllegalArgumentException("At least 3 parameters must be provided.");
+			throw new IllegalArgumentException("At least 4 parameters must be provided.");
 		String schemaLocation = null;
 		String smdLocation = null;
 		String saveLocation = null;
+		String replacementDirectory = null;
 		for (ClParam p : params) {
 			if (p.option.equals("-sch")) {
 				schemaLocation = p.value;
@@ -84,16 +74,18 @@ public class CodeGenMain {
 			} else if (p.option.equals("-l")) {
 				saveLocation = p.value;
 			} else if (p.option.equals("-t")) {
+			}else if (p.option.equals("-r")){
+				replacementDirectory = p.value;
 			}
 		}
-		if (schemaLocation == null || smdLocation == null || saveLocation == null) {
+		if (schemaLocation == null || smdLocation == null || saveLocation == null || replacementDirectory == null) {
 			printUsage();
 			return;
 		}
 		InputStream schemaStream = openFileOrUrl(schemaLocation);
 		InputStream smdStream = openFileOrUrl(smdLocation);
 
-		SchemaReader rdr = new SchemaReader(schemaStream, smdStream);
+		SchemaReader rdr = new SchemaReader(schemaStream, smdStream, replacementDirectory);
 		rdr.createPackage("CIAPI.Java", saveLocation);
 	}
 
@@ -118,7 +110,8 @@ public class CodeGenMain {
 	static enum SpecificParams {
 		SCHEMA_URI("-sch", "The URI location of the SMD descriptor"), SMD_URI("-smd",
 				"The URI location of the Schema descriptor"), SAVE_LOCATION("-l",
-				"The location to save the generated code");
+				"The location to save the generated code"), REPLACEMNT_FILE_DIR("-r",
+				"The directory where your replacement files are located.");
 
 		public final String option;
 		public final String description;
