@@ -13,6 +13,7 @@ import codegen.modelobjects.Property;
  * Class for turning a DTO object into a block of code.
  * 
  * @author Justin Nelson
+ * @deprecated
  */
 public class DTOCreator {
 	private DTO dto;

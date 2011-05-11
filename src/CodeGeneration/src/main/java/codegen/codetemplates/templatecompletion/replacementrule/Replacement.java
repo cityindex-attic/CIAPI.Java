@@ -59,6 +59,7 @@ public abstract class Replacement {
 		if (objectValue.startsWith("$args")) {
 			result = indexArray(args, objectValue);
 		} else if (objectValue.startsWith("@")) {
+			// Here a string literal was given to us
 			return objectValue.substring(1);
 		} else {
 			// otherwise we are using reflection to call the specified method
@@ -88,9 +89,8 @@ public abstract class Replacement {
 						System.out.println("Whoops!!");
 					}
 				} catch (Exception e) {
+					// Whoops, let's just keep going and see if we can partially recover later
 					return null;
-					// throw new RuntimeException("The given method (" + method
-					// + ") isn't valid for object of type " + result.getClass());
 				}
 			}
 		}
@@ -106,6 +106,12 @@ public abstract class Replacement {
 		return null;
 	}
 
+	/**
+	 * Used to parse the type of an incoming value. Right now we only support strings and ints.
+	 * 
+	 * @param methodArgs
+	 * @return
+	 */
 	private Class<?> inferType(String methodArgs) {
 		if (methodArgs.startsWith("$")) {
 			return String.class;

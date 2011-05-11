@@ -13,8 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.xml.sax.SAXException;
 
 import codegen.codetemplates.templatecompletion.TemplateFiller;
@@ -32,7 +30,8 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
 /**
- * Given urls, will create DTO objects and Service objects that can be turned into code. <br />
+ * Provides functionality for parsing SMD and Schema definition. Also can generate code given a set
+ * of Replacement files and Code Template Files.
  * 
  * @author Justin Nelson
  * 
@@ -51,38 +50,56 @@ public class SchemaReader {
 	 *            the stream containing the schema data
 	 * @param smdStream
 	 *            the stream containing the smd data
+	 * @param replacementDirectory
+	 *            the directory where you have all of the replacement files you would like to use
 	 * @throws ClassNotFoundException
+	 *             if we cannot find the type that was referenced from one of the replacement files
 	 * @throws IOException
-	 * @throws SAXException
-	 * @throws ParserConfigurationException
+	 *             if any file reading goes wrong
 	 */
 	public SchemaReader(InputStream schemaStream, InputStream smdStream, String replacementDirectory)
-			throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException {
+			throws SAXException, IOException, ClassNotFoundException {
 		this.replacements = loadReplacements(replacementDirectory);
 		dtos = new HashMap<String, DTO>();
+		// create out Gson. Need to register adapters for some of our classes to work around some
+		// JSON oddities
 		GsonBuilder gb = new GsonBuilder();
 		gb.registerTypeAdapter(DTO.class, DTO.getDeSerializer());
 		gb.registerTypeAdapter(Parameter.class, Parameter.getDeSerializer());
 		Gson g = gb.create();
-		JsonParser parser = new JsonParser();
 		smd = g.fromJson(new InputStreamReader(smdStream), SMDDescriptor.class);
+		// using some extra JSON parsing to pull individual DAOs out of the one big DAO return
+		// object.
+		JsonParser parser = new JsonParser();
 		JsonObject obj = (JsonObject) parser.parse(new InputStreamReader(schemaStream));
 		for (Entry<String, JsonElement> entry : obj.entrySet()) {
 			dtos.put(entry.getKey(), g.fromJson(entry.getValue(), DTO.class));
 		}
 	}
 
+	/**
+	 * Given a directory, will find all of the replacement files located in that directory. It will
+	 * assume any file ending in xml is a replacement file.
+	 * 
+	 * @param replacementDirectory
+	 * @return
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	private Map<Class<?>, List<ReplacementRoot>> loadReplacements(String replacementDirectory)
-			throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException {
+			throws IOException, ClassNotFoundException {
 		Map<Class<?>, List<ReplacementRoot>> ret = new HashMap<Class<?>, List<ReplacementRoot>>();
+		// Loop through each file in the given directory that is and xml file
 		for (File fName : new File(replacementDirectory).listFiles(new FileFilter() {
 			@Override
 			public boolean accept(File pathname) {
 				return pathname.getName().endsWith("xml");
 			}
 		})) {
+			// Turn each file into a ReplacementRoot
 			ReplacementRoot root = new ReplacementRoot(fName.getAbsolutePath());
 			List<ReplacementRoot> toAddTo;
+			// Now we sort the Replacement files by the class they represent
 			if (ret.containsKey(root.getRequiredClass())) {
 				toAddTo = ret.get(root.getRequiredClass());
 			} else {
@@ -111,10 +128,13 @@ public class SchemaReader {
 	}
 
 	/**
-	 * Generates all methods an model objects for a given pair of smd and schema url.
+	 * Generates code from the supplied SMD, DTOs, Replacement files, Template files, and desired
+	 * package location
 	 * 
 	 * @param packageName
+	 *            the name of the package you are generating. Can be a namespace or other grouping
 	 * @param saveLocation
+	 *            the root folder to save your files
 	 * @throws JsonIOException
 	 * @throws JsonSyntaxException
 	 * @throws MalformedURLException
@@ -144,7 +164,8 @@ public class SchemaReader {
 				TemplateFiller filler = new TemplateFiller(repl);
 				PrintStream dtoOut = new PrintStream(new File(saveLocation + File.separatorChar
 						+ "dto/" + resolvedFileName + ".java"));
-				dtoOut.println(filler.fillTemplate(entry.getValue(), entry.getKey(), packageName + ".dto"));
+				dtoOut.println(filler.fillTemplate(entry.getValue(), entry.getKey(), packageName
+						+ ".dto"));
 				dtoOut.close();
 			}
 		}

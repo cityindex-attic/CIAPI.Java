@@ -14,8 +14,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import JsonClient.Java.ApiException;
-import codegen.codetemplates.templatecompletion.TemplateFiller;
-import codegen.codetemplates.templatecompletion.replacementrule.ReplacementRoot;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
@@ -37,7 +35,7 @@ public class CodeGenMain {
 	 * @throws ParserConfigurationException
 	 * @throws SAXException
 	 * @throws URISyntaxException
-	 * @throws ClassNotFoundException 
+	 * @throws ClassNotFoundException
 	 */
 	public static void main(String[] args) throws JsonIOException, JsonSyntaxException,
 			MalformedURLException, IOException, ApiException, ParserConfigurationException,
@@ -54,14 +52,30 @@ public class CodeGenMain {
 		}
 	}
 
+	/**
+	 * Uses the specific params to print the usage instructions to standard out
+	 */
 	private static void printUsage() {
 		String usage = "Please specify the following arguments:\n" + SpecificParams.toUsageString();
 		System.out.println(usage);
 	}
 
-	public static void generateCode(List<ClParam> params) throws URISyntaxException, IOException, ParserConfigurationException, SAXException, ClassNotFoundException {
+	/**
+	 * Given a set of command line parameters, generate the code using a SchemaReader.
+	 * 
+	 * @param params
+	 *            the command line args after they've been parsed
+	 * @throws URISyntaxException
+	 * @throws IOException
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws ClassNotFoundException
+	 */
+	public static void generateCode(List<ClParam> params) throws URISyntaxException, IOException,
+			ParserConfigurationException, SAXException, ClassNotFoundException {
 		if (params.size() < 3)
 			throw new IllegalArgumentException("At least 4 parameters must be provided.");
+		// Find all of the required parameters
 		String schemaLocation = null;
 		String smdLocation = null;
 		String saveLocation = null;
@@ -74,17 +88,20 @@ public class CodeGenMain {
 			} else if (p.option.equals("-l")) {
 				saveLocation = p.value;
 			} else if (p.option.equals("-t")) {
-			}else if (p.option.equals("-r")){
+			} else if (p.option.equals("-r")) {
 				replacementDirectory = p.value;
 			}
 		}
-		if (schemaLocation == null || smdLocation == null || saveLocation == null || replacementDirectory == null) {
+		// If any of them are null, then we have a problem
+		if (schemaLocation == null || smdLocation == null || saveLocation == null
+				|| replacementDirectory == null) {
 			printUsage();
 			return;
 		}
+		// Turn the specified URIs into InputStreams
 		InputStream schemaStream = openFileOrUrl(schemaLocation);
 		InputStream smdStream = openFileOrUrl(smdLocation);
-
+		// Tell the schema reader where it can find the files it needs
 		SchemaReader rdr = new SchemaReader(schemaStream, smdStream, replacementDirectory);
 		rdr.createPackage("CIAPI.Java", saveLocation);
 	}
@@ -97,7 +114,8 @@ public class CodeGenMain {
 	 * Parses params into objects.
 	 * 
 	 * @param array
-	 * @return
+	 *            command line arguments from main
+	 * @return a list of ClParam objects that represent the parameters passed into main
 	 */
 	private static List<ClParam> parseParams(String[] array) {
 		List<ClParam> ret = new ArrayList<ClParam>();
@@ -107,6 +125,11 @@ public class CodeGenMain {
 		return ret;
 	}
 
+	/**
+	 * The specific parameters we need for generating code
+	 * 
+	 * @author Justin Nelson
+	 */
 	static enum SpecificParams {
 		SCHEMA_URI("-sch", "The URI location of the SMD descriptor"), SMD_URI("-smd",
 				"The URI location of the Schema descriptor"), SAVE_LOCATION("-l",
@@ -121,6 +144,11 @@ public class CodeGenMain {
 			this.description = description;
 		}
 
+		/**
+		 * Will combine the switch and the description of it's behavior and return a pretty string
+		 * 
+		 * @return what the given {@link SpecificParams} is used for.
+		 */
 		public static String toUsageString() {
 			String ret = "";
 			for (SpecificParams p : values()) {
@@ -129,6 +157,14 @@ public class CodeGenMain {
 			return ret;
 		}
 
+		/**
+		 * Will find a {@link SpecificParams} that matches the given option.
+		 * 
+		 * @param option
+		 *            the option to match
+		 * @return the {@link SpecificParams} matching the option. Or <code>null</code> if no
+		 *         matches are found.
+		 */
 		public static SpecificParams fromOption(String option) {
 			for (SpecificParams p : values()) {
 				if (p.option.equals(option)) {
@@ -139,6 +175,13 @@ public class CodeGenMain {
 		}
 	}
 
+	/**
+	 * A class representing a generic command line paramter. It has 2 parts, an option (-l, -smd)
+	 * and a value.
+	 * 
+	 * @author Justin Nelson
+	 * 
+	 */
 	static class ClParam {
 		public final String option;
 		public final String value;
@@ -149,6 +192,10 @@ public class CodeGenMain {
 			checkValues();
 		}
 
+		/**
+		 * Given the generic parameter will try to find the matching specific parameter.
+		 * @return
+		 */
 		public SpecificParams toSpecificParam() {
 			return SpecificParams.fromOption(option);
 		}
