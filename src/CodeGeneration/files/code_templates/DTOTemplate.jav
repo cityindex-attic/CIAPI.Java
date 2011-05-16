@@ -8,7 +8,7 @@ package <@packageName@>;
 public class <@name@> {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public <@name@>() {
 	}
