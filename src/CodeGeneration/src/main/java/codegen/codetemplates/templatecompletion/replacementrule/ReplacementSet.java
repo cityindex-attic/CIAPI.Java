@@ -61,6 +61,18 @@ public class ReplacementSet extends Replacement {
 		}
 	}
 
+	/**
+	 * Given a sub object, will perform all sub replacements on the code template.
+	 * 
+	 * @param subObj
+	 *            the object to transform
+	 * @param subTemplateToFill
+	 *            the template to fill using the sub object's values
+	 * @param masterTemplate
+	 *            the master template that we will add each sub mapping to
+	 * @param args
+	 *            any additional args needed to transform an object
+	 */
 	protected void fillSubTemplate(Object subObj, CodeTemplate subTemplateToFill,
 			CompoundCodeTemplate masterTemplate, String... args) {
 		CodeTemplate clone = subTemplateToFill.copyEmptyTemplate();
