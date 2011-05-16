@@ -71,22 +71,22 @@ public abstract class Replacement {
 					// we just ignore it
 					continue;
 				}
+				// Now we parse the method parts. Find the method name and the method arguments.
 				String name = method.substring(0, method.indexOf('('));
 				String methodArgs = method.substring(method.indexOf("(") + 1, method.indexOf(')'));
 				try {
 					if (methodArgs.trim().length() == 0) {
+						// No arguments to the method
 						Method method2 = result.getClass().getMethod(name);
 						method2.setAccessible(true);
 						result = method2.invoke(result);
 					} else {
+						// We have method args. We need to determine the type
 						Class<?> argType = inferType(methodArgs);
 						Object value = getValue(methodArgs, args);
 						Method method2 = result.getClass().getMethod(name, argType);
 						method2.setAccessible(true);
 						result = method2.invoke(result, value);
-					}
-					if (result == null) {
-						System.out.println("Whoops!!");
 					}
 				} catch (Exception e) {
 					// Whoops, let's just keep going and see if we can partially recover later
@@ -110,7 +110,8 @@ public abstract class Replacement {
 	 * Used to parse the type of an incoming value. Right now we only support strings and ints.
 	 * 
 	 * @param methodArgs
-	 * @return
+	 *            the method arguments that were passed into one of the methods
+	 * @return the type of the parameter passed into the method
 	 */
 	private Class<?> inferType(String methodArgs) {
 		if (methodArgs.startsWith("$")) {
@@ -125,8 +126,11 @@ public abstract class Replacement {
 	 * Fills a template given the rules of this replacement object
 	 * 
 	 * @param obj
+	 *            the model object used to populate the template
 	 * @param template
+	 *            the code template to fill
 	 * @param args
+	 *            any extra arguments that the template needs
 	 */
 	public abstract void fillTemplateHole(Object obj, CodeTemplate template, String... args);
 
@@ -134,8 +138,10 @@ public abstract class Replacement {
 	 * Takes an index that looks like "$args[n]" and returns item from arr at position 'n'
 	 * 
 	 * @param arr
+	 *            the array to index
 	 * @param index
-	 * @return
+	 *            the string index to parse
+	 * @return the value from the array
 	 */
 	private static String indexArray(String[] arr, String index) {
 		String regex = "\\$args\\[(\\d)\\]";

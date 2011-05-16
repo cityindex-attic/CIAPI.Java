@@ -3,8 +3,6 @@ package codegen.modelobjects;
 import java.lang.reflect.Type;
 import java.util.Map;
 
-import codegen.codecreation.DTOCreator;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
@@ -13,6 +11,11 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
+/**
+ * Class representing a Generic Data Transfer Object.  Used in code generation.
+ * @author Justin Nelson
+ *
+ */
 public class DTO {
 
 	private String id;
@@ -27,7 +30,7 @@ public class DTO {
 	}
 
 	public String getType() {
-		return DTOCreator.convertJsonTypeToJavaType(type);
+		return DTO.convertJsonTypeToJavaType(type);
 	}
 
 	public String getRawType() {
@@ -52,6 +55,27 @@ public class DTO {
 
 	public static JsonDeserializer<DTO> getDeSerializer() {
 		return new DeSerializer();
+	}
+	
+
+	/**
+	 * Converts a Json type into a Java type.
+	 * 
+	 * @param jsonType
+	 * @return a Java type
+	 */
+	public static String convertJsonTypeToJavaType(String jsonType) {
+		if (jsonType.equals("string"))
+			return "String";
+		else if (jsonType.equals("number")) {
+			return "double";
+		} else if (jsonType.equals("integer")) {
+			return "int";
+		} else if (jsonType.equals("boolean")) {
+			return "boolean";
+		} else {
+			throw new IllegalArgumentException("Unexpected json type: " + jsonType);
+		}
 	}
 
 	static class DeSerializer implements JsonDeserializer<DTO> {

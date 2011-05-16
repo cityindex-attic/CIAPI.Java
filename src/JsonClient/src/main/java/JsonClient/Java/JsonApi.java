@@ -22,8 +22,7 @@ public class JsonApi {
 	private String baseUrl;
 
 	/**
-	 * Create a new JsonApi given a base URL for the API and the JsonClient to
-	 * use.
+	 * Create a new JsonApi given a base URL for the API and the JsonClient to use.
 	 * 
 	 * @param baseUrl
 	 *            the base url for the API
@@ -52,8 +51,7 @@ public class JsonApi {
 	 * Call an API's GET method
 	 * 
 	 * @param methodName
-	 *            The name of the method. Use null or "" for no method name (use
-	 *            the base URL)
+	 *            The name of the method. Use null or "" for no method name (use the base URL)
 	 * @param parameters
 	 *            the parameters for this method
 	 * @param returnType
@@ -62,11 +60,12 @@ public class JsonApi {
 	 * @throws ApiException
 	 *             If an error occurred during the call.
 	 */
-	public Object callGetMethod(String methodName, Map<String, String> parameters, Class<?> returnType)
-			throws ApiException {
+	public Object callGetMethod(String methodName, Map<String, String> parameters,
+			Class<?> returnType) throws ApiException {
 		if (returnType == null)
 			throw new NullPointerException("Return type must not be null");
-		String url = new UrlHelper(baseUrl, methodName, mergeMaps(parameters, constantParameters)).toUrl();
+		String url = new UrlHelper(baseUrl, methodName, mergeMaps(parameters, constantParameters))
+				.toUrl();
 		Object result = client.makeGetRequest(url, returnType);
 		return result;
 	}
@@ -100,8 +99,7 @@ public class JsonApi {
 	 * Call an API's GET method
 	 * 
 	 * @param methodName
-	 *            The name of the method. Use null or "" for no method name (use
-	 *            the base URL)
+	 *            The name of the method. Use null or "" for no method name (use the base URL)
 	 * @param parameters
 	 *            the parameters for this method
 	 * @param inputData
@@ -112,11 +110,12 @@ public class JsonApi {
 	 * @throws ApiException
 	 *             If an error occurred during the call.
 	 */
-	public Object callPostMethod(String methodName, Map<String, String> parameters, Object inputData,
-			Class<?> returnType) throws ApiException {
+	public Object callPostMethod(String methodName, Map<String, String> parameters,
+			Object inputData, Class<?> returnType) throws ApiException {
 		if (returnType == null)
 			throw new NullPointerException("Return type must not be null");
-		String url = new UrlHelper(baseUrl, methodName, mergeMaps(parameters, constantParameters)).toUrl();
+		String url = new UrlHelper(baseUrl, methodName, mergeMaps(parameters, constantParameters))
+				.toUrl();
 		return client.makePostRequest(url, inputData, returnType);
 	}
 
@@ -132,7 +131,8 @@ public class JsonApi {
 	 * @return an object of type returnType
 	 * @throws ApiException
 	 */
-	public Object callPostMethod(String fullUrl, Object inputData, Class<?> returnType) throws ApiException {
+	public Object callPostMethod(String fullUrl, Object inputData, Class<?> returnType)
+			throws ApiException {
 		if (returnType == null)
 			throw new NullPointerException("Return type must not be null");
 		String url;
@@ -147,6 +147,15 @@ public class JsonApi {
 	}
 
 	private static Map<String, String> mergeMaps(Map<String, String> m1, Map<String, String> m2) {
+		if (m1 == null && m2 == null) {
+			return new HashMap<String, String>();
+		}
+		if (m1 == null) {
+			return m2;
+		}
+		if (m2 == null) {
+			return m1;
+		}
 		Map<String, String> result = new HashMap<String, String>();
 		for (Entry<String, String> entry : m1.entrySet()) {
 			result.put(entry.getKey(), entry.getValue());

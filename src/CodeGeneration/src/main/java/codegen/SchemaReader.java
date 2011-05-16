@@ -187,6 +187,12 @@ public class SchemaReader {
 		ensureDirIsGood(f);
 	}
 
+	/**
+	 * Ensures that a {@link File} is in the correct state (i.e. is a Directory, exists)
+	 * 
+	 * @param f
+	 * @throws IOException
+	 */
 	private static void ensureDirIsGood(File f) throws IOException {
 		// we need for to exist
 		if (f.exists()) {

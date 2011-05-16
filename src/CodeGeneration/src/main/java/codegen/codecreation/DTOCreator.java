@@ -86,24 +86,4 @@ public class DTOCreator {
 		String enumEnd = "}";
 		return packageDeclaration + javadocComment + enumDescriptor + items + enumEnd;
 	}
-
-	/**
-	 * Converts a Json type into a Java type.
-	 * 
-	 * @param jsonType
-	 * @return a Java type
-	 */
-	public static String convertJsonTypeToJavaType(String jsonType) {
-		if (jsonType.equals("string"))
-			return "String";
-		else if (jsonType.equals("number")) {
-			return "double";
-		} else if (jsonType.equals("integer")) {
-			return "int";
-		} else if (jsonType.equals("boolean")) {
-			return "boolean";
-		} else {
-			throw new IllegalArgumentException("Unexpected json type: " + jsonType);
-		}
-	}
 }

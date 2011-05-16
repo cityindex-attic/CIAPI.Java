@@ -5,12 +5,34 @@ import java.util.List;
 import codegen.codetemplates.CodeTemplate;
 import codegen.codetemplates.CompoundCodeTemplate;
 
+/**
+ * Represents a replacement set from the XML
+ * 
+ * @author Justin Nelson
+ * 
+ */
 public class ReplacementSet extends Replacement {
 
 	private String subObjName;
 	private List<Replacement> subPlacemnets;
 	private String deilm;
 
+	/**
+	 * Creates a new replacement set with the given arguments
+	 * 
+	 * @param templateValue
+	 *            the template name to replace with this replacement set
+	 * @param objectValue
+	 *            the path to retrieve the sub object
+	 * @param objName
+	 *            the name used to refer to the object
+	 * @param subObjName
+	 *            the name used to refer to the sub object
+	 * @param subPlacements
+	 *            the replacements to perform on the sub object
+	 * @param delim
+	 *            the delimiter to use to separate subsequent replacements
+	 */
 	public ReplacementSet(String templateValue, String objectValue, String objName,
 			String subObjName, List<Replacement> subPlacements, String delim) {
 		super(templateValue, objectValue, objName);

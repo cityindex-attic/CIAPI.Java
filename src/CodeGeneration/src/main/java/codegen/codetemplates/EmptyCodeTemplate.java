@@ -1,7 +1,8 @@
 package codegen.codetemplates;
 
 /**
- * Represents a template entry that has not been set yet.
+ * Represents a template entry that has not been set yet.<br />
+ * If attempts are made to replace this template, it will throw an exception.
  * 
  * @author Justin Nelson
  * 

@@ -1,16 +1,28 @@
 package codegen.modelobjects;
 
-import codegen.codecreation.DTOCreator;
-
+/**
+ * Abstract class representing any SMD or Schema type that can be 'typed'
+ * 
+ * @author Justin Nelson
+ * 
+ */
 public abstract class TypedSchemaItem {
 	protected String $ref;
 	protected String type;
 	protected Items items;
 	protected String description;
 
+	/**
+	 * Given a package name, will return the fully qualified type name
+	 * 
+	 * @param packageName
+	 *            the package this type belongs to
+	 * @return the fully qualified type name.
+	 */
 	public String getType(String packageName) {
 		if ($ref != null && items != null) {
-			throw new IllegalStateException("Not sure if it's legal to have a @ref and items attribute.");
+			throw new IllegalStateException(
+					"Not sure if it's legal to have a @ref and items attribute.");
 		}
 		if ($ref != null) {
 			return $ref.replaceAll("#", packageName);
@@ -21,7 +33,7 @@ public abstract class TypedSchemaItem {
 			}
 			return items.getType(packageName) + "[]";
 		} else {
-			return DTOCreator.convertJsonTypeToJavaType(type);
+			return DTO.convertJsonTypeToJavaType(type);
 		}
 	}
 

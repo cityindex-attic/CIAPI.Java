@@ -22,7 +22,7 @@ target
 *.class
 
 # generated GUI files
-*R.java
+R.java
 
 #Java related
 .class

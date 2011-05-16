@@ -13,7 +13,7 @@ import codegen.modelobjects.Service;
  * Class for taking a Service model object and creating code.
  * 
  * @author Justin Nelson
- * 
+ * @deprecated
  */
 public class MethodCreator {
 

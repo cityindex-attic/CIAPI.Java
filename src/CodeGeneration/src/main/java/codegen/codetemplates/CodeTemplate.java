@@ -14,9 +14,9 @@ import java.util.regex.Pattern;
  * Represents a Code Template. This can contain simple or complex template entries.
  * </p>
  * <p>
- * The general idea is, that once you have a code template, you are free to write whatever code you
- * like ot fill those templates. You may have SMD/DTO objects, or you may have arbitrary other
- * formats of data. You just need to be able to tell the template what data to put where.
+ * The general idea is, that once you have a code template, you can write replacement files describe
+ * how the templates should be filled. The code templates and replacement files can be combined with
+ * model objects to fill the templates and create actual code.
  * </p>
  * 
  * @author Justin Nelson
@@ -54,10 +54,14 @@ public class CodeTemplate implements TemplateEntry {
 			String delim = null;
 			if (compoundPropNameParts.length == 2)
 				delim = compoundPropNameParts[1];
-			templateReplacement.put(compoundPropNameParts[0], new CompoundCodeTemplate(matchedTemplate, delim));
+			templateReplacement.put(compoundPropNameParts[0], new CompoundCodeTemplate(
+					matchedTemplate, delim));
+			// here we replace the text of the combined template with a simple template entry text.
 			template = template.replace(nextTagString + matchedTemplate + compoundPatternEndS, "<@"
 					+ compoundPropNameParts[0] + "@>");
 		}
+		// we have replaced all of the complex template entries, with simple entries. Now, we simply
+		// find all of the simple entries and put in empty template replacements
 		Pattern simplePattern = Pattern.compile(simplePatternS);
 		Matcher m = simplePattern.matcher(template);
 		while (m.find()) {
@@ -145,8 +149,9 @@ public class CodeTemplate implements TemplateEntry {
 			}
 			// if at any point the depth has gone negative, there is a serious
 			// error
-			if (depthCount < 0)
+			if (depthCount < 0) {
 				throw new AssertionError("The code is broken, or the template is.  Check both.");
+			}
 		}
 	}
 
@@ -154,15 +159,19 @@ public class CodeTemplate implements TemplateEntry {
 	 * Adds or replaces a template entry definition
 	 * 
 	 * @param templateKey
+	 *            the name of the template to replace
 	 * @param entry
-	 * @return the old entry for the key.
+	 *            the new entry to place at the given template name
+	 * @return the old entry for the key. All templates will be initially filled with
+	 *         {@link EmptyCodeTemplate}s.
 	 */
 	public TemplateEntry putNewTemplateDefinition(String templateKey, TemplateEntry entry) {
 		TemplateEntry oldEntry = templateReplacement.put(templateKey, entry);
 		// You can't replace a template definition for a key that doesn't exist
 		if (oldEntry == null) {
 			throw new IllegalArgumentException(
-					"This template does not contain a definition for the given term: " + templateKey);
+					"This template does not contain a definition for the given term: "
+							+ templateKey);
 		}
 		return oldEntry;
 	}
@@ -171,7 +180,9 @@ public class CodeTemplate implements TemplateEntry {
 	 * Convenience method for binding a simple template entry to a key.
 	 * 
 	 * @param templateKey
+	 *            the template name to replace
 	 * @param entry
+	 *            the value to place at the template name
 	 * @return an entry that was previously bound to the given key.
 	 */
 	public TemplateEntry putNewTemplateDefinition(String templateKey, String entry) {
