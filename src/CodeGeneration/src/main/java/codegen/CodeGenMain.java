@@ -45,11 +45,7 @@ public class CodeGenMain {
 			return;
 		}
 		List<ClParam> params = parseParams(args);
-		try {
-			CodeGenMain.generateCode(params);
-		} catch (IllegalArgumentException e) {
-			printUsage();
-		}
+		CodeGenMain.generateCode(params);
 	}
 
 	/**
@@ -194,6 +190,7 @@ public class CodeGenMain {
 
 		/**
 		 * Given the generic parameter will try to find the matching specific parameter.
+		 * 
 		 * @return
 		 */
 		public SpecificParams toSpecificParam() {

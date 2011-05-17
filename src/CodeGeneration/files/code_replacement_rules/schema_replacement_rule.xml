@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<replacementRoot xmlns="http://www.w3schools.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="replacement_rule.xsd"
+	objName="smd" extraArgs="args" templateLocation="C:/Users/Justin/workspace/CIAPI.Java/src/CodeGeneration/files/code_templates/CombinedTemplate.jav"
+	objectType="codegen.modelobjects.SMDDescriptor">
+	<fileName value="@ServiceMethods.java" />
+	<replacement name="packageName" value="$args[0]" />
+	<replacementSet subObjName="method" name="methods"
+		value="smd.getServices().entrySet()">
+		<replacement name="description" value="method.getValue().getDescription()" />
+		<replacement name="return"
+			value="method.getValue().getReturns().get$ref($args[1])" />
+		<replacement name="name" value="method.getKey()" />
+		<replacementSet subObjName="p" name="parameters"
+			value="method.getValue().getParameters()">
+			<replacement name="pType" value="p.getType($args[1])" />
+			<replacement name="pName" value="p.getName()" />
+		</replacementSet>
+	</replacementSet>
+</replacementRoot>

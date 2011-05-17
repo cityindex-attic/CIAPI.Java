@@ -51,7 +51,8 @@ public class SchemaReader {
 	 * @param smdStream
 	 *            the stream containing the smd data
 	 * @param replacementDirectory
-	 *            the directory where you have all of the replacement files you would like to use
+	 *            the directory where you have all of the replacement files you would like to use.
+	 *            This will look recursively.
 	 * @throws ClassNotFoundException
 	 *             if we cannot find the type that was referenced from one of the replacement files
 	 * @throws IOException
@@ -90,7 +91,7 @@ public class SchemaReader {
 			throws IOException, ClassNotFoundException {
 		Map<Class<?>, List<ReplacementRoot>> ret = new HashMap<Class<?>, List<ReplacementRoot>>();
 		// Loop through each file in the given directory that is and xml file
-		for (File fName : new File(replacementDirectory).listFiles(new FileFilter() {
+		for (File fName : listFilesRecursively(new File(replacementDirectory), new FileFilter() {
 			@Override
 			public boolean accept(File pathname) {
 				return pathname.getName().endsWith("xml");
@@ -109,6 +110,27 @@ public class SchemaReader {
 			toAddTo.add(root);
 		}
 		return ret;
+	}
+
+	private static List<File> listFilesRecursively(File root, FileFilter filter) {
+		List<File> ret = new ArrayList<File>();
+		if (root.isFile() && filter.accept(root)) {
+			// if the root is a single file, just return a list containing the single file
+			ret.add(root);
+			return ret;
+		} else {
+			// otherwise we will add the files in the directory if they are regular files
+			File[] files = root.listFiles(filter);
+			for (File f : files) {
+				if (f.isFile()) {
+					ret.add(f);
+				} else {
+					// or we will recursively add more files
+					ret.addAll(listFilesRecursively(f, filter));
+				}
+			}
+			return ret;
+		}
 	}
 
 	/**
