@@ -71,7 +71,7 @@ public class ReplacementSet extends Replacement {
 	 * @param masterTemplate
 	 *            the master template that we will add each sub mapping to
 	 * @param args
-	 *            any additional args needed to transform an object
+	 *            any additional arguments needed to transform an object
 	 */
 	protected void fillSubTemplate(Object subObj, CodeTemplate subTemplateToFill,
 			CompoundCodeTemplate masterTemplate, String... args) {

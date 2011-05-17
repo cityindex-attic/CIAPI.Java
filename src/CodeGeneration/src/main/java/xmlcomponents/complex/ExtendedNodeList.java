@@ -32,12 +32,39 @@ public class ExtendedNodeList implements NodeList, Iterable<ExtendedNode> {
 		this.jodes = jodes;
 	}
 
+	/**
+	 * @return the first node in this list. Will throw an exception of the list is empty.
+	 */
 	public ExtendedNode first() {
-		if (getLength() == 0)
+		if (jodes.isEmpty())
 			throw new JinqException("There is no first node");
 		return item(0);
 	}
 
+	/**
+	 * @param filter
+	 *            the filter to apply to this list
+	 * @return the first node after filtering this list
+	 */
+	public ExtendedNode first(JodeFilter filter) {
+		return this.filter(filter).first();
+	}
+	
+	/**
+	 * @param filter
+	 *            the filter to apply to this list
+	 * @return the first node after filtering this list
+	 */
+	public ExtendedNode first(String name) {
+		return this.filter(name).first();
+	}
+
+	/**
+	 * 
+	 * @param nodeName
+	 *            the name of the only node to match
+	 * @return
+	 */
 	public ExtendedNode single(String nodeName) {
 		ExtendedNodeList lst = this.filter(nodeName);
 		if (lst.getLength() != 1)
@@ -79,6 +106,17 @@ public class ExtendedNodeList implements NodeList, Iterable<ExtendedNode> {
 	@Override
 	public ExtendedNode item(int arg0) {
 		return jodes.get(arg0);
+	}
+
+	/**
+	 * Alias for 'item(index)' because that's stupid...
+	 * 
+	 * @param i
+	 *            the index to return
+	 * @return the node at index i.
+	 */
+	public ExtendedNode get(int i) {
+		return item(i);
 	}
 
 	@Override
