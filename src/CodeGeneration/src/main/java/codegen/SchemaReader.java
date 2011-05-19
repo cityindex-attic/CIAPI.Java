@@ -114,15 +114,17 @@ public class SchemaReader {
 
 	private static List<File> listFilesRecursively(File root, FileFilter filter) {
 		List<File> ret = new ArrayList<File>();
-		if (root.isFile() && filter.accept(root)) {
-			// if the root is a single file, just return a list containing the single file
-			ret.add(root);
+		if (root.isFile()) {
+			if (filter.accept(root)) {
+				// if the root is a single file, just return a list containing the single file
+				ret.add(root);
+			}
 			return ret;
 		} else {
 			// otherwise we will add the files in the directory if they are regular files
-			File[] files = root.listFiles(filter);
+			File[] files = root.listFiles();
 			for (File f : files) {
-				if (f.isFile()) {
+				if (f.isFile() && filter.accept(f)) {
 					ret.add(f);
 				} else {
 					// or we will recursively add more files

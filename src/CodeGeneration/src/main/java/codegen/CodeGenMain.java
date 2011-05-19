@@ -46,6 +46,7 @@ public class CodeGenMain {
 		}
 		List<ClParam> params = parseParams(args);
 		CodeGenMain.generateCode(params);
+		System.out.println("w00t!  It worked");
 	}
 
 	/**
