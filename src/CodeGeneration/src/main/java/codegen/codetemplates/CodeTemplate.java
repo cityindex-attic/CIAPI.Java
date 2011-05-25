@@ -213,8 +213,8 @@ public class CodeTemplate implements TemplateEntry {
 	 * @throws FileNotFoundException
 	 *             if the file did not exist
 	 */
-	public static CodeTemplate loadTemplate(String location) throws FileNotFoundException {
-		Scanner fin = new Scanner(new File(location));
+	public static CodeTemplate loadTemplate(File location) throws FileNotFoundException {
+		Scanner fin = new Scanner(location);
 		StringBuilder templateString = new StringBuilder();
 		while (fin.hasNextLine()) {
 			templateString.append(fin.nextLine()).append("\n");

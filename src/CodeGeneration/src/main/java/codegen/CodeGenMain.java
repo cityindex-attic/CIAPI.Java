@@ -1,10 +1,16 @@
 package codegen;
 
+import static CIAPI.Java.logging.Log.debug;
+import static CIAPI.Java.logging.Log.error;
+import static CIAPI.Java.logging.Log.info;
+import static CIAPI.Java.logging.Log.trace;
+import static CIAPI.Java.logging.Log.warn;
+
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +18,6 @@ import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
-
-import JsonClient.Java.ApiException;
-
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonSyntaxException;
 
 /**
  * Main class for running stuff
@@ -28,24 +29,21 @@ public class CodeGenMain {
 	 * Stuff...It's a main...what do you expect?
 	 * 
 	 * @param args
-	 * @throws JsonIOException
-	 * @throws JsonSyntaxException
-	 * @throws MalformedURLException
-	 * @throws IOException
-	 * @throws ParserConfigurationException
-	 * @throws SAXException
-	 * @throws URISyntaxException
-	 * @throws ClassNotFoundException
 	 */
-	public static void main(String[] args) throws JsonIOException, JsonSyntaxException,
-			MalformedURLException, IOException, ApiException, ParserConfigurationException,
-			SAXException, URISyntaxException, ClassNotFoundException {
+	public static void main(String[] args) throws ClassNotFoundException, IOException {
+		info("Beginning the process of generating code");
 		if (args.length == 0 || args[0].matches("(-h|-H|--help)") || args.length % 2 == 1) {
+			debug("Given arguments did not match the expected arguments");
 			CodeGenMain.printUsage();
 			return;
 		}
 		List<ClParam> params = parseParams(args);
-		CodeGenMain.generateCode(params);
+		String outputLocation = CodeGenMain.generateCode(params);
+		if (outputLocation != null) {
+			info("Success!  Generated code!: " + outputLocation);
+		} else {
+			warn("Code was not generated");
+		}
 	}
 
 	/**
@@ -67,10 +65,11 @@ public class CodeGenMain {
 	 * @throws SAXException
 	 * @throws ClassNotFoundException
 	 */
-	public static void generateCode(List<ClParam> params) throws URISyntaxException, IOException,
-			ParserConfigurationException, SAXException, ClassNotFoundException {
-		if (params.size() < 3)
-			throw new IllegalArgumentException("At least 4 parameters must be provided.");
+	public static String generateCode(List<ClParam> params) throws ClassNotFoundException,
+			IOException {
+		if (params.size() < 3) {
+			error(new IllegalArgumentException("At least 4 parameters must be provided."));
+		}
 		// Find all of the required parameters
 		String schemaLocation = null;
 		String smdLocation = null;
@@ -91,18 +90,37 @@ public class CodeGenMain {
 		// If any of them are null, then we have a problem
 		if (schemaLocation == null || smdLocation == null || saveLocation == null
 				|| replacementDirectory == null) {
+			error("Did not find all required parameters");
 			printUsage();
-			return;
+			return null;
 		}
 		// Turn the specified URIs into InputStreams
 		InputStream schemaStream = openFileOrUrl(schemaLocation);
 		InputStream smdStream = openFileOrUrl(smdLocation);
 		// Tell the schema reader where it can find the files it needs
 		SchemaReader rdr = new SchemaReader(schemaStream, smdStream, replacementDirectory);
+		emptyDirectoryR(new File(saveLocation));
 		rdr.createPackage("CIAPI.Java", saveLocation);
+		return saveLocation;
 	}
 
-	private static InputStream openFileOrUrl(String path) throws IOException {
+	/**
+	 * Will cleanse the destination directory so we don't run into silly conflicts
+	 * 
+	 * @param saveLocation
+	 *            the location to clean
+	 */
+	private static void emptyDirectoryR(File root) {
+		if (root.isDirectory()) {
+			for (File f : root.listFiles()) {
+				emptyDirectoryR(f);
+			}
+		}
+		root.delete();
+	}
+
+	private static InputStream openFileOrUrl(String path) throws FileNotFoundException {
+		debug("Attempting to open local file: " + path);
 		return new FileInputStream(new File(path));
 	}
 
@@ -118,6 +136,7 @@ public class CodeGenMain {
 		for (int i = 0; i < array.length; i += 2) {
 			ret.add(new ClParam(array[i], array[i + 1]));
 		}
+		trace("Parsed " + ret.size() + " parameters from the command line.");
 		return ret;
 	}
 
@@ -127,8 +146,8 @@ public class CodeGenMain {
 	 * @author Justin Nelson
 	 */
 	static enum SpecificParams {
-		SCHEMA_URI("-sch", "The URI location of the SMD descriptor"), SMD_URI("-smd",
-				"The URI location of the Schema descriptor"), SAVE_LOCATION("-l",
+		SCHEMA_URI("-sch", "The local file location of the SMD descriptor"), SMD_URI("-smd",
+				"The local file location of the Schema descriptor"), SAVE_LOCATION("-l",
 				"The location to save the generated code"), REPLACEMNT_FILE_DIR("-r",
 				"The directory where your replacement files are located.");
 
@@ -167,6 +186,7 @@ public class CodeGenMain {
 					return p;
 				}
 			}
+			warn("Could not parse generic option: " + option);
 			return null;
 		}
 	}

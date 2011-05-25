@@ -2,6 +2,7 @@ package codegen.codetemplates;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 
 import org.junit.After;
@@ -22,7 +23,7 @@ public class CodeTemplateTest {
 
 	@Test
 	public void testLoadTemplate() throws FileNotFoundException {
-		template = CodeTemplate.loadTemplate("files/test/TestTemplate.jav");
+		template = CodeTemplate.loadTemplate(new File("files/test/TestTemplate.jav"));
 		CompoundCodeTemplate innerTemplate = (CompoundCodeTemplate) template.getTemplateEntry("quotes");
 		for (int i = 0; i < 5; i++) {
 			CodeTemplate innerTemplatePattern = innerTemplate.getEmptyTemplate();

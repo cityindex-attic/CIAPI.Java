@@ -1,7 +1,11 @@
 package codegen;
 
+import static CIAPI.Java.logging.Log.debug;
+import static CIAPI.Java.logging.Log.trace;
+import static CIAPI.Java.logging.Log.error;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -12,8 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.xml.sax.SAXException;
 
 import codegen.codetemplates.templatecompletion.TemplateFiller;
 import codegen.codetemplates.templatecompletion.replacementrule.ReplacementRoot;
@@ -38,6 +40,8 @@ import com.google.gson.JsonSyntaxException;
  */
 public class SchemaReader {
 
+	private String replacementDir;
+
 	private SMDDescriptor smd;
 	private Map<String, DTO> dtos;
 
@@ -59,7 +63,8 @@ public class SchemaReader {
 	 *             if any file reading goes wrong
 	 */
 	public SchemaReader(InputStream schemaStream, InputStream smdStream, String replacementDirectory)
-			throws SAXException, IOException, ClassNotFoundException {
+			throws ClassNotFoundException {
+		this.replacementDir = replacementDirectory;
 		this.replacements = loadReplacements(replacementDirectory);
 		dtos = new HashMap<String, DTO>();
 		// create out Gson. Need to register adapters for some of our classes to work around some
@@ -68,14 +73,18 @@ public class SchemaReader {
 		gb.registerTypeAdapter(DTO.class, DTO.getDeSerializer());
 		gb.registerTypeAdapter(Parameter.class, Parameter.getDeSerializer());
 		Gson g = gb.create();
+		trace("Attempting to parse the SMD stream");
 		smd = g.fromJson(new InputStreamReader(smdStream), SMDDescriptor.class);
+		trace("Successfully parsed stream");
 		// using some extra JSON parsing to pull individual DAOs out of the one big DAO return
 		// object.
 		JsonParser parser = new JsonParser();
+		trace("Attempting to parse the Schema stream");
 		JsonObject obj = (JsonObject) parser.parse(new InputStreamReader(schemaStream));
 		for (Entry<String, JsonElement> entry : obj.entrySet()) {
 			dtos.put(entry.getKey(), g.fromJson(entry.getValue(), DTO.class));
 		}
+		trace("Successfully parsed stream");
 	}
 
 	/**
@@ -88,7 +97,8 @@ public class SchemaReader {
 	 * @throws ClassNotFoundException
 	 */
 	private Map<Class<?>, List<ReplacementRoot>> loadReplacements(String replacementDirectory)
-			throws IOException, ClassNotFoundException {
+			throws ClassNotFoundException {
+		debug("Loading all replacements defined in directory: " + replacementDirectory);
 		Map<Class<?>, List<ReplacementRoot>> ret = new HashMap<Class<?>, List<ReplacementRoot>>();
 		// Loop through each file in the given directory that is and xml file
 		for (File fName : listFilesRecursively(new File(replacementDirectory), new FileFilter() {
@@ -98,6 +108,7 @@ public class SchemaReader {
 			}
 		})) {
 			// Turn each file into a ReplacementRoot
+			trace("Parsing file into replacement object:" + fName.getAbsolutePath());
 			ReplacementRoot root = new ReplacementRoot(fName.getAbsolutePath());
 			List<ReplacementRoot> toAddTo;
 			// Now we sort the Replacement files by the class they represent
@@ -159,35 +170,42 @@ public class SchemaReader {
 	 *            the root folder to save your files
 	 * @throws JsonIOException
 	 * @throws JsonSyntaxException
-	 * @throws MalformedURLException
 	 * @throws IOException
+	 * @throws MalformedURLException
 	 */
-	public void createPackage(String packageName, String saveLocation) throws JsonIOException,
-			JsonSyntaxException, MalformedURLException, IOException {
+	public void createPackage(String packageName, String saveLocation) throws IOException {
 		createDirectories(saveLocation);
 		// Process all replacements that go with services
 		List<ReplacementRoot> serviceReplacements = this.replacements.get(getServices().getClass());
+		if (serviceReplacements == null) {
+			error(new FileNotFoundException("No replacement templates for service methods were found: "
+					+ replacementDir));
+		}
 		for (ReplacementRoot repl : serviceReplacements) {
+			debug("Processing replacement file: " + repl.getInitialLocation());
 			TemplateFiller filler = new TemplateFiller(repl);
 			String resolvedFileName = repl.fileName(getServices(), packageName);
-			PrintStream smdOut = new PrintStream(new File(saveLocation + File.separatorChar
-					+ resolvedFileName));
+			debug("Resolved filename to be: " + resolvedFileName);
+			PrintStream smdOut = new PrintStream(new File(saveLocation + File.separatorChar + resolvedFileName));
 			smdOut.println(filler.fillTemplate(getServices(), packageName, packageName + ".dto"));
 			smdOut.close();
 		}
 
+		debug("Beginning processing of all dto template replacements");
 		// Process all replacements that go with each DTO
 		for (Entry<String, DTO> entry : getAllModelItems().entrySet()) {
-			List<ReplacementRoot> dtoReplacements = this.replacements.get(entry.getValue()
-					.getClass());
+			List<ReplacementRoot> dtoReplacements = this.replacements.get(entry.getValue().getClass());
+			if (dtoReplacements == null) {
+				error(new FileNotFoundException("No replacement templates were found for the dtos: " + replacementDir));
+			}
 			for (ReplacementRoot repl : dtoReplacements) {
-				String resolvedFileName = repl.fileName(entry.getValue(), entry.getKey(),
-						packageName);
+				trace("Processing replacement file: " + repl.getInitialLocation());
+				String resolvedFileName = repl.fileName(entry.getValue(), entry.getKey(), packageName);
+				trace("Generating DTO file: " + resolvedFileName);
 				TemplateFiller filler = new TemplateFiller(repl);
-				PrintStream dtoOut = new PrintStream(new File(saveLocation + File.separatorChar
-						+ "dto/" + resolvedFileName + ".java"));
-				dtoOut.println(filler.fillTemplate(entry.getValue(), entry.getKey(), packageName
-						+ ".dto"));
+				PrintStream dtoOut = new PrintStream(new File(saveLocation + File.separatorChar + "dto/"
+						+ resolvedFileName + ".java"));
+				dtoOut.println(filler.fillTemplate(entry.getValue(), entry.getKey(), packageName + ".dto"));
 				dtoOut.close();
 			}
 		}
@@ -221,16 +239,14 @@ public class SchemaReader {
 			// We need f to be a directory
 			if (!f.isDirectory()) {
 				throw new IllegalArgumentException(
-						"The given save location must be the base director to save the code: "
-								+ f.getAbsolutePath());
+						"The given save location must be the base director to save the code: " + f.getAbsolutePath());
 			} else {
 				return;
 			}
 		}
 		// if f did not exist, we need to create f
 		if (!f.mkdirs()) {
-			throw new IOException("There was an error creating the directoriy: "
-					+ f.getAbsolutePath());
+			throw new IOException("There was an error creating the directoriy: " + f.getAbsolutePath());
 		}
 	}
 }

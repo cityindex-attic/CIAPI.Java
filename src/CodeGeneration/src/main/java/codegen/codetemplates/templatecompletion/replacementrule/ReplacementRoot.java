@@ -1,15 +1,22 @@
 package codegen.codetemplates.templatecompletion.replacementrule;
 
+import static CIAPI.Java.logging.Log.debug;
+import static CIAPI.Java.logging.Log.error;
+import static CIAPI.Java.logging.Log.info;
+import static CIAPI.Java.logging.Log.trace;
+import static CIAPI.Java.logging.Log.warn;
+
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import xmlcomponents.Jocument;
-import xmlcomponents.Jode;
-import xmlcomponents.JodeFilter;
-import xmlcomponents.JodeList;
+import CIAPI.Java.xmlcomponents.Jocument;
+import CIAPI.Java.xmlcomponents.Jode;
+import CIAPI.Java.xmlcomponents.JodeFilter;
+import CIAPI.Java.xmlcomponents.JodeList;
+
 import codegen.codetemplates.CodeTemplate;
 
 /**
@@ -21,24 +28,33 @@ import codegen.codetemplates.CodeTemplate;
 public class ReplacementRoot implements Iterable<Replacement> {
 
 	private List<Replacement> replacements;
-	private String codeTemplateLocation;
+	private File codeTemplateLocation;
 	private Class<?> requiredType;
 	private FileNameFiller fileName;
+	private File initialLocation;
+
+	public File getInitialLocation() {
+		return initialLocation;
+	}
 
 	/**
 	 * Creates a {@link ReplacementRoot} from the given file location
 	 * 
 	 * @param location
 	 *            the file path to the xml relpacement file
-	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public ReplacementRoot(String location) throws IOException, ClassNotFoundException {
+	public ReplacementRoot(String location) throws ClassNotFoundException {
+		this.initialLocation = new File(location);
 		Jocument doc = Jocument.load(location);
 		Jode root = doc.children().first();
-		codeTemplateLocation = root.attribute("templateLocation").value();
+		codeTemplateLocation = resolveCodeTemplateFilePath(root.attribute("templateLocation").value(), initialLocation);
 		String typeName = root.attribute("objectType").value();
-		requiredType = Class.forName(typeName);
+		try {
+			requiredType = Class.forName(typeName);
+		} catch (ClassNotFoundException e) {
+			throw new ClassNotFoundException("Could not find class specified in replacement file: " + initialLocation);
+		}
 		JodeList replacementNodes = root.children().filter(new JodeFilter() {
 			@Override
 			public boolean accept(Jode j) {
@@ -82,7 +98,12 @@ public class ReplacementRoot implements Iterable<Replacement> {
 	 *             if the specified template file doesn't exist
 	 */
 	public CodeTemplate getTemplate() throws FileNotFoundException {
-		return CodeTemplate.loadTemplate(codeTemplateLocation);
+		try {
+			return CodeTemplate.loadTemplate(codeTemplateLocation);
+		} catch (FileNotFoundException e) {
+			throw new FileNotFoundException("Could not find code template file specified in replacement file: "
+					+ codeTemplateLocation);
+		}
 	}
 
 	/**
@@ -117,8 +138,8 @@ public class ReplacementRoot implements Iterable<Replacement> {
 		for (Jode node : children) {
 			replacements.add(nodeToReplacement(node));
 		}
-		ReplacementSet ret = new ReplacementSet(n.attribute("name").value(), n.attribute("value")
-				.value(), "", subObjectName, replacements, delim);
+		ReplacementSet ret = new ReplacementSet(n.attribute("name").value(), n.attribute("value").value(), "",
+				subObjectName, replacements, delim);
 		return ret;
 	}
 
@@ -130,13 +151,24 @@ public class ReplacementRoot implements Iterable<Replacement> {
 	 * @return the {@link SimpleReplacement} represented by the given node
 	 */
 	private static SimpleReplacement parseSimpleNode(Jode n) {
-		SimpleReplacement rep = new SimpleReplacement(n.attribute("name").value(), n.attribute(
-				"value").value(), null);
+		SimpleReplacement rep = new SimpleReplacement(n.attribute("name").value(), n.attribute("value").value(), null);
 		return rep;
 	}
 
 	@Override
 	public Iterator<Replacement> iterator() {
 		return replacements.iterator();
+	}
+
+	private static File resolveCodeTemplateFilePath(String codeReplacementPath, File replacementLocation) {
+		File f = new File(codeReplacementPath);
+		if (f.isAbsolute()) {
+			debug("Parsed code template location: " + f.getAbsolutePath());
+			return f;
+		} else {
+			File result = new File(replacementLocation.getParentFile().getAbsolutePath(), codeReplacementPath);
+			debug("Parsed code template location: " + result.getAbsolutePath());
+			return result;
+		}
 	}
 }

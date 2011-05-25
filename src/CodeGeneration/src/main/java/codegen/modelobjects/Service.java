@@ -126,4 +126,10 @@ public class Service {
 			return parameters;
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "Service: "  +target;
+	}
+
 }

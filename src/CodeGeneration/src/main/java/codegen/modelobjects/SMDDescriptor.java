@@ -44,4 +44,8 @@ public class SMDDescriptor {
 	public Map<String, Service> getServices() {
 		return services;
 	}
+	@Override
+	public String toString() {
+		return SMDVersion + ": " + version;
+	}
 }

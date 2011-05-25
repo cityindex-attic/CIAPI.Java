@@ -3,6 +3,8 @@ package codegen.codetemplates.templatecompletion.replacementrule;
 import java.util.ArrayList;
 import java.util.List;
 
+import CIAPI.Java.logging.Log;
+
 /**
  * Similar to a Replacement. Its job is to turn a filename specification into an actual valid
  * filename.
@@ -22,10 +24,12 @@ public class FileNameFiller {
 	 */
 	public FileNameFiller(String fileName) {
 		String[] fileParts = fileName.split("(/|\\\\)");
+		Log.trace("Found the following parts of a file name: " + fileParts);
 		fileNameParts = new ArrayList<SimpleReplacement>();
 		for (String s : fileParts) {
 			fileNameParts.add(new SimpleReplacement(s, s, null));
-		}beganWithSlash = fileName.startsWith("/");
+		}
+		beganWithSlash = fileName.startsWith("/");
 	}
 
 	/**

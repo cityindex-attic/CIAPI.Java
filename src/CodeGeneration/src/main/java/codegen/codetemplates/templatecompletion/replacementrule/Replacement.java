@@ -5,6 +5,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import codegen.codetemplates.CodeTemplate;
+import static CIAPI.Java.logging.Log.debug;
+import static CIAPI.Java.logging.Log.trace;
+import static CIAPI.Java.logging.Log.error;
+import static CIAPI.Java.logging.Log.warn;
 
 /**
  * Class that handles parsing a string and using reflection to create actual method calls and
@@ -54,6 +58,7 @@ public abstract class Replacement {
 	 * @return the resulting object
 	 */
 	protected Object resolveValue(Object obj, String... args) {
+		trace("Beginning process of resolving value from object");
 		Object result = obj;
 		// simple args access
 		if (objectValue.startsWith("$args")) {
@@ -79,6 +84,7 @@ public abstract class Replacement {
 						// No arguments to the method
 						Method method2 = result.getClass().getMethod(name);
 						method2.setAccessible(true);
+						trace("Invoking method '" + method2.getName() + "' on object '" + result + "'");
 						result = method2.invoke(result);
 					} else {
 						// We have method args. We need to determine the type
@@ -86,9 +92,12 @@ public abstract class Replacement {
 						Object value = getValue(methodArgs, args);
 						Method method2 = result.getClass().getMethod(name, argType);
 						method2.setAccessible(true);
+						trace("Invoking method '" + method2.getName() + "' on object '" + result + "' with parameter '"
+								+ value + "'");
 						result = method2.invoke(result, value);
 					}
 				} catch (Exception e) {
+					warn(e.getMessage(), e);
 					// Whoops, let's just keep going and see if we can partially recover later
 					return null;
 				}
@@ -103,6 +112,7 @@ public abstract class Replacement {
 		} else if (methodArgs.startsWith("#")) {
 			return Integer.parseInt(methodArgs.substring(1));
 		}
+		warn("Could not get value fron value: " + methodArgs);
 		return null;
 	}
 
@@ -119,6 +129,7 @@ public abstract class Replacement {
 		} else if (methodArgs.startsWith("#")) {
 			return int.class;
 		}
+		warn("Could not infer type fron value: " + methodArgs);
 		return null;
 	}
 

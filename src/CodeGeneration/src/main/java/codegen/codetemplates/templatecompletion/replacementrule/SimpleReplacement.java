@@ -26,6 +26,16 @@ public class SimpleReplacement extends Replacement {
 
 	@Override
 	public void fillTemplateHole(Object obj, CodeTemplate template, String... args) {
-		template.putNewTemplateDefinition(templateValue, resolveValue(obj, args).toString());
+		Object value = resolveValue(obj, args);
+		String valueS = null;
+		if (value != null) {
+			valueS = value.toString();
+		}
+		template.putNewTemplateDefinition(templateValue, valueS);
+	}
+
+	@Override
+	public String toString() {
+		return templateValue + ": " + objectValue + ":" + objectName;
 	}
 }

@@ -32,4 +32,9 @@ public class SimpleTemplateEntry implements TemplateEntry {
 	public EmptyCodeTemplate copyEmptyTemplate() {
 		return new EmptyCodeTemplate();
 	}
+	
+	@Override
+	public String toString() {
+		return replacement;
+	}
 }
