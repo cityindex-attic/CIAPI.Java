@@ -19,6 +19,7 @@
 			<artifactId>maven-compiler-plugin</artifactId>
 		</plugin>
 		<!-- Need to get newer version of crap4J plugin before this will work on Windows --> 
+		<!-- Commenting out crap, causign build errors
 		<plugin>
 			<groupId>net.sf.jmd</groupId>
 			<artifactId>maven-crap4j-plugin</artifactId>
@@ -30,6 +31,7 @@
 			    <maxmemory>256m</maxmemory>
 			</configuration>
 		</plugin>
+		 -->
 	</plugins>
   </build>
    <dependencies>
