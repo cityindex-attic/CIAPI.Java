@@ -64,13 +64,14 @@ public class TestCachedJsonCLient {
 			fail();
 		}
 		String result2 = (String) client.makeGetRequest("http://fakeUrl1", String.class, true);
-		//assertNull("The cached should have expired and be null.", result2);
+		// This test needs to be fixed.
+		// assertNull("The cached should have expired and be null.", result2);
 	}
 
 	@Test
 	public void testDoesntUseCacheIfEmpty() throws ApiException {
-		SitesWrapper result = (SitesWrapper) client.makeGetRequest("files/test/testStatsResponse.json",
-				SitesWrapper.class);
+		SitesWrapper result = (SitesWrapper) client.makeGetRequest(
+				"files/test/testStatsResponse.json", SitesWrapper.class);
 		assertNotNull(result);
 	}
 }

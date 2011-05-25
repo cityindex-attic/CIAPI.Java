@@ -18,7 +18,7 @@ import org.apache.http.entity.HttpEntityWrapper;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HttpContext;
 
-import JsonClient.Java.logging.Log;
+import CIAPI.Java.logging.Log;
 
 /**
  * Class representing a request to a given url

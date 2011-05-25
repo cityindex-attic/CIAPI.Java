@@ -1,10 +1,10 @@
 package JsonClient.Java.cachestuff;
 
+import CIAPI.Java.logging.Log;
 import JsonClient.Java.ApiException;
 import JsonClient.Java.DefaultJsonClient;
 import JsonClient.Java.httpstuff.DefaultSimpleHttpClient;
 import JsonClient.Java.httpstuff.SimpleHttpClient;
-import JsonClient.Java.logging.Log;
 
 /**
  * An implementation of JsonClient that caches results of GET requests.
