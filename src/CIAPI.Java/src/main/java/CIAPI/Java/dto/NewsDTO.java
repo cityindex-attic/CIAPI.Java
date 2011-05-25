@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class NewsDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public NewsDTO() {
 	}
-
 	
 	private int StoryId;
 	
@@ -26,7 +25,6 @@ public class NewsDTO {
 	public void setStoryId(int StoryId) {
 		this.StoryId = StoryId;
 	}
-
 	private String Headline;
 	
 	/**
@@ -39,7 +37,6 @@ public class NewsDTO {
 	public void setHeadline(String Headline) {
 		this.Headline = Headline;
 	}
-
 	private String PublishDate;
 	
 	/**
@@ -52,6 +49,5 @@ public class NewsDTO {
 	public void setPublishDate(String PublishDate) {
 		this.PublishDate = PublishDate;
 	}
-
 }
 

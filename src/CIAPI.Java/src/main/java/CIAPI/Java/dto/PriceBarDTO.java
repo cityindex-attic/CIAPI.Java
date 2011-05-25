@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class PriceBarDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public PriceBarDTO() {
 	}
-
 	
 	private String BarDate;
 	
@@ -26,11 +25,10 @@ public class PriceBarDTO {
 	public void setBarDate(String BarDate) {
 		this.BarDate = BarDate;
 	}
-
 	private double Open;
 	
 	/**
-	 * The price at the open of the price bar interval
+	 * For the equities model of charting, this is the price at the start of the price bar interval.
 	 */
 	public double getOpen() {
 		return Open;
@@ -39,11 +37,10 @@ public class PriceBarDTO {
 	public void setOpen(double Open) {
 		this.Open = Open;
 	}
-
 	private double High;
 	
 	/**
-	 * The highest price occuring during the interval of the price bar
+	 * The highest price occurring during the interval of the price bar
 	 */
 	public double getHigh() {
 		return High;
@@ -52,11 +49,10 @@ public class PriceBarDTO {
 	public void setHigh(double High) {
 		this.High = High;
 	}
-
 	private double Low;
 	
 	/**
-	 * The lowest price occuring during the interval of the price bar
+	 * The lowest price occurring during the interval of the price bar
 	 */
 	public double getLow() {
 		return Low;
@@ -65,7 +61,6 @@ public class PriceBarDTO {
 	public void setLow(double Low) {
 		this.Low = Low;
 	}
-
 	private double Close;
 	
 	/**
@@ -78,6 +73,5 @@ public class PriceBarDTO {
 	public void setClose(double Close) {
 		this.Close = Close;
 	}
-
 }
 

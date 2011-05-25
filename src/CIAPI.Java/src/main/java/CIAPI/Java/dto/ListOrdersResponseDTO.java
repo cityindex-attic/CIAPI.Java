@@ -3,16 +3,15 @@ package CIAPI.Java.dto;
 /**
  * !This is an auto generated model object!
  *
- * TODO
+ * This Dto is not currently used
  */
 public class ListOrdersResponseDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public ListOrdersResponseDTO() {
 	}
-
 	
 }
 

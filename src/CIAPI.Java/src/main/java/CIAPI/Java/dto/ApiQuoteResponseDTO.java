@@ -3,21 +3,20 @@ package CIAPI.Java.dto;
 /**
  * !This is an auto generated model object!
  *
- * TODO
+ * quote response.
  */
 public class ApiQuoteResponseDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public ApiQuoteResponseDTO() {
 	}
-
 	
 	private int QuoteId;
 	
 	/**
-	 * TODO
+	 * quote id.
 	 */
 	public int getQuoteId() {
 		return QuoteId;
@@ -26,11 +25,10 @@ public class ApiQuoteResponseDTO {
 	public void setQuoteId(int QuoteId) {
 		this.QuoteId = QuoteId;
 	}
-
 	private int Status;
 	
 	/**
-	 * TODO
+	 * quote status.
 	 */
 	public int getStatus() {
 		return Status;
@@ -39,11 +37,10 @@ public class ApiQuoteResponseDTO {
 	public void setStatus(int Status) {
 		this.Status = Status;
 	}
-
 	private int StatusReason;
 	
 	/**
-	 * TODO
+	 * quote status reason.
 	 */
 	public int getStatusReason() {
 		return StatusReason;
@@ -52,6 +49,5 @@ public class ApiQuoteResponseDTO {
 	public void setStatusReason(int StatusReason) {
 		this.StatusReason = StatusReason;
 	}
-
 }
 

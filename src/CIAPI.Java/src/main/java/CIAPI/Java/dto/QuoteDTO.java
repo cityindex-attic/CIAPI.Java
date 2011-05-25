@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class QuoteDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public QuoteDTO() {
 	}
-
 	
 	private int QuoteId;
 	
@@ -26,7 +25,6 @@ public class QuoteDTO {
 	public void setQuoteId(int QuoteId) {
 		this.QuoteId = QuoteId;
 	}
-
 	private int OrderId;
 	
 	/**
@@ -39,7 +37,6 @@ public class QuoteDTO {
 	public void setOrderId(int OrderId) {
 		this.OrderId = OrderId;
 	}
-
 	private int MarketId;
 	
 	/**
@@ -52,7 +49,6 @@ public class QuoteDTO {
 	public void setMarketId(int MarketId) {
 		this.MarketId = MarketId;
 	}
-
 	private double BidPrice;
 	
 	/**
@@ -65,7 +61,6 @@ public class QuoteDTO {
 	public void setBidPrice(double BidPrice) {
 		this.BidPrice = BidPrice;
 	}
-
 	private double BidAdjust;
 	
 	/**
@@ -78,7 +73,6 @@ public class QuoteDTO {
 	public void setBidAdjust(double BidAdjust) {
 		this.BidAdjust = BidAdjust;
 	}
-
 	private double OfferPrice;
 	
 	/**
@@ -91,7 +85,6 @@ public class QuoteDTO {
 	public void setOfferPrice(double OfferPrice) {
 		this.OfferPrice = OfferPrice;
 	}
-
 	private double OfferAdjust;
 	
 	/**
@@ -104,11 +97,10 @@ public class QuoteDTO {
 	public void setOfferAdjust(double OfferAdjust) {
 		this.OfferAdjust = OfferAdjust;
 	}
-
 	private double Quantity;
 	
 	/**
-	 * The Quantity is the number of units for the trade i.e CFD Quantity = Number of CFD's to Buy or Sell , FX Quantity = Number of Currency points TODO Clarify
+	 * The Quantity is the number of units for the trade i.e CFD Quantity = Number of CFD's to Buy or Sell , FX Quantity = amount in base currency.
 	 */
 	public double getQuantity() {
 		return Quantity;
@@ -117,7 +109,6 @@ public class QuoteDTO {
 	public void setQuantity(double Quantity) {
 		this.Quantity = Quantity;
 	}
-
 	private int CurrencyId;
 	
 	/**
@@ -130,11 +121,10 @@ public class QuoteDTO {
 	public void setCurrencyId(int CurrencyId) {
 		this.CurrencyId = CurrencyId;
 	}
-
 	private int StatusId;
 	
 	/**
-	 * The Status of the Quote. The list of different Status values can be found using the API call TODO Fill when call avaliable
+	 * The Status id of the Quote. The list of different Status values can be found using the API call TODO Fill when call avaliable
 	 */
 	public int getStatusId() {
 		return StatusId;
@@ -143,11 +133,10 @@ public class QuoteDTO {
 	public void setStatusId(int StatusId) {
 		this.StatusId = StatusId;
 	}
-
 	private int TypeId;
 	
 	/**
-	 * The reason for the Quote i.e you asked for a quote , a order was requested over a size limit
+	 * The quote type id.
 	 */
 	public int getTypeId() {
 		return TypeId;
@@ -156,7 +145,6 @@ public class QuoteDTO {
 	public void setTypeId(int TypeId) {
 		this.TypeId = TypeId;
 	}
-
 	private String RequestDateTime;
 	
 	/**
@@ -169,6 +157,5 @@ public class QuoteDTO {
 	public void setRequestDateTime(String RequestDateTime) {
 		this.RequestDateTime = RequestDateTime;
 	}
-
 }
 

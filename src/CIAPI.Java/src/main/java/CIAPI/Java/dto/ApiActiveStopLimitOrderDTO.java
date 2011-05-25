@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class ApiActiveStopLimitOrderDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public ApiActiveStopLimitOrderDTO() {
 	}
-
 	
 	private int OrderId;
 	
@@ -26,7 +25,6 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setOrderId(int OrderId) {
 		this.OrderId = OrderId;
 	}
-
 	private String ParentOrderId;
 	
 	/**
@@ -39,7 +37,6 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setParentOrderId(String ParentOrderId) {
 		this.ParentOrderId = ParentOrderId;
 	}
-
 	private int MarketId;
 	
 	/**
@@ -52,7 +49,6 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setMarketId(int MarketId) {
 		this.MarketId = MarketId;
 	}
-
 	private String MarketName;
 	
 	/**
@@ -65,7 +61,6 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setMarketName(String MarketName) {
 		this.MarketName = MarketName;
 	}
-
 	private String Direction;
 	
 	/**
@@ -78,7 +73,6 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setDirection(String Direction) {
 		this.Direction = Direction;
 	}
-
 	private double Quantity;
 	
 	/**
@@ -91,7 +85,6 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setQuantity(double Quantity) {
 		this.Quantity = Quantity;
 	}
-
 	private double TriggerPrice;
 	
 	/**
@@ -104,7 +97,6 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setTriggerPrice(double TriggerPrice) {
 		this.TriggerPrice = TriggerPrice;
 	}
-
 	private double TradingAccountId;
 	
 	/**
@@ -117,7 +109,6 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setTradingAccountId(double TradingAccountId) {
 		this.TradingAccountId = TradingAccountId;
 	}
-
 	private int Type;
 	
 	/**
@@ -130,7 +121,6 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setType(int Type) {
 		this.Type = Type;
 	}
-
 	private int Applicability;
 	
 	/**
@@ -143,7 +133,6 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setApplicability(int Applicability) {
 		this.Applicability = Applicability;
 	}
-
 	private String ExpiryDateTimeUTC;
 	
 	/**
@@ -156,7 +145,6 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setExpiryDateTimeUTC(String ExpiryDateTimeUTC) {
 		this.ExpiryDateTimeUTC = ExpiryDateTimeUTC;
 	}
-
 	private String Currency;
 	
 	/**
@@ -169,7 +157,6 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setCurrency(String Currency) {
 		this.Currency = Currency;
 	}
-
 	private int Status;
 	
 	/**
@@ -182,7 +169,6 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setStatus(int Status) {
 		this.Status = Status;
 	}
-
 	private CIAPI.Java.dto.ApiBasicStopLimitOrderDTO StopOrder;
 	
 	/**
@@ -195,7 +181,6 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setStopOrder(CIAPI.Java.dto.ApiBasicStopLimitOrderDTO StopOrder) {
 		this.StopOrder = StopOrder;
 	}
-
 	private CIAPI.Java.dto.ApiBasicStopLimitOrderDTO LimitOrder;
 	
 	/**
@@ -208,7 +193,6 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setLimitOrder(CIAPI.Java.dto.ApiBasicStopLimitOrderDTO LimitOrder) {
 		this.LimitOrder = LimitOrder;
 	}
-
 	private CIAPI.Java.dto.ApiBasicStopLimitOrderDTO OcoOrder;
 	
 	/**
@@ -221,7 +205,6 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setOcoOrder(CIAPI.Java.dto.ApiBasicStopLimitOrderDTO OcoOrder) {
 		this.OcoOrder = OcoOrder;
 	}
-
 	private String LastChangedDateTimeUTC;
 	
 	/**
@@ -234,6 +217,5 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setLastChangedDateTimeUTC(String LastChangedDateTimeUTC) {
 		this.LastChangedDateTimeUTC = LastChangedDateTimeUTC;
 	}
-
 }
 

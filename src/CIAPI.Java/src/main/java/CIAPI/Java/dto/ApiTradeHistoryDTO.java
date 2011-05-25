@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class ApiTradeHistoryDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public ApiTradeHistoryDTO() {
 	}
-
 	
 	private int OrderId;
 	
@@ -26,7 +25,6 @@ public class ApiTradeHistoryDTO {
 	public void setOrderId(int OrderId) {
 		this.OrderId = OrderId;
 	}
-
 	private int MarketId;
 	
 	/**
@@ -39,7 +37,6 @@ public class ApiTradeHistoryDTO {
 	public void setMarketId(int MarketId) {
 		this.MarketId = MarketId;
 	}
-
 	private String MarketName;
 	
 	/**
@@ -52,7 +49,6 @@ public class ApiTradeHistoryDTO {
 	public void setMarketName(String MarketName) {
 		this.MarketName = MarketName;
 	}
-
 	private String Direction;
 	
 	/**
@@ -65,7 +61,6 @@ public class ApiTradeHistoryDTO {
 	public void setDirection(String Direction) {
 		this.Direction = Direction;
 	}
-
 	private double OriginalQuantity;
 	
 	/**
@@ -78,7 +73,6 @@ public class ApiTradeHistoryDTO {
 	public void setOriginalQuantity(double OriginalQuantity) {
 		this.OriginalQuantity = OriginalQuantity;
 	}
-
 	private double Price;
 	
 	/**
@@ -91,7 +85,6 @@ public class ApiTradeHistoryDTO {
 	public void setPrice(double Price) {
 		this.Price = Price;
 	}
-
 	private int TradingAccountId;
 	
 	/**
@@ -104,7 +97,6 @@ public class ApiTradeHistoryDTO {
 	public void setTradingAccountId(int TradingAccountId) {
 		this.TradingAccountId = TradingAccountId;
 	}
-
 	private String Currency;
 	
 	/**
@@ -117,7 +109,6 @@ public class ApiTradeHistoryDTO {
 	public void setCurrency(String Currency) {
 		this.Currency = Currency;
 	}
-
 	private String LastChangedDateTimeUtc;
 	
 	/**
@@ -130,6 +121,17 @@ public class ApiTradeHistoryDTO {
 	public void setLastChangedDateTimeUtc(String LastChangedDateTimeUtc) {
 		this.LastChangedDateTimeUtc = LastChangedDateTimeUtc;
 	}
-
+	private String ExecutedDateTimeUtc;
+	
+	/**
+	 * The time the order was executed.
+	 */
+	public String getExecutedDateTimeUtc() {
+		return ExecutedDateTimeUtc;
+	}
+	
+	public void setExecutedDateTimeUtc(String ExecutedDateTimeUtc) {
+		this.ExecutedDateTimeUtc = ExecutedDateTimeUtc;
+	}
 }
 

@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class GetPriceBarResponseDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public GetPriceBarResponseDTO() {
 	}
-
 	
 	private CIAPI.Java.dto.PriceBarDTO[] PriceBars;
 	
@@ -26,6 +25,17 @@ public class GetPriceBarResponseDTO {
 	public void setPriceBars(CIAPI.Java.dto.PriceBarDTO[] PriceBars) {
 		this.PriceBars = PriceBars;
 	}
-
+	private CIAPI.Java.dto.PriceBarDTO PartialPriceBar;
+	
+	/**
+	 * The (non-finalized) price bar data for the current period (i.e, the period that hasn't yet completed)
+	 */
+	public CIAPI.Java.dto.PriceBarDTO getPartialPriceBar() {
+		return PartialPriceBar;
+	}
+	
+	public void setPartialPriceBar(CIAPI.Java.dto.PriceBarDTO PartialPriceBar) {
+		this.PartialPriceBar = PartialPriceBar;
+	}
 }
 

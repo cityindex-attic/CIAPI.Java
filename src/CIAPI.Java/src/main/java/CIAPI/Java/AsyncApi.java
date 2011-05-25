@@ -3,12 +3,12 @@ package CIAPI.Java;
 import java.util.Arrays;
 import java.util.concurrent.Future;
 
+import CIAPI.Java.dto.ApiLogOffResponseDTO;
+import CIAPI.Java.dto.ApiLogOnRequestDTO;
+import CIAPI.Java.dto.ApiLogOnResponseDTO;
 import CIAPI.Java.dto.CancelOrderRequestDTO;
-import CIAPI.Java.dto.CreateSessionResponseDTO;
-import CIAPI.Java.dto.LogOnRequestDTO;
 import CIAPI.Java.dto.NewStopLimitOrderRequestDTO;
 import CIAPI.Java.dto.NewTradeOrderRequestDTO;
-import CIAPI.Java.dto.SessionDeletionResponseDTO;
 import CIAPI.Java.impl.ServiceMethodsImpl;
 import JsonClient.Java.ApiException;
 import JsonClient.Java.async.AsyncJsonApi;
@@ -66,18 +66,18 @@ public class AsyncApi {
 	 */
 	public Future<Object> logIn(final String username, final String password, final boolean keepAlive, CallBack...callbacks)
 			throws ApiException {
-		LogOnRequestDTO logOn = new LogOnRequestDTO();
+		ApiLogOnRequestDTO logOn = new ApiLogOnRequestDTO();
 		logOn.setPassword(password);
 		logOn.setUserName(username);
 		CallBack[] cbs = Arrays.copyOf(callbacks, callbacks.length + 1);
 		cbs[cbs.length-1] = logOnCallback;
-		return methods.CreateSessionAsync(logOn, api, cbs);
+		return methods.LogOnAsync(username, password, api, cbs);
 	}
 
 	private final CallBack logOnCallback = new CallBack() {
 		@Override
 		public void doCallBack(Object result, String baseUrl, String methodName) {
-			CreateSessionResponseDTO response = (CreateSessionResponseDTO) result;
+			ApiLogOnResponseDTO response = (ApiLogOnResponseDTO) result;
 			sessionId = response.getSession();
 			AsyncApi.this.keepAlive = keepAlive;
 			AsyncApi.this.username = username;
@@ -103,7 +103,7 @@ public class AsyncApi {
 			@Override
 			public void doCallBack(Object result, String baseUrl, String methodName) {
 				keepAlive = false;
-				SessionDeletionResponseDTO response = (SessionDeletionResponseDTO) result;
+				ApiLogOffResponseDTO response = (ApiLogOffResponseDTO) result;
 				if (response.getLoggedOut()) {
 					api.clearConstantParams();
 					sessionId = null;
@@ -145,32 +145,6 @@ public class AsyncApi {
 				callBacks);
 	}
 
-	public Future<Object> order(int MarketId, String Direction, double Quantity, double BidPrice, double OfferPrice,
-			String AuditId, int TradingAccountId, String Applicability, String ExpiryDateTimeUTC, CallBack... callBacks)
-			throws ApiException {
-		NewStopLimitOrderRequestDTO data = new NewStopLimitOrderRequestDTO();
-		data.setMarketId(MarketId);
-		data.setDirection(Direction);
-		data.setQuantity(Quantity);
-		data.setBidPrice(BidPrice);
-		data.setOfferPrice(OfferPrice);
-		data.setAuditId(AuditId);
-		data.setTradingAccountId(TradingAccountId);
-		data.setApplicability(Applicability);
-		data.setExpiryDateTimeUTC(ExpiryDateTimeUTC);
-		return methods.OrderAsync(data, api, callBacks);
-	}
-
-	public Future<Object> cancelOrder(int orderId, CallBack... callBacks) throws ApiException {
-		CancelOrderRequestDTO data = new CancelOrderRequestDTO();
-		return methods.CancelOrderAsync(data, api, callBacks);
-	}
-
-	public Future<Object> listOrders(int tradingAccountId, boolean openOrders, boolean acceptedOrders,
-			CallBack... callbacks) throws ApiException {
-		return methods.ListOrdersAsync(tradingAccountId, openOrders, acceptedOrders, api, callbacks);
-	}
-
 	public Future<Object> listOpenPositions(int tradingAccountId, CallBack... callBacks) throws ApiException {
 		return methods.ListOpenPositionsAsync(tradingAccountId, api, callBacks);
 	}
@@ -187,19 +161,6 @@ public class AsyncApi {
 	public Future<Object> listStopLimitOrderHistory(int tradingAccountId, int maxResults, CallBack... callbacks)
 			throws ApiException {
 		return methods.ListStopLimitOrderHistoryAsync(tradingAccountId, maxResults, api, callbacks);
-	}
-
-	public Future<Object> trade(int MarketId, String Direction, double Quantity, double BidPrice,
-			double OfferPrice, String AuditId, int TradingAccountId, CallBack...callbacks) throws ApiException {
-		NewTradeOrderRequestDTO data = new NewTradeOrderRequestDTO();
-		data.setMarketId(MarketId);
-		data.setDirection(Direction);
-		data.setQuantity(Quantity);
-		data.setBidPrice(BidPrice);
-		data.setOfferPrice(OfferPrice);
-		data.setAuditId(AuditId);
-		data.setTradingAccountId(TradingAccountId);
-		return methods.TradeAsync(data, api, callbacks);
 	}
 
 	private void keepAlive() throws ApiException {

@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class UpdateStopLimitOrderRequestDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public UpdateStopLimitOrderRequestDTO() {
 	}
-
 	
 }
 

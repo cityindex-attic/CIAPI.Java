@@ -8,24 +8,22 @@ package CIAPI.Java.dto;
 public class ListSpreadMarketsResponseDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public ListSpreadMarketsResponseDTO() {
 	}
-
 	
-	private CIAPI.Java.dto.MarketDTO[] Markets;
+	private CIAPI.Java.dto.ApiMarketDTO[] Markets;
 	
 	/**
 	 * A list of Spread Betting markets
 	 */
-	public CIAPI.Java.dto.MarketDTO[] getMarkets() {
+	public CIAPI.Java.dto.ApiMarketDTO[] getMarkets() {
 		return Markets;
 	}
 	
-	public void setMarkets(CIAPI.Java.dto.MarketDTO[] Markets) {
+	public void setMarkets(CIAPI.Java.dto.ApiMarketDTO[] Markets) {
 		this.Markets = Markets;
 	}
-
 }
 

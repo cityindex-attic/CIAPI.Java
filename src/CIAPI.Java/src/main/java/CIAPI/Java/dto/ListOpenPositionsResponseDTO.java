@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class ListOpenPositionsResponseDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public ListOpenPositionsResponseDTO() {
 	}
-
 	
 	private CIAPI.Java.dto.ApiOpenPositionDTO[] OpenPositions;
 	
@@ -26,6 +25,5 @@ public class ListOpenPositionsResponseDTO {
 	public void setOpenPositions(CIAPI.Java.dto.ApiOpenPositionDTO[] OpenPositions) {
 		this.OpenPositions = OpenPositions;
 	}
-
 }
 

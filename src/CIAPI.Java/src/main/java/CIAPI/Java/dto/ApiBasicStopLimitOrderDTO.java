@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class ApiBasicStopLimitOrderDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public ApiBasicStopLimitOrderDTO() {
 	}
-
 	
 	private int OrderId;
 	
@@ -26,7 +25,6 @@ public class ApiBasicStopLimitOrderDTO {
 	public void setOrderId(int OrderId) {
 		this.OrderId = OrderId;
 	}
-
 	private double TriggerPrice;
 	
 	/**
@@ -39,7 +37,6 @@ public class ApiBasicStopLimitOrderDTO {
 	public void setTriggerPrice(double TriggerPrice) {
 		this.TriggerPrice = TriggerPrice;
 	}
-
 	private double Quantity;
 	
 	/**
@@ -52,6 +49,5 @@ public class ApiBasicStopLimitOrderDTO {
 	public void setQuantity(double Quantity) {
 		this.Quantity = Quantity;
 	}
-
 }
 

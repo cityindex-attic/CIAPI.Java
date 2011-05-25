@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class ListNewsHeadlinesResponseDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public ListNewsHeadlinesResponseDTO() {
 	}
-
 	
 	private CIAPI.Java.dto.NewsDTO[] Headlines;
 	
@@ -26,6 +25,5 @@ public class ListNewsHeadlinesResponseDTO {
 	public void setHeadlines(CIAPI.Java.dto.NewsDTO[] Headlines) {
 		this.Headlines = Headlines;
 	}
-
 }
 

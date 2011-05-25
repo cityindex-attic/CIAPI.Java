@@ -8,16 +8,15 @@ package CIAPI.Java.dto;
 public class ClientAccountMarginDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public ClientAccountMarginDTO() {
 	}
-
 	
 	private double Cash;
 	
 	/**
-	 * ???
+	 * cash balance expressed in the clients base currency.
 	 */
 	public double getCash() {
 		return Cash;
@@ -26,11 +25,10 @@ public class ClientAccountMarginDTO {
 	public void setCash(double Cash) {
 		this.Cash = Cash;
 	}
-
 	private double Margin;
 	
 	/**
-	 * ???
+	 * The client account's total margin requirement expressed in base currency.
 	 */
 	public double getMargin() {
 		return Margin;
@@ -39,11 +37,10 @@ public class ClientAccountMarginDTO {
 	public void setMargin(double Margin) {
 		this.Margin = Margin;
 	}
-
 	private double MarginIndicator;
 	
 	/**
-	 * ???
+	 * Margin indicator expressed as a percentage.
 	 */
 	public double getMarginIndicator() {
 		return MarginIndicator;
@@ -52,11 +49,10 @@ public class ClientAccountMarginDTO {
 	public void setMarginIndicator(double MarginIndicator) {
 		this.MarginIndicator = MarginIndicator;
 	}
-
 	private double NetEquity;
 	
 	/**
-	 * ???
+	 * Net equity expressed in the clients base currency.
 	 */
 	public double getNetEquity() {
 		return NetEquity;
@@ -65,11 +61,10 @@ public class ClientAccountMarginDTO {
 	public void setNetEquity(double NetEquity) {
 		this.NetEquity = NetEquity;
 	}
-
 	private double OpenTradeEquity;
 	
 	/**
-	 * ???
+	 * open trade equity (open / unrealised PNL) expressed in the client's base currency.
 	 */
 	public double getOpenTradeEquity() {
 		return OpenTradeEquity;
@@ -78,11 +73,10 @@ public class ClientAccountMarginDTO {
 	public void setOpenTradeEquity(double OpenTradeEquity) {
 		this.OpenTradeEquity = OpenTradeEquity;
 	}
-
 	private double TradeableFunds;
 	
 	/**
-	 * ???
+	 * tradable funds expressed in the client's base currency.
 	 */
 	public double getTradeableFunds() {
 		return TradeableFunds;
@@ -91,11 +85,10 @@ public class ClientAccountMarginDTO {
 	public void setTradeableFunds(double TradeableFunds) {
 		this.TradeableFunds = TradeableFunds;
 	}
-
 	private double PendingFunds;
 	
 	/**
-	 * ???
+	 * N/A
 	 */
 	public double getPendingFunds() {
 		return PendingFunds;
@@ -104,11 +97,10 @@ public class ClientAccountMarginDTO {
 	public void setPendingFunds(double PendingFunds) {
 		this.PendingFunds = PendingFunds;
 	}
-
 	private double TradingResource;
 	
 	/**
-	 * ???
+	 * trading resource expressed in the client's base currency.
 	 */
 	public double getTradingResource() {
 		return TradingResource;
@@ -117,11 +109,10 @@ public class ClientAccountMarginDTO {
 	public void setTradingResource(double TradingResource) {
 		this.TradingResource = TradingResource;
 	}
-
 	private double TotalMarginRequirement;
 	
 	/**
-	 * ???
+	 * total margin requirement expressed in the client's base currency.
 	 */
 	public double getTotalMarginRequirement() {
 		return TotalMarginRequirement;
@@ -130,11 +121,10 @@ public class ClientAccountMarginDTO {
 	public void setTotalMarginRequirement(double TotalMarginRequirement) {
 		this.TotalMarginRequirement = TotalMarginRequirement;
 	}
-
 	private int CurrencyId;
 	
 	/**
-	 * ???
+	 * The clients base currency id.
 	 */
 	public int getCurrencyId() {
 		return CurrencyId;
@@ -143,11 +133,10 @@ public class ClientAccountMarginDTO {
 	public void setCurrencyId(int CurrencyId) {
 		this.CurrencyId = CurrencyId;
 	}
-
 	private String CurrencyISO;
 	
 	/**
-	 * ???
+	 * The clients base currency iso code.
 	 */
 	public String getCurrencyISO() {
 		return CurrencyISO;
@@ -156,6 +145,5 @@ public class ClientAccountMarginDTO {
 	public void setCurrencyISO(String CurrencyISO) {
 		this.CurrencyISO = CurrencyISO;
 	}
-
 }
 

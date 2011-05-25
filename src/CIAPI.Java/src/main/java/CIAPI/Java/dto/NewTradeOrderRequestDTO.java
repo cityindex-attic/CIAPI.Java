@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class NewTradeOrderRequestDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public NewTradeOrderRequestDTO() {
 	}
-
 	
 	private int MarketId;
 	
@@ -26,7 +25,30 @@ public class NewTradeOrderRequestDTO {
 	public void setMarketId(int MarketId) {
 		this.MarketId = MarketId;
 	}
-
+	private String Currency;
+	
+	/**
+	 * Currency to place order in
+	 */
+	public String getCurrency() {
+		return Currency;
+	}
+	
+	public void setCurrency(String Currency) {
+		this.Currency = Currency;
+	}
+	private boolean AutoRollover;
+	
+	/**
+	 * Flag to indicate whether the trade will automatically roll into the next market when the current market expires
+	 */
+	public boolean getAutoRollover() {
+		return AutoRollover;
+	}
+	
+	public void setAutoRollover(boolean AutoRollover) {
+		this.AutoRollover = AutoRollover;
+	}
 	private String Direction;
 	
 	/**
@@ -39,7 +61,6 @@ public class NewTradeOrderRequestDTO {
 	public void setDirection(String Direction) {
 		this.Direction = Direction;
 	}
-
 	private double Quantity;
 	
 	/**
@@ -52,7 +73,18 @@ public class NewTradeOrderRequestDTO {
 	public void setQuantity(double Quantity) {
 		this.Quantity = Quantity;
 	}
-
+	private String QuoteId;
+	
+	/**
+	 * Quote Id
+	 */
+	public String getQuoteId() {
+		return QuoteId;
+	}
+	
+	public void setQuoteId(String QuoteId) {
+		this.QuoteId = QuoteId;
+	}
 	private double BidPrice;
 	
 	/**
@@ -65,7 +97,6 @@ public class NewTradeOrderRequestDTO {
 	public void setBidPrice(double BidPrice) {
 		this.BidPrice = BidPrice;
 	}
-
 	private double OfferPrice;
 	
 	/**
@@ -78,7 +109,6 @@ public class NewTradeOrderRequestDTO {
 	public void setOfferPrice(double OfferPrice) {
 		this.OfferPrice = OfferPrice;
 	}
-
 	private String AuditId;
 	
 	/**
@@ -91,7 +121,6 @@ public class NewTradeOrderRequestDTO {
 	public void setAuditId(String AuditId) {
 		this.AuditId = AuditId;
 	}
-
 	private int TradingAccountId;
 	
 	/**
@@ -104,20 +133,18 @@ public class NewTradeOrderRequestDTO {
 	public void setTradingAccountId(int TradingAccountId) {
 		this.TradingAccountId = TradingAccountId;
 	}
-
-	private CIAPI.Java.dto.GatewayIfDoneDTO[] IfDone;
+	private CIAPI.Java.dto.ApiIfDoneDTO[] IfDone;
 	
 	/**
 	 * List of IfDone Orders which will be filled when the initial trade/order is triggered
 	 */
-	public CIAPI.Java.dto.GatewayIfDoneDTO[] getIfDone() {
+	public CIAPI.Java.dto.ApiIfDoneDTO[] getIfDone() {
 		return IfDone;
 	}
 	
-	public void setIfDone(CIAPI.Java.dto.GatewayIfDoneDTO[] IfDone) {
+	public void setIfDone(CIAPI.Java.dto.ApiIfDoneDTO[] IfDone) {
 		this.IfDone = IfDone;
 	}
-
 	private int[] Close;
 	
 	/**
@@ -130,6 +157,5 @@ public class NewTradeOrderRequestDTO {
 	public void setClose(int[] Close) {
 		this.Close = Close;
 	}
-
 }
 

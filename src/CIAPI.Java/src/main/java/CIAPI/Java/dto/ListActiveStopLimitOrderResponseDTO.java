@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class ListActiveStopLimitOrderResponseDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public ListActiveStopLimitOrderResponseDTO() {
 	}
-
 	
 	private CIAPI.Java.dto.ApiActiveStopLimitOrderDTO[] ActiveStopLimitOrders;
 	
@@ -26,6 +25,5 @@ public class ListActiveStopLimitOrderResponseDTO {
 	public void setActiveStopLimitOrders(CIAPI.Java.dto.ApiActiveStopLimitOrderDTO[] ActiveStopLimitOrders) {
 		this.ActiveStopLimitOrders = ActiveStopLimitOrders;
 	}
-
 }
 

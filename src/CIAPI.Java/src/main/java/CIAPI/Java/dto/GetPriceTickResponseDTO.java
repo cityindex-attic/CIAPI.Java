@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class GetPriceTickResponseDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public GetPriceTickResponseDTO() {
 	}
-
 	
 	private CIAPI.Java.dto.PriceTickDTO[] PriceTicks;
 	
@@ -26,6 +25,5 @@ public class GetPriceTickResponseDTO {
 	public void setPriceTicks(CIAPI.Java.dto.PriceTickDTO[] PriceTicks) {
 		this.PriceTicks = PriceTicks;
 	}
-
 }
 

@@ -8,11 +8,22 @@ package CIAPI.Java.dto;
 public class ListMarketInformationRequestDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public ListMarketInformationRequestDTO() {
 	}
-
 	
+	private int[] MarketIds;
+	
+	/**
+	 * The list of market ids
+	 */
+	public int[] getMarketIds() {
+		return MarketIds;
+	}
+	
+	public void setMarketIds(int[] MarketIds) {
+		this.MarketIds = MarketIds;
+	}
 }
 

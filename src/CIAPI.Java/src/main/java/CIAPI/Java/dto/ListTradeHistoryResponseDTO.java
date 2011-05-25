@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class ListTradeHistoryResponseDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public ListTradeHistoryResponseDTO() {
 	}
-
 	
 	private CIAPI.Java.dto.ApiTradeHistoryDTO[] TradeHistory;
 	
@@ -26,6 +25,5 @@ public class ListTradeHistoryResponseDTO {
 	public void setTradeHistory(CIAPI.Java.dto.ApiTradeHistoryDTO[] TradeHistory) {
 		this.TradeHistory = TradeHistory;
 	}
-
 }
 

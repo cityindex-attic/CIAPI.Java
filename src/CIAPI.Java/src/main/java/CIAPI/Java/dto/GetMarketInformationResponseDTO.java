@@ -8,24 +8,22 @@ package CIAPI.Java.dto;
 public class GetMarketInformationResponseDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public GetMarketInformationResponseDTO() {
 	}
-
 	
-	private CIAPI.Java.dto.MarketInformationDTO MarketInformation;
+	private CIAPI.Java.dto.ApiMarketInformationDTO MarketInformation;
 	
 	/**
 	 * The requested market information.
 	 */
-	public CIAPI.Java.dto.MarketInformationDTO getMarketInformation() {
+	public CIAPI.Java.dto.ApiMarketInformationDTO getMarketInformation() {
 		return MarketInformation;
 	}
 	
-	public void setMarketInformation(CIAPI.Java.dto.MarketInformationDTO MarketInformation) {
+	public void setMarketInformation(CIAPI.Java.dto.ApiMarketInformationDTO MarketInformation) {
 		this.MarketInformation = MarketInformation;
 	}
-
 }
 

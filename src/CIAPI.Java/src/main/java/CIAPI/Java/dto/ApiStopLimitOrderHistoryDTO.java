@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class ApiStopLimitOrderHistoryDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public ApiStopLimitOrderHistoryDTO() {
 	}
-
 	
 	private int OrderId;
 	
@@ -26,7 +25,6 @@ public class ApiStopLimitOrderHistoryDTO {
 	public void setOrderId(int OrderId) {
 		this.OrderId = OrderId;
 	}
-
 	private int MarketId;
 	
 	/**
@@ -39,7 +37,6 @@ public class ApiStopLimitOrderHistoryDTO {
 	public void setMarketId(int MarketId) {
 		this.MarketId = MarketId;
 	}
-
 	private String MarketName;
 	
 	/**
@@ -52,7 +49,6 @@ public class ApiStopLimitOrderHistoryDTO {
 	public void setMarketName(String MarketName) {
 		this.MarketName = MarketName;
 	}
-
 	private String Direction;
 	
 	/**
@@ -65,7 +61,6 @@ public class ApiStopLimitOrderHistoryDTO {
 	public void setDirection(String Direction) {
 		this.Direction = Direction;
 	}
-
 	private double OriginalQuantity;
 	
 	/**
@@ -78,7 +73,6 @@ public class ApiStopLimitOrderHistoryDTO {
 	public void setOriginalQuantity(double OriginalQuantity) {
 		this.OriginalQuantity = OriginalQuantity;
 	}
-
 	private String Price;
 	
 	/**
@@ -91,7 +85,6 @@ public class ApiStopLimitOrderHistoryDTO {
 	public void setPrice(String Price) {
 		this.Price = Price;
 	}
-
 	private double TriggerPrice;
 	
 	/**
@@ -104,7 +97,6 @@ public class ApiStopLimitOrderHistoryDTO {
 	public void setTriggerPrice(double TriggerPrice) {
 		this.TriggerPrice = TriggerPrice;
 	}
-
 	private int TradingAccountId;
 	
 	/**
@@ -117,7 +109,6 @@ public class ApiStopLimitOrderHistoryDTO {
 	public void setTradingAccountId(int TradingAccountId) {
 		this.TradingAccountId = TradingAccountId;
 	}
-
 	private int TypeId;
 	
 	/**
@@ -130,7 +121,6 @@ public class ApiStopLimitOrderHistoryDTO {
 	public void setTypeId(int TypeId) {
 		this.TypeId = TypeId;
 	}
-
 	private int OrderApplicabilityId;
 	
 	/**
@@ -143,7 +133,6 @@ public class ApiStopLimitOrderHistoryDTO {
 	public void setOrderApplicabilityId(int OrderApplicabilityId) {
 		this.OrderApplicabilityId = OrderApplicabilityId;
 	}
-
 	private String Currency;
 	
 	/**
@@ -156,7 +145,6 @@ public class ApiStopLimitOrderHistoryDTO {
 	public void setCurrency(String Currency) {
 		this.Currency = Currency;
 	}
-
 	private int StatusId;
 	
 	/**
@@ -169,7 +157,6 @@ public class ApiStopLimitOrderHistoryDTO {
 	public void setStatusId(int StatusId) {
 		this.StatusId = StatusId;
 	}
-
 	private String LastChangedDateTimeUtc;
 	
 	/**
@@ -182,6 +169,5 @@ public class ApiStopLimitOrderHistoryDTO {
 	public void setLastChangedDateTimeUtc(String LastChangedDateTimeUtc) {
 		this.LastChangedDateTimeUtc = LastChangedDateTimeUtc;
 	}
-
 }
 

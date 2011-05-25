@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class ApiOpenPositionDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public ApiOpenPositionDTO() {
 	}
-
 	
 	private int OrderId;
 	
@@ -26,7 +25,6 @@ public class ApiOpenPositionDTO {
 	public void setOrderId(int OrderId) {
 		this.OrderId = OrderId;
 	}
-
 	private int MarketId;
 	
 	/**
@@ -39,7 +37,6 @@ public class ApiOpenPositionDTO {
 	public void setMarketId(int MarketId) {
 		this.MarketId = MarketId;
 	}
-
 	private String MarketName;
 	
 	/**
@@ -52,7 +49,6 @@ public class ApiOpenPositionDTO {
 	public void setMarketName(String MarketName) {
 		this.MarketName = MarketName;
 	}
-
 	private String Direction;
 	
 	/**
@@ -65,7 +61,6 @@ public class ApiOpenPositionDTO {
 	public void setDirection(String Direction) {
 		this.Direction = Direction;
 	}
-
 	private double Quantity;
 	
 	/**
@@ -78,7 +73,6 @@ public class ApiOpenPositionDTO {
 	public void setQuantity(double Quantity) {
 		this.Quantity = Quantity;
 	}
-
 	private double Price;
 	
 	/**
@@ -91,7 +85,6 @@ public class ApiOpenPositionDTO {
 	public void setPrice(double Price) {
 		this.Price = Price;
 	}
-
 	private int TradingAccountId;
 	
 	/**
@@ -104,7 +97,6 @@ public class ApiOpenPositionDTO {
 	public void setTradingAccountId(int TradingAccountId) {
 		this.TradingAccountId = TradingAccountId;
 	}
-
 	private String Currency;
 	
 	/**
@@ -117,7 +109,6 @@ public class ApiOpenPositionDTO {
 	public void setCurrency(String Currency) {
 		this.Currency = Currency;
 	}
-
 	private int Status;
 	
 	/**
@@ -130,7 +121,6 @@ public class ApiOpenPositionDTO {
 	public void setStatus(int Status) {
 		this.Status = Status;
 	}
-
 	private CIAPI.Java.dto.ApiBasicStopLimitOrderDTO StopOrder;
 	
 	/**
@@ -143,7 +133,6 @@ public class ApiOpenPositionDTO {
 	public void setStopOrder(CIAPI.Java.dto.ApiBasicStopLimitOrderDTO StopOrder) {
 		this.StopOrder = StopOrder;
 	}
-
 	private CIAPI.Java.dto.ApiBasicStopLimitOrderDTO LimitOrder;
 	
 	/**
@@ -156,7 +145,6 @@ public class ApiOpenPositionDTO {
 	public void setLimitOrder(CIAPI.Java.dto.ApiBasicStopLimitOrderDTO LimitOrder) {
 		this.LimitOrder = LimitOrder;
 	}
-
 	private String LastChangedDateTimeUTC;
 	
 	/**
@@ -169,6 +157,5 @@ public class ApiOpenPositionDTO {
 	public void setLastChangedDateTimeUTC(String LastChangedDateTimeUTC) {
 		this.LastChangedDateTimeUTC = LastChangedDateTimeUTC;
 	}
-
 }
 

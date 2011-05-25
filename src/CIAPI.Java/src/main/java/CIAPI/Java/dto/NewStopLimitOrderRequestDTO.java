@@ -8,11 +8,10 @@ package CIAPI.Java.dto;
 public class NewStopLimitOrderRequestDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public NewStopLimitOrderRequestDTO() {
 	}
-
 	
 	private int OrderId;
 	
@@ -26,7 +25,6 @@ public class NewStopLimitOrderRequestDTO {
 	public void setOrderId(int OrderId) {
 		this.OrderId = OrderId;
 	}
-
 	private int MarketId;
 	
 	/**
@@ -39,7 +37,6 @@ public class NewStopLimitOrderRequestDTO {
 	public void setMarketId(int MarketId) {
 		this.MarketId = MarketId;
 	}
-
 	private String Currency;
 	
 	/**
@@ -52,7 +49,6 @@ public class NewStopLimitOrderRequestDTO {
 	public void setCurrency(String Currency) {
 		this.Currency = Currency;
 	}
-
 	private boolean AutoRollover;
 	
 	/**
@@ -65,7 +61,6 @@ public class NewStopLimitOrderRequestDTO {
 	public void setAutoRollover(boolean AutoRollover) {
 		this.AutoRollover = AutoRollover;
 	}
-
 	private String Direction;
 	
 	/**
@@ -78,7 +73,6 @@ public class NewStopLimitOrderRequestDTO {
 	public void setDirection(String Direction) {
 		this.Direction = Direction;
 	}
-
 	private double Quantity;
 	
 	/**
@@ -91,7 +85,6 @@ public class NewStopLimitOrderRequestDTO {
 	public void setQuantity(double Quantity) {
 		this.Quantity = Quantity;
 	}
-
 	private double BidPrice;
 	
 	/**
@@ -104,7 +97,6 @@ public class NewStopLimitOrderRequestDTO {
 	public void setBidPrice(double BidPrice) {
 		this.BidPrice = BidPrice;
 	}
-
 	private double OfferPrice;
 	
 	/**
@@ -117,7 +109,6 @@ public class NewStopLimitOrderRequestDTO {
 	public void setOfferPrice(double OfferPrice) {
 		this.OfferPrice = OfferPrice;
 	}
-
 	private String AuditId;
 	
 	/**
@@ -130,7 +121,6 @@ public class NewStopLimitOrderRequestDTO {
 	public void setAuditId(String AuditId) {
 		this.AuditId = AuditId;
 	}
-
 	private int TradingAccountId;
 	
 	/**
@@ -143,20 +133,18 @@ public class NewStopLimitOrderRequestDTO {
 	public void setTradingAccountId(int TradingAccountId) {
 		this.TradingAccountId = TradingAccountId;
 	}
-
-	private CIAPI.Java.dto.GatewayIfDoneDTO[] IfDone;
+	private CIAPI.Java.dto.ApiIfDoneDTO[] IfDone;
 	
 	/**
 	 * List of IfDone Orders which will be filled when the initial trade/order is triggered
 	 */
-	public CIAPI.Java.dto.GatewayIfDoneDTO[] getIfDone() {
+	public CIAPI.Java.dto.ApiIfDoneDTO[] getIfDone() {
 		return IfDone;
 	}
 	
-	public void setIfDone(CIAPI.Java.dto.GatewayIfDoneDTO[] IfDone) {
+	public void setIfDone(CIAPI.Java.dto.ApiIfDoneDTO[] IfDone) {
 		this.IfDone = IfDone;
 	}
-
 	private CIAPI.Java.dto.NewStopLimitOrderRequestDTO OcoOrder;
 	
 	/**
@@ -169,7 +157,6 @@ public class NewStopLimitOrderRequestDTO {
 	public void setOcoOrder(CIAPI.Java.dto.NewStopLimitOrderRequestDTO OcoOrder) {
 		this.OcoOrder = OcoOrder;
 	}
-
 	private String Applicability;
 	
 	/**
@@ -182,7 +169,6 @@ public class NewStopLimitOrderRequestDTO {
 	public void setApplicability(String Applicability) {
 		this.Applicability = Applicability;
 	}
-
 	private String ExpiryDateTimeUTC;
 	
 	/**
@@ -195,7 +181,6 @@ public class NewStopLimitOrderRequestDTO {
 	public void setExpiryDateTimeUTC(String ExpiryDateTimeUTC) {
 		this.ExpiryDateTimeUTC = ExpiryDateTimeUTC;
 	}
-
 	private boolean Guaranteed;
 	
 	/**
@@ -208,7 +193,6 @@ public class NewStopLimitOrderRequestDTO {
 	public void setGuaranteed(boolean Guaranteed) {
 		this.Guaranteed = Guaranteed;
 	}
-
 	private double TriggerPrice;
 	
 	/**
@@ -221,6 +205,5 @@ public class NewStopLimitOrderRequestDTO {
 	public void setTriggerPrice(double TriggerPrice) {
 		this.TriggerPrice = TriggerPrice;
 	}
-
 }
 

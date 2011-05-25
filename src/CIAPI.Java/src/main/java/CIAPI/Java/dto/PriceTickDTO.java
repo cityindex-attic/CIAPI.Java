@@ -8,16 +8,15 @@ package CIAPI.Java.dto;
 public class PriceTickDTO {
 
 	/**
-	 * No argument constructor
+	 * No argument constructor 
 	 */
 	public PriceTickDTO() {
 	}
-
 	
 	private String TickDate;
 	
 	/**
-	 * The datetime at which a price tick occured. Accurate to the millisecond
+	 * The datetime at which a price tick occurred. Accurate to the millisecond
 	 */
 	public String getTickDate() {
 		return TickDate;
@@ -26,7 +25,6 @@ public class PriceTickDTO {
 	public void setTickDate(String TickDate) {
 		this.TickDate = TickDate;
 	}
-
 	private double Price;
 	
 	/**
@@ -39,6 +37,5 @@ public class PriceTickDTO {
 	public void setPrice(double Price) {
 		this.Price = Price;
 	}
-
 }
 
