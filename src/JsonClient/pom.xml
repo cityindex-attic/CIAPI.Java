@@ -33,6 +33,12 @@
 	</plugins>
   </build>
    <dependencies>
+   <dependency>
+      <groupId>cityindex</groupId>
+      <artifactId>Util</artifactId>
+      <version>0.1-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpcore</artifactId>

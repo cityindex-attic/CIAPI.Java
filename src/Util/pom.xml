@@ -5,7 +5,7 @@
     <artifactId>CityIndex.Java</artifactId>
     <version>0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>JsonClient</artifactId>
+  <artifactId>Util</artifactId>
   <packaging>jar</packaging>  
   <name>JsonClient</name>
   <properties>
