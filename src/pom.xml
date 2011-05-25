@@ -8,6 +8,7 @@
   <packaging>pom</packaging>
   
   <modules>
+	<module>Util</module>
   	<module>JsonClient</module>
 	<module>CodeGeneration</module>
 	<module>CIAPI.Java</module>
