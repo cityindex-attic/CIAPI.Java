@@ -98,7 +98,7 @@ public class CodeGenMain {
 		// Tell the schema reader where it can find the files it needs
 		SchemaReader rdr = new SchemaReader(schemaStream, smdStream, replacementDirectory);
 		info("Beginning process of emptying directory: " + saveLocation);
-		emptyDirectoryR(new File(saveLocation));
+		emptyDirectory(new File(saveLocation));
 		info("Cleared generation destination location");
 		rdr.createPackage("CIAPI.Java", saveLocation);
 		return saveLocation;
@@ -110,16 +110,21 @@ public class CodeGenMain {
 	 * @param saveLocation
 	 *            the location to clean
 	 */
-	private static void emptyDirectoryR(File root) {
+	private static void emptyDirectory(File root) {
+		emptyDirRecursive(root);
+		root.mkdirs();
+	}
+
+	private static void emptyDirRecursive(File root){
 		trace("Clearing file: " + root);
 		if (root.isDirectory()) {
 			for (File f : root.listFiles()) {
-				emptyDirectoryR(f);
+				emptyDirRecursive(f);
 			}
 		}
 		root.delete();
 	}
-
+	
 	private static InputStream openFileOrUrl(String path) throws FileNotFoundException {
 		debug("Attempting to open local file: " + path);
 		return new FileInputStream(new File(path));

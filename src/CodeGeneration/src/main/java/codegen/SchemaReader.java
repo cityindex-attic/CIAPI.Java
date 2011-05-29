@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -204,8 +203,6 @@ public class SchemaReader {
 		for (ReplacementRoot repl : serviceReplacements) {
 			debug("Processing replacement file: " + repl.getInitialLocation());
 			TemplateFiller filler = new TemplateFiller(repl);
-			String resolvedFileName = repl.fileName(getServices(), packageName);
-			debug("Resolved filename to be: " + resolvedFileName);
 			filler.saveToFile(saveLocation, getServices(), packageName, packageName + ".dto");
 		}
 
@@ -218,11 +215,8 @@ public class SchemaReader {
 			}
 			for (ReplacementRoot repl : dtoReplacements) {
 				trace("Processing replacement file: " + repl.getInitialLocation());
-				String resolvedFileName = repl.fileName(entry.getValue(), entry.getKey(), packageName);
-				trace("Generating DTO file: " + resolvedFileName);
 				TemplateFiller filler = new TemplateFiller(repl);
-				filler.saveToFile(saveLocation + File.separatorChar + "dto/", entry.getValue(), entry.getKey(),
-						packageName + ".dto");
+				filler.saveToFile(saveLocation, entry.getValue(), entry.getKey(), packageName + ".dto");
 			}
 		}
 	}

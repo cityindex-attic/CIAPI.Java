@@ -55,7 +55,9 @@ public class TemplateFiller {
 	}
 
 	/**
-	 * Will save the generated code to the given directory
+	 * Will save the generated code to the given directory. Responsible for creating required
+	 * directories below the specified directory. But it will error out if the given directory
+	 * doesn't exist.
 	 * 
 	 * @param saveLocation
 	 * @param rootModelObject

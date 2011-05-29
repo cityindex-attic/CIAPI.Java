@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="replacement_rule.xsd"
 	objName="dto" extraArgs="args" templateLocation="../code_templates/DTOTemplate.jav"
 	objectType="codegen.modelobjects.DTO">
-	<fileName value="$args[0]" />
+	<fileName value="@dto/$args[0]+@.java" />
 	<replacement name="name" value="$args[0]" />
 	<replacement name="description" value="dto.getDescription()" />
 	<replacement name="packageName" value="$args[1]" />

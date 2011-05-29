@@ -14,7 +14,7 @@ import CIAPI.Java.logging.Log;
  * 
  */
 public class FileNameFiller {
-	private List<SimpleReplacement> fileNameParts;
+	private List<List<SimpleReplacement>> fileNameParts;
 	private boolean beganWithSlash;
 
 	/**
@@ -26,9 +26,15 @@ public class FileNameFiller {
 	public FileNameFiller(String fileName, File replRootLocation) {
 		String[] fileParts = fileName.split("(/|\\\\)");
 		Log.trace("Found the following parts of a file name: " + fileParts);
-		fileNameParts = new ArrayList<SimpleReplacement>();
+		fileNameParts = new ArrayList<List<SimpleReplacement>>();
+		// process each specified directory
 		for (String s : fileParts) {
-			fileNameParts.add(new SimpleReplacement(s, s, null));
+			List<SimpleReplacement> innerList = new ArrayList<SimpleReplacement>();
+			String[] concatParts = s.split("\\+");
+			for (String concatPart : concatParts) {
+				innerList.add(new SimpleReplacement(concatPart, concatPart, null));
+			}
+			fileNameParts.add(innerList);
 		}
 		beganWithSlash = fileName.startsWith("/");
 	}
@@ -44,9 +50,12 @@ public class FileNameFiller {
 	 */
 	public String resolveFileName(Object obj, String... args) {
 		String name = "";
-		for (SimpleReplacement repl : fileNameParts) {
-			name += "/" + repl.resolveValue(obj, args).toString();
+		for (List<SimpleReplacement> concatPart : fileNameParts) {
+			for (SimpleReplacement repl : concatPart) {
+				name += repl.resolveValue(obj, args).toString();
+			}
+			name += "/";
 		}
-		return beganWithSlash ? name : name.substring(1);
+		return beganWithSlash ? "/" + name : name;
 	}
 }
