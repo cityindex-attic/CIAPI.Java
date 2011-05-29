@@ -2,7 +2,6 @@ package codegen.codetemplates.templatecompletion;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintStream;
 import static CIAPI.Java.logging.Log.debug;
 import static CIAPI.Java.logging.Log.error;
@@ -68,11 +67,33 @@ public class TemplateFiller {
 		if (!new File(saveLocation).isDirectory()) {
 			error(new IllegalArgumentException("The given location was not a directory."));
 		}
-		File saveLoc = new File(saveLocation, replacemnetTemplate.fileName(rootModelObject, args));
+		File saveLoc = resolveSaveLocation(saveLocation, rootModelObject, args);
 		saveLoc.getParentFile().mkdirs();
 		debug("Saving TemplateFiller to file: " + saveLoc);
 		PrintStream dtoOut = new PrintStream(saveLoc);
 		dtoOut.println(fillTemplate(rootModelObject, args));
 		dtoOut.close();
+	}
+
+	/**
+	 * If a replacement file specifies that it should be saved in an absolute location, we honor
+	 * that. Otherwise, we will place it in a directory below the specified save location. (Relative
+	 * file paths are preferred)
+	 * 
+	 * @param saveLocation
+	 *            the specified save location
+	 * @param rootModelObject
+	 *            the object used to create the filename
+	 * @param args
+	 *            any extra arguments required
+	 * @return the file to save this filled template to
+	 */
+	private File resolveSaveLocation(String saveLocation, Object rootModelObject, String... args) {
+		File initialLocation = replacemnetTemplate.fileName(rootModelObject, args);
+		if (initialLocation.isAbsolute()) {
+			return initialLocation;
+		} else {
+			return new File(saveLocation, initialLocation.getPath());
+		}
 	}
 }

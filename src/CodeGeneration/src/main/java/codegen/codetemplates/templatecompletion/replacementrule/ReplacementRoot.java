@@ -88,7 +88,7 @@ public class ReplacementRoot implements Iterable<Replacement> {
 	 *            any extra arguments provided with this replacement
 	 * @return the String to save this file as
 	 */
-	public String fileName(Object obj, String... args) {
+	public File fileName(Object obj, String... args) {
 		return fileName.resolveFileName(obj, args);
 	}
 
