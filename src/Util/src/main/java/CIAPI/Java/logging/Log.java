@@ -1,5 +1,7 @@
 package CIAPI.Java.logging;
 
+import java.io.File;
+
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
@@ -16,10 +18,11 @@ public class Log {
 	private static final boolean trace = true;
 
 	static {
-		String desiredLogger = "files/log_config/log_config.xml";
-		try {
+		String desiredLogger = "files/log_config/log_config.xml.x";
+		File f = new File(desiredLogger);
+		if (f.exists()) {
 			DOMConfigurator.configure(desiredLogger);
-		} catch (Throwable e) {
+		} else {
 			BasicConfigurator.configure();
 			warn("Error loading specified logger at: " + desiredLogger);
 		}
