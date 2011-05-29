@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import CIAPI.Java.logging.Log;
+import static CIAPI.Java.logging.Log.*;
 
 /**
  * Similar to a Replacement. Its job is to turn a filename specification into an actual valid
@@ -14,6 +14,8 @@ import CIAPI.Java.logging.Log;
  * 
  */
 public class FileNameFiller {
+
+	private String initialString;
 	/**
 	 * This double list represents the directories and the inner concatenations that might exist
 	 */
@@ -30,8 +32,8 @@ public class FileNameFiller {
 	 *            the name of the place where the replacement file should be saved
 	 */
 	public FileNameFiller(String fileName, File replRootLocation) {
+		this.initialString = fileName;
 		String[] fileParts = fileName.split("(/|\\\\)");
-		Log.trace("Found the following parts of a file name: " + fileParts);
 		fileNameParts = new ArrayList<List<SimpleReplacement>>();
 		// process each specified directory
 		for (String s : fileParts) {
@@ -55,14 +57,16 @@ public class FileNameFiller {
 	 *            any extra args to provide along with the object
 	 * @return the real filename for the object
 	 */
-	public File resolveFileName(Object obj, String... args) {
+	public File resolveFileName(Object obj) {
 		String name = "";
 		for (List<SimpleReplacement> directoryPart : fileNameParts) {
 			for (SimpleReplacement repl : directoryPart) {
-				name += repl.resolveValue(obj, args).toString();
+				name += repl.resolveValue(obj).toString();
 			}
 			name += "/";
 		}
-		return new File(beganWithSlash ? "/" + name : name);
+		File result = new File(beganWithSlash ? "/" + name : name);
+		trace("Turned string '" + initialString + "' into '" + result.getPath() + "'");
+		return result;
 	}
 }

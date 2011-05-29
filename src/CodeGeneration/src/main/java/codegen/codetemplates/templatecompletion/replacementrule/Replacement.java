@@ -57,13 +57,11 @@ public abstract class Replacement {
 	 *            extra arguments passed into the template
 	 * @return the resulting object
 	 */
-	protected Object resolveValue(Object obj, String... args) {
+	protected Object resolveValue(Object obj) {
 		trace("Beginning process of resolving value from object");
 		Object result = obj;
 		// simple args access
-		if (objectValue.startsWith("$args")) {
-			result = indexArray(args, objectValue);
-		} else if (objectValue.startsWith("@")) {
+		if (objectValue.startsWith("@")) {
 			// Here a string literal was given to us
 			return objectValue.substring(1);
 		} else {
@@ -89,7 +87,7 @@ public abstract class Replacement {
 					} else {
 						// We have method args. We need to determine the type
 						Class<?> argType = inferType(methodArgs);
-						Object value = getValue(methodArgs, args);
+						Object value = getValue(methodArgs);
 						Method method2 = result.getClass().getMethod(name, argType);
 						method2.setAccessible(true);
 						trace("Invoking method '" + method2.getName() + "' on object '" + result + "' with parameter '"
@@ -106,10 +104,8 @@ public abstract class Replacement {
 		return result;
 	}
 
-	private Object getValue(String methodArgs, String... args) {
-		if (methodArgs.startsWith("$")) {
-			return indexArray(args, methodArgs);
-		} else if (methodArgs.startsWith("#")) {
+	private Object getValue(String methodArgs) {
+		if (methodArgs.startsWith("#")) {
 			return Integer.parseInt(methodArgs.substring(1));
 		}
 		warn("Could not get value fron value: " + methodArgs);
@@ -143,23 +139,5 @@ public abstract class Replacement {
 	 * @param args
 	 *            any extra arguments that the template needs
 	 */
-	public abstract void fillTemplateHole(Object obj, CodeTemplate template, String... args);
-
-	/**
-	 * Takes an index that looks like "$args[n]" and returns item from arr at position 'n'
-	 * 
-	 * @param arr
-	 *            the array to index
-	 * @param index
-	 *            the string index to parse
-	 * @return the value from the array
-	 */
-	private static String indexArray(String[] arr, String index) {
-		String regex = "\\$args\\[(\\d)\\]";
-		Pattern p = Pattern.compile(regex);
-		Matcher m = p.matcher(index);
-		m.find();
-		int idx = Integer.parseInt(m.group(1));
-		return arr[idx];
-	}
+	public abstract void fillTemplateHole(Object obj, CodeTemplate template);
 }

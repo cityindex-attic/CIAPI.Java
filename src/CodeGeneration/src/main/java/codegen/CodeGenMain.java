@@ -100,7 +100,7 @@ public class CodeGenMain {
 		info("Beginning process of emptying directory: " + saveLocation);
 		emptyDirectory(new File(saveLocation));
 		info("Cleared generation destination location");
-		rdr.createPackage("CIAPI.Java", saveLocation);
+		rdr.createPackage(saveLocation);
 		return saveLocation;
 	}
 

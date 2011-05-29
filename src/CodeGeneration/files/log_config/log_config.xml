@@ -26,5 +26,6 @@
 	<root>
 		<priority value="debug" />
 		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
 	</root>
 </log4j:configuration>

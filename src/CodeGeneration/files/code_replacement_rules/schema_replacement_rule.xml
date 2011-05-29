@@ -4,16 +4,15 @@
 	objName="smd" extraArgs="args" templateLocation="../code_templates/CombinedTemplate.jav"
 	objectType="codegen.modelobjects.SMDDescriptor">
 	<fileName value="@ServiceMethods.java" />
-	<replacement name="packageName" value="$args[0]" />
 	<replacementSet subObjName="method" name="methods"
 		value="smd.getServices().entrySet()">
 		<replacement name="description" value="method.getValue().getDescription()" />
 		<replacement name="return"
-			value="method.getValue().getReturns().get$ref($args[1])" />
+			value="method.getValue().getReturns().get$ref()" />
 		<replacement name="name" value="method.getKey()" />
 		<replacementSet subObjName="p" name="parameters"
 			value="method.getValue().getParameters()">
-			<replacement name="pType" value="p.getType($args[1])" />
+			<replacement name="pType" value="p.getType()" />
 			<replacement name="pName" value="p.getName()" />
 		</replacementSet>
 	</replacementSet>

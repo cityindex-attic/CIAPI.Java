@@ -8,7 +8,8 @@ public class Items {
 		if ($ref == null) {
 			return DTO.convertJsonTypeToJavaType(type);
 		} else {
-			return $ref.replaceAll("#", packageName);
+			String result = $ref.replaceAll("#", packageName);
+			return result.startsWith(".")? result.substring(1): result;
 		}
 	}
 }

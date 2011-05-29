@@ -43,7 +43,7 @@ public class SchemaReader {
 	private String replacementDir;
 
 	private SMDDescriptor smd;
-	private Map<String, DTO> dtos;
+	private List<DTO> dtos;
 
 	private Map<Class<?>, List<ReplacementRoot>> replacements;
 
@@ -66,7 +66,6 @@ public class SchemaReader {
 			throws ClassNotFoundException {
 		this.replacementDir = replacementDirectory;
 		this.replacements = loadReplacements(replacementDirectory);
-		dtos = new HashMap<String, DTO>();
 		// create out Gson. Need to register adapters for some of our classes to work around some
 		// JSON oddities
 		GsonBuilder gb = new GsonBuilder();
@@ -81,8 +80,11 @@ public class SchemaReader {
 		JsonParser parser = new JsonParser();
 		trace("Attempting to parse the Schema stream");
 		JsonObject obj = (JsonObject) parser.parse(new InputStreamReader(schemaStream));
+		dtos = new ArrayList<DTO>();
 		for (Entry<String, JsonElement> entry : obj.entrySet()) {
-			dtos.put(entry.getKey(), g.fromJson(entry.getValue(), DTO.class));
+			DTO result = g.fromJson(entry.getValue(), DTO.class);
+			result.setName(entry.getKey());
+			dtos.add(result);
 		}
 		trace("Successfully parsed stream");
 	}
@@ -169,7 +171,7 @@ public class SchemaReader {
 	 * 
 	 * @return the Model objects for a given schema.
 	 */
-	public Map<String, DTO> getAllModelItems() {
+	public List<DTO> getAllModelItems() {
 		return dtos;
 	}
 
@@ -193,7 +195,7 @@ public class SchemaReader {
 	 * @throws IOException
 	 * @throws MalformedURLException
 	 */
-	public void createPackage(String packageName, String saveLocation) throws IOException {
+	public void createPackage(String saveLocation) throws IOException {
 		// Process all replacements that go with services
 		List<ReplacementRoot> serviceReplacements = this.replacements.get(getServices().getClass());
 		if (serviceReplacements == null) {
@@ -203,20 +205,20 @@ public class SchemaReader {
 		for (ReplacementRoot repl : serviceReplacements) {
 			debug("Processing replacement file: " + repl.getInitialLocation());
 			TemplateFiller filler = new TemplateFiller(repl);
-			filler.saveToFile(saveLocation, getServices(), packageName, packageName + ".dto");
+			filler.saveToFile(saveLocation, getServices());
 		}
 
 		debug("Beginning processing of all dto template replacements");
 		// Process all replacements that go with each DTO
-		for (Entry<String, DTO> entry : getAllModelItems().entrySet()) {
-			List<ReplacementRoot> dtoReplacements = this.replacements.get(entry.getValue().getClass());
+		for (DTO dto : getAllModelItems()) {
+			List<ReplacementRoot> dtoReplacements = this.replacements.get(dto.getClass());
 			if (dtoReplacements == null) {
 				error(new FileNotFoundException("No replacement templates were found for the dtos: " + replacementDir));
 			}
 			for (ReplacementRoot repl : dtoReplacements) {
 				trace("Processing replacement file: " + repl.getInitialLocation());
 				TemplateFiller filler = new TemplateFiller(repl);
-				filler.saveToFile(saveLocation, entry.getValue(), entry.getKey(), packageName + ".dto");
+				filler.saveToFile(saveLocation, dto);
 			}
 		}
 	}

@@ -66,9 +66,7 @@ public class CompoundCodeTemplate implements TemplateEntry {
 		int num = templateReplacements.size();
 		for (CodeTemplate template : templateReplacements) {
 			bldr.append(template.codeReplacement());
-			if (count++ != num - 1) {
-				bldr.append(delim);
-			}
+			bldr.append(delim);
 		}
 		return bldr.toString();
 	}

@@ -1,12 +1,15 @@
-package <@packageName@>.impl;
+package CIAPI.Java.impl;
 
 import java.util.concurrent.Future;
+
 import JsonClient.Java.ApiException;
 import JsonClient.Java.JsonApi;
 import JsonClient.Java.async.AsyncJsonApi;
 import JsonClient.Java.async.CallBack;
 import JsonClient.Java.async.AsyncApiCall;
-import <@packageName@>.ServiceMethods;
+
+import CIAPI.Java.ServiceMethods;
+import CIAPI.Java.dto.*;
 
 public class ServiceMethodsImpl implements ServiceMethods {
 
@@ -17,7 +20,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * <@description@>
 	 */
 	@Override
-	public <@return@> <@name@>(<@@parameters:,@@><@pType@> <@pName@><@@@@>, JsonApi api) 
+	public <@return@> <@name@>(<@@parameters:,@@><@pType@> <@pName@><@@@@> JsonApi api) 
 												throws ApiException {
 		// Collect variables from method
 		String target = "<@target@>";
@@ -54,7 +57,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * <@description@>
 	 */
 	@Override
-	public Future<Object> <@name@>Async(<@@parameters:,@@><@pType@> <@pName@><@@@@>, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
+	public Future<Object> <@name@>Async(<@@parameters:,@@><@pType@> <@pName@><@@@@> AsyncJsonApi api, CallBack... callBacks) throws ApiException {
 		// Collect variables from method
 		String target = "<@target@>";
 		String uriTemplate = "<@uriTemplate@>";

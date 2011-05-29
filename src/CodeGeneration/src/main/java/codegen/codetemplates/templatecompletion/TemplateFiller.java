@@ -46,9 +46,9 @@ public class TemplateFiller {
 	 *            any additional arguments that the template or replacement file may require
 	 * @return the template that was replaced by the given replacement rules and model object
 	 */
-	public String fillTemplate(Object rootModelObject, String... args) {
+	public String fillTemplate(Object rootModelObject) {
 		for (Replacement r : replacemnetTemplate) {
-			r.fillTemplateHole(rootModelObject, toFill, args);
+			r.fillTemplateHole(rootModelObject, toFill);
 		}
 		return toFill.codeReplacement();
 	}
@@ -63,15 +63,15 @@ public class TemplateFiller {
 	 * @param args
 	 * @throws FileNotFoundException
 	 */
-	public void saveToFile(String saveLocation, Object rootModelObject, String... args) throws FileNotFoundException {
+	public void saveToFile(String saveLocation, Object rootModelObject) throws FileNotFoundException {
 		if (!new File(saveLocation).isDirectory()) {
 			error(new IllegalArgumentException("The given location was not a directory."));
 		}
-		File saveLoc = resolveSaveLocation(saveLocation, rootModelObject, args);
+		File saveLoc = resolveSaveLocation(saveLocation, rootModelObject);
 		saveLoc.getParentFile().mkdirs();
 		debug("Saving TemplateFiller to file: " + saveLoc);
 		PrintStream dtoOut = new PrintStream(saveLoc);
-		dtoOut.println(fillTemplate(rootModelObject, args));
+		dtoOut.println(fillTemplate(rootModelObject));
 		dtoOut.close();
 	}
 
@@ -88,8 +88,8 @@ public class TemplateFiller {
 	 *            any extra arguments required
 	 * @return the file to save this filled template to
 	 */
-	private File resolveSaveLocation(String saveLocation, Object rootModelObject, String... args) {
-		File initialLocation = replacemnetTemplate.fileName(rootModelObject, args);
+	private File resolveSaveLocation(String saveLocation, Object rootModelObject) {
+		File initialLocation = replacemnetTemplate.fileName(rootModelObject);
 		if (initialLocation.isAbsolute()) {
 			return initialLocation;
 		} else {

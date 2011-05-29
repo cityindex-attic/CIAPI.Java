@@ -49,15 +49,15 @@ public class ReplacementSet extends Replacement {
 	}
 
 	@Override
-	public void fillTemplateHole(Object obj, CodeTemplate template, String... args) {
-		Iterable<?> result = (Iterable<?>) resolveValue(obj, args);
+	public void fillTemplateHole(Object obj, CodeTemplate template) {
+		Iterable<?> result = (Iterable<?>) resolveValue(obj);
 		if (result == null) {
 			return;
 		}
 		CompoundCodeTemplate comp = (CompoundCodeTemplate) template.getTemplateEntry(templateValue);
 		CodeTemplate toFill = comp.getEmptyTemplate();
 		for (Object o : result) {
-			fillSubTemplate(o, toFill, comp, args);
+			fillSubTemplate(o, toFill, comp);
 		}
 	}
 
@@ -77,7 +77,7 @@ public class ReplacementSet extends Replacement {
 			CompoundCodeTemplate masterTemplate, String... args) {
 		CodeTemplate clone = subTemplateToFill.copyEmptyTemplate();
 		for (Replacement r : subPlacemnets) {
-			r.fillTemplateHole(subObj, clone, args);
+			r.fillTemplateHole(subObj, clone);
 		}
 		masterTemplate.addMappingSet(clone);
 	}

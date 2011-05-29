@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import CIAPI.Java.xmlcomponents.Jattr;
 import CIAPI.Java.xmlcomponents.Jocument;
 import CIAPI.Java.xmlcomponents.Jode;
 import CIAPI.Java.xmlcomponents.JodeFilter;
@@ -88,8 +89,8 @@ public class ReplacementRoot implements Iterable<Replacement> {
 	 *            any extra arguments provided with this replacement
 	 * @return the String to save this file as
 	 */
-	public File fileName(Object obj, String... args) {
-		return fileName.resolveFileName(obj, args);
+	public File fileName(Object obj) {
+		return fileName.resolveFileName(obj);
 	}
 
 	/**
@@ -152,7 +153,9 @@ public class ReplacementRoot implements Iterable<Replacement> {
 	 * @return the {@link SimpleReplacement} represented by the given node
 	 */
 	private static SimpleReplacement parseSimpleNode(Jode n) {
-		SimpleReplacement rep = new SimpleReplacement(n.attribute("name").value(), n.attribute("value").value(), null);
+		Jattr defult = n.attribute("default");
+		String def = defult==null? null: defult.value();
+		SimpleReplacement rep = new SimpleReplacement(n.attribute("name").value(), n.attribute("value").value(), null, def);
 		return rep;
 	}
 

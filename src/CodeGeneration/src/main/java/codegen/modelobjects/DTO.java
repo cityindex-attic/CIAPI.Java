@@ -18,6 +18,7 @@ import com.google.gson.JsonParseException;
  */
 public class DTO {
 
+	private String name;
 	private String id;
 	private String type;
 	private String description;
@@ -51,6 +52,14 @@ public class DTO {
 
 	public Option[] getOptions() {
 		return options;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public static JsonDeserializer<DTO> getDeSerializer() {

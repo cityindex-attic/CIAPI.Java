@@ -18,13 +18,13 @@ public class Log {
 	private static final boolean trace = true;
 
 	static {
-		String desiredLogger = "files/log_config/log_config.xml.x";
+		String desiredLogger = "files/log_config/log_config.xml";
 		File f = new File(desiredLogger);
 		if (f.exists()) {
 			DOMConfigurator.configure(desiredLogger);
 		} else {
 			BasicConfigurator.configure();
-			warn("Error loading specified logger at: " + desiredLogger);
+			warn("Error loading specified logger at: " + f.getAbsolutePath());
 		}
 	}
 

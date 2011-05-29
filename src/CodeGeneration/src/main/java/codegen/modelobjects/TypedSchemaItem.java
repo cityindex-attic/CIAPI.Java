@@ -25,7 +25,8 @@ public abstract class TypedSchemaItem {
 					"Not sure if it's legal to have a @ref and items attribute.");
 		}
 		if ($ref != null) {
-			return $ref.replaceAll("#", packageName);
+			String result = $ref.replaceAll("#", packageName);
+			return result.startsWith(".")? result.substring(1): result;
 		} else if (items != null) {
 			if (!type.equals("array")) {
 				throw new IllegalStateException(
@@ -37,6 +38,10 @@ public abstract class TypedSchemaItem {
 		}
 	}
 
+	public String getType(){
+		return getType("");
+	}
+	
 	public String getDescription() {
 		return description;
 	}
