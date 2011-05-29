@@ -85,8 +85,6 @@ public class ReplacementRoot implements Iterable<Replacement> {
 	 * 
 	 * @param obj
 	 *            the input object
-	 * @param args
-	 *            any extra arguments provided with this replacement
 	 * @return the String to save this file as
 	 */
 	public File fileName(Object obj) {

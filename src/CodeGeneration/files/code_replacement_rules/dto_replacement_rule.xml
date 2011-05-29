@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <replacementRoot xmlns="http://www.w3schools.com"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="replacement_rule.xsd"
-	objName="dto" extraArgs="args" templateLocation="../code_templates/DTOTemplate.jav"
+	objName="dto" templateLocation="../code_templates/DTOTemplate.jav"
 	objectType="codegen.modelobjects.DTO">
 	<fileName value="@dto/dto.getName()+@.java" />
 	<replacement name="name" value="dto.getName()" />

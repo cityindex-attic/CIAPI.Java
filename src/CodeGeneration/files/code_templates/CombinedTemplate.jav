@@ -1,4 +1,4 @@
-package CIAPI.Java;
+package CIAPI.Java.core;
 
 import java.util.concurrent.Future;
 
@@ -7,7 +7,7 @@ import JsonClient.Java.JsonApi;
 import JsonClient.Java.async.AsyncJsonApi;
 import JsonClient.Java.async.CallBack;
 
-import CIAPI.Java.dto.*;
+import CIAPI.Java.core.dto.*;
 
 /**
  * Auto-generated interface for interacting with the REST CIAPI

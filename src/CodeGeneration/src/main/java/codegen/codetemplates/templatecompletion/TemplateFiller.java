@@ -42,8 +42,6 @@ public class TemplateFiller {
 	 * 
 	 * @param rootModelObject
 	 *            the object to feed the code template and replacement file for replacements
-	 * @param args
-	 *            any additional arguments that the template or replacement file may require
 	 * @return the template that was replaced by the given replacement rules and model object
 	 */
 	public String fillTemplate(Object rootModelObject) {
@@ -60,7 +58,6 @@ public class TemplateFiller {
 	 * 
 	 * @param saveLocation
 	 * @param rootModelObject
-	 * @param args
 	 * @throws FileNotFoundException
 	 */
 	public void saveToFile(String saveLocation, Object rootModelObject) throws FileNotFoundException {
@@ -84,8 +81,6 @@ public class TemplateFiller {
 	 *            the specified save location
 	 * @param rootModelObject
 	 *            the object used to create the filename
-	 * @param args
-	 *            any extra arguments required
 	 * @return the file to save this filled template to
 	 */
 	private File resolveSaveLocation(String saveLocation, Object rootModelObject) {

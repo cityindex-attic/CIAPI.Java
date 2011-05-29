@@ -53,8 +53,6 @@ public class FileNameFiller {
 	 * 
 	 * @param obj
 	 *            the object to resolve the name for
-	 * @param args
-	 *            any extra args to provide along with the object
 	 * @return the real filename for the object
 	 */
 	public File resolveFileName(Object obj) {

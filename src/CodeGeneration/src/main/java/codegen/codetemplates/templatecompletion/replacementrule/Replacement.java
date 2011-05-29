@@ -53,14 +53,11 @@ public abstract class Replacement {
 	 * 
 	 * @param obj
 	 *            the object to mutate
-	 * @param args
-	 *            extra arguments passed into the template
 	 * @return the resulting object
 	 */
 	protected Object resolveValue(Object obj) {
 		trace("Beginning process of resolving value from object");
 		Object result = obj;
-		// simple args access
 		if (objectValue.startsWith("@")) {
 			// Here a string literal was given to us
 			return objectValue.substring(1);
@@ -136,8 +133,6 @@ public abstract class Replacement {
 	 *            the model object used to populate the template
 	 * @param template
 	 *            the code template to fill
-	 * @param args
-	 *            any extra arguments that the template needs
 	 */
 	public abstract void fillTemplateHole(Object obj, CodeTemplate template);
 }

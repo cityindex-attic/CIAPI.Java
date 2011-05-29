@@ -13,7 +13,6 @@
 					minOccurs="0" maxOccurs="unbounded" />
 			</xs:sequence>
 			<xs:attribute name="objName" type="xs:string" />
-			<xs:attribute name="extraArgs" type="xs:string" />
 			<xs:attribute name="templateLocation" type="xs:string" />
 		</xs:complexType>
 	</xs:element>

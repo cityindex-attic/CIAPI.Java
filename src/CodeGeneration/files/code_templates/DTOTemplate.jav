@@ -1,4 +1,4 @@
-package CIAPI.Java.dto;
+package CIAPI.Java.core.dto;
 
 /**
  * !This is an auto generated model object!
