@@ -1,6 +1,14 @@
 package codegen.codetemplates.templatecompletion;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintStream;
+import static CIAPI.Java.logging.Log.debug;
+import static CIAPI.Java.logging.Log.error;
+import static CIAPI.Java.logging.Log.info;
+import static CIAPI.Java.logging.Log.trace;
+import static CIAPI.Java.logging.Log.warn;
 
 import codegen.codetemplates.CodeTemplate;
 import codegen.codetemplates.templatecompletion.replacementrule.Replacement;
@@ -44,5 +52,25 @@ public class TemplateFiller {
 			r.fillTemplateHole(rootModelObject, toFill, args);
 		}
 		return toFill.codeReplacement();
+	}
+
+	/**
+	 * Will save the generated code to the given directory
+	 * 
+	 * @param saveLocation
+	 * @param rootModelObject
+	 * @param args
+	 * @throws FileNotFoundException
+	 */
+	public void saveToFile(String saveLocation, Object rootModelObject, String... args) throws FileNotFoundException {
+		if (!new File(saveLocation).isDirectory()) {
+			error(new IllegalArgumentException("The given location was not a directory."));
+		}
+		File saveLoc = new File(saveLocation, replacemnetTemplate.fileName(rootModelObject, args));
+		saveLoc.getParentFile().mkdirs();
+		debug("Saving TemplateFiller to file: " + saveLoc);
+		PrintStream dtoOut = new PrintStream(saveLoc);
+		dtoOut.println(fillTemplate(rootModelObject, args));
+		dtoOut.close();
 	}
 }

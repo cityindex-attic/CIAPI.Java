@@ -3,6 +3,7 @@ package codegen;
 import static CIAPI.Java.logging.Log.debug;
 import static CIAPI.Java.logging.Log.trace;
 import static CIAPI.Java.logging.Log.error;
+import static CIAPI.Java.logging.Log.warn;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileNotFoundException;
@@ -95,21 +96,23 @@ public class SchemaReader {
 	 * @return
 	 * @throws IOException
 	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
 	 */
 	private Map<Class<?>, List<ReplacementRoot>> loadReplacements(String replacementDirectory)
 			throws ClassNotFoundException {
 		debug("Loading all replacements defined in directory: " + replacementDirectory);
 		Map<Class<?>, List<ReplacementRoot>> ret = new HashMap<Class<?>, List<ReplacementRoot>>();
 		// Loop through each file in the given directory that is and xml file
-		for (File fName : listFilesRecursively(new File(replacementDirectory), new FileFilter() {
-			@Override
-			public boolean accept(File pathname) {
-				return pathname.getName().endsWith("xml");
-			}
-		})) {
+		for (File fName : listFilesRecursively(new File(replacementDirectory), xmlFileFilter)) {
 			// Turn each file into a ReplacementRoot
 			trace("Parsing file into replacement object:" + fName.getAbsolutePath());
-			ReplacementRoot root = new ReplacementRoot(fName.getAbsolutePath());
+			ReplacementRoot root = null;
+			try {
+				root = new ReplacementRoot(fName.getAbsolutePath());
+			} catch (FileNotFoundException e) {
+				warn("Failed to parse ReplRoot file because : " + e.getMessage());
+				continue;
+			}
 			List<ReplacementRoot> toAddTo;
 			// Now we sort the Replacement files by the class they represent
 			if (ret.containsKey(root.getRequiredClass())) {
@@ -123,6 +126,22 @@ public class SchemaReader {
 		return ret;
 	}
 
+	private final FileFilter xmlFileFilter = new FileFilter() {
+		@Override
+		public boolean accept(File pathname) {
+			return pathname.getName().endsWith("xml");
+		}
+	};
+
+	/**
+	 * This will list all files in the given directory that match the given filter
+	 * 
+	 * @param root
+	 *            the directory to look in
+	 * @param filter
+	 *            the filter to apply
+	 * @return a list of files that match the given filter
+	 */
 	private static List<File> listFilesRecursively(File root, FileFilter filter) {
 		List<File> ret = new ArrayList<File>();
 		if (root.isFile()) {
@@ -176,7 +195,6 @@ public class SchemaReader {
 	 * @throws MalformedURLException
 	 */
 	public void createPackage(String packageName, String saveLocation) throws IOException {
-		createDirectories(saveLocation);
 		// Process all replacements that go with services
 		List<ReplacementRoot> serviceReplacements = this.replacements.get(getServices().getClass());
 		if (serviceReplacements == null) {
@@ -188,9 +206,7 @@ public class SchemaReader {
 			TemplateFiller filler = new TemplateFiller(repl);
 			String resolvedFileName = repl.fileName(getServices(), packageName);
 			debug("Resolved filename to be: " + resolvedFileName);
-			PrintStream smdOut = new PrintStream(new File(saveLocation + File.separatorChar + resolvedFileName));
-			smdOut.println(filler.fillTemplate(getServices(), packageName, packageName + ".dto"));
-			smdOut.close();
+			filler.saveToFile(saveLocation, getServices(), packageName, packageName + ".dto");
 		}
 
 		debug("Beginning processing of all dto template replacements");
@@ -205,50 +221,9 @@ public class SchemaReader {
 				String resolvedFileName = repl.fileName(entry.getValue(), entry.getKey(), packageName);
 				trace("Generating DTO file: " + resolvedFileName);
 				TemplateFiller filler = new TemplateFiller(repl);
-				PrintStream dtoOut = new PrintStream(new File(saveLocation + File.separatorChar + "dto/"
-						+ resolvedFileName + ".java"));
-				dtoOut.println(filler.fillTemplate(entry.getValue(), entry.getKey(), packageName + ".dto"));
-				dtoOut.close();
+				filler.saveToFile(saveLocation + File.separatorChar + "dto/", entry.getValue(), entry.getKey(),
+						packageName + ".dto");
 			}
-		}
-	}
-
-	/**
-	 * Ensures that all of the necessary directories are created to put the code in.
-	 * 
-	 * @throws IOException
-	 */
-	private static void createDirectories(String baseDirectory) throws IOException {
-		File f = new File(baseDirectory);
-		ensureDirIsGood(f);
-		String methodImplDir = baseDirectory + File.separatorChar + "impl";
-		f = new File(methodImplDir);
-		ensureDirIsGood(f);
-		String dtoDir = baseDirectory + File.separatorChar + "dto";
-		f = new File(dtoDir);
-		ensureDirIsGood(f);
-	}
-
-	/**
-	 * Ensures that a {@link File} is in the correct state (i.e. is a Directory, exists)
-	 * 
-	 * @param f
-	 * @throws IOException
-	 */
-	private static void ensureDirIsGood(File f) throws IOException {
-		// we need for to exist
-		if (f.exists()) {
-			// We need f to be a directory
-			if (!f.isDirectory()) {
-				throw new IllegalArgumentException(
-						"The given save location must be the base director to save the code: " + f.getAbsolutePath());
-			} else {
-				return;
-			}
-		}
-		// if f did not exist, we need to create f
-		if (!f.mkdirs()) {
-			throw new IOException("There was an error creating the directoriy: " + f.getAbsolutePath());
 		}
 	}
 }

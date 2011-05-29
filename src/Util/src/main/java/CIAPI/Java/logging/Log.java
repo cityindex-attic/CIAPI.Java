@@ -19,7 +19,7 @@ public class Log {
 		String desiredLogger = "files/log_config/log_config.xml";
 		try {
 			DOMConfigurator.configure(desiredLogger);
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			BasicConfigurator.configure();
 			warn("Error loading specified logger at: " + desiredLogger);
 		}

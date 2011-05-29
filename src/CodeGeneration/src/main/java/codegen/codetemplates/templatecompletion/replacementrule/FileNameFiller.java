@@ -1,5 +1,6 @@
 package codegen.codetemplates.templatecompletion.replacementrule;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class FileNameFiller {
 	 * @param fileName
 	 *            the name of the place where the replacement file should be saved
 	 */
-	public FileNameFiller(String fileName) {
+	public FileNameFiller(String fileName, File replRootLocation) {
 		String[] fileParts = fileName.split("(/|\\\\)");
 		Log.trace("Found the following parts of a file name: " + fileParts);
 		fileNameParts = new ArrayList<SimpleReplacement>();

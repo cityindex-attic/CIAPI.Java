@@ -43,8 +43,9 @@ public class ReplacementRoot implements Iterable<Replacement> {
 	 * @param location
 	 *            the file path to the xml relpacement file
 	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException 
 	 */
-	public ReplacementRoot(String location) throws ClassNotFoundException {
+	public ReplacementRoot(String location) throws ClassNotFoundException, FileNotFoundException {
 		this.initialLocation = new File(location);
 		Jocument doc = Jocument.load(location);
 		Jode root = doc.children().first();
@@ -66,7 +67,7 @@ public class ReplacementRoot implements Iterable<Replacement> {
 			replacements.add(nodeToReplacement(n));
 		}
 		Jode fileNameNode = root.children().first();
-		fileName = new FileNameFiller(fileNameNode.attribute("value").value());
+		fileName = new FileNameFiller(fileNameNode.attribute("value").value(), initialLocation);
 	}
 
 	/**
@@ -160,15 +161,19 @@ public class ReplacementRoot implements Iterable<Replacement> {
 		return replacements.iterator();
 	}
 
-	private static File resolveCodeTemplateFilePath(String codeReplacementPath, File replacementLocation) {
+	private static File resolveCodeTemplateFilePath(String codeReplacementPath, File replacementLocation)
+			throws FileNotFoundException {
 		File f = new File(codeReplacementPath);
-		if (f.isAbsolute()) {
-			debug("Parsed code template location: " + f.getAbsolutePath());
-			return f;
-		} else {
-			File result = new File(replacementLocation.getParentFile().getAbsolutePath(), codeReplacementPath);
-			debug("Parsed code template location: " + result.getAbsolutePath());
-			return result;
+		// If the defined file is not absolute, we need to specify that the parent is the directory
+		// the replacement file was in
+		if (!f.isAbsolute()) {
+			f = new File(replacementLocation.getParentFile().getAbsolutePath(), codeReplacementPath);
 		}
+		debug("Parsed code template location: " + f.getAbsolutePath());
+		if (!f.exists()) {
+			error(new FileNotFoundException("Could not find file (" + f.getAbsolutePath()
+					+ ") defined in replacement root."));
+		}
+		return f;
 	}
 }

@@ -65,8 +65,7 @@ public class CodeGenMain {
 	 * @throws SAXException
 	 * @throws ClassNotFoundException
 	 */
-	public static String generateCode(List<ClParam> params) throws ClassNotFoundException,
-			IOException {
+	public static String generateCode(List<ClParam> params) throws ClassNotFoundException, IOException {
 		if (params.size() < 3) {
 			error(new IllegalArgumentException("At least 4 parameters must be provided."));
 		}
@@ -88,8 +87,7 @@ public class CodeGenMain {
 			}
 		}
 		// If any of them are null, then we have a problem
-		if (schemaLocation == null || smdLocation == null || saveLocation == null
-				|| replacementDirectory == null) {
+		if (schemaLocation == null || smdLocation == null || saveLocation == null || replacementDirectory == null) {
 			error("Did not find all required parameters");
 			printUsage();
 			return null;
@@ -99,7 +97,9 @@ public class CodeGenMain {
 		InputStream smdStream = openFileOrUrl(smdLocation);
 		// Tell the schema reader where it can find the files it needs
 		SchemaReader rdr = new SchemaReader(schemaStream, smdStream, replacementDirectory);
+		info("Beginning process of emptying directory: " + saveLocation);
 		emptyDirectoryR(new File(saveLocation));
+		info("Cleared generation destination location");
 		rdr.createPackage("CIAPI.Java", saveLocation);
 		return saveLocation;
 	}
@@ -111,6 +111,7 @@ public class CodeGenMain {
 	 *            the location to clean
 	 */
 	private static void emptyDirectoryR(File root) {
+		trace("Clearing file: " + root);
 		if (root.isDirectory()) {
 			for (File f : root.listFiles()) {
 				emptyDirectoryR(f);
@@ -219,8 +220,7 @@ public class CodeGenMain {
 
 		private void checkValues() {
 			if (!option.startsWith("-")) {
-				throw new IllegalArgumentException("The parameter '" + option
-						+ "' is not a valid switch.");
+				throw new IllegalArgumentException("The parameter '" + option + "' is not a valid switch.");
 			}
 		}
 	}
