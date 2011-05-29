@@ -3,13 +3,11 @@ package CIAPI.Java;
 import java.util.Arrays;
 import java.util.concurrent.Future;
 
-import CIAPI.Java.dto.ApiLogOffResponseDTO;
-import CIAPI.Java.dto.ApiLogOnRequestDTO;
-import CIAPI.Java.dto.ApiLogOnResponseDTO;
-import CIAPI.Java.dto.CancelOrderRequestDTO;
-import CIAPI.Java.dto.NewStopLimitOrderRequestDTO;
-import CIAPI.Java.dto.NewTradeOrderRequestDTO;
-import CIAPI.Java.impl.ServiceMethodsImpl;
+import CIAPI.Java.core.ServiceMethods;
+import CIAPI.Java.core.dto.ApiLogOffResponseDTO;
+import CIAPI.Java.core.dto.ApiLogOnRequestDTO;
+import CIAPI.Java.core.dto.ApiLogOnResponseDTO;
+import CIAPI.Java.core.impl.ServiceMethodsImpl;
 import JsonClient.Java.ApiException;
 import JsonClient.Java.async.AsyncJsonApi;
 import JsonClient.Java.async.CallBack;
