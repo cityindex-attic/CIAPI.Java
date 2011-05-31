@@ -5,8 +5,8 @@
     <artifactId>CityIndex.Java</artifactId>
     <version>0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>CodeGen</artifactId>
-  <packaging>jar</packaging>  
+  <artifactId>CodeGen</artifactId>  
+  <packaging>jar</packaging>
   <name>CodeGeneration</name>
   <properties>
 	<crap4jHome>${project.parent.basedir}${file.separator}..${file.separator}tools${file.separator}crap4j</crap4jHome>

@@ -1,5 +1,10 @@
 package codegen.codetemplates;
 
+import static CIAPI.Java.logging.Log.debug;
+import static CIAPI.Java.logging.Log.trace;
+import static CIAPI.Java.logging.Log.error;
+import static CIAPI.Java.logging.Log.warn;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,8 +67,6 @@ public class CompoundCodeTemplate implements TemplateEntry {
 	@Override
 	public String codeReplacement() {
 		StringBuilder bldr = new StringBuilder();
-		int count = 0;
-		int num = templateReplacements.size();
 		for (CodeTemplate template : templateReplacements) {
 			bldr.append(template.codeReplacement());
 			bldr.append(delim);

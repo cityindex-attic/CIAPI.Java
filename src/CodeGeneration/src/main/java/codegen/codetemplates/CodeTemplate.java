@@ -1,5 +1,10 @@
 package codegen.codetemplates;
 
+import static CIAPI.Java.logging.Log.debug;
+import static CIAPI.Java.logging.Log.trace;
+import static CIAPI.Java.logging.Log.error;
+import static CIAPI.Java.logging.Log.warn;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -35,6 +40,7 @@ public class CodeTemplate implements TemplateEntry {
 	 * @param template
 	 */
 	public CodeTemplate(String template) {
+		debug("Parsing template starting with: " + template.substring(0, Math.min(30, template.length())));
 		templateReplacement = new HashMap<String, TemplateEntry>();
 		fullTemplateString = template;
 		// While there are still compound patterns
@@ -54,8 +60,7 @@ public class CodeTemplate implements TemplateEntry {
 			String delim = null;
 			if (compoundPropNameParts.length == 2)
 				delim = compoundPropNameParts[1];
-			templateReplacement.put(compoundPropNameParts[0], new CompoundCodeTemplate(
-					matchedTemplate, delim));
+			templateReplacement.put(compoundPropNameParts[0], new CompoundCodeTemplate(matchedTemplate, delim));
 			// here we replace the text of the combined template with a simple template entry text.
 			template = template.replace(nextTagString + matchedTemplate + compoundPatternEndS, "<@"
 					+ compoundPropNameParts[0] + "@>");
@@ -118,8 +123,8 @@ public class CodeTemplate implements TemplateEntry {
 		while (true) {
 			String nextOpenTag = findNextTagString(template, currentIndex);
 			// find the next index of an open tag
-			int nextOpenIdx = nextOpenTag == null ? -1 : template
-					.indexOf(nextOpenTag, currentIndex) + nextOpenTag.length();
+			int nextOpenIdx = nextOpenTag == null ? -1 : template.indexOf(nextOpenTag, currentIndex)
+					+ nextOpenTag.length();
 			// find the next index of a closing tag
 			int nextCloseIdx = template.indexOf(compoundPatternEndS, currentIndex);
 			// if we find a close tag before an open tag
@@ -141,16 +146,16 @@ public class CodeTemplate implements TemplateEntry {
 				currentIndex = nextOpenIdx + 1;
 				// Check to make sure we aren't stuck in the loop
 				if (depthCount > MAX_DEPTH_BEFORE_ERROR) {
-					throw new IllegalStateException(
+					error( new IllegalStateException(
 							"The template parser has encountered an error.  "
 									+ "Please make sure your template file is correctly built.  "
-									+ "If there is no error with hte template file, please file a bug with the developers of this API.");
+									+ "If there is no error with hte template file, please file a bug with the developers of this API."));
 				}
 			}
 			// if at any point the depth has gone negative, there is a serious
 			// error
 			if (depthCount < 0) {
-				throw new AssertionError("The code is broken, or the template is.  Check both.");
+				error(new AssertionError("The code is broken, or the template is.  Check both."));
 			}
 		}
 	}
@@ -166,12 +171,12 @@ public class CodeTemplate implements TemplateEntry {
 	 *         {@link EmptyCodeTemplate}s.
 	 */
 	public TemplateEntry putNewTemplateDefinition(String templateKey, TemplateEntry entry) {
+		trace("Addign new template definition: " + templateKey + " =>" + entry.toString());
 		TemplateEntry oldEntry = templateReplacement.put(templateKey, entry);
 		// You can't replace a template definition for a key that doesn't exist
 		if (oldEntry == null) {
-			throw new IllegalArgumentException(
-					"This template does not contain a definition for the given term: "
-							+ templateKey);
+			error(new IllegalArgumentException("This template does not contain a definition for the given term: "
+					+ templateKey));
 		}
 		return oldEntry;
 	}
@@ -226,8 +231,7 @@ public class CodeTemplate implements TemplateEntry {
 	public String codeReplacement() {
 		String code = resultingTemplate;
 		for (Entry<String, TemplateEntry> entry : templateReplacement.entrySet()) {
-			code = code
-					.replaceAll("<@" + entry.getKey() + "@>", entry.getValue().codeReplacement());
+			code = code.replaceAll("<@" + entry.getKey() + "@>", entry.getValue().codeReplacement());
 		}
 		return code;
 	}
