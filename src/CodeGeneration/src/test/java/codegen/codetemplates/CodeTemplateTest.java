@@ -1,37 +1,48 @@
 package codegen.codetemplates;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class CodeTemplateTest {
 	private CodeTemplate template;
+	private static final String templateString = "<@@quotes@@><@quote@>: <@author@>\n<@@@@>";
 
 	@Before
-	public void setUp() {
+	public void setUp() throws FileNotFoundException {
+		template = new CodeTemplate(templateString);
 	}
 
 	@After
-	public void tearDOwn() {
+	public void tearDown() {
 		template = null;
 	}
 
 	@Test
-	public void testLoadTemplate() throws FileNotFoundException {
-		template = CodeTemplate.loadTemplate(new File("files/test/TestTemplate.jav"));
-		CompoundCodeTemplate innerTemplate = (CompoundCodeTemplate) template.getTemplateEntry("quotes");
-		for (int i = 0; i < 5; i++) {
-			CodeTemplate innerTemplatePattern = innerTemplate.getEmptyTemplate();
-			innerTemplatePattern.putNewTemplateDefinition("quote", "This is important quote number " + i);
-			innerTemplatePattern.putNewTemplateDefinition("author", "Author number " + i);
-			innerTemplate.addMappingSet(innerTemplatePattern);
-		}
-		System.out.println(template.codeReplacement());
-		assertTrue(true);
+	public void testLoadSimpleCodeTemplate() throws FileNotFoundException {
+		template = CodeTemplate.loadTemplate(new File(
+				"files/test/TestTemplate.jav"));
+		Assert.assertTrue(true);
+	}
+
+	@Test
+	public void testCodeTemplateStuff(){
+		// Wow, this code sucks....
+		CompoundCodeTemplate compound = (CompoundCodeTemplate) template.getTemplateEntry("quotes");
+		CodeTemplate temp = compound.getEmptyTemplate().copyEmptyTemplate();
+		temp.putNewTemplateDefinition("quote", "I smell sunshine!");
+		temp.putNewTemplateDefinition("author", "A crazy person");
+		compound.addMappingSet(temp);
+		temp = compound.getEmptyTemplate().copyEmptyTemplate();
+		temp.putNewTemplateDefinition("quote", "Whoop da whoop");
+		temp.putNewTemplateDefinition("author", "Me!!");
+		compound.addMappingSet(temp);
+		String code =template.codeReplacement();
+		System.out.println(code);
+		Assert.assertTrue(true);
 	}
 }

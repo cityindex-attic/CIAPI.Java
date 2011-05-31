@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<replacementRoot xmlns="http://www.w3schools.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="replacement_rule.xsd" objName="quotes"
+	templateLocation="TestTemplate.jav" objectType="codegen.modelobjects.QuoteSet">
+	<fileName value="@quotes.txt" />
+	<replacementSet subObjName="quote" name="quotes"
+		value="quotes.getQuotes()">
+		<replacement name="quote" value="quote.getQuote()" />
+		<replacement name="author" value="quote.getAuthor()" />
+	</replacementSet>
+</replacementRoot>

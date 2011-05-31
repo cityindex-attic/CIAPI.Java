@@ -8,10 +8,10 @@ import static CIAPI.Java.logging.Log.warn;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,9 +30,11 @@ public class CodeGenMain {
 	 * 
 	 * @param args
 	 */
-	public static void main(String[] args) throws ClassNotFoundException, IOException {
+	public static void main(String[] args) throws ClassNotFoundException,
+			IOException {
 		info("Beginning the process of generating code");
-		if (args.length == 0 || args[0].matches("(-h|-H|--help)") || args.length % 2 == 1) {
+		if (args.length == 0 || args[0].matches("(-h|-H|--help)")
+				|| args.length % 2 == 1) {
 			debug("Given arguments did not match the expected arguments");
 			CodeGenMain.printUsage();
 			return;
@@ -50,12 +52,14 @@ public class CodeGenMain {
 	 * Uses the specific params to print the usage instructions to standard out
 	 */
 	private static void printUsage() {
-		String usage = "Please specify the following arguments:\n" + SpecificParams.toUsageString();
+		String usage = "Please specify the following arguments:\n"
+				+ SpecificParams.toUsageString();
 		System.out.println(usage);
 	}
 
 	/**
-	 * Given a set of command line parameters, generate the code using a SchemaReader.
+	 * Given a set of command line parameters, generate the code using a
+	 * SchemaReader.
 	 * 
 	 * @param params
 	 *            the command line args after they've been parsed
@@ -65,9 +69,11 @@ public class CodeGenMain {
 	 * @throws SAXException
 	 * @throws ClassNotFoundException
 	 */
-	public static String generateCode(List<ClParam> params) throws ClassNotFoundException, IOException {
+	public static String generateCode(List<ClParam> params)
+			throws ClassNotFoundException, IOException {
 		if (params.size() < 3) {
-			error(new IllegalArgumentException("At least 4 parameters must be provided."));
+			error(new IllegalArgumentException(
+					"At least 4 parameters must be provided."));
 		}
 		// Find all of the required parameters
 		String schemaLocation = null;
@@ -87,7 +93,8 @@ public class CodeGenMain {
 			}
 		}
 		// If any of them are null, then we have a problem
-		if (schemaLocation == null || smdLocation == null || saveLocation == null || replacementDirectory == null) {
+		if (schemaLocation == null || smdLocation == null
+				|| saveLocation == null || replacementDirectory == null) {
 			error("Did not find all required parameters");
 			printUsage();
 			return null;
@@ -96,7 +103,8 @@ public class CodeGenMain {
 		InputStream schemaStream = openFileOrUrl(schemaLocation);
 		InputStream smdStream = openFileOrUrl(smdLocation);
 		// Tell the schema reader where it can find the files it needs
-		SchemaReader rdr = new SchemaReader(schemaStream, smdStream, replacementDirectory);
+		SchemaReader rdr = new SchemaReader(schemaStream, smdStream,
+				replacementDirectory);
 		info("Beginning process of emptying directory: " + saveLocation);
 		emptyDirectory(new File(saveLocation));
 		info("Cleared generation destination location");
@@ -105,7 +113,8 @@ public class CodeGenMain {
 	}
 
 	/**
-	 * Will cleanse the destination directory so we don't run into silly conflicts
+	 * Will cleanse the destination directory so we don't run into silly
+	 * conflicts
 	 * 
 	 * @param saveLocation
 	 *            the location to clean
@@ -115,7 +124,7 @@ public class CodeGenMain {
 		root.mkdirs();
 	}
 
-	private static void emptyDirRecursive(File root){
+	private static void emptyDirRecursive(File root) {
 		trace("Clearing file: " + root);
 		if (root.isDirectory()) {
 			for (File f : root.listFiles()) {
@@ -124,10 +133,16 @@ public class CodeGenMain {
 		}
 		root.delete();
 	}
-	
-	private static InputStream openFileOrUrl(String path) throws FileNotFoundException {
-		debug("Attempting to open local file: " + path);
-		return new FileInputStream(new File(path));
+
+	private static InputStream openFileOrUrl(String path) throws IOException {
+		if (path.startsWith("http")) {
+			debug("Attempting to open url: " + path);
+			URL url = new URL(path);
+			return url.openStream();
+		} else {
+			debug("Attempting to open local file: " + path);
+			return new FileInputStream(new File(path));
+		}
 	}
 
 	/**
@@ -135,7 +150,8 @@ public class CodeGenMain {
 	 * 
 	 * @param array
 	 *            command line arguments from main
-	 * @return a list of ClParam objects that represent the parameters passed into main
+	 * @return a list of ClParam objects that represent the parameters passed
+	 *         into main
 	 */
 	private static List<ClParam> parseParams(String[] array) {
 		List<ClParam> ret = new ArrayList<ClParam>();
@@ -152,10 +168,10 @@ public class CodeGenMain {
 	 * @author Justin Nelson
 	 */
 	static enum SpecificParams {
-		SCHEMA_URI("-sch", "The local file location of the SMD descriptor"), SMD_URI("-smd",
-				"The local file location of the Schema descriptor"), SAVE_LOCATION("-l",
-				"The location to save the generated code"), REPLACEMNT_FILE_DIR("-r",
-				"The directory where your replacement files are located.");
+		SCHEMA_URI("-sch", "The local file or URL location of the SMD descriptor"), SMD_URI(
+				"-smd", "The local file or URL location of the Schema descriptor"), SAVE_LOCATION(
+				"-l", "The location to save the generated code"), REPLACEMNT_FILE_DIR(
+				"-r", "The directory where your replacement files are located.");
 
 		public final String option;
 		public final String description;
@@ -166,7 +182,8 @@ public class CodeGenMain {
 		}
 
 		/**
-		 * Will combine the switch and the description of it's behavior and return a pretty string
+		 * Will combine the switch and the description of it's behavior and
+		 * return a pretty string
 		 * 
 		 * @return what the given {@link SpecificParams} is used for.
 		 */
@@ -183,8 +200,8 @@ public class CodeGenMain {
 		 * 
 		 * @param option
 		 *            the option to match
-		 * @return the {@link SpecificParams} matching the option. Or <code>null</code> if no
-		 *         matches are found.
+		 * @return the {@link SpecificParams} matching the option. Or
+		 *         <code>null</code> if no matches are found.
 		 */
 		public static SpecificParams fromOption(String option) {
 			for (SpecificParams p : values()) {
@@ -198,8 +215,8 @@ public class CodeGenMain {
 	}
 
 	/**
-	 * A class representing a generic command line paramter. It has 2 parts, an option (-l, -smd)
-	 * and a value.
+	 * A class representing a generic command line paramter. It has 2 parts, an
+	 * option (-l, -smd) and a value.
 	 * 
 	 * @author Justin Nelson
 	 * 
@@ -215,7 +232,8 @@ public class CodeGenMain {
 		}
 
 		/**
-		 * Given the generic parameter will try to find the matching specific parameter.
+		 * Given the generic parameter will try to find the matching specific
+		 * parameter.
 		 * 
 		 * @return
 		 */
@@ -225,7 +243,8 @@ public class CodeGenMain {
 
 		private void checkValues() {
 			if (!option.startsWith("-")) {
-				throw new IllegalArgumentException("The parameter '" + option + "' is not a valid switch.");
+				throw new IllegalArgumentException("The parameter '" + option
+						+ "' is not a valid switch.");
 			}
 		}
 	}

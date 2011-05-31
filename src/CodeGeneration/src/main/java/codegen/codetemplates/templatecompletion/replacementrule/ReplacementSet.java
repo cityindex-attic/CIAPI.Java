@@ -1,5 +1,9 @@
 package codegen.codetemplates.templatecompletion.replacementrule;
 
+import static CIAPI.Java.logging.Log.debug;
+import static CIAPI.Java.logging.Log.trace;
+import static CIAPI.Java.logging.Log.error;
+import static CIAPI.Java.logging.Log.warn;
 import java.util.List;
 
 import codegen.codetemplates.CodeTemplate;
@@ -33,8 +37,9 @@ public class ReplacementSet extends Replacement {
 	 * @param delim
 	 *            the delimiter to use to separate subsequent replacements
 	 */
-	public ReplacementSet(String templateValue, String objectValue, String objName,
-			String subObjName, List<Replacement> subPlacements, String delim) {
+	public ReplacementSet(String templateValue, String objectValue,
+			String objName, String subObjName, List<Replacement> subPlacements,
+			String delim) {
 		super(templateValue, objectValue, objName);
 		this.subObjName = subObjName;
 		this.subPlacemnets = subPlacements;
@@ -50,11 +55,17 @@ public class ReplacementSet extends Replacement {
 
 	@Override
 	public void fillTemplateHole(Object obj, CodeTemplate template) {
-		Iterable<?> result = (Iterable<?>) resolveValue(obj);
+		Object objResult = resolveValue(obj);
+		if (!(objResult instanceof Iterable<?>)) {
+			error(new IllegalArgumentException(
+					"Object was not resolved to an instance of an Iterable<?>"));
+		}
+		Iterable<?> result = (Iterable<?>) objResult;
 		if (result == null) {
 			return;
 		}
-		CompoundCodeTemplate comp = (CompoundCodeTemplate) template.getTemplateEntry(templateValue);
+		CompoundCodeTemplate comp = (CompoundCodeTemplate) template
+				.getTemplateEntry(templateValue);
 		CodeTemplate toFill = comp.getEmptyTemplate();
 		for (Object o : result) {
 			fillSubTemplate(o, toFill, comp);
@@ -62,7 +73,8 @@ public class ReplacementSet extends Replacement {
 	}
 
 	/**
-	 * Given a sub object, will perform all sub replacements on the code template.
+	 * Given a sub object, will perform all sub replacements on the code
+	 * template.
 	 * 
 	 * @param subObj
 	 *            the object to transform
@@ -71,8 +83,8 @@ public class ReplacementSet extends Replacement {
 	 * @param masterTemplate
 	 *            the master template that we will add each sub mapping to
 	 */
-	protected void fillSubTemplate(Object subObj, CodeTemplate subTemplateToFill,
-			CompoundCodeTemplate masterTemplate) {
+	protected void fillSubTemplate(Object subObj,
+			CodeTemplate subTemplateToFill, CompoundCodeTemplate masterTemplate) {
 		CodeTemplate clone = subTemplateToFill.copyEmptyTemplate();
 		for (Replacement r : subPlacemnets) {
 			r.fillTemplateHole(subObj, clone);
