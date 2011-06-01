@@ -14,6 +14,7 @@ import org.apache.log4j.xml.DOMConfigurator;
  */
 public class Log {
 
+	private static boolean skipLogging = false;
 	private static final boolean debug = true;
 	private static final boolean trace = true;
 
@@ -23,8 +24,10 @@ public class Log {
 		if (f.exists()) {
 			DOMConfigurator.configure(desiredLogger);
 		} else {
-			BasicConfigurator.configure();
-			warn("Error loading specified logger at: " + f.getAbsolutePath());
+			skipLogging = true;
+			System.out
+					.println("Not logging any thing :( - couldn't find log file at: "
+							+ desiredLogger);
 		}
 	}
 
@@ -49,7 +52,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void trace(Object message) {
-		if (trace)
+		if (trace && !skipLogging)
 			getLogger().trace(message);
 	}
 
@@ -59,7 +62,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void debug(Object message) {
-		if (debug)
+		if (debug && !skipLogging)
 			getLogger().debug(message);
 	}
 
@@ -69,7 +72,8 @@ public class Log {
 	 * @param message
 	 */
 	public static void info(Object message) {
-		getLogger().info(message);
+		if (!skipLogging)
+			getLogger().info(message);
 	}
 
 	/**
@@ -78,7 +82,8 @@ public class Log {
 	 * @param message
 	 */
 	public static void warn(Object message) {
-		getLogger().warn(message);
+		if (!skipLogging)
+			getLogger().warn(message);
 	}
 
 	/**
@@ -88,7 +93,8 @@ public class Log {
 	 * @param error
 	 */
 	public static void warn(Object message, Exception error) {
-		getLogger().warn(message, error);
+		if (!skipLogging)
+			getLogger().warn(message, error);
 	}
 
 	/**
@@ -97,7 +103,8 @@ public class Log {
 	 * @param message
 	 */
 	public static void error(String message) {
-		getLogger().error(message);
+		if (!skipLogging)
+			getLogger().error(message);
 	}
 
 	/**
@@ -107,7 +114,8 @@ public class Log {
 	 * @throws T
 	 */
 	public static <T extends Throwable> void error(T message) throws T {
-		getLogger().error(message);
+		if (!skipLogging)
+			getLogger().error(message);
 		throw message;
 	}
 
@@ -118,7 +126,7 @@ public class Log {
 	 * @param error
 	 */
 	public static void error(Object message, Exception error) {
-		getLogger().error(message, error);
+		if (!skipLogging)
+			getLogger().error(message, error);
 	}
-
 }
