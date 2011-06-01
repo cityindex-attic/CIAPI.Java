@@ -315,3 +315,1930 @@
 [31/05/11 12:44:24:024 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@@quotes@@><@quote@>: <@autho
 [31/05/11 12:44:24:024 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@quote@>: <@author@>
 
+[31/05/11 09:50:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@@quotes@@><@quote@>: <@autho
+[31/05/11 09:50:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@quote@>: <@author@>
+
+[31/05/11 09:50:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: Here is a list of quotes from 
+[31/05/11 09:50:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	"<@quote@>"
+	 - <@author@>
+
+[31/05/11 09:50:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@@quotes@@><@quote@>: <@autho
+[31/05/11 09:50:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@quote@>: <@author@>
+
+[31/05/11 09:50:39:039 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\test\TestTemplate.jav
+[31/05/11 09:50:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: Here is a list of quotes from 
+[31/05/11 09:50:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	"<@quote@>"
+	 - <@author@>
+
+[31/05/11 09:57:09:009 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@@quotes@@><@quote@>: <@autho
+[31/05/11 09:57:09:009 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@quote@>: <@author@>
+
+[31/05/11 09:57:09:009 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: Here is a list of quotes from 
+[31/05/11 09:57:09:009 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	"<@quote@>"
+	 - <@author@>
+
+[31/05/11 09:57:09:009 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@@quotes@@><@quote@>: <@autho
+[31/05/11 09:57:09:009 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@quote@>: <@author@>
+
+[31/05/11 09:57:09:009 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\test\TestTemplate.jav
+[31/05/11 09:57:09:009 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: Here is a list of quotes from 
+[31/05/11 09:57:09:009 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	"<@quote@>"
+	 - <@author@>
+
+[31/05/11 10:24:44:044 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@@quotes@@><@quote@>: <@autho
+[31/05/11 10:24:44:044 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@quote@>: <@author@>
+
+[31/05/11 10:24:44:044 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: Here is a list of quotes from 
+[31/05/11 10:24:44:044 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	"<@quote@>"
+	 - <@author@>
+
+[31/05/11 10:24:44:044 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@@quotes@@><@quote@>: <@autho
+[31/05/11 10:24:44:044 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@quote@>: <@author@>
+
+[31/05/11 10:24:45:045 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\test\TestTemplate.jav
+[31/05/11 10:24:45:045 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: Here is a list of quotes from 
+[31/05/11 10:24:45:045 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	"<@quote@>"
+	 - <@author@>
+
+[31/05/11 10:31:54:054 CDT]  INFO codegen.CodeGenMain: Beginning the process of generating code
+[31/05/11 10:31:54:054 CDT] DEBUG codegen.CodeGenMain: Attempting to open local file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\smdFiles\schema.js
+[31/05/11 10:31:54:054 CDT] DEBUG codegen.CodeGenMain: Attempting to open local file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\smdFiles\smd.js
+[31/05/11 10:31:54:054 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules
+[31/05/11 10:31:54:054 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[31/05/11 10:31:54:054 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[31/05/11 10:31:54:054 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[31/05/11 10:31:55:055 CDT]  INFO codegen.CodeGenMain: Beginning process of emptying directory: C:\code_gen
+[31/05/11 10:31:55:055 CDT]  INFO codegen.CodeGenMain: Cleared generation destination location
+[31/05/11 10:31:55:055 CDT] DEBUG codegen.SchemaReader: Processing replacement file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_impl_rule.xml
+[31/05/11 10:31:55:055 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.impl;
+
+[31/05/11 10:31:55:055 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	/**
+	 * !This is an auto gen
+[31/05/11 10:31:55:055 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@pType@> <@pName@>
+[31/05/11 10:31:55:055 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+			filledUri = filledUri.repl
+[31/05/11 10:31:55:055 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\impl\ServiceMethodsImpl.java
+[31/05/11 10:31:56:056 CDT]  WARN replacementrule.Replacement: 
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:92)
+	at codegen.codetemplates.templatecompletion.replacementrule.SimpleReplacement.fillTemplateHole(SimpleReplacement.java:35)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillSubTemplate(ReplacementSet.java:90)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:71)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:208)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+Caused by: java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.LinkedList.checkElementIndex(Unknown Source)
+	at java.util.LinkedList.get(Unknown Source)
+	... 13 more
+[31/05/11 10:31:56:056 CDT]  WARN replacementrule.Replacement: 
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor14.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:92)
+	at codegen.codetemplates.templatecompletion.replacementrule.SimpleReplacement.fillTemplateHole(SimpleReplacement.java:35)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillSubTemplate(ReplacementSet.java:90)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:71)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:208)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+Caused by: java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.LinkedList.checkElementIndex(Unknown Source)
+	at java.util.LinkedList.get(Unknown Source)
+	... 12 more
+[31/05/11 10:31:56:056 CDT] DEBUG codegen.SchemaReader: Processing replacement file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_rule.xml
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core;
+
+impo
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	/**
+	 * !This is an auto gen
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	 * @param <@paramName@> <@pa
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@pType@> <@pName@>
+[31/05/11 10:31:56:056 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\ServiceMethods.java
+[31/05/11 10:31:56:056 CDT] DEBUG codegen.SchemaReader: Beginning processing of all dto template replacements
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:56:056 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiClientAccountWatchlistDTO.java
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:56:056 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiClientAccountWatchlistItemDTO.java
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:56:056 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiLookupDTO.java
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:56:056 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketDTO.java
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:56:056 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketEodDTO.java
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:56:056 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketInformationDTO.java
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:56:056 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\NewsDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\NewsDetailDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiActiveStopLimitOrderDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiBasicStopLimitOrderDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiOpenPositionDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiIfDoneDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiOrderDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiStopLimitOrderDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradeOrderDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiStopLimitOrderHistoryDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradeHistoryDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceBarDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceTickDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ClientAccountMarginDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\OrderDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\QuoteDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradingAccountDTO.java
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:31:57:057 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:31:57:057 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ErrorCode.java
+[31/05/11 10:31:57:057 CDT]  WARN replacementrule.Replacement: 
+java.lang.NullPointerException
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:80)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:58)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:221)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+[31/05/11 10:31:57:057 CDT] ERROR replacementrule.ReplacementSet: java.lang.IllegalArgumentException: Object was not resolved to an instance of an Iterable<?>
+[31/05/11 10:32:57:057 CDT]  INFO codegen.CodeGenMain: Beginning the process of generating code
+[31/05/11 10:32:57:057 CDT] DEBUG codegen.CodeGenMain: Attempting to open local file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\smdFiles\schema.js
+[31/05/11 10:32:57:057 CDT] DEBUG codegen.CodeGenMain: Attempting to open local file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\smdFiles\smd.js
+[31/05/11 10:32:57:057 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules
+[31/05/11 10:32:57:057 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[31/05/11 10:32:57:057 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[31/05/11 10:32:57:057 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[31/05/11 10:32:59:059 CDT]  INFO codegen.CodeGenMain: Beginning process of emptying directory: C:\code_gen
+[31/05/11 10:32:59:059 CDT]  INFO codegen.CodeGenMain: Cleared generation destination location
+[31/05/11 10:32:59:059 CDT] DEBUG codegen.SchemaReader: Processing replacement file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_impl_rule.xml
+[31/05/11 10:32:59:059 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.impl;
+
+[31/05/11 10:32:59:059 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	/**
+	 * !This is an auto gen
+[31/05/11 10:32:59:059 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@pType@> <@pName@>
+[31/05/11 10:32:59:059 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+			filledUri = filledUri.repl
+[31/05/11 10:32:59:059 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\impl\ServiceMethodsImpl.java
+[31/05/11 10:33:00:000 CDT]  WARN replacementrule.Replacement: 
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:92)
+	at codegen.codetemplates.templatecompletion.replacementrule.SimpleReplacement.fillTemplateHole(SimpleReplacement.java:35)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillSubTemplate(ReplacementSet.java:90)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:71)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:208)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+Caused by: java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.LinkedList.checkElementIndex(Unknown Source)
+	at java.util.LinkedList.get(Unknown Source)
+	... 13 more
+[31/05/11 10:33:00:000 CDT]  WARN replacementrule.Replacement: 
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor14.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:92)
+	at codegen.codetemplates.templatecompletion.replacementrule.SimpleReplacement.fillTemplateHole(SimpleReplacement.java:35)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillSubTemplate(ReplacementSet.java:90)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:71)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:208)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+Caused by: java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.LinkedList.checkElementIndex(Unknown Source)
+	at java.util.LinkedList.get(Unknown Source)
+	... 12 more
+[31/05/11 10:33:00:000 CDT] DEBUG codegen.SchemaReader: Processing replacement file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_rule.xml
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core;
+
+impo
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	/**
+	 * !This is an auto gen
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	 * @param <@paramName@> <@pa
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@pType@> <@pName@>
+[31/05/11 10:33:00:000 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\ServiceMethods.java
+[31/05/11 10:33:00:000 CDT] DEBUG codegen.SchemaReader: Beginning processing of all dto template replacements
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:00:000 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiClientAccountWatchlistDTO.java
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:00:000 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiClientAccountWatchlistItemDTO.java
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:00:000 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiLookupDTO.java
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:00:000 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketDTO.java
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:00:000 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketEodDTO.java
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:00:000 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketInformationDTO.java
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:00:000 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\NewsDTO.java
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:00:000 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\NewsDetailDTO.java
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:00:000 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:00:000 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiActiveStopLimitOrderDTO.java
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:01:001 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiBasicStopLimitOrderDTO.java
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:01:001 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiOpenPositionDTO.java
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:01:001 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiIfDoneDTO.java
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:01:001 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiOrderDTO.java
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:01:001 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiStopLimitOrderDTO.java
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:01:001 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradeOrderDTO.java
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:01:001 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiStopLimitOrderHistoryDTO.java
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:01:001 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradeHistoryDTO.java
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:01:001 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceBarDTO.java
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:01:001 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceTickDTO.java
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:01:001 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ClientAccountMarginDTO.java
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:01:001 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\OrderDTO.java
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:01:001 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\QuoteDTO.java
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:01:001 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceDTO.java
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:01:001 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradingAccountDTO.java
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:01:001 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:01:001 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ErrorCode.java
+[31/05/11 10:33:01:001 CDT]  WARN replacementrule.Replacement: 
+java.lang.NullPointerException
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:80)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:58)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:221)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+[31/05/11 10:33:01:001 CDT] ERROR replacementrule.ReplacementSet: java.lang.IllegalArgumentException: Object was not resolved to an instance of an Iterable<?>
+[31/05/11 10:33:27:027 CDT]  INFO codegen.CodeGenMain: Beginning the process of generating code
+[31/05/11 10:33:27:027 CDT] DEBUG codegen.CodeGenMain: Attempting to open local file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\smdFiles\schema.js
+[31/05/11 10:33:27:027 CDT] DEBUG codegen.CodeGenMain: Attempting to open local file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\smdFiles\smd.js
+[31/05/11 10:33:27:027 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules
+[31/05/11 10:33:27:027 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[31/05/11 10:33:28:028 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[31/05/11 10:33:28:028 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[31/05/11 10:33:29:029 CDT]  INFO codegen.CodeGenMain: Beginning process of emptying directory: C:\code_gen
+[31/05/11 10:33:30:030 CDT]  INFO codegen.CodeGenMain: Cleared generation destination location
+[31/05/11 10:33:30:030 CDT] DEBUG codegen.SchemaReader: Processing replacement file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_impl_rule.xml
+[31/05/11 10:33:30:030 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.impl;
+
+[31/05/11 10:33:30:030 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	/**
+	 * !This is an auto gen
+[31/05/11 10:33:30:030 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@pType@> <@pName@>
+[31/05/11 10:33:30:030 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+			filledUri = filledUri.repl
+[31/05/11 10:33:30:030 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\impl\ServiceMethodsImpl.java
+[31/05/11 10:33:30:030 CDT]  WARN replacementrule.Replacement: 
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:92)
+	at codegen.codetemplates.templatecompletion.replacementrule.SimpleReplacement.fillTemplateHole(SimpleReplacement.java:35)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillSubTemplate(ReplacementSet.java:90)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:71)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:208)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+Caused by: java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.LinkedList.checkElementIndex(Unknown Source)
+	at java.util.LinkedList.get(Unknown Source)
+	... 13 more
+[31/05/11 10:33:30:030 CDT]  WARN replacementrule.Replacement: 
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor14.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:92)
+	at codegen.codetemplates.templatecompletion.replacementrule.SimpleReplacement.fillTemplateHole(SimpleReplacement.java:35)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillSubTemplate(ReplacementSet.java:90)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:71)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:208)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+Caused by: java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.LinkedList.checkElementIndex(Unknown Source)
+	at java.util.LinkedList.get(Unknown Source)
+	... 12 more
+[31/05/11 10:33:31:031 CDT] DEBUG codegen.SchemaReader: Processing replacement file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_rule.xml
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core;
+
+impo
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	/**
+	 * !This is an auto gen
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	 * @param <@paramName@> <@pa
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@pType@> <@pName@>
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\ServiceMethods.java
+[31/05/11 10:33:31:031 CDT] DEBUG codegen.SchemaReader: Beginning processing of all dto template replacements
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiClientAccountWatchlistDTO.java
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiClientAccountWatchlistItemDTO.java
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiLookupDTO.java
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketDTO.java
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketEodDTO.java
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketInformationDTO.java
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\NewsDTO.java
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\NewsDetailDTO.java
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiActiveStopLimitOrderDTO.java
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiBasicStopLimitOrderDTO.java
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiOpenPositionDTO.java
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiIfDoneDTO.java
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiOrderDTO.java
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiStopLimitOrderDTO.java
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradeOrderDTO.java
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:31:031 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiStopLimitOrderHistoryDTO.java
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:31:031 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:32:032 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradeHistoryDTO.java
+[31/05/11 10:33:32:032 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:32:032 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:32:032 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceBarDTO.java
+[31/05/11 10:33:32:032 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:32:032 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:32:032 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceTickDTO.java
+[31/05/11 10:33:32:032 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:32:032 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:32:032 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ClientAccountMarginDTO.java
+[31/05/11 10:33:32:032 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:32:032 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:32:032 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\OrderDTO.java
+[31/05/11 10:33:32:032 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:32:032 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:32:032 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\QuoteDTO.java
+[31/05/11 10:33:32:032 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:32:032 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:32:032 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceDTO.java
+[31/05/11 10:33:32:032 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:32:032 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:32:032 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradingAccountDTO.java
+[31/05/11 10:33:32:032 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:33:32:032 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:33:32:032 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ErrorCode.java
+[31/05/11 10:33:32:032 CDT]  WARN replacementrule.Replacement: 
+java.lang.NullPointerException
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:80)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:58)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:221)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+[31/05/11 10:34:34:034 CDT]  INFO codegen.CodeGenMain: Beginning the process of generating code
+[31/05/11 10:34:34:034 CDT] DEBUG codegen.CodeGenMain: Attempting to open local file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\smdFiles\schema.js
+[31/05/11 10:34:34:034 CDT] DEBUG codegen.CodeGenMain: Attempting to open local file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\smdFiles\smd.js
+[31/05/11 10:34:34:034 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules
+[31/05/11 10:34:34:034 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[31/05/11 10:34:34:034 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[31/05/11 10:34:34:034 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[31/05/11 10:34:35:035 CDT]  INFO codegen.CodeGenMain: Beginning process of emptying directory: C:\code_gen
+[31/05/11 10:34:35:035 CDT]  INFO codegen.CodeGenMain: Cleared generation destination location
+[31/05/11 10:34:35:035 CDT] DEBUG codegen.SchemaReader: Processing replacement file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_impl_rule.xml
+[31/05/11 10:34:35:035 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.impl;
+
+[31/05/11 10:34:35:035 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	/**
+	 * !This is an auto gen
+[31/05/11 10:34:35:035 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@pType@> <@pName@>
+[31/05/11 10:34:35:035 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+			filledUri = filledUri.repl
+[31/05/11 10:34:35:035 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\impl\ServiceMethodsImpl.java
+[31/05/11 10:34:35:035 CDT]  WARN replacementrule.Replacement: 
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:92)
+	at codegen.codetemplates.templatecompletion.replacementrule.SimpleReplacement.fillTemplateHole(SimpleReplacement.java:35)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillSubTemplate(ReplacementSet.java:90)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:71)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:208)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+Caused by: java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.LinkedList.checkElementIndex(Unknown Source)
+	at java.util.LinkedList.get(Unknown Source)
+	... 13 more
+[31/05/11 10:34:36:036 CDT]  WARN replacementrule.Replacement: 
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor14.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:92)
+	at codegen.codetemplates.templatecompletion.replacementrule.SimpleReplacement.fillTemplateHole(SimpleReplacement.java:35)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillSubTemplate(ReplacementSet.java:90)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:71)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:208)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+Caused by: java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.LinkedList.checkElementIndex(Unknown Source)
+	at java.util.LinkedList.get(Unknown Source)
+	... 12 more
+[31/05/11 10:34:36:036 CDT] DEBUG codegen.SchemaReader: Processing replacement file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_rule.xml
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core;
+
+impo
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	/**
+	 * !This is an auto gen
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	 * @param <@paramName@> <@pa
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@pType@> <@pName@>
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\ServiceMethods.java
+[31/05/11 10:34:36:036 CDT] DEBUG codegen.SchemaReader: Beginning processing of all dto template replacements
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiClientAccountWatchlistDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiClientAccountWatchlistItemDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiLookupDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketEodDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketInformationDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\NewsDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\NewsDetailDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiActiveStopLimitOrderDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiBasicStopLimitOrderDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiOpenPositionDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiIfDoneDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiOrderDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiStopLimitOrderDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradeOrderDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiStopLimitOrderHistoryDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradeHistoryDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceBarDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceTickDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ClientAccountMarginDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\OrderDTO.java
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:36:036 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:36:036 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\QuoteDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradingAccountDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ErrorCode.java
+[31/05/11 10:34:37:037 CDT]  WARN replacementrule.Replacement: 
+java.lang.NullPointerException
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:80)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:58)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:221)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\CancelOrderRequestDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\InsertWatchlistItemRequestDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListMarketInformationRequestDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\NewStopLimitOrderRequestDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiLogOffRequestDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\NewTradeOrderRequestDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\UpdateStopLimitOrderRequestDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\UpdateTradeOrderRequestDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\UpdateWatchlistDisplayOrderRequestDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\AccountInformationResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiIfDoneResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiLookupResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\GetMarketInformationResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\GetOpenPositionResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\GetActiveStopLimitOrderResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\GetOrderResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListMarketInformationResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListMarketInformationSearchResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListStopLimitOrderHistoryResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListTradeHistoryResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\GetPriceTickResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiErrorResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\GetPriceBarResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\GetNewsDetailResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListActiveStopLimitOrderResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListOpenPositionsResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListOrdersResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListSpreadMarketsResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiLogOnResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiLogOnRequestDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\SystemStatusRequestDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListNewsHeadlinesResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\GetMessagePopupResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListWatchlistResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiOrderResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiQuoteResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiLogOffResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListCfdMarketsResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiStopLimitResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradeOrderResponseDTO.java
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:34:37:037 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:34:37:037 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\SystemStatusDTO.java
+[31/05/11 10:34:37:037 CDT]  INFO codegen.CodeGenMain: Success!  Generated code!: C:\code_gen
+[31/05/11 10:35:20:020 CDT]  INFO codegen.CodeGenMain: Beginning the process of generating code
+[31/05/11 10:35:20:020 CDT] DEBUG codegen.CodeGenMain: Attempting to open local file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\smdFiles\schema.js
+[31/05/11 10:35:20:020 CDT] DEBUG codegen.CodeGenMain: Attempting to open local file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\smdFiles\smd.js
+[31/05/11 10:35:20:020 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules
+[31/05/11 10:35:20:020 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[31/05/11 10:35:20:020 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[31/05/11 10:35:20:020 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[31/05/11 10:35:21:021 CDT]  INFO codegen.CodeGenMain: Beginning process of emptying directory: C:\code_gen
+[31/05/11 10:35:21:021 CDT]  INFO codegen.CodeGenMain: Cleared generation destination location
+[31/05/11 10:35:21:021 CDT] DEBUG codegen.SchemaReader: Processing replacement file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_impl_rule.xml
+[31/05/11 10:35:21:021 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.impl;
+
+[31/05/11 10:35:21:021 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	/**
+	 * !This is an auto gen
+[31/05/11 10:35:21:021 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@pType@> <@pName@>
+[31/05/11 10:35:21:021 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+			filledUri = filledUri.repl
+[31/05/11 10:35:21:021 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\impl\ServiceMethodsImpl.java
+[31/05/11 10:35:21:021 CDT]  WARN replacementrule.Replacement: 
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:92)
+	at codegen.codetemplates.templatecompletion.replacementrule.SimpleReplacement.fillTemplateHole(SimpleReplacement.java:35)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillSubTemplate(ReplacementSet.java:90)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:71)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:208)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+Caused by: java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.LinkedList.checkElementIndex(Unknown Source)
+	at java.util.LinkedList.get(Unknown Source)
+	... 13 more
+[31/05/11 10:35:22:022 CDT]  WARN replacementrule.Replacement: 
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor14.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:92)
+	at codegen.codetemplates.templatecompletion.replacementrule.SimpleReplacement.fillTemplateHole(SimpleReplacement.java:35)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillSubTemplate(ReplacementSet.java:90)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:71)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:208)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+Caused by: java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.LinkedList.checkElementIndex(Unknown Source)
+	at java.util.LinkedList.get(Unknown Source)
+	... 12 more
+[31/05/11 10:35:22:022 CDT] DEBUG codegen.SchemaReader: Processing replacement file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_rule.xml
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core;
+
+impo
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	/**
+	 * !This is an auto gen
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	 * @param <@paramName@> <@pa
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@pType@> <@pName@>
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\ServiceMethods.java
+[31/05/11 10:35:22:022 CDT] DEBUG codegen.SchemaReader: Beginning processing of all dto template replacements
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiClientAccountWatchlistDTO.java
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiClientAccountWatchlistItemDTO.java
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiLookupDTO.java
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketDTO.java
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketEodDTO.java
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketInformationDTO.java
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\NewsDTO.java
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\NewsDetailDTO.java
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiActiveStopLimitOrderDTO.java
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiBasicStopLimitOrderDTO.java
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiOpenPositionDTO.java
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiIfDoneDTO.java
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiOrderDTO.java
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiStopLimitOrderDTO.java
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradeOrderDTO.java
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiStopLimitOrderHistoryDTO.java
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:22:022 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:22:022 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradeHistoryDTO.java
+[31/05/11 10:35:23:023 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:23:023 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:23:023 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceBarDTO.java
+[31/05/11 10:35:23:023 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:23:023 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:23:023 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceTickDTO.java
+[31/05/11 10:35:23:023 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:23:023 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:23:023 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ClientAccountMarginDTO.java
+[31/05/11 10:35:23:023 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:23:023 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:23:023 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\OrderDTO.java
+[31/05/11 10:35:23:023 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:23:023 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:23:023 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\QuoteDTO.java
+[31/05/11 10:35:23:023 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:23:023 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:23:023 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceDTO.java
+[31/05/11 10:35:23:023 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:23:023 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:23:023 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradingAccountDTO.java
+[31/05/11 10:35:23:023 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:23:023 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:23:023 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ErrorCode.java
+[31/05/11 10:35:23:023 CDT]  WARN replacementrule.Replacement: 
+java.lang.NullPointerException
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:80)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:58)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:221)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+[31/05/11 10:35:23:023 CDT] ERROR replacementrule.ReplacementSet: java.lang.ClassCastException: Object was not resolved to an instance of an Iterable<?>
+[31/05/11 10:35:37:037 CDT]  INFO codegen.CodeGenMain: Beginning the process of generating code
+[31/05/11 10:35:37:037 CDT] DEBUG codegen.CodeGenMain: Attempting to open local file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\smdFiles\schema.js
+[31/05/11 10:35:37:037 CDT] DEBUG codegen.CodeGenMain: Attempting to open local file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\smdFiles\smd.js
+[31/05/11 10:35:37:037 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules
+[31/05/11 10:35:37:037 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[31/05/11 10:35:37:037 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[31/05/11 10:35:37:037 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[31/05/11 10:35:38:038 CDT]  INFO codegen.CodeGenMain: Beginning process of emptying directory: C:\code_gen
+[31/05/11 10:35:38:038 CDT]  INFO codegen.CodeGenMain: Cleared generation destination location
+[31/05/11 10:35:38:038 CDT] DEBUG codegen.SchemaReader: Processing replacement file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_impl_rule.xml
+[31/05/11 10:35:38:038 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.impl;
+
+[31/05/11 10:35:38:038 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	/**
+	 * !This is an auto gen
+[31/05/11 10:35:38:038 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@pType@> <@pName@>
+[31/05/11 10:35:38:038 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+			filledUri = filledUri.repl
+[31/05/11 10:35:38:038 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\impl\ServiceMethodsImpl.java
+[31/05/11 10:35:38:038 CDT]  WARN replacementrule.Replacement: 
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:92)
+	at codegen.codetemplates.templatecompletion.replacementrule.SimpleReplacement.fillTemplateHole(SimpleReplacement.java:35)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillSubTemplate(ReplacementSet.java:86)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:67)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:208)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+Caused by: java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.LinkedList.checkElementIndex(Unknown Source)
+	at java.util.LinkedList.get(Unknown Source)
+	... 13 more
+[31/05/11 10:35:38:038 CDT]  WARN replacementrule.Replacement: 
+java.lang.reflect.InvocationTargetException
+	at sun.reflect.GeneratedMethodAccessor14.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:92)
+	at codegen.codetemplates.templatecompletion.replacementrule.SimpleReplacement.fillTemplateHole(SimpleReplacement.java:35)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillSubTemplate(ReplacementSet.java:86)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:67)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:208)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+Caused by: java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.LinkedList.checkElementIndex(Unknown Source)
+	at java.util.LinkedList.get(Unknown Source)
+	... 12 more
+[31/05/11 10:35:39:039 CDT] DEBUG codegen.SchemaReader: Processing replacement file: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_rule.xml
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core;
+
+impo
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	/**
+	 * !This is an auto gen
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	 * @param <@paramName@> <@pa
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@pType@> <@pName@>
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\ServiceMethods.java
+[31/05/11 10:35:39:039 CDT] DEBUG codegen.SchemaReader: Beginning processing of all dto template replacements
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiClientAccountWatchlistDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiClientAccountWatchlistItemDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiLookupDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketEodDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiMarketInformationDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\NewsDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\NewsDetailDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiActiveStopLimitOrderDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiBasicStopLimitOrderDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiOpenPositionDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiIfDoneDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiOrderDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiStopLimitOrderDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradeOrderDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiStopLimitOrderHistoryDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradeHistoryDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceBarDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceTickDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ClientAccountMarginDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\OrderDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\QuoteDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\PriceDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradingAccountDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ErrorCode.java
+[31/05/11 10:35:39:039 CDT]  WARN replacementrule.Replacement: 
+java.lang.NullPointerException
+	at codegen.codetemplates.templatecompletion.replacementrule.Replacement.resolveValue(Replacement.java:80)
+	at codegen.codetemplates.templatecompletion.replacementrule.ReplacementSet.fillTemplateHole(ReplacementSet.java:58)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.fillTemplate(TemplateFiller.java:53)
+	at codegen.codetemplates.templatecompletion.TemplateFiller.saveToFile(TemplateFiller.java:77)
+	at codegen.SchemaReader.createPackage(SchemaReader.java:221)
+	at codegen.CodeGenMain.generateCode(CodeGenMain.java:111)
+	at codegen.CodeGenMain.main(CodeGenMain.java:43)
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\CancelOrderRequestDTO.java
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:39:039 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:39:039 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\InsertWatchlistItemRequestDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListMarketInformationRequestDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\NewStopLimitOrderRequestDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiLogOffRequestDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\NewTradeOrderRequestDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\UpdateStopLimitOrderRequestDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\UpdateTradeOrderRequestDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\UpdateWatchlistDisplayOrderRequestDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\AccountInformationResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiIfDoneResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiLookupResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\GetMarketInformationResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\GetOpenPositionResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\GetActiveStopLimitOrderResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\GetOrderResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListMarketInformationResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListMarketInformationSearchResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListStopLimitOrderHistoryResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListTradeHistoryResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\GetPriceTickResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiErrorResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\GetPriceBarResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\GetNewsDetailResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListActiveStopLimitOrderResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListOpenPositionsResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListOrdersResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListSpreadMarketsResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiLogOnResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiLogOnRequestDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\SystemStatusRequestDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListNewsHeadlinesResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\GetMessagePopupResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListWatchlistResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiOrderResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiQuoteResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiLogOffResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ListCfdMarketsResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiStopLimitResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\ApiTradeOrderResponseDTO.java
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: package CIAPI.Java.core.dto;
+
+
+[31/05/11 10:35:40:040 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	private <@propertyType@> <@p
+[31/05/11 10:35:40:040 CDT] DEBUG templatecompletion.TemplateFiller: Saving TemplateFiller to file: C:\code_gen\dto\SystemStatusDTO.java
+[31/05/11 10:35:40:040 CDT]  INFO codegen.CodeGenMain: Success!  Generated code!: C:\code_gen
+[31/05/11 10:40:25:025 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@@quotes@@><@quote@>: <@autho
+[31/05/11 10:40:25:025 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@quote@>: <@author@>
+
+[31/05/11 10:40:25:025 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: Here is a list of quotes from 
+[31/05/11 10:40:25:025 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	"<@quote@>"
+	 - <@author@>
+
+[31/05/11 10:40:25:025 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@@quotes@@><@quote@>: <@autho
+[31/05/11 10:40:25:025 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: <@quote@>: <@author@>
+
+[31/05/11 10:40:25:025 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\test\TestTemplate.jav
+[31/05/11 10:40:25:025 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: Here is a list of quotes from 
+[31/05/11 10:40:25:025 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
+	"<@quote@>"
+	 - <@author@>
+

@@ -25,14 +25,16 @@ public class TemplateFiller {
 	private ReplacementRoot replacemnetTemplate;
 
 	/**
-	 * Creates a new template filler that will use the supplied template and replacement set
+	 * Creates a new template filler that will use the supplied template and
+	 * replacement set
 	 * 
 	 * @param replacementTemplate
 	 *            the replacement template to fill
 	 * @throws FileNotFoundException
 	 *             if the replacement file or code template can't be found
 	 */
-	public TemplateFiller(ReplacementRoot replacementTemplate) throws FileNotFoundException {
+	public TemplateFiller(ReplacementRoot replacementTemplate)
+			throws FileNotFoundException {
 		this.toFill = replacementTemplate.getTemplate();
 		this.replacemnetTemplate = replacementTemplate;
 	}
@@ -41,8 +43,10 @@ public class TemplateFiller {
 	 * Returns a filled template. (Ideally code that compiles)
 	 * 
 	 * @param rootModelObject
-	 *            the object to feed the code template and replacement file for replacements
-	 * @return the template that was replaced by the given replacement rules and model object
+	 *            the object to feed the code template and replacement file for
+	 *            replacements
+	 * @return the template that was replaced by the given replacement rules and
+	 *         model object
 	 */
 	public String fillTemplate(Object rootModelObject) {
 		for (Replacement r : replacemnetTemplate) {
@@ -52,17 +56,19 @@ public class TemplateFiller {
 	}
 
 	/**
-	 * Will save the generated code to the given directory. Responsible for creating required
-	 * directories below the specified directory. But it will error out if the given directory
-	 * doesn't exist.
+	 * Will save the generated code to the given directory. Responsible for
+	 * creating required directories below the specified directory. But it will
+	 * error out if the given directory doesn't exist.
 	 * 
 	 * @param saveLocation
 	 * @param rootModelObject
 	 * @throws FileNotFoundException
 	 */
-	public void saveToFile(String saveLocation, Object rootModelObject) throws FileNotFoundException {
+	public void saveToFile(String saveLocation, Object rootModelObject)
+			throws FileNotFoundException {
 		if (!new File(saveLocation).isDirectory()) {
-			error(new IllegalArgumentException("The given location was not a directory."));
+			error(new IllegalArgumentException(
+					"The given location was not a directory."));
 		}
 		File saveLoc = resolveSaveLocation(saveLocation, rootModelObject);
 		saveLoc.getParentFile().mkdirs();
@@ -73,9 +79,9 @@ public class TemplateFiller {
 	}
 
 	/**
-	 * If a replacement file specifies that it should be saved in an absolute location, we honor
-	 * that. Otherwise, we will place it in a directory below the specified save location. (Relative
-	 * file paths are preferred)
+	 * If a replacement file specifies that it should be saved in an absolute
+	 * location, we honor that. Otherwise, we will place it in a directory below
+	 * the specified save location. (Relative file paths are preferred)
 	 * 
 	 * @param saveLocation
 	 *            the specified save location

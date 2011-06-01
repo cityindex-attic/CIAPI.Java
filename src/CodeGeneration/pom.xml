@@ -23,6 +23,19 @@
 			<!-- Need to get newer version of crap4J plugin before this will work 
 				on Windows -->
 			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>codegen.CodeGenMain</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>net.sf.jmd</groupId>
 				<artifactId>maven-crap4j-plugin</artifactId>
 				<configuration>

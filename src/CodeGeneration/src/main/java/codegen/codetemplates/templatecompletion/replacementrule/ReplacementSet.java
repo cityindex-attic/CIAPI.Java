@@ -56,10 +56,6 @@ public class ReplacementSet extends Replacement {
 	@Override
 	public void fillTemplateHole(Object obj, CodeTemplate template) {
 		Object objResult = resolveValue(obj);
-		if (!(objResult instanceof Iterable<?>)) {
-			error(new IllegalArgumentException(
-					"Object was not resolved to an instance of an Iterable<?>"));
-		}
 		Iterable<?> result = (Iterable<?>) objResult;
 		if (result == null) {
 			return;
