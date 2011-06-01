@@ -17,7 +17,6 @@ public class JinqException extends RuntimeException {
 
 	public JinqException(String message) {
 		super(message);
-		System.out.println("");
 	}
 
 	public JinqException(String message, Jode cause) {
