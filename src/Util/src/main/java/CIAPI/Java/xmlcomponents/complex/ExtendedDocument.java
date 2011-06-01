@@ -32,7 +32,6 @@ public class ExtendedDocument extends ExtendedNode implements Document {
     }
 
     public static ExtendedDocument load(String fileLocation) {
-        System.out.println("Loading the doc: "+ fileLocation);
     	try {
             return new ExtendedDocument(DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(
                     new File(fileLocation)));
