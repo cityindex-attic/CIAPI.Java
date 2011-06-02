@@ -22,14 +22,32 @@ import org.w3c.dom.Text;
 
 import CIAPI.Java.xmlcomponents.JinqException;
 
+/**
+ * Reprsents an XML document
+ * 
+ * @author Justin Nelson
+ */
 public class ExtendedDocument extends ExtendedNode implements Document {
 	private Document doc;
 
+	/**
+	 * Creates a new Jocument out of the given document
+	 * 
+	 * @param doc
+	 *            the document to use
+	 */
 	public ExtendedDocument(Document doc) {
 		super(doc);
 		this.doc = doc;
 	}
 
+	/**
+	 * Loads a document from the given filename
+	 * 
+	 * @param fileLocation
+	 *            the location to find the XML document
+	 * @return the document loaded from the given file location
+	 */
 	public static ExtendedDocument load(String fileLocation) {
 		try {
 			return new ExtendedDocument(DocumentBuilderFactory.newInstance()
