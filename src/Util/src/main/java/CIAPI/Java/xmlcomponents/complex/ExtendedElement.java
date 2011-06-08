@@ -15,7 +15,7 @@ import org.w3c.dom.TypeInfo;
 public class ExtendedElement extends ExtendedNode implements Element {
 	private Element e;
 
-	/**
+	/**p
 	 * The element to represent
 	 * 
 	 * @param e
