@@ -71,16 +71,23 @@ public class CodeGenMain {
 	 */
 	public static String generateCode(List<ClParam> params)
 			throws ClassNotFoundException, IOException {
-		if (params.size() < 3) {
+		CodeGenConfig conf = parseClParams(params);
+		SchemaReader.generateCode(conf);
+		return conf.getSaveLocation();
+	}
+
+	private static CodeGenConfig parseClParams(List<ClParam> parms) {
+		if (parms.size() < 3 && parms.size() != 1) {
 			error(new IllegalArgumentException(
-					"At least 4 parameters must be provided."));
+					"You must provide the 4 location parameters or a config file."));
 		}
 		// Find all of the required parameters
 		String schemaLocation = null;
 		String smdLocation = null;
 		String saveLocation = null;
 		String replacementDirectory = null;
-		for (ClParam p : params) {
+		String configLocation = null;
+		for (ClParam p : parms) {
 			if (p.option.equals("-sch")) {
 				schemaLocation = p.value;
 			} else if (p.option.equals("-smd")) {
@@ -90,51 +97,27 @@ public class CodeGenMain {
 			} else if (p.option.equals("-t")) {
 			} else if (p.option.equals("-r")) {
 				replacementDirectory = p.value;
+			} else if (p.option.equals("-c")) {
+				configLocation = p.value;
 			}
 		}
-		// If any of them are null, then we have a problem
+		// If a config file was supplied, we will use the values from that
+		if (configLocation != null) {
+			CodeGenConfig conf = CodeGenConfig.loadFile(configLocation);
+			return conf;
+		}
+		// If any of the other values are null, then we have a problem
 		if (schemaLocation == null || smdLocation == null
 				|| saveLocation == null || replacementDirectory == null) {
 			error("Did not find all required parameters");
 			printUsage();
 			return null;
 		}
-		// Turn the specified URIs into InputStreams
-		InputStream schemaStream = openFileOrUrl(schemaLocation);
-		InputStream smdStream = openFileOrUrl(smdLocation);
-		// Tell the schema reader where it can find the files it needs
-		SchemaReader rdr = new SchemaReader(schemaStream, smdStream,
-				replacementDirectory);
-		info("Beginning process of emptying directory: " + saveLocation);
-		emptyDirectory(new File(saveLocation));
-		info("Cleared generation destination location");
-		rdr.createPackage(saveLocation);
-		return saveLocation;
+		return new CodeGenConfig(smdLocation, schemaLocation,
+				replacementDirectory, saveLocation);
 	}
 
-	/**
-	 * Will cleanse the destination directory so we don't run into silly
-	 * conflicts
-	 * 
-	 * @param saveLocation
-	 *            the location to clean
-	 */
-	private static void emptyDirectory(File root) {
-		emptyDirRecursive(root);
-		root.mkdirs();
-	}
-
-	private static void emptyDirRecursive(File root) {
-		trace("Clearing file: " + root);
-		if (root.isDirectory()) {
-			for (File f : root.listFiles()) {
-				emptyDirRecursive(f);
-			}
-		}
-		root.delete();
-	}
-
-	private static InputStream openFileOrUrl(String path) throws IOException {
+	public static InputStream openFileOrUrl(String path) throws IOException {
 		if (path.startsWith("http")) {
 			debug("Attempting to open url: " + path);
 			URL url = new URL(path);
@@ -168,8 +151,12 @@ public class CodeGenMain {
 	 * @author Justin Nelson
 	 */
 	static enum SpecificParams {
-		SCHEMA_URI("-sch", "The local file or URL location of the SMD descriptor"), SMD_URI(
-				"-smd", "The local file or URL location of the Schema descriptor"), SAVE_LOCATION(
+		CONFIG_LOCATION(
+				"-c",
+				"Where the code gen config file is located. Use this parameter, or all of the rest."), SCHEMA_URI(
+				"-sch", "The local file or URL location of the SMD descriptor"), SMD_URI(
+				"-smd",
+				"The local file or URL location of the Schema descriptor"), SAVE_LOCATION(
 				"-l", "The location to save the generated code"), REPLACEMNT_FILE_DIR(
 				"-r", "The directory where your replacement files are located.");
 

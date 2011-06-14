@@ -25,6 +25,7 @@ import CIAPI.Java.core.dto.PriceBarDTO;
 import CIAPI.Java.core.dto.PriceTickDTO;
 import CIAPI.Java.core.impl.ServiceMethodsImpl;
 import JsonClient.Java.ApiException;
+import JsonClient.Java.DefaultJsonClient;
 import JsonClient.Java.JsonApi;
 import JsonClient.Java.cachestuff.Cache;
 import JsonClient.Java.cachestuff.CachedJsonClient;
@@ -61,8 +62,9 @@ public class SyncApi {
 
 	protected SyncApi(String baseUrl, Cache<Pair<String, Class<?>>, Object> cache, RequestQueue queue) {
 		methods = new ServiceMethodsImpl();
-		api = new JsonApi(baseUrl, new CachedJsonClient(cache, new ThrottledHttpClient(
-				new DefaultHttpRequestItemFactory(), queue)));
+		api = new JsonApi(baseUrl, new DefaultJsonClient());
+		//api = new JsonApi(baseUrl, new CachedJsonClient(cache, new ThrottledHttpClient(
+		//		new DefaultHttpRequestItemFactory(), queue)));
 	}
 
 	/**
@@ -89,7 +91,7 @@ public class SyncApi {
 			this.password = password;
 		}
 		api.addConstantParameter("UserName", username);
-		api.addConstantParameter("Session", sessionId);
+		api.addConstantParameter("session", sessionId);
 	}
 
 	/**

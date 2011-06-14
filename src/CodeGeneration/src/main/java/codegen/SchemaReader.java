@@ -1,9 +1,11 @@
 package codegen;
 
 import static CIAPI.Java.logging.Log.debug;
-import static CIAPI.Java.logging.Log.trace;
 import static CIAPI.Java.logging.Log.error;
+import static CIAPI.Java.logging.Log.info;
+import static CIAPI.Java.logging.Log.trace;
 import static CIAPI.Java.logging.Log.warn;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileNotFoundException;
@@ -32,8 +34,8 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
 /**
- * Provides functionality for parsing SMD and Schema definition. Also can generate code given a set
- * of Replacement files and Code Template Files.
+ * Provides functionality for parsing SMD and Schema definition. Also can
+ * generate code given a set of Replacement files and Code Template Files.
  * 
  * @author Justin Nelson
  * 
@@ -55,18 +57,20 @@ public class SchemaReader {
 	 * @param smdStream
 	 *            the stream containing the smd data
 	 * @param replacementDirectory
-	 *            the directory where you have all of the replacement files you would like to use.
-	 *            This will look recursively.
+	 *            the directory where you have all of the replacement files you
+	 *            would like to use. This will look recursively.
 	 * @throws ClassNotFoundException
-	 *             if we cannot find the type that was referenced from one of the replacement files
+	 *             if we cannot find the type that was referenced from one of
+	 *             the replacement files
 	 * @throws IOException
 	 *             if any file reading goes wrong
 	 */
-	public SchemaReader(InputStream schemaStream, InputStream smdStream, String replacementDirectory)
-			throws ClassNotFoundException {
+	public SchemaReader(InputStream schemaStream, InputStream smdStream,
+			String replacementDirectory) throws ClassNotFoundException {
 		this.replacementDir = replacementDirectory;
 		this.replacements = loadReplacements(replacementDirectory);
-		// create out Gson. Need to register adapters for some of our classes to work around some
+		// create out Gson. Need to register adapters for some of our classes to
+		// work around some
 		// JSON oddities
 		GsonBuilder gb = new GsonBuilder();
 		gb.registerTypeAdapter(DTO.class, DTO.getDeSerializer());
@@ -75,11 +79,13 @@ public class SchemaReader {
 		trace("Attempting to parse the SMD stream");
 		smd = g.fromJson(new InputStreamReader(smdStream), SMDDescriptor.class);
 		trace("Successfully parsed stream");
-		// using some extra JSON parsing to pull individual DAOs out of the one big DAO return
+		// using some extra JSON parsing to pull individual DAOs out of the one
+		// big DAO return
 		// object.
 		JsonParser parser = new JsonParser();
 		trace("Attempting to parse the Schema stream");
-		JsonObject obj = (JsonObject) parser.parse(new InputStreamReader(schemaStream));
+		JsonObject obj = (JsonObject) parser.parse(new InputStreamReader(
+				schemaStream));
 		dtos = new ArrayList<DTO>();
 		for (Entry<String, JsonElement> entry : obj.entrySet()) {
 			DTO result = g.fromJson(entry.getValue(), DTO.class);
@@ -90,8 +96,8 @@ public class SchemaReader {
 	}
 
 	/**
-	 * Given a directory, will find all of the replacement files located in that directory. It will
-	 * assume any file ending in xml is a replacement file.
+	 * Given a directory, will find all of the replacement files located in that
+	 * directory. It will assume any file ending in xml is a replacement file.
 	 * 
 	 * @param replacementDirectory
 	 * @return
@@ -99,19 +105,23 @@ public class SchemaReader {
 	 * @throws ClassNotFoundException
 	 * @throws FileNotFoundException
 	 */
-	private Map<Class<?>, List<ReplacementRoot>> loadReplacements(String replacementDirectory)
-			throws ClassNotFoundException {
-		debug("Loading all replacements defined in directory: " + replacementDirectory);
+	private Map<Class<?>, List<ReplacementRoot>> loadReplacements(
+			String replacementDirectory) throws ClassNotFoundException {
+		debug("Loading all replacements defined in directory: "
+				+ replacementDirectory);
 		Map<Class<?>, List<ReplacementRoot>> ret = new HashMap<Class<?>, List<ReplacementRoot>>();
 		// Loop through each file in the given directory that is and xml file
-		for (File fName : listFilesRecursively(new File(replacementDirectory), xmlFileFilter)) {
+		for (File fName : listFilesRecursively(new File(replacementDirectory),
+				xmlFileFilter)) {
 			// Turn each file into a ReplacementRoot
-			trace("Parsing file into replacement object:" + fName.getAbsolutePath());
+			trace("Parsing file into replacement object:"
+					+ fName.getAbsolutePath());
 			ReplacementRoot root = null;
 			try {
 				root = new ReplacementRoot(fName.getAbsolutePath());
 			} catch (FileNotFoundException e) {
-				warn("Failed to parse ReplRoot file because : " + e.getMessage());
+				warn("Failed to parse ReplRoot file because : "
+						+ e.getMessage());
 				continue;
 			}
 			List<ReplacementRoot> toAddTo;
@@ -135,7 +145,8 @@ public class SchemaReader {
 	};
 
 	/**
-	 * This will list all files in the given directory that match the given filter
+	 * This will list all files in the given directory that match the given
+	 * filter
 	 * 
 	 * @param root
 	 *            the directory to look in
@@ -147,12 +158,14 @@ public class SchemaReader {
 		List<File> ret = new ArrayList<File>();
 		if (root.isFile()) {
 			if (filter.accept(root)) {
-				// if the root is a single file, just return a list containing the single file
+				// if the root is a single file, just return a list containing
+				// the single file
 				ret.add(root);
 			}
 			return ret;
 		} else {
-			// otherwise we will add the files in the directory if they are regular files
+			// otherwise we will add the files in the directory if they are
+			// regular files
 			File[] files = root.listFiles();
 			for (File f : files) {
 				if (f.isFile() && filter.accept(f)) {
@@ -183,11 +196,12 @@ public class SchemaReader {
 	}
 
 	/**
-	 * Generates code from the supplied SMD, DTOs, Replacement files, Template files, and desired
-	 * package location
+	 * Generates code from the supplied SMD, DTOs, Replacement files, Template
+	 * files, and desired package location
 	 * 
 	 * @param packageName
-	 *            the name of the package you are generating. Can be a namespace or other grouping
+	 *            the name of the package you are generating. Can be a namespace
+	 *            or other grouping
 	 * @param saveLocation
 	 *            the root folder to save your files
 	 * @throws JsonIOException
@@ -197,11 +211,17 @@ public class SchemaReader {
 	 */
 	public void createPackage(String saveLocation) throws IOException {
 		// Process all replacements that go with services
-		List<ReplacementRoot> serviceReplacements = this.replacements.get(getServices().getClass());
+		List<ReplacementRoot> serviceReplacements = this.replacements
+				.get(getServices().getClass());
 		if (serviceReplacements == null) {
-			error(new FileNotFoundException("No replacement templates for service methods were found: "
-					+ replacementDir));
+			error(new FileNotFoundException(
+					"No replacement templates for service methods were found: "
+							+ replacementDir));
 		}
+
+		info("Beginning process of emptying directory: " + saveLocation);
+		emptyDirectory(new File(saveLocation));
+		info("Cleared generation destination location");
 		for (ReplacementRoot repl : serviceReplacements) {
 			debug("Processing replacement file: " + repl.getInitialLocation());
 			TemplateFiller filler = new TemplateFiller(repl);
@@ -211,15 +231,50 @@ public class SchemaReader {
 		debug("Beginning processing of all dto template replacements");
 		// Process all replacements that go with each DTO
 		for (DTO dto : getAllModelItems()) {
-			List<ReplacementRoot> dtoReplacements = this.replacements.get(dto.getClass());
+			List<ReplacementRoot> dtoReplacements = this.replacements.get(dto
+					.getClass());
 			if (dtoReplacements == null) {
-				error(new FileNotFoundException("No replacement templates were found for the dtos: " + replacementDir));
+				error(new FileNotFoundException(
+						"No replacement templates were found for the dtos: "
+								+ replacementDir));
 			}
 			for (ReplacementRoot repl : dtoReplacements) {
-				trace("Processing replacement file: " + repl.getInitialLocation());
+				trace("Processing replacement file: "
+						+ repl.getInitialLocation());
 				TemplateFiller filler = new TemplateFiller(repl);
 				filler.saveToFile(saveLocation, dto);
 			}
 		}
+	}
+
+	/**
+	 * Will cleanse the destination directory so we don't run into silly
+	 * conflicts
+	 * 
+	 * @param saveLocation
+	 *            the location to clean
+	 */
+	private static void emptyDirectory(File root) {
+		emptyDirRecursive(root);
+		root.mkdirs();
+	}
+
+	private static void emptyDirRecursive(File root) {
+		trace("Clearing file: " + root);
+		if (root.isDirectory()) {
+			for (File f : root.listFiles()) {
+				emptyDirRecursive(f);
+			}
+		}
+		root.delete();
+	}
+
+	public static void generateCode(CodeGenConfig config)
+			throws ClassNotFoundException, IOException {
+		SchemaReader rdr = new SchemaReader(CodeGenMain.openFileOrUrl(config
+				.getSchemaUrl()),
+				CodeGenMain.openFileOrUrl(config.getSmdUrl()),
+				config.getReplacementDir());
+		rdr.createPackage(config.getSaveLocation());
 	}
 }

@@ -231,6 +231,7 @@ public class CodeTemplate implements TemplateEntry {
 	public String codeReplacement() {
 		String code = resultingTemplate;
 		for (Entry<String, TemplateEntry> entry : templateReplacement.entrySet()) {
+			trace("Template: "+entry.getKey() + " => " + entry.getValue());
 			code = code.replaceAll("<@" + entry.getKey() + "@>", entry.getValue().codeReplacement());
 		}
 		return code;

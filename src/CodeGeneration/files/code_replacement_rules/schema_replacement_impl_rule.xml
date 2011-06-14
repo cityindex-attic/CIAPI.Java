@@ -15,8 +15,6 @@
 		<replacement name="transport" value="method.getValue().getTransport()" />
 		<replacement name="envelope" value="method.getValue().getEnvelope()" />
 		<replacement name="contentType" value="method.getValue().getContentType()" />
-		<replacement name="postParam"
-			value="method.getValue().getParameters().get(#0).getName()" default="null" />
 		<replacementSet subObjName="p" name="parameters"
 			value="method.getValue().getParameters()">
 			<replacement name="pType" value="p.getType()" />
@@ -25,6 +23,10 @@
 		<replacementSet subObjName="p" name="fillParameters"
 			value="method.getValue().getParameters()">
 			<replacement name="parameterName" value="p.getName()" />
+		</replacementSet>
+		<replacementSet subObjName="p" name="fillPostParams"
+			value="method.getValue().getParameters()">
+			<replacement name="name" value="p.getName()" />
 		</replacementSet>
 	</replacementSet>
 </replacementRoot>
