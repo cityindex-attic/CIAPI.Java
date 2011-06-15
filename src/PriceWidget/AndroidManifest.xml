@@ -3,7 +3,7 @@
 	package="CIAPI.Java.pricewidget" android:versionCode="1"
 	android:versionName="1.0">
 	<application android:icon="@drawable/icon" android:label="Price Widget">
-		<receiver android:name=".PriceWidgetActivity" android:label="PriceWidget">
+		<receiver android:name="PriceWidget" >
 			<intent-filter>
 				<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
 			</intent-filter>
