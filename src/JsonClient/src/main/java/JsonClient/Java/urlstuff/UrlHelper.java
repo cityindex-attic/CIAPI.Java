@@ -93,7 +93,7 @@ public class UrlHelper {
 			String[] pairs = paramsPart.split("&");
 
 			for (String pair : pairs) {
-				String[] parts = pair.split("=");
+				String[] parts = pair.split("=", -1);
 				map.put(parts[0], parts[1]);
 			}
 		}

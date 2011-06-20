@@ -1,7 +1,5 @@
 package CIAPI.Java.android;
 
-import CIAPI.Java.ApiFActory;
-import CIAPI.Java.SyncApi;
 
 public class Api {
 
