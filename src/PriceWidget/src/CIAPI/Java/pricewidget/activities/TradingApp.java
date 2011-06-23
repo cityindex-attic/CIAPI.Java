@@ -1,7 +1,9 @@
 package CIAPI.Java.pricewidget.activities;
 
-import CIAPI.Java.pricewidget.CIAPIPriceHelper;
+import static CIAPI.Java.android.Constants.TAG;
 import CIAPI.Java.pricewidget.R;
+import CIAPI.Java.pricewidget.model.LogOnStatus;
+import JsonClient.Java.ApiException;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,7 +11,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import static CIAPI.Java.android.Constants.*;
 
 public class TradingApp extends Activity {
 	/** Called when the activity is first created. */
@@ -26,7 +27,14 @@ public class TradingApp extends Activity {
 				EditText passwordBox = (EditText) findViewById(R.id.passwordField);
 				String username = userBox.getText().toString();
 				String password = passwordBox.getText().toString();
-				CIAPIPriceHelper.logOn(username, password, TradingApp.this);
+				LogOnStatus logon = new LogOnStatus(TradingApp.this);
+				try {
+					logon.logOn(username, password);
+					Log.i(TAG, "Sucessfully logged on to the API");
+					TradingApp.this.finish();
+				} catch (ApiException e) {
+					Log.e(TAG, "Could not log on...username: " + username + ", password: " + password, e);
+				}
 			}
 		});
 	}

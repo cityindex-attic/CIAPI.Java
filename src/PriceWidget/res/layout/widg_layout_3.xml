@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/main"
+	android:layout_height="300px"
+	android:background="@drawable/background"
+	android:layout_width="160dp"
+	android:orientation="vertical">
+	<TextView
+		android:id="@+id/price1"
+		android:layout_width="fill_parent"
+		android:layout_height="100px"
+		android:gravity="center_vertical|center_horizontal"
+		android:textColor="@android:color/black"
+		android:text="price1"
+		android:textSize="12pt"
+		android:longClickable="true" />
+	<TextView
+		android:id="@+id/price2"
+		android:layout_width="fill_parent"
+		android:layout_height="100px"
+		android:gravity="center_vertical|center_horizontal"
+		android:textColor="@android:color/black"
+		android:text="price2"
+		android:textSize="12pt"
+		android:longClickable="true" />
+	<TextView
+		android:id="@+id/price3"
+		android:layout_width="fill_parent"
+		android:layout_height="100px"
+		android:gravity="center_vertical|center_horizontal"
+		android:textColor="@android:color/black"
+		android:text="price3"
+		android:textSize="12pt"
+		android:longClickable="true" />
+</LinearLayout>
