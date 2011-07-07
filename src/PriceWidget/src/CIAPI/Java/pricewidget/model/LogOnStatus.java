@@ -6,7 +6,6 @@ import CIAPI.Java.core.dto.ApiLogOffResponseDTO;
 import CIAPI.Java.core.dto.ApiLogOnResponseDTO;
 import CIAPI.Java.core.impl.ServiceMethodsImpl;
 import CIAPI.Java.pricewidget.activities.TradingApp;
-import CIAPI.Java.pricewidget.util.App;
 import JsonClient.Java.ApiException;
 import JsonClient.Java.DefaultJsonClient;
 import JsonClient.Java.JsonApi;
