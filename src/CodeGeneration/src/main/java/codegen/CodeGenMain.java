@@ -154,9 +154,9 @@ public class CodeGenMain {
 		CONFIG_LOCATION(
 				"-c",
 				"Where the code gen config file is located. Use this parameter, or all of the rest."), SCHEMA_URI(
-				"-sch", "The local file or URL location of the SMD descriptor"), SMD_URI(
+				"-sch", "The local file or URL location of the Schema descriptor"), SMD_URI(
 				"-smd",
-				"The local file or URL location of the Schema descriptor"), SAVE_LOCATION(
+				"The local file or URL location of the SMD descriptor"), SAVE_LOCATION(
 				"-l", "The location to save the generated code"), REPLACEMNT_FILE_DIR(
 				"-r", "The directory where your replacement files are located.");
 

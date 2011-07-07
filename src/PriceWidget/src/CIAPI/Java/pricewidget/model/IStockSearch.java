@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IStockSearch {
 
-	public List<IStock> searchForName(String name);
+	public List<IStock> searchForName(String name, int maxResults);
 
 	public IStock getFromRICCode(String ric);
 

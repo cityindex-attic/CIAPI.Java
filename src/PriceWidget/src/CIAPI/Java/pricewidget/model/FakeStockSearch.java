@@ -10,7 +10,7 @@ public class FakeStockSearch implements IStockSearch {
 	private static final Map<Integer, IStock> id_stock = new HashMap<Integer, IStock>();
 
 	@Override
-	public List<IStock> searchForName(String name) {
+	public List<IStock> searchForName(String name, int max) {
 		return null;
 	}
 

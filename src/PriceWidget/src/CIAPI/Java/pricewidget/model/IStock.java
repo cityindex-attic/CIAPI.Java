@@ -3,6 +3,8 @@ package CIAPI.Java.pricewidget.model;
 public interface IStock {
 	public String getName();
 
+	public String getRICCode();
+
 	public int getId();
 
 	public double currentPrice();

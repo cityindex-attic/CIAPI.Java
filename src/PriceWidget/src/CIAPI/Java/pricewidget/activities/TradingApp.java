@@ -5,6 +5,8 @@ import CIAPI.Java.pricewidget.R;
 import CIAPI.Java.pricewidget.model.LogOnStatus;
 import JsonClient.Java.ApiException;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,13 +15,30 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class TradingApp extends Activity {
-	/** Called when the activity is first created. */
+
+	private static Context ctxt;
+
+	public static Context ctxt() {
+		return ctxt;
+	}
+
+	/**
+	 * Called when the activity is first created.
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.i(TAG, "Creating main activity");
 		setContentView(R.layout.login);
-		Button buttonTCounter = (Button) findViewById(R.id.loginButton);
+		Button changeStocksButton = (Button) findViewById(R.id.change_stock);
+		changeStocksButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent startViewStocks = new Intent(TradingApp.this, ViewStocks.class);
+				TradingApp.this.startActivity(startViewStocks);
+			}
+		});
+		Button buttonTCounter = (Button) findViewById(R.id.saveButton);
 		buttonTCounter.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -27,9 +46,8 @@ public class TradingApp extends Activity {
 				EditText passwordBox = (EditText) findViewById(R.id.passwordField);
 				String username = userBox.getText().toString();
 				String password = passwordBox.getText().toString();
-				LogOnStatus logon = new LogOnStatus(TradingApp.this);
 				try {
-					logon.logOn(username, password);
+					LogOnStatus.logOn(username, password);
 					Log.i(TAG, "Sucessfully logged on to the API");
 					TradingApp.this.finish();
 				} catch (ApiException e) {
@@ -37,5 +55,12 @@ public class TradingApp extends Activity {
 				}
 			}
 		});
+		ctxt = getApplicationContext();
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		Log.i(TAG, "Stopped!");
 	}
 }

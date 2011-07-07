@@ -19,6 +19,8 @@ public class FakeStock implements IStock {
 		historicPrices = new ArrayList<Double>();
 		historicPrices.add(START_PRICE);
 		currentPrice();
+		currentPrice();
+		currentPrice();
 		this.name = name;
 		this.id = r.nextInt(10000000);
 	}
@@ -32,6 +34,11 @@ public class FakeStock implements IStock {
 	@Override
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public String getRICCode() {
+		return name.substring(0, 3);
 	}
 
 	@Override
@@ -68,7 +75,8 @@ public class FakeStock implements IStock {
 
 	@Override
 	public PriceStatus getStatus() {
-		return currentPrice() > lastPrice() ? PriceStatus.RISING : PriceStatus.FALLING;
+		return historicPrices.get(historicPrices.size() - 1) > historicPrices.get(historicPrices.size() - 2) ? PriceStatus.RISING
+				: PriceStatus.FALLING;
 	}
 
 	@Override

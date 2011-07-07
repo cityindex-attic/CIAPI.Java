@@ -12,4 +12,6 @@
 		name="password">Password</string>
 	<string
 		name="login">Log In</string>
+	<string
+		name="choose_stock">Choose a stock</string>
 </resources>
