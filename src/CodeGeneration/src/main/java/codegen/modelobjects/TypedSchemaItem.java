@@ -7,8 +7,7 @@ package codegen.modelobjects;
  * 
  */
 public abstract class TypedSchemaItem {
-	protected String $ref;
-	protected String type;
+	protected Type type;
 	protected Items items;
 	protected String description;
 
@@ -20,22 +19,7 @@ public abstract class TypedSchemaItem {
 	 * @return the fully qualified type name.
 	 */
 	public String getType(String packageName) {
-		if ($ref != null && items != null) {
-			throw new IllegalStateException(
-					"Not sure if it's legal to have a @ref and items attribute.");
-		}
-		if ($ref != null) {
-			String result = $ref.replaceAll("#", packageName);
-			return result.startsWith(".")? result.substring(1): result;
-		} else if (items != null) {
-			if (!type.equals("array")) {
-				throw new IllegalStateException(
-						"Not sure if it is legal to have a type of 'array' and no 'items' attribute.");
-			}
-			return items.getType(packageName) + "[]";
-		} else {
-			return DTO.convertJsonTypeToJavaType(type);
-		}
+		return type.toString();
 	}
 
 	public String getType(){

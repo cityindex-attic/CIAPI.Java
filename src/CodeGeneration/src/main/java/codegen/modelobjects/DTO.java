@@ -3,6 +3,8 @@ package codegen.modelobjects;
 import java.lang.reflect.Type;
 import java.util.Map;
 
+import codegen.gson.GsonHelper;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
@@ -91,7 +93,7 @@ public class DTO {
 		@Override
 		public DTO deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
 				throws JsonParseException {
-			Gson g = new Gson();
+			Gson g = GsonHelper.gson(DTO.class);
 			DTO ret = g.fromJson(json, DTO.class);
 			JsonObject obj = json.getAsJsonObject();
 			JsonElement enumElem = obj.get("enum");

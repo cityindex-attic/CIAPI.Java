@@ -3585,3 +3585,516 @@ java.lang.NullPointerException
 
 [07/06/11 07:48:56:056 CDT] DEBUG codetemplates.CodeTemplate: Parsing template starting with: 
 	private <@propertyType@> <@p
+[11/07/11 02:17:56:056 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 02:17:56:056 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 02:17:56:056 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 02:17:56:056 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 02:23:08:008 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 02:23:08:008 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 02:23:08:008 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 02:23:08:008 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 02:23:49:049 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 02:23:49:049 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 02:23:49:049 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 02:23:49:049 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 02:26:30:030 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 02:26:30:030 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 02:26:30:030 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 02:26:30:030 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 02:32:09:009 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 02:32:09:009 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 02:32:09:009 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 02:32:09:009 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 02:39:29:029 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 02:39:29:029 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 02:39:29:029 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 02:39:29:029 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 02:39:29:029 CDT] DEBUG codegen.SchemaReader: Attempting to parse the SMD stream
+[11/07/11 02:40:04:004 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 02:40:04:004 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 02:40:04:004 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 02:40:04:004 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 02:40:04:004 CDT] DEBUG codegen.SchemaReader: Attempting to parse the Schema stream
+[11/07/11 02:41:14:014 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 02:41:14:014 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\dto_replacement_rule.xml
+[11/07/11 02:41:14:014 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 02:41:14:014 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_impl_rule.xml
+[11/07/11 02:41:14:014 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 02:41:14:014 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_rule.xml
+[11/07/11 02:41:14:014 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 02:41:14:014 CDT] DEBUG codegen.SchemaReader: Attempting to parse the Schema stream
+[11/07/11 02:51:42:042 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 02:51:42:042 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\dto_replacement_rule.xml
+[11/07/11 02:51:42:042 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 02:51:42:042 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_impl_rule.xml
+[11/07/11 02:51:42:042 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 02:51:42:042 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_rule.xml
+[11/07/11 02:51:42:042 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 02:51:42:042 CDT] DEBUG codegen.SchemaReader: Attempting to parse the Schema stream
+[11/07/11 02:52:53:053 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 02:52:53:053 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\dto_replacement_rule.xml
+[11/07/11 02:52:53:053 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 02:52:53:053 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_impl_rule.xml
+[11/07/11 02:52:53:053 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 02:52:53:053 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_rule.xml
+[11/07/11 02:52:53:053 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 02:52:53:053 CDT] DEBUG codegen.SchemaReader: Attempting to parse the Schema stream
+[11/07/11 02:53:21:021 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 02:53:21:021 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\dto_replacement_rule.xml
+[11/07/11 02:53:21:021 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 02:53:21:021 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_impl_rule.xml
+[11/07/11 02:53:21:021 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 02:53:21:021 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_rule.xml
+[11/07/11 02:53:21:021 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 02:53:25:025 CDT] DEBUG codegen.SchemaReader: Attempting to parse the Schema stream
+[11/07/11 02:56:32:032 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 02:56:32:032 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\dto_replacement_rule.xml
+[11/07/11 02:56:32:032 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 02:56:32:032 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_impl_rule.xml
+[11/07/11 02:56:32:032 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 02:56:32:032 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_rule.xml
+[11/07/11 02:56:32:032 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 02:56:32:032 CDT] DEBUG codegen.SchemaReader: Attempting to parse the Schema stream
+[11/07/11 02:56:39:039 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 02:56:40:040 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\dto_replacement_rule.xml
+[11/07/11 02:56:40:040 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 02:56:40:040 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_impl_rule.xml
+[11/07/11 02:56:40:040 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 02:56:40:040 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_rule.xml
+[11/07/11 02:56:40:040 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 02:56:45:045 CDT] DEBUG codegen.SchemaReader: Attempting to parse the Schema stream
+[11/07/11 02:58:53:053 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 02:58:53:053 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\dto_replacement_rule.xml
+[11/07/11 02:58:53:053 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 02:58:53:053 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_impl_rule.xml
+[11/07/11 02:58:53:053 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 02:58:53:053 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_rule.xml
+[11/07/11 02:58:53:053 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 02:58:53:053 CDT] DEBUG codegen.SchemaReader: Attempting to parse the Schema stream
+[11/07/11 02:58:53:053 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiStopLimitOrderHistoryDTO
+[11/07/11 02:59:25:025 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 02:59:25:025 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\dto_replacement_rule.xml
+[11/07/11 02:59:25:025 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 02:59:25:025 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_impl_rule.xml
+[11/07/11 02:59:25:025 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 02:59:25:025 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_rule.xml
+[11/07/11 02:59:25:025 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 02:59:25:025 CDT] DEBUG codegen.SchemaReader: Attempting to parse the Schema stream
+[11/07/11 02:59:25:025 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiIfDoneDTO
+[11/07/11 02:59:45:045 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 02:59:45:045 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\dto_replacement_rule.xml
+[11/07/11 02:59:45:045 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 02:59:45:045 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_impl_rule.xml
+[11/07/11 02:59:45:045 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 02:59:45:045 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_rule.xml
+[11/07/11 02:59:45:045 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 02:59:47:047 CDT] DEBUG codegen.SchemaReader: Attempting to parse the Schema stream
+[11/07/11 02:59:47:047 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiIfDoneDTO
+[11/07/11 03:08:31:031 CDT] DEBUG codegen.SchemaReader: Loading all replacements defined in directory: files/code_replacement_rules
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\dto_replacement_rule.xml
+[11/07/11 03:08:31:031 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\DTOTemplate.jav
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_impl_rule.xml
+[11/07/11 03:08:31:031 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplateImpl.jav
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsing file into replacement object:C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\schema_replacement_rule.xml
+[11/07/11 03:08:31:031 CDT] DEBUG replacementrule.ReplacementRoot: Parsed code template location: C:\Users\Justin\workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules\..\code_templates\CombinedTemplate.jav
+[11/07/11 03:08:31:031 CDT] DEBUG codegen.SchemaReader: Attempting to parse the Schema stream
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiStopLimitOrderHistoryDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiIfDoneDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiTradingAccountDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: PriceBarDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: PriceDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiTradeHistoryDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiBasicStopLimitOrderDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: NewsDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiClientAccountWatchlistItemDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiLookupDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiOpenPositionDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiMarketEodDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiMarketInformationDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiOrderDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiActiveStopLimitOrderDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiMarketDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: QuoteDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiStopLimitOrderDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: OrderDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: PriceTickDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiClientAccountWatchlistDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ClientAccountMarginDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: NewsDetailDTO
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiTradeOrderDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiOrderResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiStopLimitResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ListNewsHeadlinesResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiLogOnRequestDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: GetOrderResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: GetActiveStopLimitOrderResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: UpdateWatchlistDisplayOrderRequestDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: CancelOrderRequestDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: InsertWatchlistItemRequestDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: GetPriceTickResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiLogOffRequestDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ListMarketInformationRequestDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiTradeOrderResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiQuoteResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiLogOnResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ListMarketInformationResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: AccountInformationResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: NewStopLimitOrderRequestDTO
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: UpdateStopLimitOrderRequestDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: GetPriceBarResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ListStopLimitOrderHistoryResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: GetMarketInformationResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: GetMessagePopupResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiErrorResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ListMarketInformationSearchResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: GetOpenPositionResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ListSpreadMarketsResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ListOpenPositionsResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ErrorCode
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ListOrdersResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ListCfdMarketsResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiLogOffResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ListWatchlistResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ListTradeHistoryResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ListActiveStopLimitOrderResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: NewTradeOrderRequestDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: UpdateTradeOrderRequestDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: GetNewsDetailResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiLookupResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: ApiIfDoneResponseDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: SystemStatusDTO
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE codegen.SchemaReader: Parsed dto: SystemStatusRequestDTO
+[11/07/11 03:08:31:031 CDT] DEBUG codegen.SchemaReader: Successfully parsed stream
+[11/07/11 03:08:31:031 CDT] DEBUG codegen.SchemaReader: Attempting to parse the SMD stream
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] TRACE modelobjects.Type$DeSerializer: Custom deserializing a type
+[11/07/11 03:08:31:031 CDT] DEBUG codegen.SchemaReader: Successfully parsed stream

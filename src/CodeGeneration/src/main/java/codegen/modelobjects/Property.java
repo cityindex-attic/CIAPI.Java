@@ -1,23 +1,22 @@
 package codegen.modelobjects;
 
-public class Property extends TypedSchemaItem {
-
+public class Property {
+	protected Type type;
 	private String description;
-	private long minLength;
-	private long maxLength;
-
-
+	private long minValue;
+	private long maxValue;
+	private String format;
 
 	public String getRawType() {
-		return type;
+		return type.toString();
 	}
 
 	public long getMinLength() {
-		return minLength;
+		return minValue;
 	}
 
 	public long getMaxLength() {
-		return maxLength;
+		return maxValue;
 	}
 
 }
