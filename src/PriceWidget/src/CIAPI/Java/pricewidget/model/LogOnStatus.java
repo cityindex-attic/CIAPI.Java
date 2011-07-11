@@ -9,6 +9,8 @@ import CIAPI.Java.pricewidget.activities.TradingApp;
 import JsonClient.Java.ApiException;
 import JsonClient.Java.DefaultJsonClient;
 import JsonClient.Java.JsonApi;
+import JsonClient.Java.async.AsyncJsonApi;
+import JsonClient.Java.async.CallBack;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -20,22 +22,33 @@ public class LogOnStatus {
 
 	private static final ServiceMethods methods = new ServiceMethodsImpl();
 
-	public static String logOn(String username, String password) throws ApiException {
+	public static void logOn(final String username, final String password) throws ApiException {
 		Log.w(TAG, "Logging in: " + username);
-		ApiLogOnResponseDTO resp = methods.LogOn(username, password, api());
-		saveString(USERNAME_KEY, username);
-		saveString(PASSWORD_KEY, password);
-		saveString(SESSION__KEY, resp.getSession());
-		api.addConstantParameter("session", session());
-		api.addConstantParameter("username", username());
-		return resp.getSession();
+		methods.LogOnAsync(username, password, apiAsync(), new CallBack() {
+			@Override
+			public void doCallBack(Object result, String baseUrl, String methodName) {
+				Log.d(TAG, "Logged on async!!!");
+				ApiLogOnResponseDTO resp = (ApiLogOnResponseDTO) result;
+				saveString(SESSION__KEY, resp.getSession());
+				saveString(USERNAME_KEY, username);
+				saveString(PASSWORD_KEY, password);
+				saveString(SESSION__KEY, resp.getSession());
+				api.addConstantParameter("session", session());
+				api.addConstantParameter("username", username());
+			}
+		});
 	}
 
-	public static String refreshLogOn() throws ApiException {
+	public static void refreshLogOn() throws ApiException {
 		Log.w(TAG, "Refreshing in: " + username());
-		ApiLogOnResponseDTO resp = methods.LogOn(username(), password(), api());
-		saveString(SESSION__KEY, resp.getSession());
-		return resp.getSession();
+		methods.LogOnAsync(username(), password(), apiAsync(), new CallBack() {
+			@Override
+			public void doCallBack(Object result, String baseUrl, String methodName) {
+				Log.d(TAG, "Logged on async!!!");
+				saveString(SESSION__KEY, ((ApiLogOnResponseDTO) result).getSession());
+				api.addConstantParameter("session", session());
+			}
+		});
 	}
 
 	public static void logOut() throws ApiException {
@@ -80,9 +93,15 @@ public class LogOnStatus {
 
 	private static JsonApi api = new JsonApi("http://ciapipreprod.cityindextest9.co.uk/TradingApi",
 			new DefaultJsonClient());
+	private static AsyncJsonApi apiAsync = new AsyncJsonApi("http://ciapipreprod.cityindextest9.co.uk/TradingApi",
+			new DefaultJsonClient());
 
 	public static JsonApi api() {
 		return api;
+	}
+
+	public static AsyncJsonApi apiAsync() {
+		return apiAsync;
 	}
 
 	public static boolean isLoggedOn() {

@@ -9,16 +9,13 @@ import CIAPI.Java.core.dto.ApiMarketDTO;
 import CIAPI.Java.core.dto.ListCfdMarketsResponseDTO;
 import CIAPI.Java.core.impl.ServiceMethodsImpl;
 import JsonClient.Java.ApiException;
-import android.content.Context;
 
 public class StockSearch implements IStockSearch {
-	private Context context;
 	private ServiceMethods methods = new ServiceMethodsImpl();
 
 	private int clientAccountId;
 
-	public StockSearch(Context context) {
-		this.context = context;
+	public StockSearch() {
 		try {
 			AccountInformationResponseDTO accountinfo = methods.GetClientAndTradingAccount(LogOnStatus.api());
 			clientAccountId = accountinfo.getClientAccountId();
@@ -35,7 +32,7 @@ public class StockSearch implements IStockSearch {
 					LogOnStatus.api());
 			ApiMarketDTO[] mkts = market.getMarkets();
 			for (ApiMarketDTO dto : mkts) {
-				ret.add(new RealStock(dto.getMarketId(), context));
+				ret.add(new RealStock(dto.getMarketId()));
 			}
 		} catch (ApiException e) {
 			e.printStackTrace();
@@ -52,10 +49,10 @@ public class StockSearch implements IStockSearch {
 	@Override
 	public IStock getById(int id) {
 		try {
-			return new RealStock(id, context);
+			return new RealStock(id);
 		} catch (ApiException e) {
 			e.printStackTrace();
-			throw new Error("Shit, get by id failed.");
+			throw new RuntimeException("Shit, get by id failed.");
 		}
 	}
 }

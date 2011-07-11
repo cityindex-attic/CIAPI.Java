@@ -38,7 +38,7 @@ public class AsyncJsonApi {
 	public AsyncJsonApi(String baseUrl, JsonClient client) {
 		this.baseUrl = baseUrl;
 		this.client = client;
-		exec = new ThreadPoolExecutor(2, 20, 1, TimeUnit.HOURS,
+		exec = new ThreadPoolExecutor(2, 20, 60, TimeUnit.MINUTES,
 				new ArrayBlockingQueue<Runnable>(50), new ThreadFactory() {
 					@Override
 					public Thread newThread(Runnable r) {

@@ -18,7 +18,9 @@ import android.util.Log;
 public class RealStock implements IStock {
 	public static final String[] WHITE_LIST = ("123 456 789 38959 38990 39009 39755 41813 42160 "
 			+ "52077 63274 71442 71443 99506 99609 99612 99626 133240 133504 146720 154289 154981 "
-			+ "400156103 400158421 400158433 400159936 400164737 400188540 400195587 400195712 400272693 "
+			+ "400156103 400158421 400158433 400159936 400164737 400188540 400195587 400195712 " // removed
+																									// :
+																									// 400272693
 			+ "400315915 400368520 400379908 400390750 400421302 400429952 400433200 400480968 400481115 "
 			+ "400481119 400481120 400481126 400481128 400481136 400481138 400481139 400481140 400481141 "
 			+ "400481142 400481211 400481217 400481223 400481229 400481235 400481241 400481247 400481253 "
@@ -34,7 +36,7 @@ public class RealStock implements IStock {
 
 	private final int id;
 
-	public RealStock(int id, Context context) throws ApiException {
+	public RealStock(int id) throws ApiException {
 		if (realWhiteList == null) {
 			Integer[] arr = new Integer[WHITE_LIST.length];
 			for (int i = 0; i < arr.length; i++) {
@@ -70,7 +72,7 @@ public class RealStock implements IStock {
 
 	@Override
 	public String getRICCode() {
-		return info.getName().substring(0, 3);
+		return info.getName();
 	}
 
 	@Override
@@ -80,10 +82,11 @@ public class RealStock implements IStock {
 			PriceTickDTO[] ticks = tickResp.getPriceTicks();
 			String date = ticks[0].getTickDate();
 			Log.e(TAG, "Woah!! - " + date);
+			return Double.parseDouble(String.format("%.2f", ticks[ticks.length - 1].getPrice() / 100));
 		} catch (ApiException e) {
 			e.printStackTrace();
+			return -0;
 		}
-		return 0;
 	}
 
 	@Override
