@@ -71,11 +71,12 @@ public class CompoundCodeTemplate implements TemplateEntry {
 			bldr.append(template.codeReplacement());
 			bldr.append(delim);
 		}
-		return bldr.toString();
+		// Trim off the last delim
+		// https://github.com/cityindex/CIAPI.Java/issues/6
+		return bldr.toString().substring(0, bldr.length() - delim.length());
 	}
 
 	private CompoundCodeTemplate() {
-
 	}
 
 	@Override

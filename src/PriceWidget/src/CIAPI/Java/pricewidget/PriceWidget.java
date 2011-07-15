@@ -6,12 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import CIAPI.Java.pricewidget.activities.TradingApp;
-import CIAPI.Java.pricewidget.model.IStock;
-import CIAPI.Java.pricewidget.model.IStock.PriceStatus;
-import CIAPI.Java.pricewidget.model.IStockSearch;
-import CIAPI.Java.pricewidget.model.LogOnStatus;
-import CIAPI.Java.pricewidget.model.RealStock;
-import CIAPI.Java.pricewidget.model.StockSearch;
+import CIAPI.Java.pricewidget.model.auth.LogOnStatus;
+import CIAPI.Java.pricewidget.model.stock.IStock;
+import CIAPI.Java.pricewidget.model.stock.IStockSearch;
+import CIAPI.Java.pricewidget.model.stock.IStock.PriceStatus;
+import CIAPI.Java.pricewidget.model.stock.impl.RealStock;
+import CIAPI.Java.pricewidget.model.stock.impl.StockSearch;
 import JsonClient.Java.ApiException;
 import android.app.AlarmManager;
 import android.app.PendingIntent;

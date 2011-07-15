@@ -2,7 +2,7 @@ package CIAPI.Java.pricewidget.activities;
 
 import static CIAPI.Java.android.Constants.TAG;
 import CIAPI.Java.pricewidget.R;
-import CIAPI.Java.pricewidget.model.LogOnStatus;
+import CIAPI.Java.pricewidget.model.auth.LogOnStatus;
 import JsonClient.Java.ApiException;
 import android.app.Activity;
 import android.content.Context;

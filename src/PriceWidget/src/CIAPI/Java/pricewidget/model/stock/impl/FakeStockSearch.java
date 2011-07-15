@@ -1,8 +1,11 @@
-package CIAPI.Java.pricewidget.model;
+package CIAPI.Java.pricewidget.model.stock.impl;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import CIAPI.Java.pricewidget.model.stock.IStock;
+import CIAPI.Java.pricewidget.model.stock.IStockSearch;
 
 public class FakeStockSearch implements IStockSearch {
 

@@ -98,12 +98,12 @@ public class DTO {
 			JsonObject obj = json.getAsJsonObject();
 			JsonElement enumElem = obj.get("enum");
 			if (enumElem != null) {
-				ret.enum_ = jsonArrTOJavaintArr(enumElem.getAsJsonArray());
+				ret.enum_ = jsonArrToJavaintArr(enumElem.getAsJsonArray());
 			}
 			return ret;
 		}
 
-		private int[] jsonArrTOJavaintArr(JsonArray arr) {
+		private int[] jsonArrToJavaintArr(JsonArray arr) {
 			int[] ret = new int[arr.size()];
 			for (int i = 0; i < arr.size(); i++) {
 				ret[i] = arr.get(i).getAsInt();

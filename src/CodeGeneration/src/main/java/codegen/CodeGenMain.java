@@ -33,7 +33,7 @@ public class CodeGenMain {
 	 * 
 	 * @param args
 	 */
-	public static void main2(String[] args) throws ClassNotFoundException, IOException {
+	public static void main(String[] args) throws ClassNotFoundException, IOException {
 		info("Beginning the process of generating code");
 		if (args.length == 0 || args[0].matches("(-h|-H|--help)") || args.length % 2 == 1) {
 			debug("Given arguments did not match the expected arguments");
@@ -49,10 +49,13 @@ public class CodeGenMain {
 		}
 	}
 
-	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException {
+	public static void main2(String[] args) throws FileNotFoundException, ClassNotFoundException {
 		SchemaReader rdr = new SchemaReader(new FileInputStream("files/smdFiles/schema_new.js"), new FileInputStream(
 				"files/smdFiles/smd.js"), "files/code_replacement_rules");
 		List<DTO> dtos = rdr.getAllModelItems();
+		for(DTO d: dtos){
+			System.out.println(d);
+		}
 	}
 
 	/**

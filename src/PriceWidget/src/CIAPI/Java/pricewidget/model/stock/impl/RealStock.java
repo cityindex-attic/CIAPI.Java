@@ -1,4 +1,4 @@
-package CIAPI.Java.pricewidget.model;
+package CIAPI.Java.pricewidget.model.stock.impl;
 
 import static CIAPI.Java.android.Constants.TAG;
 
@@ -11,6 +11,9 @@ import CIAPI.Java.core.dto.ApiMarketInformationDTO;
 import CIAPI.Java.core.dto.GetPriceTickResponseDTO;
 import CIAPI.Java.core.dto.PriceTickDTO;
 import CIAPI.Java.core.impl.ServiceMethodsImpl;
+import CIAPI.Java.pricewidget.model.auth.LogOnStatus;
+import CIAPI.Java.pricewidget.model.stock.IStock;
+import CIAPI.Java.pricewidget.model.stock.IStock.PriceStatus;
 import JsonClient.Java.ApiException;
 import android.content.Context;
 import android.util.Log;

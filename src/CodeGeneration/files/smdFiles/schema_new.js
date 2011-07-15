@@ -1,5 +1,4 @@
 {
-  "namespace": "NameSpaceName",
   "properties": {
     "ApiStopLimitOrderHistoryDTO": {
       "id": "ApiStopLimitOrderHistoryDTO",
@@ -30,7 +29,7 @@
           "format": "decimal",
           "minValue": -7.9228162514264338E+28,
           "maxValue": 7.9228162514264338E+28,
-          "description": "The quantity of the order when it became a trade / was canceled etc."
+          "description": "The quantity of the order when it became a trade / was cancelled etc."
         },
         "Price": {
           "type": "number",
@@ -62,7 +61,7 @@
           "type": "integer",
           "minValue": -2147483648,
           "maxValue": 2147483647,
-          "description": "When the order applies until. i.e. good till canceled (GTC) good for day (GFD) or good till time (GTT)."
+          "description": "When the order applies until. i.e. good till cancelled (GTC) good for day (GFD) or good till time (GTT)."
         },
         "Currency": {
           "type": "string",

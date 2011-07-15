@@ -1,4 +1,4 @@
-package CIAPI.Java.pricewidget.model;
+package CIAPI.Java.pricewidget.model.stock;
 
 public interface IStock {
 	public String getName();

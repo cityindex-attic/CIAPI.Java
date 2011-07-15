@@ -239,57 +239,31 @@
     },
 
     "ListMarketInformationSearch": {
-
       "description": "<p>Queries for market information.</p>",
-
       "target": "market",
-
       "uriTemplate": "/market/informationsearch?SearchByMarketCode={searchByMarketCode}&SearchByMarketName={searchByMarketName}&SpreadProductType={spreadProductType}&CfdProductType={cfdProductType}&BinaryProductType={binaryProductType}&Query={query}&MaxResults={maxResults}",
-
       "contentType": "application/json",
-
       "responseContentType": "application/json",
-
       "transport": "GET",
-
       "envelope": "URL",
-
       "returns": {
-
         "$ref": "#.ListMarketInformationSearchResponseDTO"
-
       },
-
       "group": "Market",
-
       "throttleScope": "data",
-
       "parameters": [
-
         {
-
           "type": "boolean",
-
           "name": "searchByMarketCode",
-
           "description": "Should the search be done by market code"
-
         },
-
         {
-
           "type": "boolean",
-
           "name": "searchByMarketName",
-
           "description": "Should the search be done by market Name"
-
         },
-
         {
-
           "type": "boolean",
-
           "name": "spreadProductType",
 
           "description": "Should the search include spread bet markets"

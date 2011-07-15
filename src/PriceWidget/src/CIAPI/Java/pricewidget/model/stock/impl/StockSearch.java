@@ -1,4 +1,4 @@
-package CIAPI.Java.pricewidget.model;
+package CIAPI.Java.pricewidget.model.stock.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,9 @@ import CIAPI.Java.core.dto.AccountInformationResponseDTO;
 import CIAPI.Java.core.dto.ApiMarketDTO;
 import CIAPI.Java.core.dto.ListCfdMarketsResponseDTO;
 import CIAPI.Java.core.impl.ServiceMethodsImpl;
+import CIAPI.Java.pricewidget.model.auth.LogOnStatus;
+import CIAPI.Java.pricewidget.model.stock.IStock;
+import CIAPI.Java.pricewidget.model.stock.IStockSearch;
 import JsonClient.Java.ApiException;
 
 public class StockSearch implements IStockSearch {

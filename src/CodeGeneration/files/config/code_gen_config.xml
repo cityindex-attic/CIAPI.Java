@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration >
-	<smdLocation>C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\smdFiles\smd.js</smdLocation>
+	<smdLocation>C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\smdFiles\smd_new.js</smdLocation>
 	<schemaLocation>C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\smdFiles\schema_new.js</schemaLocation>
 	<replacementDirectory>C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CodeGeneration\files\code_replacement_rules</replacementDirectory>
 	<saveLocation>C:\Users\Justin\cityindex_workspace\CIAPI.Java\src\CIAPI.Java\src\main\java\CIAPI\Java\core</saveLocation>

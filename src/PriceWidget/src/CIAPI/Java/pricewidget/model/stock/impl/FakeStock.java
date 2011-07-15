@@ -1,8 +1,11 @@
-package CIAPI.Java.pricewidget.model;
+package CIAPI.Java.pricewidget.model.stock.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import CIAPI.Java.pricewidget.model.stock.IStock;
+import CIAPI.Java.pricewidget.model.stock.IStock.PriceStatus;
 
 public class FakeStock implements IStock {
 

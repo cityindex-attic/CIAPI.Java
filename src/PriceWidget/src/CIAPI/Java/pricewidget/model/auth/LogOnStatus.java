@@ -1,4 +1,4 @@
-package CIAPI.Java.pricewidget.model;
+package CIAPI.Java.pricewidget.model.auth;
 
 import static CIAPI.Java.android.Constants.TAG;
 import CIAPI.Java.core.ServiceMethods;

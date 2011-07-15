@@ -11,7 +11,7 @@ public class SMDDescriptor {
 	private String schema;
 	private String description;
 	private boolean additionalParameters;
-	private Map<String, Service> services;
+	private Map<String, DataMethod> services;
 
 	public String getSMDVersion() {
 		return SMDVersion;
@@ -42,7 +42,7 @@ public class SMDDescriptor {
 	}
 
 	public Map<String, Service> getServices() {
-		return services;
+		return services.get("rpc").getServices();
 	}
 	@Override
 	public String toString() {
