@@ -20,7 +20,6 @@ public abstract class TypedSchemaItem {
 	 */
 	public String getType(String packageName) {
 		if (items != null){
-			System.out.println("Not null!!");
 			return items[0].toString() + "[]";
 		}
 		return type.toString();

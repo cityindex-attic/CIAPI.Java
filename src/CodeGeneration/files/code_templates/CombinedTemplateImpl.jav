@@ -2,6 +2,7 @@ package CIAPI.Java.core.impl;
 
 import java.util.concurrent.Future;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import JsonClient.Java.ApiException;
@@ -14,6 +15,8 @@ import CIAPI.Java.core.ServiceMethods;
 import CIAPI.Java.core.dto.*;
 
 public class ServiceMethodsImpl implements ServiceMethods {
+
+	private Gson g = new Gson();
 
 	<@@methods@@>
 	/**
@@ -48,8 +51,8 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		} else if (transport.equals("POST")) {
 			JsonObject obj = new JsonObject();
 			<@@fillPostParams@@>
-			obj.addProperty("<@name@>", <@name@> + "");<@@@@>
-			result = (<@return@>) api.callPostMethod(fullUrl, obj.toString(), <@return@>.class);
+			obj.addProperty("<@name@>", g.toJson(<@name@>) + "");<@@@@>
+			result = (<@return@>) api.callPostMethod(fullUrl, g.toJson(obj), <@return@>.class);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -91,8 +94,8 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		} else if (transport.equals("POST")) {
 			JsonObject obj = new JsonObject();
 			<@@fillPostParams@@>
-			obj.addProperty("<@name@>", <@name@>  + "");<@@@@>
-			result = call.callPostMethod(fullUrl, obj.toString(), <@return@>.class);
+			obj.addProperty("<@name@>", g.toJson(<@name@>)  + "");<@@@@>
+			result = call.callPostMethod(fullUrl, g.toJson(obj), <@return@>.class);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}

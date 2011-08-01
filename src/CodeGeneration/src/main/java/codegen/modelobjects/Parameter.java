@@ -13,6 +13,7 @@ import com.google.gson.JsonParseException;
 
 public class Parameter extends TypedSchemaItem {
 
+	private String $ref;
 	private String name;
 	private int minLength;
 	private int maxLength;
@@ -47,17 +48,26 @@ public class Parameter extends TypedSchemaItem {
 		return new DeSerializer();
 	}
 
+	@Override
+	public String getType() {
+		if ($ref != null) {
+			return $ref.substring(2);
+		} else {
+			return super.getType();
+		}
+	}
+
 	/**
 	 * Custom deserializer. Only does the enum_ part. Otherwise just uses the
-	 * Gson de serialization
+	 * Gson deserialization
 	 * 
-	 * @author justin nelson
+	 * @author Justin Nelson
 	 * 
 	 */
 	static class DeSerializer implements JsonDeserializer<Parameter> {
 		@Override
-		public Parameter deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-				throws JsonParseException {
+		public Parameter deserialize(JsonElement json, Type typeOfT,
+				JsonDeserializationContext context) throws JsonParseException {
 			Gson g = GsonHelper.gson(Parameter.class);
 			Parameter ret = g.fromJson(json, Parameter.class);
 			JsonObject obj = json.getAsJsonObject();

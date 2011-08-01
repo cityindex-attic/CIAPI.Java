@@ -53,7 +53,7 @@ public class CodeGenMain {
 		SchemaReader rdr = new SchemaReader(new FileInputStream("files/smdFiles/schema_new.js"), new FileInputStream(
 				"files/smdFiles/smd.js"), "files/code_replacement_rules");
 		List<DTO> dtos = rdr.getAllModelItems();
-		for(DTO d: dtos){
+		for (DTO d : dtos) {
 			System.out.println(d);
 		}
 	}
@@ -186,8 +186,7 @@ public class CodeGenMain {
 		 * 
 		 * @param option
 		 *            the option to match
-		 * @return the {@link SpecificParams} matching the option. Or <code>null</code> if no
-		 *         matches are found.
+		 * @return the {@link SpecificParams} matching the option. Or <code>null</code> if no matches are found.
 		 */
 		public static SpecificParams fromOption(String option) {
 			for (SpecificParams p : values()) {
@@ -201,8 +200,7 @@ public class CodeGenMain {
 	}
 
 	/**
-	 * A class representing a generic command line paramter. It has 2 parts, an option (-l, -smd)
-	 * and a value.
+	 * A class representing a generic command line paramter. It has 2 parts, an option (-l, -smd) and a value.
 	 * 
 	 * @author Justin Nelson
 	 * 
