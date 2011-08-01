@@ -23,7 +23,6 @@ public class Parameter extends TypedSchemaItem {
 		return name;
 	}
 
-
 	public String get$ref() {
 		return type.get$ref();
 	}

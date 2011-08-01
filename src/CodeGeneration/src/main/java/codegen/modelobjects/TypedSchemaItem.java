@@ -8,7 +8,7 @@ package codegen.modelobjects;
  */
 public abstract class TypedSchemaItem {
 	protected Type type;
-	protected Items items;
+	protected Type[] items;
 	protected String description;
 
 	/**
@@ -19,6 +19,10 @@ public abstract class TypedSchemaItem {
 	 * @return the fully qualified type name.
 	 */
 	public String getType(String packageName) {
+		if (items != null){
+			System.out.println("Not null!!");
+			return items[0].toString() + "[]";
+		}
 		return type.toString();
 	}
 

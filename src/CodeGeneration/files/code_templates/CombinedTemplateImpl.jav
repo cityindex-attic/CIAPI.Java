@@ -22,7 +22,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * <@description@>
 	 */
 	@Override
-	public <@return@> <@name@>(<@@parameters:,@@><@pType@> <@pName@><@@@@> JsonApi api) 
+	public <@return@> <@name@>(<@@parameters:,@@><@pType@> <@pName@><@@@@>, JsonApi api) 
 												throws ApiException {
 		// Collect variables from method
 		String target = "<@target@>";
@@ -62,7 +62,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * <@description@>
 	 */
 	@Override
-	public Future<Object> <@name@>Async(<@@parameters:,@@><@pType@> <@pName@><@@@@> AsyncJsonApi api, CallBack... callBacks) throws ApiException {
+	public Future<Object> <@name@>Async(<@@parameters:,@@><@pType@> <@pName@><@@@@>, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
 		// Collect variables from method
 		String target = "<@target@>";
 		String uriTemplate = "<@uriTemplate@>";

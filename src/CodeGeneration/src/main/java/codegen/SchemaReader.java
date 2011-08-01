@@ -83,6 +83,7 @@ public class SchemaReader {
 		obj = (JsonObject) obj.get("properties");
 		dtos = new ArrayList<DTO>();
 		for (Entry<String, JsonElement> entry : obj.entrySet()) {
+			trace("Parsing dto: " + entry.getKey());
 			DTO result = g.fromJson(entry.getValue(), DTO.class);
 			result.setName(entry.getKey());
 			trace("Parsed dto: " + entry.getKey());

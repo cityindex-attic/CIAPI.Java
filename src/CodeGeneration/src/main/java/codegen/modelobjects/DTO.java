@@ -32,9 +32,6 @@ public class DTO {
 		return id;
 	}
 
-	public String getType() {
-		return DTO.convertJsonTypeToJavaType(type);
-	}
 
 	public String getRawType() {
 		return type;

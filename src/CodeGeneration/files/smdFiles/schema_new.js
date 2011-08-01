@@ -32,7 +32,10 @@
           "description": "The quantity of the order when it became a trade / was cancelled etc."
         },
         "Price": {
-          "type": "number",
+          "type": [
+            "null",
+            "number"
+          ],
           "format": "decimal",
           "minValue": -7.9228162514264338E+28,
           "maxValue": 7.9228162514264338E+28,
@@ -386,7 +389,10 @@
           "description": "order the items should be displayed on a user interface."
         },
         "TranslationTextId": {
-          "type": "integer",
+          "type": [
+            "null",
+            "integer"
+          ],
           "minValue": -2147483648,
           "maxValue": 2147483647,
           "description": "translation text id."
@@ -489,7 +495,10 @@
           "description": "Unit"
         },
         "MarketEodAmount": {
-          "type": "integer",
+          "type": [
+            "null",
+            "integer"
+          ],
           "minValue": -2147483648,
           "maxValue": 2147483647,
           "description": "End of day amount."
@@ -512,28 +521,40 @@
           "description": "The market name"
         },
         "MarginFactor": {
-          "type": "number",
+          "type": [
+            "null",
+            "number"
+          ],
           "format": "decimal",
           "minValue": -7.9228162514264338E+28,
           "maxValue": 7.9228162514264338E+28,
           "description": "Margin factor, expressed as points or a percentage."
         },
         "MinDistance": {
-          "type": "number",
+          "type": [
+            "null",
+            "number"
+          ],
           "format": "decimal",
           "minValue": -7.9228162514264338E+28,
           "maxValue": 7.9228162514264338E+28,
           "description": "The minimum distance from the current price you can place an order."
         },
         "WebMinSize": {
-          "type": "number",
+          "type": [
+            "null",
+            "number"
+          ],
           "format": "decimal",
           "minValue": -7.9228162514264338E+28,
           "maxValue": 7.9228162514264338E+28,
           "description": "The minimum quantity that can be traded over the web."
         },
         "MaxSize": {
-          "type": "number",
+          "type": [
+            "null",
+            "number"
+          ],
           "format": "decimal",
           "minValue": -7.9228162514264338E+28,
           "maxValue": 7.9228162514264338E+28,
@@ -544,13 +565,19 @@
           "description": "Is the market a 24 hour market."
         },
         "PriceDecimalPlaces": {
-          "type": "integer",
+          "type": [
+            "null",
+            "integer"
+          ],
           "minValue": -2147483648,
           "maxValue": 2147483647,
           "description": "the number of decimal places in the market's price."
         },
         "DefaultQuoteLength": {
-          "type": "integer",
+          "type": [
+            "null",
+            "integer"
+          ],
           "minValue": -2147483648,
           "maxValue": 2147483647,
           "description": "default quote length."
@@ -615,7 +642,10 @@
           "description": "Size of the order"
         },
         "Price": {
-          "type": "number",
+          "type": [
+            "null",
+            "number"
+          ],
           "format": "decimal",
           "minValue": -7.9228162514264338E+28,
           "maxValue": 7.9228162514264338E+28,
@@ -675,7 +705,10 @@
           "description": "The order's unique identifier."
         },
         "ParentOrderId": {
-          "type": "integer",
+          "type": [
+            "null",
+            "integer"
+          ],
           "minValue": -2147483648,
           "maxValue": 2147483647,
           "description": "The order's parent OrderId."
@@ -728,7 +761,10 @@
           "description": "When the order applies until. i.e. good till cancelled (GTC) good for day (GFD) or good till time (GTT)."
         },
         "ExpiryDateTimeUTC": {
-          "type": "string",
+          "type": [
+            "null",
+            "string"
+          ],
           "format": "wcf-date",
           "description": "The associated expiry DateTime."
         },
@@ -876,7 +912,10 @@
       "extends": "#/ApiOrderDTO",
       "properties": {
         "ExpiryDateTimeUTC": {
-          "type": "string",
+          "type": [
+            "null",
+            "string"
+          ],
           "format": "wcf-date",
           "description": "The associated expiry DateTime for a pair of GoodTillDate IfDone orders"
         },
@@ -1587,7 +1626,10 @@
           "description": "Identifier which relates to the expiry of the order/trade, i.e. GoodTillDate (GTD), GoodTillCancelled (GTC) or GoodForDay (GFD)"
         },
         "ExpiryDateTimeUTC": {
-          "type": "string",
+          "type": [
+            "null",
+            "string"
+          ],
           "format": "wcf-date",
           "description": "The associated expiry DateTime for a pair of GoodTillDate IfDone orders"
         },
@@ -1940,7 +1982,10 @@
           "description": "Size of the order/trade"
         },
         "QuoteId": {
-          "type": "integer",
+          "type": [
+            "null",
+            "integer"
+          ],
           "minValue": -2147483648,
           "maxValue": 2147483647,
           "description": "Quote Id"

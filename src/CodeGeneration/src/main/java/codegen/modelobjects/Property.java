@@ -1,6 +1,6 @@
 package codegen.modelobjects;
 
-public class Property {
+public class Property extends TypedSchemaItem {
 	protected Type type;
 	private String description;
 	private long minValue;

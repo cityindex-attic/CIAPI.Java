@@ -25,7 +25,7 @@ public interface ServiceMethods {
 	 * @param <@paramName@> <@paramDesc@><@@@@>
 	 * @param api The JsonApi implementation that you would like.
 	 */
-	public <@return@> <@name@>(<@@parameters:,@@><@pType@> <@pName@><@@@@> JsonApi api) throws ApiException; 
+	public <@return@> <@name@>(<@@parameters:,@@><@pType@> <@pName@><@@@@>, JsonApi api) throws ApiException; 
 	
 	/**
 	 * !This is an auto generated method signature!
@@ -36,5 +36,5 @@ public interface ServiceMethods {
 	 * @param <@paramName@> <@paramDesc@><@@@@>
 	 * @param api The AsyncJsonApi implementation that you would like.
 	 */
-	public Future<Object> <@name@>Async(<@@parameters:,@@><@pType@> <@pName@><@@@@> AsyncJsonApi api, CallBack... callBacks) throws ApiException; <@@@@>
+	public Future<Object> <@name@>Async(<@@parameters:,@@><@pType@> <@pName@><@@@@>, AsyncJsonApi api, CallBack... callBacks) throws ApiException; <@@@@>
 }
