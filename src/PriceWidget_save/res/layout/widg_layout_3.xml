@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/main"
+	android:layout_height="300px"
+	android:background="@drawable/background"
+	android:layout_width="160dp"
+	android:orientation="vertical">
+	<TextView
+		android:id="@+id/paddingTop"
+		android:layout_width="fill_parent"
+		android:layout_height="20px"
+		android:gravity="center_vertical|center_horizontal"
+		android:textColor="@android:color/black"
+		android:text=""
+		android:textSize="9pt"
+		android:longClickable="true" />
+	<TextView
+		android:id="@+id/price1"
+		android:layout_width="fill_parent"
+		android:layout_height="45px"
+		android:gravity="center_vertical|center_horizontal"
+		android:textColor="@android:color/black"
+		android:text="price1"
+		android:textSize="9pt"
+		android:longClickable="true" />
+	<TextView
+		android:id="@+id/change1"
+		android:layout_width="fill_parent"
+		android:layout_height="21px"
+		android:gravity="center_vertical|right"
+		android:textColor="@android:color/black"
+		android:text="+ 0.67       "
+		android:textSize="6pt"
+		android:longClickable="true" />
+	<TextView
+		android:id="@+id/price2"
+		android:layout_width="fill_parent"
+		android:layout_height="45px"
+		android:gravity="center_vertical|center_horizontal"
+		android:textColor="@android:color/black"
+		android:text="price2"
+		android:textSize="9pt"
+		android:longClickable="true" />
+	<TextView
+		android:id="@+id/change2"
+		android:layout_width="fill_parent"
+		android:layout_height="21px"
+		android:gravity="center_vertical|right"
+		android:textColor="@android:color/black"
+		android:text="+ 0.67       "
+		android:textSize="6pt"
+		android:longClickable="true" />
+	<TextView
+		android:id="@+id/price3"
+		android:layout_width="fill_parent"
+		android:layout_height="45px"
+		android:gravity="center_vertical|center_horizontal"
+		android:textColor="@android:color/black"
+		android:text="price3"
+		android:textSize="9pt"
+		android:longClickable="true" />
+	<TextView
+		android:id="@+id/change3"
+		android:layout_width="fill_parent"
+		android:layout_height="21px"
+		android:gravity="center_vertical|right"
+		android:textColor="@android:color/black"
+		android:text="+ 0.67       "
+		android:textSize="6pt"
+		android:longClickable="true" />
+	<LinearLayout
+		android:id="@+id/main"
+		android:layout_height="60px"
+		android:layout_width="fill_parent"
+		android:orientation="horizontal">
+		<TextView
+			android:id="@+id/filler"
+			android:layout_width="28px"
+			android:layout_height="fill_parent"
+			android:gravity="center_vertical|center_horizontal"
+			android:textColor="@android:color/black"
+			android:text=""
+			android:textStyle="italic"
+			android:textSize="4pt"
+			android:longClickable="true" />
+		<ImageView
+			android:id="@+id/logo"
+			android:layout_height="57px"
+			android:layout_width="57px"
+			android:src="@drawable/citylogo" />
+		<LinearLayout
+			android:id="@+id/main"
+			android:layout_height="60px"
+			android:layout_width="fill_parent"
+			android:orientation="vertical">
+			<TextView
+				android:id="@+id/lastLabel"
+				android:layout_width="fill_parent"
+				android:layout_height="25px"
+				android:gravity="center_vertical|left"
+				android:textColor="@android:color/black"
+				android:text="Last updated:"
+				android:textStyle="italic"
+				android:textSize="6pt"
+				android:longClickable="true" />
+			<TextView
+				android:id="@+id/lastValue"
+				android:layout_width="fill_parent"
+				android:layout_height="35px"
+				android:gravity="center_vertical|center_horizontal"
+				android:textColor="@android:color/black"
+				android:text="13:53Z"
+				android:textStyle="italic"
+				android:textSize="6pt"
+				android:longClickable="true" />
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>
