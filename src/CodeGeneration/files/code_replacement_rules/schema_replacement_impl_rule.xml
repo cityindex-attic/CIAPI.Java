@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <replacementRoot xmlns="http://www.w3schools.com"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="replacement_rule.xsd"
-	objName="smd" templateLocation="../code_templates/CombinedTemplateImpl.jav"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="replacement_rule.xsd" objName="smd"
+	templateLocation="../code_templates/CombinedTemplateImpl.jav"
 	objectType="codegen.modelobjects.SMDDescriptor">
 	<fileName value="@impl/@ServiceMethodsImpl.java" />
 	<replacementSet subObjName="method" name="methods"
@@ -24,7 +25,11 @@
 			value="method.getValue().getParameters()">
 			<replacement name="parameterName" value="p.getName()" />
 		</replacementSet>
-		<replacementSet subObjName="p" name="fillPostParams"
+		<replacementSet subObjName="p" name="fillPostParams1"
+			value="method.getValue().getParameters()">
+			<replacement name="name" value="p.getName()" />
+		</replacementSet>
+		<replacementSet subObjName="p" name="fillPostParams2"
 			value="method.getValue().getParameters()">
 			<replacement name="name" value="p.getName()" />
 		</replacementSet>

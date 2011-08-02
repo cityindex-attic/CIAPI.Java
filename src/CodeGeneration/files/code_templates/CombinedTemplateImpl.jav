@@ -17,7 +17,6 @@ import CIAPI.Java.core.dto.*;
 public class ServiceMethodsImpl implements ServiceMethods {
 
 	private Gson g = new Gson();
-
 	<@@methods@@>
 	/**
 	 * !This is an auto generated method!
@@ -45,18 +44,17 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		<@return@> result;
+		Object result = null;
+		Class<?> retClazz = <@return@>.class;
 		if (transport.equals("GET")) {
 			result = (<@return@>) api.callGetMethod(fullUrl, <@return@>.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
-			<@@fillPostParams@@>
-			obj.addProperty("<@name@>", g.toJson(<@name@>) + "");<@@@@>
-			result = (<@return@>) api.callPostMethod(fullUrl, g.toJson(obj), <@return@>.class);
+			<@@fillPostParams1@@>
+			result =  api.callPostMethod(fullUrl, g.toJson(<@name@>), retClazz);<@@@@>
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (<@return@>) result;
 	}
 	
 	/**
@@ -88,14 +86,13 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = <@return@>.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, <@return@>.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
-			<@@fillPostParams@@>
-			obj.addProperty("<@name@>", g.toJson(<@name@>)  + "");<@@@@>
-			result = call.callPostMethod(fullUrl, g.toJson(obj), <@return@>.class);
+			<@@fillPostParams2@@>
+			result = call.callPostMethod(fullUrl, g.toJson(<@name@>), retClazz);<@@@@>
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
