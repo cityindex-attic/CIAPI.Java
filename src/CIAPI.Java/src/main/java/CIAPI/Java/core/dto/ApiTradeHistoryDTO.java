@@ -121,17 +121,5 @@ public class ApiTradeHistoryDTO {
 	public void setLastChangedDateTimeUtc(String LastChangedDateTimeUtc) {
 		this.LastChangedDateTimeUtc = LastChangedDateTimeUtc;
 	}
-	private String ExecutedDateTimeUtc;
-	
-	/**
-	 * The time the order was executed.
-	 */
-	public String getExecutedDateTimeUtc() {
-		return ExecutedDateTimeUtc;
-	}
-	
-	public void setExecutedDateTimeUtc(String ExecutedDateTimeUtc) {
-		this.ExecutedDateTimeUtc = ExecutedDateTimeUtc;
-	}
 }
 

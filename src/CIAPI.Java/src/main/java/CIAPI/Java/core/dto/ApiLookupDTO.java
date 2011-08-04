@@ -49,16 +49,16 @@ public class ApiLookupDTO {
 	public void setDisplayOrder(int DisplayOrder) {
 		this.DisplayOrder = DisplayOrder;
 	}
-	private String TranslationTextId;
+	private int TranslationTextId;
 	
 	/**
 	 * translation text id.
 	 */
-	public String getTranslationTextId() {
+	public int getTranslationTextId() {
 		return TranslationTextId;
 	}
 	
-	public void setTranslationTextId(String TranslationTextId) {
+	public void setTranslationTextId(int TranslationTextId) {
 		this.TranslationTextId = TranslationTextId;
 	}
 	private String TranslationText;

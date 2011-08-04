@@ -81,7 +81,7 @@ public class SyncApi {
 	 * @throws ApiException
 	 */
 	public void logIn(String username, String password, boolean keepAlive) throws ApiException {
-		ApiLogOnResponseDTO response = methods.LogOn(username, password, api);
+		ApiLogOnResponseDTO response = methods.LogOn(null, api);
 		sessionId = response.getSession();
 		this.keepAlive = keepAlive;
 		this.username = username;

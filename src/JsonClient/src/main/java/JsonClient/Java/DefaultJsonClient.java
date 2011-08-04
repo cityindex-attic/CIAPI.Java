@@ -107,7 +107,7 @@ public class DefaultJsonClient implements JsonClient {
 	}
 
 	/**
-	 * Checks to see if the data begins with an error message. If it does, ist
+	 * Checks to see if the data begins with an error message. If it does, it
 	 * simply throws an exception.
 	 * 
 	 * @param fullData

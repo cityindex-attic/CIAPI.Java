@@ -73,16 +73,16 @@ public class ApiStopLimitOrderHistoryDTO {
 	public void setOriginalQuantity(double OriginalQuantity) {
 		this.OriginalQuantity = OriginalQuantity;
 	}
-	private String Price;
+	private double Price;
 	
 	/**
 	 * The price / rate that the order was filled at.
 	 */
-	public String getPrice() {
+	public double getPrice() {
 		return Price;
 	}
 	
-	public void setPrice(String Price) {
+	public void setPrice(double Price) {
 		this.Price = Price;
 	}
 	private double TriggerPrice;

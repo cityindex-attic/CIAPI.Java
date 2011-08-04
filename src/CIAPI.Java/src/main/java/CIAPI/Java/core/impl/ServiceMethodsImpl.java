@@ -2,6 +2,7 @@ package CIAPI.Java.core.impl;
 
 import java.util.concurrent.Future;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import JsonClient.Java.ApiException;
@@ -15,17 +16,19 @@ import CIAPI.Java.core.dto.*;
 
 public class ServiceMethodsImpl implements ServiceMethods {
 
+	private Gson g = new Gson();
+
 	/**
 	 * !This is an auto generated method!
 	 * 
 	 * <p>
 	 * Create a new session. This is how you "log on" to the CIAPI. Post a <a
-	 * onclick="dojo.hash('#type.ApiLogOnRequestDTO'); return false;" class="json-link"
-	 * href="#">ApiLogOnRequestDTO</a> to the uri specified below
+	 * onclick="dojo.hash('#type.ApiLogOnRequestDTO'); return false;" class="json-link" href="#">ApiLogOnRequestDTO</a>
+	 * to the uri specified below
 	 * </p>
 	 */
 	@Override
-	public ApiLogOnResponseDTO LogOn(String UserName, String Password, JsonApi api) throws ApiException {
+	public ApiLogOnResponseDTO LogOn(ApiLogOnRequestDTO apiLogOnRequest, JsonApi api) throws ApiException {
 		// Collect variables from method
 		String target = "session";
 		String uriTemplate = "/";
@@ -38,26 +41,23 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		if (transport.equals("GET")) {
 			// Concatenating the empty string is a hackey way of converting all params to a String
 
-			filledUri = filledUri.replace("{UserName}", UserName + "");
-			filledUri = filledUri.replace("{Password}", Password + "");
+			filledUri = filledUri.replace("{apiLogOnRequest}", apiLogOnRequest + "");
 		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		ApiLogOnResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = ApiLogOnResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (ApiLogOnResponseDTO) api.callGetMethod(fullUrl, ApiLogOnResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("UserName", UserName + "");
-			obj.addProperty("Password", Password + "");
-			result = (ApiLogOnResponseDTO) api.callPostMethod(fullUrl, obj.toString(), ApiLogOnResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(apiLogOnRequest), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (ApiLogOnResponseDTO) result;
 	}
 
 	/**
@@ -65,12 +65,12 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * 
 	 * <p>
 	 * Create a new session. This is how you "log on" to the CIAPI. Post a <a
-	 * onclick="dojo.hash('#type.ApiLogOnRequestDTO'); return false;" class="json-link"
-	 * href="#">ApiLogOnRequestDTO</a> to the uri specified below
+	 * onclick="dojo.hash('#type.ApiLogOnRequestDTO'); return false;" class="json-link" href="#">ApiLogOnRequestDTO</a>
+	 * to the uri specified below
 	 * </p>
 	 */
 	@Override
-	public Future<Object> LogOnAsync(String UserName, String Password, AsyncJsonApi api, CallBack... callBacks)
+	public Future<Object> LogOnAsync(ApiLogOnRequestDTO apiLogOnRequest, AsyncJsonApi api, CallBack... callBacks)
 			throws ApiException {
 		// Collect variables from method
 		String target = "session";
@@ -84,8 +84,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		if (transport.equals("GET")) {
 			// Concatenating the empty string is a hackey way of converting all params to a String
 
-			filledUri = filledUri.replace("{UserName}", UserName + "");
-			filledUri = filledUri.replace("{Password}", Password + "");
+			filledUri = filledUri.replace("{apiLogOnRequest}", apiLogOnRequest + "");
 		}
 		// Done filling in holes
 		// build final URL
@@ -95,15 +94,13 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = ApiLogOnResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ApiLogOnResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("UserName", UserName + "");
-			obj.addProperty("Password", Password + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), ApiLogOnResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(apiLogOnRequest), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -128,27 +125,28 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		String filledUri = uriTemplate;
 		// Done collecting variables
 		// Fill in necessary holes in the URL if it is GET.
-		// Concatenating the empty string is a hackey way of converting all params to a String
+		if (transport.equals("GET")) {
+			// Concatenating the empty string is a hackey way of converting all params to a String
 
-		filledUri = filledUri.replace("{userName}", userName + "");
-		filledUri = filledUri.replace("{session}", session + "");
+			filledUri = filledUri.replace("{userName}", userName + "");
+			filledUri = filledUri.replace("{session}", session + "");
+		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		ApiLogOffResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = ApiLogOffResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (ApiLogOffResponseDTO) api.callGetMethod(fullUrl, ApiLogOffResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("userName", userName + "");
-			obj.addProperty("session", session + "");
-			result = (ApiLogOffResponseDTO) api.callPostMethod(fullUrl, obj.toString(), ApiLogOffResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(userName), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(session), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (ApiLogOffResponseDTO) result;
 	}
 
 	/**
@@ -184,15 +182,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = ApiLogOffResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ApiLogOffResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("userName", userName + "");
-			obj.addProperty("session", session + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), ApiLogOffResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(userName), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(session), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -202,14 +199,13 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	/**
 	 * !This is an auto generated method!
 	 * 
-	 * Get historic price bars in OHLC (open, high, low, close) format, suitable for plotting
-	 * candlestick chartsReturns price bars in ascending order up to the current time.When there are
-	 * no prices per a particular time period, no price bar is returned. Thus, it can appear that
-	 * the array of price bars has "gaps", i.e. the gap between the datetime of each price bar might
-	 * not be equal to interval x spanSample Urls:
-	 * /market/1234/history?interval=MINUTE&span=15&pricebars
-	 * =180/market/735/history?interval=HOUR&span
-	 * =1&pricebars=240/market/1577/history?interval=DAY&span=1&pricebars=10
+	 * Get historic price bars in OHLC (open, high, low, close) format, suitable for plotting candlestick chartsReturns
+	 * price bars in ascending order up to the current time.When there are no prices per a particular time period, no
+	 * price bar is returned. Thus, it can appear that the array of price bars has "gaps", i.e. the gap between the
+	 * datetime of each price bar might not be equal to interval x spanSample Urls:
+	 * /market/1234/history?interval=MINUTE&
+	 * span=15&pricebars=180/market/735/history?interval=HOUR&span=1&pricebars=240/market
+	 * /1577/history?interval=DAY&span=1&pricebars=10
 	 */
 	@Override
 	public GetPriceBarResponseDTO GetPriceBars(String marketId, String interval, int span, String priceBars, JsonApi api)
@@ -235,34 +231,32 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		GetPriceBarResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = GetPriceBarResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (GetPriceBarResponseDTO) api.callGetMethod(fullUrl, GetPriceBarResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("marketId", marketId + "");
-			obj.addProperty("interval", interval + "");
-			obj.addProperty("span", span + "");
-			obj.addProperty("priceBars", priceBars + "");
-			result = (GetPriceBarResponseDTO) api.callPostMethod(fullUrl, obj.toString(), GetPriceBarResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(marketId), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(interval), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(span), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(priceBars), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (GetPriceBarResponseDTO) result;
 	}
 
 	/**
 	 * !This is an auto generated method!
 	 * 
-	 * Get historic price bars in OHLC (open, high, low, close) format, suitable for plotting
-	 * candlestick chartsReturns price bars in ascending order up to the current time.When there are
-	 * no prices per a particular time period, no price bar is returned. Thus, it can appear that
-	 * the array of price bars has "gaps", i.e. the gap between the datetime of each price bar might
-	 * not be equal to interval x spanSample Urls:
-	 * /market/1234/history?interval=MINUTE&span=15&pricebars
-	 * =180/market/735/history?interval=HOUR&span
-	 * =1&pricebars=240/market/1577/history?interval=DAY&span=1&pricebars=10
+	 * Get historic price bars in OHLC (open, high, low, close) format, suitable for plotting candlestick chartsReturns
+	 * price bars in ascending order up to the current time.When there are no prices per a particular time period, no
+	 * price bar is returned. Thus, it can appear that the array of price bars has "gaps", i.e. the gap between the
+	 * datetime of each price bar might not be equal to interval x spanSample Urls:
+	 * /market/1234/history?interval=MINUTE&
+	 * span=15&pricebars=180/market/735/history?interval=HOUR&span=1&pricebars=240/market
+	 * /1577/history?interval=DAY&span=1&pricebars=10
 	 */
 	@Override
 	public Future<Object> GetPriceBarsAsync(String marketId, String interval, int span, String priceBars,
@@ -292,17 +286,16 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = GetPriceBarResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, GetPriceBarResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("marketId", marketId + "");
-			obj.addProperty("interval", interval + "");
-			obj.addProperty("span", span + "");
-			obj.addProperty("priceBars", priceBars + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), GetPriceBarResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(marketId), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(interval), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(span), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(priceBars), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -312,8 +305,8 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	/**
 	 * !This is an auto generated method!
 	 * 
-	 * Get historic price ticks. Returns price ticks in ascending order up to the current time. The
-	 * length of time between each tick will be different.
+	 * Get historic price ticks. Returns price ticks in ascending order up to the current time. The length of time
+	 * between each tick will be different.
 	 */
 	@Override
 	public GetPriceTickResponseDTO GetPriceTicks(String marketId, String priceTicks, JsonApi api) throws ApiException {
@@ -336,27 +329,25 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		GetPriceTickResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = GetPriceTickResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (GetPriceTickResponseDTO) api.callGetMethod(fullUrl, GetPriceTickResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("marketId", marketId + "");
-			obj.addProperty("priceTicks", priceTicks + "");
-			result = (GetPriceTickResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					GetPriceTickResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(marketId), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(priceTicks), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (GetPriceTickResponseDTO) result;
 	}
 
 	/**
 	 * !This is an auto generated method!
 	 * 
-	 * Get historic price ticks. Returns price ticks in ascending order up to the current time. The
-	 * length of time between each tick will be different.
+	 * Get historic price ticks. Returns price ticks in ascending order up to the current time. The length of time
+	 * between each tick will be different.
 	 */
 	@Override
 	public Future<Object> GetPriceTicksAsync(String marketId, String priceTicks, AsyncJsonApi api,
@@ -384,15 +375,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = GetPriceTickResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, GetPriceTickResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("marketId", marketId + "");
-			obj.addProperty("priceTicks", priceTicks + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), GetPriceTickResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(marketId), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(priceTicks), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -426,20 +416,18 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		GetMarketInformationResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = GetMarketInformationResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (GetMarketInformationResponseDTO) api
 					.callGetMethod(fullUrl, GetMarketInformationResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("marketId", marketId + "");
-			result = (GetMarketInformationResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					GetMarketInformationResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(marketId), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (GetMarketInformationResponseDTO) result;
 	}
 
 	/**
@@ -474,14 +462,13 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = GetMarketInformationResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, GetMarketInformationResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("marketId", marketId + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), GetMarketInformationResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(marketId), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -501,7 +488,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 			String query, int maxResults, JsonApi api) throws ApiException {
 		// Collect variables from method
 		String target = "market";
-		String uriTemplate = "/market/informationsearch?SearchByMarketCode={searchByMarketCode}&SearchByMarketName={searchByMarketName}&SpreadProductType={spreadProductType}&CfdProductType={cfdProductType}&BinaryProductType={binaryProductType}&Query={query}&MaxResults={maxResults}";
+		String uriTemplate = "/informationsearch?SearchByMarketCode={searchByMarketCode}&SearchByMarketName={searchByMarketName}&SpreadProductType={spreadProductType}&CfdProductType={cfdProductType}&BinaryProductType={binaryProductType}&Query={query}&MaxResults={maxResults}";
 		String transport = "GET";
 		String envelope = "URL";
 		String contentType = "application/json";
@@ -523,26 +510,24 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		ListMarketInformationSearchResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = ListMarketInformationSearchResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (ListMarketInformationSearchResponseDTO) api.callGetMethod(fullUrl,
 					ListMarketInformationSearchResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("searchByMarketCode", searchByMarketCode + "");
-			obj.addProperty("searchByMarketName", searchByMarketName + "");
-			obj.addProperty("spreadProductType", spreadProductType + "");
-			obj.addProperty("cfdProductType", cfdProductType + "");
-			obj.addProperty("binaryProductType", binaryProductType + "");
-			obj.addProperty("query", query + "");
-			obj.addProperty("maxResults", maxResults + "");
-			result = (ListMarketInformationSearchResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					ListMarketInformationSearchResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(searchByMarketCode), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(searchByMarketName), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(spreadProductType), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(cfdProductType), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(binaryProductType), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(query), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(maxResults), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (ListMarketInformationSearchResponseDTO) result;
 	}
 
 	/**
@@ -558,7 +543,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 			AsyncJsonApi api, CallBack... callBacks) throws ApiException {
 		// Collect variables from method
 		String target = "market";
-		String uriTemplate = "/market/informationsearch?SearchByMarketCode={searchByMarketCode}&SearchByMarketName={searchByMarketName}&SpreadProductType={spreadProductType}&CfdProductType={cfdProductType}&BinaryProductType={binaryProductType}&Query={query}&MaxResults={maxResults}";
+		String uriTemplate = "/informationsearch?SearchByMarketCode={searchByMarketCode}&SearchByMarketName={searchByMarketName}&SpreadProductType={spreadProductType}&CfdProductType={cfdProductType}&BinaryProductType={binaryProductType}&Query={query}&MaxResults={maxResults}";
 		String transport = "GET";
 		String envelope = "URL";
 		String contentType = "application/json";
@@ -584,109 +569,19 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = ListMarketInformationSearchResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ListMarketInformationSearchResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("searchByMarketCode", searchByMarketCode + "");
-			obj.addProperty("searchByMarketName", searchByMarketName + "");
-			obj.addProperty("spreadProductType", spreadProductType + "");
-			obj.addProperty("cfdProductType", cfdProductType + "");
-			obj.addProperty("binaryProductType", binaryProductType + "");
-			obj.addProperty("query", query + "");
-			obj.addProperty("maxResults", maxResults + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), ListMarketInformationSearchResponseDTO.class);
-		} else {
-			throw new IllegalArgumentException("Unexpected transport type: " + transport);
-		}
-		return result;
-	}
-
-	/**
-	 * !This is an auto generated method!
-	 * 
-	 * <p>
-	 * Queries for market information.
-	 * </p>
-	 */
-	@Override
-	public ListMarketInformationResponseDTO ListMarketInformation(int[] MarketIds, JsonApi api) throws ApiException {
-		// Collect variables from method
-		String target = "market";
-		String uriTemplate = "/market/information";
-		String transport = "POST";
-		String envelope = "JSON";
-		String contentType = "application/json";
-		String filledUri = uriTemplate;
-		// Done collecting variables
-		// Fill in necessary holes in the URL if it is GET.
-		if (transport.equals("GET")) {
-			// Concatenating the empty string is a hackey way of converting all params to a String
-
-			filledUri = filledUri.replace("{MarketIds}", MarketIds + "");
-		}
-		// Done filling in holes
-		// build final URL
-		String fullUrl = target + filledUri;
-		// done building final url
-		ListMarketInformationResponseDTO result;
-		if (transport.equals("GET")) {
-			result = (ListMarketInformationResponseDTO) api.callGetMethod(fullUrl,
-					ListMarketInformationResponseDTO.class);
-		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
-
-			obj.addProperty("MarketIds", MarketIds + "");
-			result = (ListMarketInformationResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					ListMarketInformationResponseDTO.class);
-		} else {
-			throw new IllegalArgumentException("Unexpected transport type: " + transport);
-		}
-		return result;
-	}
-
-	/**
-	 * !This is an auto generated method!
-	 * 
-	 * <p>
-	 * Queries for market information.
-	 * </p>
-	 */
-	@Override
-	public Future<Object> ListMarketInformationAsync(int[] MarketIds, AsyncJsonApi api, CallBack... callBacks)
-			throws ApiException {
-		// Collect variables from method
-		String target = "market";
-		String uriTemplate = "/market/information";
-		String transport = "POST";
-		String envelope = "JSON";
-		String contentType = "application/json";
-		String filledUri = uriTemplate;
-		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		if (transport.equals("GET")) {
-			// Concatenating the empty string is a hackey way of converting all params to a String
-
-			filledUri = filledUri.replace("{MarketIds}", MarketIds + "");
-		}
-		// Done filling in holes
-		// build final URL
-		String fullUrl = target + filledUri;
-		// done building final url
-		AsyncApiCall call = api.createNewCall();
-		for (CallBack cb : callBacks) {
-			call.addCallCompleteListener(cb);
-		}
-		Future<Object> result;
-		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ListMarketInformationResponseDTO.class);
-		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
-
-			obj.addProperty("MarketIds", MarketIds + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), ListMarketInformationResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(searchByMarketCode), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(searchByMarketName), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(spreadProductType), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(cfdProductType), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(binaryProductType), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(query), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(maxResults), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -720,20 +615,18 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		ListNewsHeadlinesResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = ListNewsHeadlinesResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (ListNewsHeadlinesResponseDTO) api.callGetMethod(fullUrl, ListNewsHeadlinesResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("category", category + "");
-			obj.addProperty("maxResults", maxResults + "");
-			result = (ListNewsHeadlinesResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					ListNewsHeadlinesResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(category), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(maxResults), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (ListNewsHeadlinesResponseDTO) result;
 	}
 
 	/**
@@ -767,15 +660,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = ListNewsHeadlinesResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ListNewsHeadlinesResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("category", category + "");
-			obj.addProperty("maxResults", maxResults + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), ListNewsHeadlinesResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(category), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(maxResults), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -807,19 +699,17 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		GetNewsDetailResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = GetNewsDetailResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (GetNewsDetailResponseDTO) api.callGetMethod(fullUrl, GetNewsDetailResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("storyId", storyId + "");
-			result = (GetNewsDetailResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					GetNewsDetailResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(storyId), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (GetNewsDetailResponseDTO) result;
 	}
 
 	/**
@@ -852,14 +742,13 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = GetNewsDetailResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, GetNewsDetailResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("storyId", storyId + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), GetNewsDetailResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(storyId), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -895,22 +784,20 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		ListCfdMarketsResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = ListCfdMarketsResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (ListCfdMarketsResponseDTO) api.callGetMethod(fullUrl, ListCfdMarketsResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("searchByMarketName", searchByMarketName + "");
-			obj.addProperty("searchByMarketCode", searchByMarketCode + "");
-			obj.addProperty("clientAccountId", clientAccountId + "");
-			obj.addProperty("maxResults", maxResults + "");
-			result = (ListCfdMarketsResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					ListCfdMarketsResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(searchByMarketName), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(searchByMarketCode), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(clientAccountId), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(maxResults), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (ListCfdMarketsResponseDTO) result;
 	}
 
 	/**
@@ -946,17 +833,16 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = ListCfdMarketsResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ListCfdMarketsResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("searchByMarketName", searchByMarketName + "");
-			obj.addProperty("searchByMarketCode", searchByMarketCode + "");
-			obj.addProperty("clientAccountId", clientAccountId + "");
-			obj.addProperty("maxResults", maxResults + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), ListCfdMarketsResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(searchByMarketName), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(searchByMarketCode), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(clientAccountId), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(maxResults), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -992,22 +878,20 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		ListSpreadMarketsResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = ListSpreadMarketsResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (ListSpreadMarketsResponseDTO) api.callGetMethod(fullUrl, ListSpreadMarketsResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("searchByMarketName", searchByMarketName + "");
-			obj.addProperty("searchByMarketCode", searchByMarketCode + "");
-			obj.addProperty("clientAccountId", clientAccountId + "");
-			obj.addProperty("maxResults", maxResults + "");
-			result = (ListSpreadMarketsResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					ListSpreadMarketsResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(searchByMarketName), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(searchByMarketCode), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(clientAccountId), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(maxResults), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (ListSpreadMarketsResponseDTO) result;
 	}
 
 	/**
@@ -1043,17 +927,16 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = ListSpreadMarketsResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ListSpreadMarketsResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("searchByMarketName", searchByMarketName + "");
-			obj.addProperty("searchByMarketCode", searchByMarketCode + "");
-			obj.addProperty("clientAccountId", clientAccountId + "");
-			obj.addProperty("maxResults", maxResults + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), ListSpreadMarketsResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(searchByMarketName), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(searchByMarketCode), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(clientAccountId), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(maxResults), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -1073,10 +956,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * </p>
 	 */
 	@Override
-	public ApiTradeOrderResponseDTO Order(int OrderId, int MarketId, String Currency, boolean AutoRollover,
-			String Direction, double Quantity, double BidPrice, double OfferPrice, String AuditId,
-			int TradingAccountId, ApiIfDoneDTO[] IfDone, NewStopLimitOrderRequestDTO OcoOrder, String Applicability,
-			String ExpiryDateTimeUTC, boolean Guaranteed, double TriggerPrice, JsonApi api) throws ApiException {
+	public ApiTradeOrderResponseDTO Order(NewStopLimitOrderRequestDTO order, JsonApi api) throws ApiException {
 		// Collect variables from method
 		String target = "order";
 		String uriTemplate = "/newstoplimitorder";
@@ -1089,55 +969,23 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		if (transport.equals("GET")) {
 			// Concatenating the empty string is a hackey way of converting all params to a String
 
-			filledUri = filledUri.replace("{OrderId}", OrderId + "");
-			filledUri = filledUri.replace("{MarketId}", MarketId + "");
-			filledUri = filledUri.replace("{Currency}", Currency + "");
-			filledUri = filledUri.replace("{AutoRollover}", AutoRollover + "");
-			filledUri = filledUri.replace("{Direction}", Direction + "");
-			filledUri = filledUri.replace("{Quantity}", Quantity + "");
-			filledUri = filledUri.replace("{BidPrice}", BidPrice + "");
-			filledUri = filledUri.replace("{OfferPrice}", OfferPrice + "");
-			filledUri = filledUri.replace("{AuditId}", AuditId + "");
-			filledUri = filledUri.replace("{TradingAccountId}", TradingAccountId + "");
-			filledUri = filledUri.replace("{IfDone}", IfDone + "");
-			filledUri = filledUri.replace("{OcoOrder}", OcoOrder + "");
-			filledUri = filledUri.replace("{Applicability}", Applicability + "");
-			filledUri = filledUri.replace("{ExpiryDateTimeUTC}", ExpiryDateTimeUTC + "");
-			filledUri = filledUri.replace("{Guaranteed}", Guaranteed + "");
-			filledUri = filledUri.replace("{TriggerPrice}", TriggerPrice + "");
+			filledUri = filledUri.replace("{order}", order + "");
 		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		ApiTradeOrderResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = ApiTradeOrderResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (ApiTradeOrderResponseDTO) api.callGetMethod(fullUrl, ApiTradeOrderResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("OrderId", OrderId + "");
-			obj.addProperty("MarketId", MarketId + "");
-			obj.addProperty("Currency", Currency + "");
-			obj.addProperty("AutoRollover", AutoRollover + "");
-			obj.addProperty("Direction", Direction + "");
-			obj.addProperty("Quantity", Quantity + "");
-			obj.addProperty("BidPrice", BidPrice + "");
-			obj.addProperty("OfferPrice", OfferPrice + "");
-			obj.addProperty("AuditId", AuditId + "");
-			obj.addProperty("TradingAccountId", TradingAccountId + "");
-			obj.addProperty("IfDone", IfDone + "");
-			obj.addProperty("OcoOrder", OcoOrder + "");
-			obj.addProperty("Applicability", Applicability + "");
-			obj.addProperty("ExpiryDateTimeUTC", ExpiryDateTimeUTC + "");
-			obj.addProperty("Guaranteed", Guaranteed + "");
-			obj.addProperty("TriggerPrice", TriggerPrice + "");
-			result = (ApiTradeOrderResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					ApiTradeOrderResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(order), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (ApiTradeOrderResponseDTO) result;
 	}
 
 	/**
@@ -1153,10 +1001,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * </p>
 	 */
 	@Override
-	public Future<Object> OrderAsync(int OrderId, int MarketId, String Currency, boolean AutoRollover,
-			String Direction, double Quantity, double BidPrice, double OfferPrice, String AuditId,
-			int TradingAccountId, ApiIfDoneDTO[] IfDone, NewStopLimitOrderRequestDTO OcoOrder, String Applicability,
-			String ExpiryDateTimeUTC, boolean Guaranteed, double TriggerPrice, AsyncJsonApi api, CallBack... callBacks)
+	public Future<Object> OrderAsync(NewStopLimitOrderRequestDTO order, AsyncJsonApi api, CallBack... callBacks)
 			throws ApiException {
 		// Collect variables from method
 		String target = "order";
@@ -1170,22 +1015,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		if (transport.equals("GET")) {
 			// Concatenating the empty string is a hackey way of converting all params to a String
 
-			filledUri = filledUri.replace("{OrderId}", OrderId + "");
-			filledUri = filledUri.replace("{MarketId}", MarketId + "");
-			filledUri = filledUri.replace("{Currency}", Currency + "");
-			filledUri = filledUri.replace("{AutoRollover}", AutoRollover + "");
-			filledUri = filledUri.replace("{Direction}", Direction + "");
-			filledUri = filledUri.replace("{Quantity}", Quantity + "");
-			filledUri = filledUri.replace("{BidPrice}", BidPrice + "");
-			filledUri = filledUri.replace("{OfferPrice}", OfferPrice + "");
-			filledUri = filledUri.replace("{AuditId}", AuditId + "");
-			filledUri = filledUri.replace("{TradingAccountId}", TradingAccountId + "");
-			filledUri = filledUri.replace("{IfDone}", IfDone + "");
-			filledUri = filledUri.replace("{OcoOrder}", OcoOrder + "");
-			filledUri = filledUri.replace("{Applicability}", Applicability + "");
-			filledUri = filledUri.replace("{ExpiryDateTimeUTC}", ExpiryDateTimeUTC + "");
-			filledUri = filledUri.replace("{Guaranteed}", Guaranteed + "");
-			filledUri = filledUri.replace("{TriggerPrice}", TriggerPrice + "");
+			filledUri = filledUri.replace("{order}", order + "");
 		}
 		// Done filling in holes
 		// build final URL
@@ -1195,29 +1025,13 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = ApiTradeOrderResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ApiTradeOrderResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("OrderId", OrderId + "");
-			obj.addProperty("MarketId", MarketId + "");
-			obj.addProperty("Currency", Currency + "");
-			obj.addProperty("AutoRollover", AutoRollover + "");
-			obj.addProperty("Direction", Direction + "");
-			obj.addProperty("Quantity", Quantity + "");
-			obj.addProperty("BidPrice", BidPrice + "");
-			obj.addProperty("OfferPrice", OfferPrice + "");
-			obj.addProperty("AuditId", AuditId + "");
-			obj.addProperty("TradingAccountId", TradingAccountId + "");
-			obj.addProperty("IfDone", IfDone + "");
-			obj.addProperty("OcoOrder", OcoOrder + "");
-			obj.addProperty("Applicability", Applicability + "");
-			obj.addProperty("ExpiryDateTimeUTC", ExpiryDateTimeUTC + "");
-			obj.addProperty("Guaranteed", Guaranteed + "");
-			obj.addProperty("TriggerPrice", TriggerPrice + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), ApiTradeOrderResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(order), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -1228,12 +1042,12 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * !This is an auto generated method!
 	 * 
 	 * <p>
-	 * Cancel an order. Post a <a onclick="dojo.hash('#type.CancelOrderRequestDTO'); return false;"
-	 * class="json-link" href="#">CancelOrderRequestDTO</a> to the uri specified below
+	 * Cancel an order. Post a <a onclick="dojo.hash('#type.CancelOrderRequestDTO'); return false;" class="json-link"
+	 * href="#">CancelOrderRequestDTO</a> to the uri specified below
 	 * </p>
 	 */
 	@Override
-	public ApiTradeOrderResponseDTO CancelOrder(int OrderId, int TradingAccountId, JsonApi api) throws ApiException {
+	public ApiTradeOrderResponseDTO CancelOrder(CancelOrderRequestDTO cancelOrder, JsonApi api) throws ApiException {
 		// Collect variables from method
 		String target = "order";
 		String uriTemplate = "/cancel";
@@ -1246,39 +1060,35 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		if (transport.equals("GET")) {
 			// Concatenating the empty string is a hackey way of converting all params to a String
 
-			filledUri = filledUri.replace("{OrderId}", OrderId + "");
-			filledUri = filledUri.replace("{TradingAccountId}", TradingAccountId + "");
+			filledUri = filledUri.replace("{cancelOrder}", cancelOrder + "");
 		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		ApiTradeOrderResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = ApiTradeOrderResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (ApiTradeOrderResponseDTO) api.callGetMethod(fullUrl, ApiTradeOrderResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("OrderId", OrderId + "");
-			obj.addProperty("TradingAccountId", TradingAccountId + "");
-			result = (ApiTradeOrderResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					ApiTradeOrderResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(cancelOrder), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (ApiTradeOrderResponseDTO) result;
 	}
 
 	/**
 	 * !This is an auto generated method!
 	 * 
 	 * <p>
-	 * Cancel an order. Post a <a onclick="dojo.hash('#type.CancelOrderRequestDTO'); return false;"
-	 * class="json-link" href="#">CancelOrderRequestDTO</a> to the uri specified below
+	 * Cancel an order. Post a <a onclick="dojo.hash('#type.CancelOrderRequestDTO'); return false;" class="json-link"
+	 * href="#">CancelOrderRequestDTO</a> to the uri specified below
 	 * </p>
 	 */
 	@Override
-	public Future<Object> CancelOrderAsync(int OrderId, int TradingAccountId, AsyncJsonApi api, CallBack... callBacks)
+	public Future<Object> CancelOrderAsync(CancelOrderRequestDTO cancelOrder, AsyncJsonApi api, CallBack... callBacks)
 			throws ApiException {
 		// Collect variables from method
 		String target = "order";
@@ -1292,8 +1102,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		if (transport.equals("GET")) {
 			// Concatenating the empty string is a hackey way of converting all params to a String
 
-			filledUri = filledUri.replace("{OrderId}", OrderId + "");
-			filledUri = filledUri.replace("{TradingAccountId}", TradingAccountId + "");
+			filledUri = filledUri.replace("{cancelOrder}", cancelOrder + "");
 		}
 		// Done filling in holes
 		// build final URL
@@ -1303,15 +1112,13 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = ApiTradeOrderResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ApiTradeOrderResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("OrderId", OrderId + "");
-			obj.addProperty("TradingAccountId", TradingAccountId + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), ApiTradeOrderResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(cancelOrder), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -1328,7 +1135,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * </p>
 	 */
 	@Override
-	public ApiTradeOrderResponseDTO UpdateOrder(JsonApi api) throws ApiException {
+	public ApiTradeOrderResponseDTO UpdateOrder(UpdateStopLimitOrderRequestDTO order, JsonApi api) throws ApiException {
 		// Collect variables from method
 		String target = "order";
 		String uriTemplate = "/updatestoplimitorder";
@@ -1341,23 +1148,23 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		if (transport.equals("GET")) {
 			// Concatenating the empty string is a hackey way of converting all params to a String
 
+			filledUri = filledUri.replace("{order}", order + "");
 		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		ApiTradeOrderResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = ApiTradeOrderResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (ApiTradeOrderResponseDTO) api.callGetMethod(fullUrl, ApiTradeOrderResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			result = (ApiTradeOrderResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					ApiTradeOrderResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(order), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (ApiTradeOrderResponseDTO) result;
 	}
 
 	/**
@@ -1370,7 +1177,8 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * </p>
 	 */
 	@Override
-	public Future<Object> UpdateOrderAsync(AsyncJsonApi api, CallBack... callBacks) throws ApiException {
+	public Future<Object> UpdateOrderAsync(UpdateStopLimitOrderRequestDTO order, AsyncJsonApi api,
+			CallBack... callBacks) throws ApiException {
 		// Collect variables from method
 		String target = "order";
 		String uriTemplate = "/updatestoplimitorder";
@@ -1383,6 +1191,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		if (transport.equals("GET")) {
 			// Concatenating the empty string is a hackey way of converting all params to a String
 
+			filledUri = filledUri.replace("{order}", order + "");
 		}
 		// Done filling in holes
 		// build final URL
@@ -1392,13 +1201,13 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = ApiTradeOrderResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ApiTradeOrderResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			result = call.callPostMethod(fullUrl, obj.toString(), ApiTradeOrderResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(order), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -1412,18 +1221,17 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * Queries for a specified trading account's trades / open positions.
 	 * </p>
 	 * <p>
-	 * This uri is intended to be used to support a grid in a UI. One usage pattern is to subscribe
-	 * to streaming orders, call this for the initial data to display in the grid, and call <a
-	 * onclick="dojo.hash('#service.GetOpenPosition'); return false;" class="json-link"
-	 * href="#">GetOpenPosition</a> when you get updates on the order stream to get the updated data
-	 * in this format.
+	 * This uri is intended to be used to support a grid in a UI. One usage pattern is to subscribe to streaming orders,
+	 * call this for the initial data to display in the grid, and call <a
+	 * onclick="dojo.hash('#service.GetOpenPosition'); return false;" class="json-link" href="#">GetOpenPosition</a>
+	 * when you get updates on the order stream to get the updated data in this format.
 	 * </p>
 	 */
 	@Override
 	public ListOpenPositionsResponseDTO ListOpenPositions(int tradingAccountId, JsonApi api) throws ApiException {
 		// Collect variables from method
 		String target = "order";
-		String uriTemplate = "/order/openpositions?TradingAccountId={tradingAccountId}";
+		String uriTemplate = "/openpositions?TradingAccountId={tradingAccountId}";
 		String transport = "GET";
 		String envelope = "URL";
 		String contentType = "application/json";
@@ -1439,19 +1247,17 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		ListOpenPositionsResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = ListOpenPositionsResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (ListOpenPositionsResponseDTO) api.callGetMethod(fullUrl, ListOpenPositionsResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("tradingAccountId", tradingAccountId + "");
-			result = (ListOpenPositionsResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					ListOpenPositionsResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(tradingAccountId), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (ListOpenPositionsResponseDTO) result;
 	}
 
 	/**
@@ -1461,11 +1267,10 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * Queries for a specified trading account's trades / open positions.
 	 * </p>
 	 * <p>
-	 * This uri is intended to be used to support a grid in a UI. One usage pattern is to subscribe
-	 * to streaming orders, call this for the initial data to display in the grid, and call <a
-	 * onclick="dojo.hash('#service.GetOpenPosition'); return false;" class="json-link"
-	 * href="#">GetOpenPosition</a> when you get updates on the order stream to get the updated data
-	 * in this format.
+	 * This uri is intended to be used to support a grid in a UI. One usage pattern is to subscribe to streaming orders,
+	 * call this for the initial data to display in the grid, and call <a
+	 * onclick="dojo.hash('#service.GetOpenPosition'); return false;" class="json-link" href="#">GetOpenPosition</a>
+	 * when you get updates on the order stream to get the updated data in this format.
 	 * </p>
 	 */
 	@Override
@@ -1473,7 +1278,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 			throws ApiException {
 		// Collect variables from method
 		String target = "order";
-		String uriTemplate = "/order/openpositions?TradingAccountId={tradingAccountId}";
+		String uriTemplate = "/openpositions?TradingAccountId={tradingAccountId}";
 		String transport = "GET";
 		String envelope = "URL";
 		String contentType = "application/json";
@@ -1493,14 +1298,13 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = ListOpenPositionsResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ListOpenPositionsResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("tradingAccountId", tradingAccountId + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), ListOpenPositionsResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(tradingAccountId), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -1514,11 +1318,11 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * Queries for a specified trading account's active stop / limit orders.
 	 * </p>
 	 * <p>
-	 * This uri is intended to be used to support a grid in a UI. One usage pattern is to subscribe
-	 * to streaming orders, call this for the initial data to display in the grid, and call <a
+	 * This uri is intended to be used to support a grid in a UI. One usage pattern is to subscribe to streaming orders,
+	 * call this for the initial data to display in the grid, and call <a
 	 * onclick="dojo.hash('#service.GetActiveStopLimitOrder'); return false;" class="json-link"
-	 * href="#">GetActiveStopLimitOrder</a> when you get updates on the order stream to get the
-	 * updated data in this format.
+	 * href="#">GetActiveStopLimitOrder</a> when you get updates on the order stream to get the updated data in this
+	 * format.
 	 * </p>
 	 */
 	@Override
@@ -1526,7 +1330,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 			throws ApiException {
 		// Collect variables from method
 		String target = "order";
-		String uriTemplate = "/order/activestoplimitorders?TradingAccountId={tradingAccountId}";
+		String uriTemplate = "/activestoplimitorders?TradingAccountId={tradingAccountId}";
 		String transport = "GET";
 		String envelope = "URL";
 		String contentType = "application/json";
@@ -1542,20 +1346,18 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		ListActiveStopLimitOrderResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = ListActiveStopLimitOrderResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (ListActiveStopLimitOrderResponseDTO) api.callGetMethod(fullUrl,
 					ListActiveStopLimitOrderResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("tradingAccountId", tradingAccountId + "");
-			result = (ListActiveStopLimitOrderResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					ListActiveStopLimitOrderResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(tradingAccountId), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (ListActiveStopLimitOrderResponseDTO) result;
 	}
 
 	/**
@@ -1565,11 +1367,11 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * Queries for a specified trading account's active stop / limit orders.
 	 * </p>
 	 * <p>
-	 * This uri is intended to be used to support a grid in a UI. One usage pattern is to subscribe
-	 * to streaming orders, call this for the initial data to display in the grid, and call <a
+	 * This uri is intended to be used to support a grid in a UI. One usage pattern is to subscribe to streaming orders,
+	 * call this for the initial data to display in the grid, and call <a
 	 * onclick="dojo.hash('#service.GetActiveStopLimitOrder'); return false;" class="json-link"
-	 * href="#">GetActiveStopLimitOrder</a> when you get updates on the order stream to get the
-	 * updated data in this format.
+	 * href="#">GetActiveStopLimitOrder</a> when you get updates on the order stream to get the updated data in this
+	 * format.
 	 * </p>
 	 */
 	@Override
@@ -1577,7 +1379,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 			throws ApiException {
 		// Collect variables from method
 		String target = "order";
-		String uriTemplate = "/order/activestoplimitorders?TradingAccountId={tradingAccountId}";
+		String uriTemplate = "/activestoplimitorders?TradingAccountId={tradingAccountId}";
 		String transport = "GET";
 		String envelope = "URL";
 		String contentType = "application/json";
@@ -1597,14 +1399,13 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = ListActiveStopLimitOrderResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ListActiveStopLimitOrderResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("tradingAccountId", tradingAccountId + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), ListActiveStopLimitOrderResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(tradingAccountId), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -1615,20 +1416,18 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * !This is an auto generated method!
 	 * 
 	 * <p>
-	 * Queries for a active stop limit order with a specified order id. It will return a null value
-	 * if the order doesn't exist, or is not an active stop limit order.
+	 * Queries for a active stop limit order with a specified order id. It will return a null value if the order doesn't
+	 * exist, or is not an active stop limit order.
 	 * <p>
 	 * <p>
-	 * This uri is intended to be used to support a grid in a UI. One usage pattern is to subscribe
-	 * to streaming orders, call <a
-	 * onclick="dojo.hash('#service.ListActiveStopLimitOrders'); return false;" class="json-link"
-	 * href="#">ListActiveStopLimitOrders</a> for the initial data to display in the grid, and call
-	 * this uri when you get updates on the order stream to get the updated data in this format.
+	 * This uri is intended to be used to support a grid in a UI. One usage pattern is to subscribe to streaming orders,
+	 * call <a onclick="dojo.hash('#service.ListActiveStopLimitOrders'); return false;" class="json-link"
+	 * href="#">ListActiveStopLimitOrders</a> for the initial data to display in the grid, and call this uri when you
+	 * get updates on the order stream to get the updated data in this format.
 	 * </p>
 	 * <p>
-	 * For a more comprehensive order response, see <a
-	 * onclick="dojo.hash('#service.GetOrder'); return false;" class="json-link"
-	 * href="#">GetOrder</a>
+	 * For a more comprehensive order response, see <a onclick="dojo.hash('#service.GetOrder'); return false;"
+	 * class="json-link" href="#">GetOrder</a>
 	 * <p>
 	 */
 	@Override
@@ -1651,40 +1450,36 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		GetActiveStopLimitOrderResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = GetActiveStopLimitOrderResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (GetActiveStopLimitOrderResponseDTO) api.callGetMethod(fullUrl,
 					GetActiveStopLimitOrderResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("orderId", orderId + "");
-			result = (GetActiveStopLimitOrderResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					GetActiveStopLimitOrderResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(orderId), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (GetActiveStopLimitOrderResponseDTO) result;
 	}
 
 	/**
 	 * !This is an auto generated method!
 	 * 
 	 * <p>
-	 * Queries for a active stop limit order with a specified order id. It will return a null value
-	 * if the order doesn't exist, or is not an active stop limit order.
+	 * Queries for a active stop limit order with a specified order id. It will return a null value if the order doesn't
+	 * exist, or is not an active stop limit order.
 	 * <p>
 	 * <p>
-	 * This uri is intended to be used to support a grid in a UI. One usage pattern is to subscribe
-	 * to streaming orders, call <a
-	 * onclick="dojo.hash('#service.ListActiveStopLimitOrders'); return false;" class="json-link"
-	 * href="#">ListActiveStopLimitOrders</a> for the initial data to display in the grid, and call
-	 * this uri when you get updates on the order stream to get the updated data in this format.
+	 * This uri is intended to be used to support a grid in a UI. One usage pattern is to subscribe to streaming orders,
+	 * call <a onclick="dojo.hash('#service.ListActiveStopLimitOrders'); return false;" class="json-link"
+	 * href="#">ListActiveStopLimitOrders</a> for the initial data to display in the grid, and call this uri when you
+	 * get updates on the order stream to get the updated data in this format.
 	 * </p>
 	 * <p>
-	 * For a more comprehensive order response, see <a
-	 * onclick="dojo.hash('#service.GetOrder'); return false;" class="json-link"
-	 * href="#">GetOrder</a>
+	 * For a more comprehensive order response, see <a onclick="dojo.hash('#service.GetOrder'); return false;"
+	 * class="json-link" href="#">GetOrder</a>
 	 * <p>
 	 */
 	@Override
@@ -1712,14 +1507,13 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = GetActiveStopLimitOrderResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, GetActiveStopLimitOrderResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("orderId", orderId + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), GetActiveStopLimitOrderResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(orderId), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -1730,20 +1524,18 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * !This is an auto generated method!
 	 * 
 	 * <p>
-	 * Queries for a trade / open position with a specified order id. It will return a null value if
-	 * the order doesn't exist, or is not a trade / open position.
+	 * Queries for a trade / open position with a specified order id. It will return a null value if the order doesn't
+	 * exist, or is not a trade / open position.
 	 * </p>
 	 * <p>
-	 * This uri is intended to be used to support a grid in a UI. One usage pattern is to subscribe
-	 * to streaming orders, call <a onclick="dojo.hash('#service.ListOpenPositions'); return false;"
-	 * class="json-link" href="#">ListOpenPositions</a> for the initial data to display in the grid,
-	 * and call this uri when you get updates on the order stream to get the updated data in this
-	 * format.
+	 * This uri is intended to be used to support a grid in a UI. One usage pattern is to subscribe to streaming orders,
+	 * call <a onclick="dojo.hash('#service.ListOpenPositions'); return false;" class="json-link"
+	 * href="#">ListOpenPositions</a> for the initial data to display in the grid, and call this uri when you get
+	 * updates on the order stream to get the updated data in this format.
 	 * </p>
 	 * <p>
-	 * For a more comprehensive order response, see <a
-	 * onclick="dojo.hash('#service.GetOrder'); return false;" class="json-link"
-	 * href="#">GetOrder</a>
+	 * For a more comprehensive order response, see <a onclick="dojo.hash('#service.GetOrder'); return false;"
+	 * class="json-link" href="#">GetOrder</a>
 	 * <p>
 	 */
 	@Override
@@ -1766,39 +1558,35 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		GetOpenPositionResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = GetOpenPositionResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (GetOpenPositionResponseDTO) api.callGetMethod(fullUrl, GetOpenPositionResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("orderId", orderId + "");
-			result = (GetOpenPositionResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					GetOpenPositionResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(orderId), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (GetOpenPositionResponseDTO) result;
 	}
 
 	/**
 	 * !This is an auto generated method!
 	 * 
 	 * <p>
-	 * Queries for a trade / open position with a specified order id. It will return a null value if
-	 * the order doesn't exist, or is not a trade / open position.
+	 * Queries for a trade / open position with a specified order id. It will return a null value if the order doesn't
+	 * exist, or is not a trade / open position.
 	 * </p>
 	 * <p>
-	 * This uri is intended to be used to support a grid in a UI. One usage pattern is to subscribe
-	 * to streaming orders, call <a onclick="dojo.hash('#service.ListOpenPositions'); return false;"
-	 * class="json-link" href="#">ListOpenPositions</a> for the initial data to display in the grid,
-	 * and call this uri when you get updates on the order stream to get the updated data in this
-	 * format.
+	 * This uri is intended to be used to support a grid in a UI. One usage pattern is to subscribe to streaming orders,
+	 * call <a onclick="dojo.hash('#service.ListOpenPositions'); return false;" class="json-link"
+	 * href="#">ListOpenPositions</a> for the initial data to display in the grid, and call this uri when you get
+	 * updates on the order stream to get the updated data in this format.
 	 * </p>
 	 * <p>
-	 * For a more comprehensive order response, see <a
-	 * onclick="dojo.hash('#service.GetOrder'); return false;" class="json-link"
-	 * href="#">GetOrder</a>
+	 * For a more comprehensive order response, see <a onclick="dojo.hash('#service.GetOrder'); return false;"
+	 * class="json-link" href="#">GetOrder</a>
 	 * <p>
 	 */
 	@Override
@@ -1826,14 +1614,13 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = GetOpenPositionResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, GetOpenPositionResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("orderId", orderId + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), GetOpenPositionResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(orderId), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -1844,9 +1631,8 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * !This is an auto generated method!
 	 * 
 	 * <p>
-	 * Queries for a specified trading account's trade history. The result set will contain orders
-	 * with a status of <b>(3 - Open, 9 - Closed)</b>, and includes <b>orders that were a trade /
-	 * stop / limit order</b>.
+	 * Queries for a specified trading account's trade history. The result set will contain orders with a status of
+	 * <b>(3 - Open, 9 - Closed)</b>, and includes <b>orders that were a trade / stop / limit order</b>.
 	 * </p>
 	 * <p>
 	 * There's currently no corresponding GetTradeHistory (as with ListOpenPositions).
@@ -1857,7 +1643,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 			throws ApiException {
 		// Collect variables from method
 		String target = "order";
-		String uriTemplate = "/order/tradehistory?TradingAccountId={tradingAccountId}&MaxResults={maxResults}";
+		String uriTemplate = "/tradehistory?TradingAccountId={tradingAccountId}&MaxResults={maxResults}";
 		String transport = "GET";
 		String envelope = "URL";
 		String contentType = "application/json";
@@ -1874,29 +1660,26 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		ListTradeHistoryResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = ListTradeHistoryResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (ListTradeHistoryResponseDTO) api.callGetMethod(fullUrl, ListTradeHistoryResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("tradingAccountId", tradingAccountId + "");
-			obj.addProperty("maxResults", maxResults + "");
-			result = (ListTradeHistoryResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					ListTradeHistoryResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(tradingAccountId), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(maxResults), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (ListTradeHistoryResponseDTO) result;
 	}
 
 	/**
 	 * !This is an auto generated method!
 	 * 
 	 * <p>
-	 * Queries for a specified trading account's trade history. The result set will contain orders
-	 * with a status of <b>(3 - Open, 9 - Closed)</b>, and includes <b>orders that were a trade /
-	 * stop / limit order</b>.
+	 * Queries for a specified trading account's trade history. The result set will contain orders with a status of
+	 * <b>(3 - Open, 9 - Closed)</b>, and includes <b>orders that were a trade / stop / limit order</b>.
 	 * </p>
 	 * <p>
 	 * There's currently no corresponding GetTradeHistory (as with ListOpenPositions).
@@ -1907,7 +1690,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 			CallBack... callBacks) throws ApiException {
 		// Collect variables from method
 		String target = "order";
-		String uriTemplate = "/order/tradehistory?TradingAccountId={tradingAccountId}&MaxResults={maxResults}";
+		String uriTemplate = "/tradehistory?TradingAccountId={tradingAccountId}&MaxResults={maxResults}";
 		String transport = "GET";
 		String envelope = "URL";
 		String contentType = "application/json";
@@ -1928,15 +1711,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = ListTradeHistoryResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ListTradeHistoryResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("tradingAccountId", tradingAccountId + "");
-			obj.addProperty("maxResults", maxResults + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), ListTradeHistoryResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(tradingAccountId), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(maxResults), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -1947,14 +1729,12 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * !This is an auto generated method!
 	 * 
 	 * <p>
-	 * Queries for a specified trading account's stop / limit order history. The result set will
-	 * include <b>only orders that were originally stop / limit orders</b> that currently have one
-	 * of the following statuses <b>(3 - Open, 4 - Cancelled, 5 - Rejected, 9 - Closed, 10 - Red
-	 * Card)</b>
+	 * Queries for a specified trading account's stop / limit order history. The result set will include <b>only orders
+	 * that were originally stop / limit orders</b> that currently have one of the following statuses <b>(3 - Open, 4 -
+	 * Cancelled, 5 - Rejected, 9 - Closed, 10 - Red Card)</b>
 	 * </p>
 	 * <p>
-	 * There's currently no corresponding GetStopLimitOrderHistory (as with
-	 * ListActiveStopLimitOrders).
+	 * There's currently no corresponding GetStopLimitOrderHistory (as with ListActiveStopLimitOrders).
 	 * </p>
 	 */
 	@Override
@@ -1962,7 +1742,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 			JsonApi api) throws ApiException {
 		// Collect variables from method
 		String target = "order";
-		String uriTemplate = "/order/stoplimitorderhistory?TradingAccountId={tradingAccountId}&MaxResults={maxResults}";
+		String uriTemplate = "/stoplimitorderhistory?TradingAccountId={tradingAccountId}&MaxResults={maxResults}";
 		String transport = "GET";
 		String envelope = "URL";
 		String contentType = "application/json";
@@ -1979,35 +1759,31 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		ListStopLimitOrderHistoryResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = ListStopLimitOrderHistoryResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (ListStopLimitOrderHistoryResponseDTO) api.callGetMethod(fullUrl,
 					ListStopLimitOrderHistoryResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("tradingAccountId", tradingAccountId + "");
-			obj.addProperty("maxResults", maxResults + "");
-			result = (ListStopLimitOrderHistoryResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					ListStopLimitOrderHistoryResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(tradingAccountId), retClazz);
+			result = api.callPostMethod(fullUrl, g.toJson(maxResults), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (ListStopLimitOrderHistoryResponseDTO) result;
 	}
 
 	/**
 	 * !This is an auto generated method!
 	 * 
 	 * <p>
-	 * Queries for a specified trading account's stop / limit order history. The result set will
-	 * include <b>only orders that were originally stop / limit orders</b> that currently have one
-	 * of the following statuses <b>(3 - Open, 4 - Cancelled, 5 - Rejected, 9 - Closed, 10 - Red
-	 * Card)</b>
+	 * Queries for a specified trading account's stop / limit order history. The result set will include <b>only orders
+	 * that were originally stop / limit orders</b> that currently have one of the following statuses <b>(3 - Open, 4 -
+	 * Cancelled, 5 - Rejected, 9 - Closed, 10 - Red Card)</b>
 	 * </p>
 	 * <p>
-	 * There's currently no corresponding GetStopLimitOrderHistory (as with
-	 * ListActiveStopLimitOrders).
+	 * There's currently no corresponding GetStopLimitOrderHistory (as with ListActiveStopLimitOrders).
 	 * </p>
 	 */
 	@Override
@@ -2015,7 +1791,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 			CallBack... callBacks) throws ApiException {
 		// Collect variables from method
 		String target = "order";
-		String uriTemplate = "/order/stoplimitorderhistory?TradingAccountId={tradingAccountId}&MaxResults={maxResults}";
+		String uriTemplate = "/stoplimitorderhistory?TradingAccountId={tradingAccountId}&MaxResults={maxResults}";
 		String transport = "GET";
 		String envelope = "URL";
 		String contentType = "application/json";
@@ -2036,15 +1812,14 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = ListStopLimitOrderHistoryResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ListStopLimitOrderHistoryResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("tradingAccountId", tradingAccountId + "");
-			obj.addProperty("maxResults", maxResults + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), ListStopLimitOrderHistoryResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(tradingAccountId), retClazz);
+			result = call.callPostMethod(fullUrl, g.toJson(maxResults), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -2058,8 +1833,8 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * Queries for an order by a specific order id.
 	 * </p>
 	 * <p>
-	 * The current implementation only returns active orders (i.e. those with a status of <b>1 -
-	 * Pending, 2 - Accepted, 3 - Open, 6 - Suspended, 8 - Yellow Card, 11 - Triggered)</b>.
+	 * The current implementation only returns active orders (i.e. those with a status of <b>1 - Pending, 2 - Accepted,
+	 * 3 - Open, 6 - Suspended, 8 - Yellow Card, 11 - Triggered)</b>.
 	 * </p>
 	 */
 	@Override
@@ -2082,18 +1857,17 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		GetOrderResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = GetOrderResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (GetOrderResponseDTO) api.callGetMethod(fullUrl, GetOrderResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("orderId", orderId + "");
-			result = (GetOrderResponseDTO) api.callPostMethod(fullUrl, obj.toString(), GetOrderResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(orderId), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (GetOrderResponseDTO) result;
 	}
 
 	/**
@@ -2103,8 +1877,8 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * Queries for an order by a specific order id.
 	 * </p>
 	 * <p>
-	 * The current implementation only returns active orders (i.e. those with a status of <b>1 -
-	 * Pending, 2 - Accepted, 3 - Open, 6 - Suspended, 8 - Yellow Card, 11 - Triggered)</b>.
+	 * The current implementation only returns active orders (i.e. those with a status of <b>1 - Pending, 2 - Accepted,
+	 * 3 - Open, 6 - Suspended, 8 - Yellow Card, 11 - Triggered)</b>.
 	 * </p>
 	 */
 	@Override
@@ -2131,14 +1905,13 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = GetOrderResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, GetOrderResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("orderId", orderId + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), GetOrderResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(orderId), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -2158,9 +1931,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * </p>
 	 */
 	@Override
-	public ApiTradeOrderResponseDTO Trade(int MarketId, String Currency, boolean AutoRollover, String Direction,
-			double Quantity, String QuoteId, double BidPrice, double OfferPrice, String AuditId, int TradingAccountId,
-			ApiIfDoneDTO[] IfDone, int[] Close, JsonApi api) throws ApiException {
+	public ApiTradeOrderResponseDTO Trade(NewTradeOrderRequestDTO trade, JsonApi api) throws ApiException {
 		// Collect variables from method
 		String target = "order";
 		String uriTemplate = "/newtradeorder";
@@ -2173,47 +1944,23 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		if (transport.equals("GET")) {
 			// Concatenating the empty string is a hackey way of converting all params to a String
 
-			filledUri = filledUri.replace("{MarketId}", MarketId + "");
-			filledUri = filledUri.replace("{Currency}", Currency + "");
-			filledUri = filledUri.replace("{AutoRollover}", AutoRollover + "");
-			filledUri = filledUri.replace("{Direction}", Direction + "");
-			filledUri = filledUri.replace("{Quantity}", Quantity + "");
-			filledUri = filledUri.replace("{QuoteId}", QuoteId + "");
-			filledUri = filledUri.replace("{BidPrice}", BidPrice + "");
-			filledUri = filledUri.replace("{OfferPrice}", OfferPrice + "");
-			filledUri = filledUri.replace("{AuditId}", AuditId + "");
-			filledUri = filledUri.replace("{TradingAccountId}", TradingAccountId + "");
-			filledUri = filledUri.replace("{IfDone}", IfDone + "");
-			filledUri = filledUri.replace("{Close}", Close + "");
+			filledUri = filledUri.replace("{trade}", trade + "");
 		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		ApiTradeOrderResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = ApiTradeOrderResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (ApiTradeOrderResponseDTO) api.callGetMethod(fullUrl, ApiTradeOrderResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("MarketId", MarketId + "");
-			obj.addProperty("Currency", Currency + "");
-			obj.addProperty("AutoRollover", AutoRollover + "");
-			obj.addProperty("Direction", Direction + "");
-			obj.addProperty("Quantity", Quantity + "");
-			obj.addProperty("QuoteId", QuoteId + "");
-			obj.addProperty("BidPrice", BidPrice + "");
-			obj.addProperty("OfferPrice", OfferPrice + "");
-			obj.addProperty("AuditId", AuditId + "");
-			obj.addProperty("TradingAccountId", TradingAccountId + "");
-			obj.addProperty("IfDone", IfDone + "");
-			obj.addProperty("Close", Close + "");
-			result = (ApiTradeOrderResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					ApiTradeOrderResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(trade), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (ApiTradeOrderResponseDTO) result;
 	}
 
 	/**
@@ -2229,9 +1976,8 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * </p>
 	 */
 	@Override
-	public Future<Object> TradeAsync(int MarketId, String Currency, boolean AutoRollover, String Direction,
-			double Quantity, String QuoteId, double BidPrice, double OfferPrice, String AuditId, int TradingAccountId,
-			ApiIfDoneDTO[] IfDone, int[] Close, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
+	public Future<Object> TradeAsync(NewTradeOrderRequestDTO trade, AsyncJsonApi api, CallBack... callBacks)
+			throws ApiException {
 		// Collect variables from method
 		String target = "order";
 		String uriTemplate = "/newtradeorder";
@@ -2244,18 +1990,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		if (transport.equals("GET")) {
 			// Concatenating the empty string is a hackey way of converting all params to a String
 
-			filledUri = filledUri.replace("{MarketId}", MarketId + "");
-			filledUri = filledUri.replace("{Currency}", Currency + "");
-			filledUri = filledUri.replace("{AutoRollover}", AutoRollover + "");
-			filledUri = filledUri.replace("{Direction}", Direction + "");
-			filledUri = filledUri.replace("{Quantity}", Quantity + "");
-			filledUri = filledUri.replace("{QuoteId}", QuoteId + "");
-			filledUri = filledUri.replace("{BidPrice}", BidPrice + "");
-			filledUri = filledUri.replace("{OfferPrice}", OfferPrice + "");
-			filledUri = filledUri.replace("{AuditId}", AuditId + "");
-			filledUri = filledUri.replace("{TradingAccountId}", TradingAccountId + "");
-			filledUri = filledUri.replace("{IfDone}", IfDone + "");
-			filledUri = filledUri.replace("{Close}", Close + "");
+			filledUri = filledUri.replace("{trade}", trade + "");
 		}
 		// Done filling in holes
 		// build final URL
@@ -2265,25 +2000,13 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = ApiTradeOrderResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ApiTradeOrderResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("MarketId", MarketId + "");
-			obj.addProperty("Currency", Currency + "");
-			obj.addProperty("AutoRollover", AutoRollover + "");
-			obj.addProperty("Direction", Direction + "");
-			obj.addProperty("Quantity", Quantity + "");
-			obj.addProperty("QuoteId", QuoteId + "");
-			obj.addProperty("BidPrice", BidPrice + "");
-			obj.addProperty("OfferPrice", OfferPrice + "");
-			obj.addProperty("AuditId", AuditId + "");
-			obj.addProperty("TradingAccountId", TradingAccountId + "");
-			obj.addProperty("IfDone", IfDone + "");
-			obj.addProperty("Close", Close + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), ApiTradeOrderResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(trade), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -2298,7 +2021,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * href="#">UpdateTradeOrderRequestDTO</a> to the uri specified below</p>
 	 */
 	@Override
-	public ApiTradeOrderResponseDTO UpdateTrade(int OrderId, JsonApi api) throws ApiException {
+	public ApiTradeOrderResponseDTO UpdateTrade(UpdateTradeOrderRequestDTO update, JsonApi api) throws ApiException {
 		// Collect variables from method
 		String target = "order";
 		String uriTemplate = "/updatetradeorder";
@@ -2311,25 +2034,23 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		if (transport.equals("GET")) {
 			// Concatenating the empty string is a hackey way of converting all params to a String
 
-			filledUri = filledUri.replace("{OrderId}", OrderId + "");
+			filledUri = filledUri.replace("{update}", update + "");
 		}
 		// Done filling in holes
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		ApiTradeOrderResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = ApiTradeOrderResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (ApiTradeOrderResponseDTO) api.callGetMethod(fullUrl, ApiTradeOrderResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("OrderId", OrderId + "");
-			result = (ApiTradeOrderResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					ApiTradeOrderResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(update), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (ApiTradeOrderResponseDTO) result;
 	}
 
 	/**
@@ -2340,7 +2061,8 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	 * href="#">UpdateTradeOrderRequestDTO</a> to the uri specified below</p>
 	 */
 	@Override
-	public Future<Object> UpdateTradeAsync(int OrderId, AsyncJsonApi api, CallBack... callBacks) throws ApiException {
+	public Future<Object> UpdateTradeAsync(UpdateTradeOrderRequestDTO update, AsyncJsonApi api, CallBack... callBacks)
+			throws ApiException {
 		// Collect variables from method
 		String target = "order";
 		String uriTemplate = "/updatetradeorder";
@@ -2353,7 +2075,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		if (transport.equals("GET")) {
 			// Concatenating the empty string is a hackey way of converting all params to a String
 
-			filledUri = filledUri.replace("{OrderId}", OrderId + "");
+			filledUri = filledUri.replace("{update}", update + "");
 		}
 		// Done filling in holes
 		// build final URL
@@ -2363,14 +2085,13 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = ApiTradeOrderResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ApiTradeOrderResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("OrderId", OrderId + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), ApiTradeOrderResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(update), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -2380,174 +2101,7 @@ public class ServiceMethodsImpl implements ServiceMethods {
 	/**
 	 * !This is an auto generated method!
 	 * 
-	 * Whether a User is allowed to see Charting Data.
-	 */
-	@Override
-	public Boolean GetChartingEnabled(String id, JsonApi api) throws ApiException {
-		// Collect variables from method
-		String target = "useraccount";
-		String uriTemplate = "/UserAccount/{id}/ChartingEnabled";
-		String transport = "GET";
-		String envelope = "URL";
-		String contentType = "application/json";
-		String filledUri = uriTemplate;
-		// Done collecting variables
-		// Fill in necessary holes in the URL if it is GET.
-		if (transport.equals("GET")) {
-			// Concatenating the empty string is a hackey way of converting all params to a String
-
-			filledUri = filledUri.replace("{id}", id + "");
-		}
-		// Done filling in holes
-		// build final URL
-		String fullUrl = target + filledUri;
-		// done building final url
-		Boolean result;
-		if (transport.equals("GET")) {
-			result = (Boolean) api.callGetMethod(fullUrl, Boolean.class);
-		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
-
-			obj.addProperty("id", id + "");
-			result = (Boolean) api.callPostMethod(fullUrl, obj.toString(), Boolean.class);
-		} else {
-			throw new IllegalArgumentException("Unexpected transport type: " + transport);
-		}
-		return result;
-	}
-
-	/**
-	 * !This is an auto generated method!
-	 * 
-	 * Whether a User is allowed to see Charting Data.
-	 */
-	@Override
-	public Future<Object> GetChartingEnabledAsync(String id, AsyncJsonApi api, CallBack... callBacks)
-			throws ApiException {
-		// Collect variables from method
-		String target = "useraccount";
-		String uriTemplate = "/UserAccount/{id}/ChartingEnabled";
-		String transport = "GET";
-		String envelope = "URL";
-		String contentType = "application/json";
-		String filledUri = uriTemplate;
-		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		if (transport.equals("GET")) {
-			// Concatenating the empty string is a hackey way of converting all params to a String
-
-			filledUri = filledUri.replace("{id}", id + "");
-		}
-		// Done filling in holes
-		// build final URL
-		String fullUrl = target + filledUri;
-		// done building final url
-		AsyncApiCall call = api.createNewCall();
-		for (CallBack cb : callBacks) {
-			call.addCallCompleteListener(cb);
-		}
-		Future<Object> result;
-		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, Boolean.class);
-		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
-
-			obj.addProperty("id", id + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), Boolean.class);
-		} else {
-			throw new IllegalArgumentException("Unexpected transport type: " + transport);
-		}
-		return result;
-	}
-
-	/**
-	 * !This is an auto generated method!
-	 * 
-	 * What are the Users Terms and Conditions.
-	 */
-	@Override
-	public String GetTermsAndConditions(String clientaccount, JsonApi api) throws ApiException {
-		// Collect variables from method
-		String target = "useraccount";
-		String uriTemplate = "/UserAccount/{clientaccount}/TermsAndConditions";
-		String transport = "GET";
-		String envelope = "URL";
-		String contentType = "application/json";
-		String filledUri = uriTemplate;
-		// Done collecting variables
-		// Fill in necessary holes in the URL if it is GET.
-		if (transport.equals("GET")) {
-			// Concatenating the empty string is a hackey way of converting all params to a String
-
-			filledUri = filledUri.replace("{clientaccount}", clientaccount + "");
-		}
-		// Done filling in holes
-		// build final URL
-		String fullUrl = target + filledUri;
-		// done building final url
-		String result;
-		if (transport.equals("GET")) {
-			result = (String) api.callGetMethod(fullUrl, String.class);
-		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
-
-			obj.addProperty("clientaccount", clientaccount + "");
-			result = (String) api.callPostMethod(fullUrl, obj.toString(), String.class);
-		} else {
-			throw new IllegalArgumentException("Unexpected transport type: " + transport);
-		}
-		return result;
-	}
-
-	/**
-	 * !This is an auto generated method!
-	 * 
-	 * What are the Users Terms and Conditions.
-	 */
-	@Override
-	public Future<Object> GetTermsAndConditionsAsync(String clientaccount, AsyncJsonApi api, CallBack... callBacks)
-			throws ApiException {
-		// Collect variables from method
-		String target = "useraccount";
-		String uriTemplate = "/UserAccount/{clientaccount}/TermsAndConditions";
-		String transport = "GET";
-		String envelope = "URL";
-		String contentType = "application/json";
-		String filledUri = uriTemplate;
-		// Done collecting variables
-		// Fill in necessary holes in the URL.
-		if (transport.equals("GET")) {
-			// Concatenating the empty string is a hackey way of converting all params to a String
-
-			filledUri = filledUri.replace("{clientaccount}", clientaccount + "");
-		}
-		// Done filling in holes
-		// build final URL
-		String fullUrl = target + filledUri;
-		// done building final url
-		AsyncApiCall call = api.createNewCall();
-		for (CallBack cb : callBacks) {
-			call.addCallCompleteListener(cb);
-		}
-		Future<Object> result;
-		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, String.class);
-		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
-
-			obj.addProperty("clientaccount", clientaccount + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), String.class);
-		} else {
-			throw new IllegalArgumentException("Unexpected transport type: " + transport);
-		}
-		return result;
-	}
-
-	/**
-	 * !This is an auto generated method!
-	 * 
-	 * Returns the Users ClientAccountId and a list of their TradingAccounts. There are no
-	 * parameters for this call.
+	 * Returns the Users ClientAccountId and a list of their TradingAccounts. There are no parameters for this call.
 	 */
 	@Override
 	public AccountInformationResponseDTO GetClientAndTradingAccount(JsonApi api) throws ApiException {
@@ -2568,25 +2122,22 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		AccountInformationResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = AccountInformationResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (AccountInformationResponseDTO) api.callGetMethod(fullUrl, AccountInformationResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			result = (AccountInformationResponseDTO) api.callPostMethod(fullUrl, obj.toString(),
-					AccountInformationResponseDTO.class);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (AccountInformationResponseDTO) result;
 	}
 
 	/**
 	 * !This is an auto generated method!
 	 * 
-	 * Returns the Users ClientAccountId and a list of their TradingAccounts. There are no
-	 * parameters for this call.
+	 * Returns the Users ClientAccountId and a list of their TradingAccounts. There are no parameters for this call.
 	 */
 	@Override
 	public Future<Object> GetClientAndTradingAccountAsync(AsyncJsonApi api, CallBack... callBacks) throws ApiException {
@@ -2611,13 +2162,12 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = AccountInformationResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, AccountInformationResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			result = call.callPostMethod(fullUrl, obj.toString(), AccountInformationResponseDTO.class);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
@@ -2649,18 +2199,17 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		// build final URL
 		String fullUrl = target + filledUri;
 		// done building final url
-		ApiErrorResponseDTO result;
+		Object result = null;
+		Class<?> retClazz = ApiErrorResponseDTO.class;
 		if (transport.equals("GET")) {
 			result = (ApiErrorResponseDTO) api.callGetMethod(fullUrl, ApiErrorResponseDTO.class);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("errorCode", errorCode + "");
-			result = (ApiErrorResponseDTO) api.callPostMethod(fullUrl, obj.toString(), ApiErrorResponseDTO.class);
+			result = api.callPostMethod(fullUrl, g.toJson(errorCode), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}
-		return result;
+		return (ApiErrorResponseDTO) result;
 	}
 
 	/**
@@ -2693,14 +2242,13 @@ public class ServiceMethodsImpl implements ServiceMethods {
 		for (CallBack cb : callBacks) {
 			call.addCallCompleteListener(cb);
 		}
-		Future<Object> result;
+		Future<Object> result = null;
+		Class<?> retClazz = ApiErrorResponseDTO.class;
 		if (transport.equals("GET")) {
-			result = call.callGetMethod(fullUrl, ApiErrorResponseDTO.class);
+			result = call.callGetMethod(fullUrl, retClazz);
 		} else if (transport.equals("POST")) {
-			JsonObject obj = new JsonObject();
 
-			obj.addProperty("errorCode", errorCode + "");
-			result = call.callPostMethod(fullUrl, obj.toString(), ApiErrorResponseDTO.class);
+			result = call.callPostMethod(fullUrl, g.toJson(errorCode), retClazz);
 		} else {
 			throw new IllegalArgumentException("Unexpected transport type: " + transport);
 		}

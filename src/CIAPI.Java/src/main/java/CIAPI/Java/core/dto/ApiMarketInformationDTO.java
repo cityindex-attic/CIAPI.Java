@@ -37,52 +37,52 @@ public class ApiMarketInformationDTO {
 	public void setName(String Name) {
 		this.Name = Name;
 	}
-	private String MarginFactor;
+	private double MarginFactor;
 	
 	/**
 	 * Margin factor, expressed as points or a percentage.
 	 */
-	public String getMarginFactor() {
+	public double getMarginFactor() {
 		return MarginFactor;
 	}
 	
-	public void setMarginFactor(String MarginFactor) {
+	public void setMarginFactor(double MarginFactor) {
 		this.MarginFactor = MarginFactor;
 	}
-	private String MinDistance;
+	private double MinDistance;
 	
 	/**
 	 * The minimum distance from the current price you can place an order.
 	 */
-	public String getMinDistance() {
+	public double getMinDistance() {
 		return MinDistance;
 	}
 	
-	public void setMinDistance(String MinDistance) {
+	public void setMinDistance(double MinDistance) {
 		this.MinDistance = MinDistance;
 	}
-	private String WebMinSize;
+	private double WebMinSize;
 	
 	/**
 	 * The minimum quantity that can be traded over the web.
 	 */
-	public String getWebMinSize() {
+	public double getWebMinSize() {
 		return WebMinSize;
 	}
 	
-	public void setWebMinSize(String WebMinSize) {
+	public void setWebMinSize(double WebMinSize) {
 		this.WebMinSize = WebMinSize;
 	}
-	private String MaxSize;
+	private double MaxSize;
 	
 	/**
 	 * The max size of an order.
 	 */
-	public String getMaxSize() {
+	public double getMaxSize() {
 		return MaxSize;
 	}
 	
-	public void setMaxSize(String MaxSize) {
+	public void setMaxSize(double MaxSize) {
 		this.MaxSize = MaxSize;
 	}
 	private boolean Market24H;
@@ -97,28 +97,28 @@ public class ApiMarketInformationDTO {
 	public void setMarket24H(boolean Market24H) {
 		this.Market24H = Market24H;
 	}
-	private String PriceDecimalPlaces;
+	private int PriceDecimalPlaces;
 	
 	/**
 	 * the number of decimal places in the market's price.
 	 */
-	public String getPriceDecimalPlaces() {
+	public int getPriceDecimalPlaces() {
 		return PriceDecimalPlaces;
 	}
 	
-	public void setPriceDecimalPlaces(String PriceDecimalPlaces) {
+	public void setPriceDecimalPlaces(int PriceDecimalPlaces) {
 		this.PriceDecimalPlaces = PriceDecimalPlaces;
 	}
-	private String DefaultQuoteLength;
+	private int DefaultQuoteLength;
 	
 	/**
 	 * default quote length.
 	 */
-	public String getDefaultQuoteLength() {
+	public int getDefaultQuoteLength() {
 		return DefaultQuoteLength;
 	}
 	
-	public void setDefaultQuoteLength(String DefaultQuoteLength) {
+	public void setDefaultQuoteLength(int DefaultQuoteLength) {
 		this.DefaultQuoteLength = DefaultQuoteLength;
 	}
 	private boolean TradeOnWeb;

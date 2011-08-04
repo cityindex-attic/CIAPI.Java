@@ -25,16 +25,16 @@ public class ApiMarketEodDTO {
 	public void setMarketEodUnit(String MarketEodUnit) {
 		this.MarketEodUnit = MarketEodUnit;
 	}
-	private String MarketEodAmount;
+	private int MarketEodAmount;
 	
 	/**
 	 * End of day amount.
 	 */
-	public String getMarketEodAmount() {
+	public int getMarketEodAmount() {
 		return MarketEodAmount;
 	}
 	
-	public void setMarketEodAmount(String MarketEodAmount) {
+	public void setMarketEodAmount(int MarketEodAmount) {
 		this.MarketEodAmount = MarketEodAmount;
 	}
 }

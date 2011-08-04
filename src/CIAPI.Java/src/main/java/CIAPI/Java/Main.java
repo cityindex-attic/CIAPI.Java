@@ -1,6 +1,7 @@
 package CIAPI.Java;
 
 import CIAPI.Java.core.dto.AccountInformationResponseDTO;
+import CIAPI.Java.core.dto.ApiLogOnRequestDTO;
 import CIAPI.Java.core.dto.ApiLogOnResponseDTO;
 import CIAPI.Java.core.dto.ApiMarketDTO;
 import CIAPI.Java.core.dto.GetMarketInformationResponseDTO;
@@ -16,11 +17,15 @@ public class Main {
 	private static final int[] sony_id = { 100687, 400169951 };
 
 	public static void main(String[] args) throws ApiException {
+		String username="DM332844";
 		JsonApi api = new JsonApi("http://ciapipreprod.cityindextest9.co.uk/TradingApi", new DefaultJsonClient());
 		ServiceMethodsImpl methods = new ServiceMethodsImpl();
-		ApiLogOnResponseDTO resp = methods.LogOn("DM238300", "password", api);
+		ApiLogOnRequestDTO logReq = new ApiLogOnRequestDTO();
+		logReq.setPassword("password");
+		logReq.setUserName(username);
+		ApiLogOnResponseDTO resp = methods.LogOn(logReq, api);
 		api.addConstantParameter("session", resp.getSession());
-		api.addConstantParameter("username", "DM238300");
+		api.addConstantParameter("username", username);
 		AccountInformationResponseDTO account = methods.GetClientAndTradingAccount(api);
 		ListSpreadMarketsResponseDTO spreads = methods.ListSpreadMarkets("Sony", "no_ne", account.getClientAccountId(),
 				100, api);

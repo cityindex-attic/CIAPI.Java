@@ -13,17 +13,17 @@ public class InsertWatchlistItemRequestDTO {
 	public InsertWatchlistItemRequestDTO() {
 	}
 	
-	private int ParentWatchlistDisplayOrderId;
+	private int WatchlistDisplayOrderId;
 	
 	/**
 	 * The watchlist display order id to add the item
 	 */
-	public int getParentWatchlistDisplayOrderId() {
-		return ParentWatchlistDisplayOrderId;
+	public int getWatchlistDisplayOrderId() {
+		return WatchlistDisplayOrderId;
 	}
 	
-	public void setParentWatchlistDisplayOrderId(int ParentWatchlistDisplayOrderId) {
-		this.ParentWatchlistDisplayOrderId = ParentWatchlistDisplayOrderId;
+	public void setWatchlistDisplayOrderId(int WatchlistDisplayOrderId) {
+		this.WatchlistDisplayOrderId = WatchlistDisplayOrderId;
 	}
 	private int MarketId;
 	

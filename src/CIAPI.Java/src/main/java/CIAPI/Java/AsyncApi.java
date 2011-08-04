@@ -43,10 +43,12 @@ public class AsyncApi {
 	private boolean keepAlive;
 	private ServiceMethods methods;
 
-	protected AsyncApi(String baseUrl, Cache<Pair<String, Class<?>>, Object> cache, RequestQueue queue) {
+	protected AsyncApi(String baseUrl,
+			Cache<Pair<String, Class<?>>, Object> cache, RequestQueue queue) {
 		methods = new ServiceMethodsImpl();
-		api = new AsyncJsonApi(baseUrl, new CachedJsonClient(cache, new ThrottledHttpClient(
-				new DefaultHttpRequestItemFactory(), queue)));
+		api = new AsyncJsonApi(baseUrl, new CachedJsonClient(cache,
+				new ThrottledHttpClient(new DefaultHttpRequestItemFactory(),
+						queue)));
 	}
 
 	/**
@@ -62,14 +64,14 @@ public class AsyncApi {
 	 *            expires.
 	 * @throws ApiException
 	 */
-	public Future<Object> logIn(final String username, final String password, final boolean keepAlive, CallBack...callbacks)
-			throws ApiException {
+	public Future<Object> logIn(final String username, final String password,
+			final boolean keepAlive, CallBack... callbacks) throws ApiException {
 		ApiLogOnRequestDTO logOn = new ApiLogOnRequestDTO();
 		logOn.setPassword(password);
 		logOn.setUserName(username);
 		CallBack[] cbs = Arrays.copyOf(callbacks, callbacks.length + 1);
-		cbs[cbs.length-1] = logOnCallback;
-		return methods.LogOnAsync(username, password, api, cbs);
+		cbs[cbs.length - 1] = logOnCallback;
+		return methods.LogOnAsync(null, api, cbs);
 	}
 
 	private final CallBack logOnCallback = new CallBack() {
@@ -97,68 +99,86 @@ public class AsyncApi {
 	 * @throws ApiException
 	 */
 	public Future<Object> logOff() throws ApiException {
-		return methods.DeleteSessionAsync(username, sessionId, api, new CallBack() {
-			@Override
-			public void doCallBack(Object result, String baseUrl, String methodName) {
-				keepAlive = false;
-				ApiLogOffResponseDTO response = (ApiLogOffResponseDTO) result;
-				if (response.getLoggedOut()) {
-					api.clearConstantParams();
-					sessionId = null;
-				}
-			}
-		});
+		return methods.DeleteSessionAsync(username, sessionId, api,
+				new CallBack() {
+					@Override
+					public void doCallBack(Object result, String baseUrl,
+							String methodName) {
+						keepAlive = false;
+						ApiLogOffResponseDTO response = (ApiLogOffResponseDTO) result;
+						if (response.getLoggedOut()) {
+							api.clearConstantParams();
+							sessionId = null;
+						}
+					}
+				});
 	}
 
-	public Future<Object> getPriceBars(String marketId, String interval, int span, String priceBars,
+	public Future<Object> getPriceBars(String marketId, String interval,
+			int span, String priceBars, CallBack... callBacks)
+			throws ApiException {
+		return methods.GetPriceBarsAsync(marketId, interval, span, priceBars,
+				api, callBacks);
+	}
+
+	public Future<Object> getPriceTicks(String marketId, String priceTicks,
 			CallBack... callBacks) throws ApiException {
-		return methods.GetPriceBarsAsync(marketId, interval, span, priceBars, api, callBacks);
-	}
-
-	public Future<Object> getPriceTicks(String marketId, String priceTicks, CallBack... callBacks) throws ApiException {
 		return methods.GetPriceTicksAsync(marketId, priceTicks, api, callBacks);
 	}
 
-	public Future<Object> getMarketInformation(String marketId, CallBack... callBacks) throws ApiException {
+	public Future<Object> getMarketInformation(String marketId,
+			CallBack... callBacks) throws ApiException {
 		return methods.GetMarketInformationAsync(marketId, api, callBacks);
 	}
 
-	public Future<Object> listNewsHeadlines(String category, int maxResults, CallBack... callBacks) throws ApiException {
-		return methods.ListNewsHeadlinesAsync(category, maxResults, api, callBacks);
+	public Future<Object> listNewsHeadlines(String category, int maxResults,
+			CallBack... callBacks) throws ApiException {
+		return methods.ListNewsHeadlinesAsync(category, maxResults, api,
+				callBacks);
 	}
 
-	public Future<Object> getNewsDetail(String storyId, CallBack... callBacks) throws ApiException {
+	public Future<Object> getNewsDetail(String storyId, CallBack... callBacks)
+			throws ApiException {
 		return methods.GetNewsDetailAsync(storyId, api, callBacks);
 	}
 
-	public Future<Object> listCfdMarkets(String searchByMarketName, String searchByMarketCode, int clientAccountId,
-			int maxResults, CallBack... callBacks) throws ApiException {
-		return methods.ListCfdMarketsAsync(searchByMarketName, searchByMarketCode, clientAccountId, maxResults, api,
-				callBacks);
+	public Future<Object> listCfdMarkets(String searchByMarketName,
+			String searchByMarketCode, int clientAccountId, int maxResults,
+			CallBack... callBacks) throws ApiException {
+		return methods
+				.ListCfdMarketsAsync(searchByMarketName, searchByMarketCode,
+						clientAccountId, maxResults, api, callBacks);
 	}
 
-	public Future<Object> listSpreadMarkets(String searchByMarketName, String searchByMarketCode, int clientAccountId,
-			int maxResults, CallBack... callBacks) throws ApiException {
-		return methods.ListSpreadMarketsAsync(searchByMarketName, searchByMarketCode, clientAccountId, maxResults, api,
-				callBacks);
+	public Future<Object> listSpreadMarkets(String searchByMarketName,
+			String searchByMarketCode, int clientAccountId, int maxResults,
+			CallBack... callBacks) throws ApiException {
+		return methods
+				.ListSpreadMarketsAsync(searchByMarketName, searchByMarketCode,
+						clientAccountId, maxResults, api, callBacks);
 	}
 
-	public Future<Object> listOpenPositions(int tradingAccountId, CallBack... callBacks) throws ApiException {
+	public Future<Object> listOpenPositions(int tradingAccountId,
+			CallBack... callBacks) throws ApiException {
 		return methods.ListOpenPositionsAsync(tradingAccountId, api, callBacks);
 	}
 
-	public Future<Object> listActiveStopLimitOrders(int tradingAccountId, CallBack... callbacks) throws ApiException {
-		return methods.ListActiveStopLimitOrdersAsync(tradingAccountId, api, callbacks);
+	public Future<Object> listActiveStopLimitOrders(int tradingAccountId,
+			CallBack... callbacks) throws ApiException {
+		return methods.ListActiveStopLimitOrdersAsync(tradingAccountId, api,
+				callbacks);
 	}
 
-	public Future<Object> listTradeHistory(int tradingAccountId, int maxResults, CallBack... callbacks)
-			throws ApiException {
-		return methods.ListTradeHistoryAsync(tradingAccountId, maxResults, api, callbacks);
+	public Future<Object> listTradeHistory(int tradingAccountId,
+			int maxResults, CallBack... callbacks) throws ApiException {
+		return methods.ListTradeHistoryAsync(tradingAccountId, maxResults, api,
+				callbacks);
 	}
 
-	public Future<Object> listStopLimitOrderHistory(int tradingAccountId, int maxResults, CallBack... callbacks)
-			throws ApiException {
-		return methods.ListStopLimitOrderHistoryAsync(tradingAccountId, maxResults, api, callbacks);
+	public Future<Object> listStopLimitOrderHistory(int tradingAccountId,
+			int maxResults, CallBack... callbacks) throws ApiException {
+		return methods.ListStopLimitOrderHistoryAsync(tradingAccountId,
+				maxResults, api, callbacks);
 	}
 
 	private void keepAlive() throws ApiException {

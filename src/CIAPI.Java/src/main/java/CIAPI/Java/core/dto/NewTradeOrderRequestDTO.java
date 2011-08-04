@@ -73,16 +73,16 @@ public class NewTradeOrderRequestDTO {
 	public void setQuantity(double Quantity) {
 		this.Quantity = Quantity;
 	}
-	private String QuoteId;
+	private int QuoteId;
 	
 	/**
 	 * Quote Id
 	 */
-	public String getQuoteId() {
+	public int getQuoteId() {
 		return QuoteId;
 	}
 	
-	public void setQuoteId(String QuoteId) {
+	public void setQuoteId(int QuoteId) {
 		this.QuoteId = QuoteId;
 	}
 	private double BidPrice;

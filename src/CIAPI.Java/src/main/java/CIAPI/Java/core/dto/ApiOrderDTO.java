@@ -61,28 +61,28 @@ public class ApiOrderDTO {
 	public void setQuantity(double Quantity) {
 		this.Quantity = Quantity;
 	}
-	private String Price;
+	private double Price;
 	
 	/**
 	 * The price at which the order is to be filled
 	 */
-	public String getPrice() {
+	public double getPrice() {
 		return Price;
 	}
 	
-	public void setPrice(String Price) {
+	public void setPrice(double Price) {
 		this.Price = Price;
 	}
-	private int TradingAccountId;
+	private double TradingAccountId;
 	
 	/**
 	 * TradingAccount associated with the order
 	 */
-	public int getTradingAccountId() {
+	public double getTradingAccountId() {
 		return TradingAccountId;
 	}
 	
-	public void setTradingAccountId(int TradingAccountId) {
+	public void setTradingAccountId(double TradingAccountId) {
 		this.TradingAccountId = TradingAccountId;
 	}
 	private int CurrencyId;

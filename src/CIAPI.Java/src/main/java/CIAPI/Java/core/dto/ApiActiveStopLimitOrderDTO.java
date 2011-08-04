@@ -25,16 +25,16 @@ public class ApiActiveStopLimitOrderDTO {
 	public void setOrderId(int OrderId) {
 		this.OrderId = OrderId;
 	}
-	private String ParentOrderId;
+	private int ParentOrderId;
 	
 	/**
 	 * The order's parent OrderId.
 	 */
-	public String getParentOrderId() {
+	public int getParentOrderId() {
 		return ParentOrderId;
 	}
 	
-	public void setParentOrderId(String ParentOrderId) {
+	public void setParentOrderId(int ParentOrderId) {
 		this.ParentOrderId = ParentOrderId;
 	}
 	private int MarketId;

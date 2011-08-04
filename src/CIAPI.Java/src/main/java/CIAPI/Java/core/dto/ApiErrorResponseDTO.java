@@ -25,16 +25,16 @@ public class ApiErrorResponseDTO {
 	public void setErrorMessage(String ErrorMessage) {
 		this.ErrorMessage = ErrorMessage;
 	}
-	private ErrorCode ErrorCode;
+	private int ErrorCode;
 	
 	/**
 	 * The error code
 	 */
-	public ErrorCode getErrorCode() {
+	public int getErrorCode() {
 		return ErrorCode;
 	}
 	
-	public void setErrorCode(ErrorCode ErrorCode) {
+	public void setErrorCode(int ErrorCode) {
 		this.ErrorCode = ErrorCode;
 	}
 }
