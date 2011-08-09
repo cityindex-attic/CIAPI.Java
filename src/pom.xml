@@ -12,7 +12,6 @@
   	<module>JsonClient</module>
 	<module>CodeGeneration</module>
 	<module>CIAPI.Java</module>
-	<module>TradingApp</module>
 	<!-- <module>samples/TradingApiSimpleGUI</module>  -->
   </modules>
   
