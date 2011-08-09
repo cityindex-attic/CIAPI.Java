@@ -3,6 +3,7 @@ package CIAPI.Java.pricewidget.model.auth;
 import static CIAPI.Java.android.Constants.TAG;
 import CIAPI.Java.core.ServiceMethods;
 import CIAPI.Java.core.dto.ApiLogOffResponseDTO;
+import CIAPI.Java.core.dto.ApiLogOnRequestDTO;
 import CIAPI.Java.core.dto.ApiLogOnResponseDTO;
 import CIAPI.Java.core.impl.ServiceMethodsImpl;
 import CIAPI.Java.pricewidget.activities.TradingApp;
@@ -24,7 +25,10 @@ public class LogOnStatus {
 
 	public static void logOn(final String username, final String password) throws ApiException {
 		Log.w(TAG, "Logging in: " + username);
-		methods.LogOnAsync(username, password, apiAsync(), new CallBack() {
+		ApiLogOnRequestDTO reqData = new ApiLogOnRequestDTO();
+		reqData.setPassword(password);
+		reqData.setUserName(username);
+		methods.LogOnAsync(reqData, apiAsync(), new CallBack() {
 			@Override
 			public void doCallBack(Object result, String baseUrl, String methodName) {
 				Log.d(TAG, "Logged on async!!!");
@@ -41,7 +45,10 @@ public class LogOnStatus {
 
 	public static void refreshLogOn() throws ApiException {
 		Log.w(TAG, "Refreshing in: " + username());
-		methods.LogOnAsync(username(), password(), apiAsync(), new CallBack() {
+		ApiLogOnRequestDTO reqData = new ApiLogOnRequestDTO();
+		reqData.setPassword(password());
+		reqData.setUserName(username());
+		methods.LogOnAsync(reqData, apiAsync(), new CallBack() {
 			@Override
 			public void doCallBack(Object result, String baseUrl, String methodName) {
 				Log.d(TAG, "Logged on async!!!");

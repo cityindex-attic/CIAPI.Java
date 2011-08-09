@@ -1,7 +1,6 @@
 package CIAPI.Java.pricewidget.activities;
 
 import static CIAPI.Java.android.Constants.TAG;
-import CIAPI.Java.pricewidget.R;
 import CIAPI.Java.pricewidget.model.auth.LogOnStatus;
 import JsonClient.Java.ApiException;
 import android.app.Activity;
@@ -29,8 +28,8 @@ public class TradingApp extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.i(TAG, "Creating main activity");
-		setContentView(R.layout.login);
-		Button changeStocksButton = (Button) findViewById(R.id.change_stock);
+		// setContentView(R.layout.login);
+		Button changeStocksButton = null; // (Button) findViewById(R.id.change_stock);
 		changeStocksButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -38,12 +37,12 @@ public class TradingApp extends Activity {
 				TradingApp.this.startActivity(startViewStocks);
 			}
 		});
-		Button buttonTCounter = (Button) findViewById(R.id.saveButton);
+		Button buttonTCounter = null; // (Button) findViewById(R.id.saveButton);
 		buttonTCounter.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				EditText userBox = (EditText) findViewById(R.id.usernameField);
-				EditText passwordBox = (EditText) findViewById(R.id.passwordField);
+				EditText userBox = null;//(EditText) findViewById(R.id.usernameField);
+				EditText passwordBox = null; //(EditText) findViewById(R.id.passwordField);
 				String username = userBox.getText().toString();
 				String password = passwordBox.getText().toString();
 				try {

@@ -8,8 +8,8 @@ import java.util.Date;
 import CIAPI.Java.pricewidget.activities.TradingApp;
 import CIAPI.Java.pricewidget.model.auth.LogOnStatus;
 import CIAPI.Java.pricewidget.model.stock.IStock;
-import CIAPI.Java.pricewidget.model.stock.IStockSearch;
 import CIAPI.Java.pricewidget.model.stock.IStock.PriceStatus;
+import CIAPI.Java.pricewidget.model.stock.IStockSearch;
 import CIAPI.Java.pricewidget.model.stock.impl.RealStock;
 import CIAPI.Java.pricewidget.model.stock.impl.StockSearch;
 import JsonClient.Java.ApiException;
@@ -33,11 +33,11 @@ public class PriceWidget extends AppWidgetProvider {
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 		Log.i(TAG, "Updating City Index trading app in onUpdate method");
 		for (int i = 0; i < appWidgetIds.length; i++) {
-			RemoteViews widg = new RemoteViews(context.getPackageName(), R.layout.widg_layout_3);
+			RemoteViews widg = null; //new RemoteViews(context.getPackageName(), R.layout.widg_layout_3);
 			Intent clickIntent = new Intent(context, TradingApp.class);
 			PendingIntent clickPI = PendingIntent.getActivity(context, 0, clickIntent,
 					PendingIntent.FLAG_UPDATE_CURRENT);
-			widg.setOnClickPendingIntent(R.id.price1, clickPI);
+			//widg.setOnClickPendingIntent(R.id.price1, clickPI);
 
 			Intent updatePriceService = new Intent(context, UpdatePricesService.class);
 			Intent remainLoggedInService = new Intent(context, RemainLoggedIn.class);
@@ -90,20 +90,20 @@ public class PriceWidget extends AppWidgetProvider {
 			// TODO giant try/catch...ug
 			try {
 				Log.i(TAG, "Updating City Index trading app in service method");
-				RemoteViews view = new RemoteViews(getPackageName(), R.layout.widg_layout_3);
+				RemoteViews view = null; // new RemoteViews(getPackageName(), R.layout.widg_layout_3);
 				Log.d(TAG, "Whitelist: " + RealStock.WHITE_LIST[10]);
 				IStock s1 = stocks.getById(Integer.parseInt(RealStock.WHITE_LIST[10]));
 				Log.d(TAG, "Whitelist: " + RealStock.WHITE_LIST[20]);
 				IStock s2 = stocks.getById(Integer.parseInt(RealStock.WHITE_LIST[11]));
 				Log.d(TAG, "Whitelist: " + RealStock.WHITE_LIST[30]);
 				IStock s3 = stocks.getById(Integer.parseInt(RealStock.WHITE_LIST[12]));
-				setText(view, s1, R.id.price1, R.id.change1);
-				setText(view, s2, R.id.price2, R.id.change2);
-				setText(view, s3, R.id.price3, R.id.change3);
+				//setText(view, s1, R.id.price1, R.id.change1);
+				//setText(view, s2, R.id.price2, R.id.change2);
+				//setText(view, s3, R.id.price3, R.id.change3);
 
 				SimpleDateFormat fmt = new SimpleDateFormat("hh:mm.ss");
 				String date = fmt.format(new Date(System.currentTimeMillis()));
-				view.setTextViewText(R.id.lastValue, date);
+				//view.setTextViewText(R.id.lastValue, date);
 
 				AppWidgetManager mgr = AppWidgetManager.getInstance(this);
 				mgr.updateAppWidget(new ComponentName(this, PriceWidget.class), view);

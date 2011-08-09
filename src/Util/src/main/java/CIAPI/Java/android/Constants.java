@@ -1,5 +1,5 @@
 package CIAPI.Java.android;
 
 public class Constants {
-public static final String TAG = "CityIndex";
+	public static final String TAG = "CityIndex";
 }
