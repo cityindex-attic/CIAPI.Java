@@ -1,5 +1,4 @@
-#CIAPI.Java 
-![Incomplete](http://labs.cityindex.com/wp-content/uploads/2012/01/lbl-incomplete.png)![Unsupported](http://labs.cityindex.com/wp-content/uploads/2012/01/lbl-unsupported.png)
+#CIAPI.Java ![Incomplete](http://labs.cityindex.com/wp-content/uploads/2012/01/lbl-incomplete.png)![Unsupported](http://labs.cityindex.com/wp-content/uploads/2012/01/lbl-unsupported.png)
 Java client libraries and sample applications for the CityIndex TradingAPI
 
 ==REQUIRED to build===
